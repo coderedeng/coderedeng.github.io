@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-default-color-scheme="auto"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png"><link rel="icon" href="/img/fluid.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#2f4154"><meta name="author" content="Evan Deng"><meta name="keywords" content=""><meta name="description" content="18.logrus01.logrus基础 参考GitHub(opens new window) 参考博客1(opens new window) 参考博客2(opens new window) 安装  go get github.com&#x2F;sirupsen&#x2F;logrus  1.1 简介 Logrus是Go（golang）的结构化logger，与标准库logger完全API兼容，它有以下特点   完全兼"><meta property="og:type" content="article"><meta property="og:title" content="logrus"><meta property="og:url" content="http://example.com/2022/06/20/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20logrus/index.html"><meta property="og:site_name" content="Evan的博客"><meta property="og:description" content="18.logrus01.logrus基础 参考GitHub(opens new window) 参考博客1(opens new window) 参考博客2(opens new window) 安装  go get github.com&#x2F;sirupsen&#x2F;logrus  1.1 简介 Logrus是Go（golang）的结构化logger，与标准库logger完全API兼容，它有以下特点   完全兼"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/cover2-18.png"><meta property="article:published_time" content="2022-06-20T13:54:53.000Z"><meta property="article:modified_time" content="2023-07-16T08:00:13.944Z"><meta property="article:author" content="Evan Deng"><meta property="article:tag" content="golang常用库"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="http://example.com/img/cover2-18.png"><title>logrus - Evan的博客</title><link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css"><link rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css"><link rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"><link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css"><link rel="stylesheet" href="/css/main.css"><link id="highlight-css" rel="stylesheet" href="/css/highlight.css"><link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css"><script id="fluid-configs">var Fluid=window.Fluid||{};Fluid.ctx=Object.assign({},Fluid.ctx);var dntVal,CONFIG={hostname:"example.com",root:"/",version:"1.9.4",typing:{enable:!0,typeSpeed:70,cursorChar:"_",loop:!1,scope:[]},anchorjs:{enable:!0,element:"h1,h2,h3,h4,h5,h6",placement:"left",visible:"hover",icon:""},progressbar:{enable:!0,height_px:3,color:"#29d",options:{showSpinner:!1,trickleSpeed:100}},code_language:{enable:!0,default:"TEXT"},copy_btn:!0,image_caption:{enable:!0},image_zoom:{enable:!0,img_url_replace:["",""]},toc:{enable:!0,placement:"right",headingSelector:"h1,h2,h3,h4,h5,h6",collapseDepth:0},lazyload:{enable:!0,loading_img:"/img/loading.gif",onlypost:!1,offset_factor:2},web_analytics:{enable:!1,follow_dnt:!0,baidu:null,google:null,gtag:null,tencent:{sid:null,cid:null},woyaola:null,cnzz:null,leancloud:{app_id:null,app_key:null,server_url:null,path:"window.location.pathname",ignore_local:!1}},search_path:"/local-search.xml"};CONFIG.web_analytics.follow_dnt&&(dntVal=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,Fluid.ctx.dnt=dntVal&&(dntVal.startsWith("1")||dntVal.startsWith("yes")||dntVal.startsWith("on")))</script><script src="/js/utils.js"></script><script src="/js/color-schema.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Evan的博客" type="application/atom+xml"></head><body><header><div class="header-inner" style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/"><strong>Evan的博客</strong> </a><button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> <span>首页</span></a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> <span>归档</span></a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> <span>分类</span></a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> <span>标签</span></a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> <span>关于</span></a></li><li class="nav-item" id="search-btn"><a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search"><i class="iconfont icon-search"></i></a></li><li class="nav-item" id="color-toggle-btn"><a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle"><i class="iconfont icon-dark" id="color-toggle-icon"></i></a></li></ul></div></div></nav><div id="banner" class="banner" parallax="true" style="background:url(/img/default.png) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="banner-text text-center fade-in-up"><div class="h2"><span id="subtitle" data-typed-text="logrus"></span></div><div class="mt-3"><span class="post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2022-06-20 21:54" pubdate>2022年6月20日 晚上</time></span></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 8.1k 字 </span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 68 分钟</span></div></div></div></div></div></div></header><main><div class="container-fluid nopadding-x"><div class="row nomargin-x"><div class="side-col d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-x-md"><div class="container nopadding-x-md" id="board-ctn"><div id="board"><article class="post-content mx-auto"><h1 style="display:none">logrus</h1><div class="markdown-body"><h1 id="18-logrus"><a href="#18-logrus" class="headerlink" title="18.logrus"></a>18.logrus</h1><h2 id="01-logrus基础"><a href="#01-logrus基础" class="headerlink" title="01.logrus基础"></a>01.logrus基础</h2><ul><li><a target="_blank" rel="noopener" href="https://github.com/sirupsen/logrus">参考GitHub(opens new window)</a></li><li><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15183360/2737283">参考博客1(opens new window)</a></li><li><a target="_blank" rel="noopener" href="https://www.liwenzhou.com/posts/Go/go_logrus/">参考博客2(opens new window)</a></li><li>安装</li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">go get github.com/sirupsen/logrus<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><blockquote><p>Logrus是Go（golang）的结构化logger，与标准库logger完全API兼容，它有以下特点</p></blockquote><ul><li>完全兼容标准日志库，拥有七种日志级别：<code>Trace</code>, <code>Debug</code>, <code>Info</code>, <code>Warning</code>, <code>Error</code>, <code>Fatal</code>and <code>Panic</code>。</li><li>可扩展的Hook机制，允许使用者通过Hook的方式将日志分发到任意地方<ul><li>如本地文件系统，logstash，elasticsearch或者mq等，或者通过Hook定义日志内容和格式等</li></ul></li><li>可选的日志输出格式，内置了两种日志格式JSONFormater和TextFormatter，还可以自定义日志格式</li><li>Field机制，通过Filed机制进行结构化的日志记录</li><li>线程安全</li></ul><h3 id="1-2-简单导报使用"><a href="#1-2-简单导报使用" class="headerlink" title="1.2 简单导报使用"></a>1.2 简单导报使用</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	log <span class="token string">"github.com/sirupsen/logrus"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	log<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+		<span class="token string">"animal"</span><span class="token punctuation">:</span> <span class="token string">"dog"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"测试info日志"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// INFO[0000] 测试info日志      animal=dog</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-3-日志级别"><a href="#1-3-日志级别" class="headerlink" title="1.3 日志级别"></a>1.3 日志级别</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">// 创建一个新的logger实例。可以创建任意多个。</span>
+<span class="token keyword">var</span> log <span class="token operator">=</span> logrus<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	log<span class="token punctuation">.</span><span class="token function">Trace</span><span class="token punctuation">(</span><span class="token string">"Something very low level."</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Debug</span><span class="token punctuation">(</span><span class="token string">"Useful debugging information."</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Something noteworthy happened!"</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Warn</span><span class="token punctuation">(</span><span class="token string">"You should probably take a look at this."</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">"Something failed but I'm not quitting."</span><span class="token punctuation">)</span>
+	<span class="token comment">// 记完日志后会调用os.Exit(1)</span>
+	log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span><span class="token string">"Bye."</span><span class="token punctuation">)</span>
+	<span class="token comment">// 记完日志后会调用 panic()</span>
+	log<span class="token punctuation">.</span><span class="token function">Panic</span><span class="token punctuation">(</span><span class="token string">"I'm bailing."</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">/*
+INFO[0000] Something noteworthy happened!
+WARN[0000] You should probably take a look at this.
+ERRO[0000] Something failed but I'm not quitting.
+FATA[0000] Bye.
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-4-设置日志级别"><a href="#1-4-设置日志级别" class="headerlink" title="1.4 设置日志级别"></a>1.4 设置日志级别</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token comment">// 会记录info及以上级别 (warn, error, fatal, panic)</span>
+log<span class="token punctuation">.</span><span class="token function">SetLevel</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>InfoLevel<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure><h3 id="1-5-字段"><a href="#1-5-字段" class="headerlink" title="1.5 字段"></a>1.5 字段</h3><ul><li>Logrus鼓励通过日志字段进行谨慎的结构化日志记录，而不是冗长的、不可解析的错误消息。</li><li>例如，区别于使用<code>log.Fatalf(&quot;Failed to send event %s to topic %s with key %d&quot;)</code></li><li>你应该使用如下方式记录更容易发现的内容</li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	log <span class="token string">"github.com/sirupsen/logrus"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	log<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+		<span class="token string">"event"</span><span class="token punctuation">:</span> <span class="token string">"event"</span><span class="token punctuation">,</span>
+		<span class="token string">"topic"</span><span class="token punctuation">:</span> <span class="token string">"topic"</span><span class="token punctuation">,</span>
+		<span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"key"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span><span class="token string">"Failed to send event"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// FATA[0000] Failed to send event   event=event key=key topic=topic</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-6-默认字段"><a href="#1-6-默认字段" class="headerlink" title="1.6 默认字段"></a>1.6 默认字段</h3><ul><li>通常，将一些字段始终附加到应用程序的全部或部分的日志语句中会很有帮助。</li><li>例如，你可能希望始终在请求的上下文中记录<code>request_id</code>和<code>user_ip</code>。</li><li>区别于在每一行日志中写上<code>log.WithFields(log.Fields&#123;&quot;request_id&quot;: request_id, &quot;user_ip&quot;: user_ip&#125;)</code></li><li>你可以向下面的示例代码一样创建一个<code>logrus.Entry</code>去传递这些字段。</li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> log <span class="token string">"github.com/sirupsen/logrus"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	requestLogger <span class="token operator">:=</span> log<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span><span class="token string">"request_id"</span><span class="token punctuation">:</span> <span class="token string">"request_id"</span><span class="token punctuation">,</span> <span class="token string">"user_ip"</span><span class="token punctuation">:</span> <span class="token string">"user_ip"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	requestLogger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"something happened on that request"</span><span class="token punctuation">)</span> <span class="token comment">// will log request_id and user_ip</span>
+	requestLogger<span class="token punctuation">.</span><span class="token function">Warn</span><span class="token punctuation">(</span><span class="token string">"something not great happened"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">/*
+INFO[0000] something happened on that request            request_id=request_id user_ip=user_ip
+WARN[0000] something not great happened                  request_id=request_id user_ip=user_ip
+ */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-7-Hooks"><a href="#1-7-Hooks" class="headerlink" title="1.7 Hooks"></a>1.7 Hooks</h3><ul><li>你可以添加日志级别的钩子（Hook）。</li><li>例如，向异常跟踪服务发送<code>Error</code>、<code>Fatal</code>和<code>Panic</code>、信息到StatsD或同时将日志发送到多个位置，例如syslog。</li><li>Logrus配有内置钩子，在<code>init</code>中添加这些内置钩子或你自定义的钩子</li><li><a target="_blank" rel="noopener" href="https://github.com/sirupsen/logrus/blob/master/hooks/syslog/README.md">GitHub参考(opens new window)</a></li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	log <span class="token string">"github.com/sirupsen/logrus"</span>
+	<span class="token string">"gopkg.in/gemnasium/logrus-airbrake-hook.v2"</span> <span class="token comment">// the package is named "airbrake"</span>
+	logrus_syslog <span class="token string">"github.com/sirupsen/logrus/hooks/syslog"</span>
+	<span class="token string">"log/syslog"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+	<span class="token comment">// Use the Airbrake hook to report errors that have Error severity or above to</span>
+	<span class="token comment">// an exception tracker. You can create custom hooks, see the Hooks section.</span>
+	log<span class="token punctuation">.</span><span class="token function">AddHook</span><span class="token punctuation">(</span>airbrake<span class="token punctuation">.</span><span class="token function">NewHook</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">,</span> <span class="token string">"xyz"</span><span class="token punctuation">,</span> <span class="token string">"production"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	hook<span class="token punctuation">,</span> err <span class="token operator">:=</span> logrus_syslog<span class="token punctuation">.</span><span class="token function">NewSyslogHook</span><span class="token punctuation">(</span><span class="token string">"udp"</span><span class="token punctuation">,</span> <span class="token string">"localhost:514"</span><span class="token punctuation">,</span> syslog<span class="token punctuation">.</span>LOG_INFO<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">"Unable to connect to local syslog daemon"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">AddHook</span><span class="token punctuation">(</span>hook<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-8-格式化"><a href="#1-8-格式化" class="headerlink" title="1.8 格式化"></a>1.8 格式化</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> log <span class="token operator">=</span> logrus<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	log<span class="token punctuation">.</span>Formatter <span class="token operator">=</span> <span class="token operator">&amp;</span>logrus<span class="token punctuation">.</span>JSONFormatter<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+  <span class="token comment">//log.SetReportCaller(true)  // 可以开启记录函数名，但是会消耗性能</span>
+	log<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+		<span class="token string">"event"</span><span class="token punctuation">:</span> <span class="token string">"event"</span><span class="token punctuation">,</span>
+		<span class="token string">"topic"</span><span class="token punctuation">:</span> <span class="token string">"topic"</span><span class="token punctuation">,</span>
+		<span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"key"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Failed to send event"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+&#123;
+    "event":"event",
+    "key":"key",
+    "level":"info",
+    "msg":"Failed to send event",
+    "time":"2021-12-23T12:21:55+08:00",
+    "topic":"topic"
+&#125;
+ */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="1-9-gin中使用logrus"><a href="#1-9-gin中使用logrus" class="headerlink" title="1.9 gin中使用logrus"></a>1.9 gin中使用logrus</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+	<span class="token string">"os"</span>
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> log <span class="token operator">=</span> logrus<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Log as JSON instead of the default ASCII formatter.</span>
+	log<span class="token punctuation">.</span>Formatter <span class="token operator">=</span> <span class="token operator">&amp;</span>logrus<span class="token punctuation">.</span>JSONFormatter<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token comment">// Output to stdout instead of the default stderr</span>
+	<span class="token comment">// Can be any io.Writer, see below for File example</span>
+	f<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token string">"./gin.log"</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span>Out <span class="token operator">=</span> f
+	gin<span class="token punctuation">.</span><span class="token function">SetMode</span><span class="token punctuation">(</span>gin<span class="token punctuation">.</span>ReleaseMode<span class="token punctuation">)</span>
+
+	gin<span class="token punctuation">.</span>DefaultWriter <span class="token operator">=</span> log<span class="token punctuation">.</span>Out
+	<span class="token comment">// Only log the warning severity or above.</span>
+	log<span class="token punctuation">.</span>Level <span class="token operator">=</span> logrus<span class="token punctuation">.</span>InfoLevel
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 创建一个默认的路由引擎</span>
+	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token comment">// GET：请求方式；/hello：请求的路径</span>
+	<span class="token comment">// 当客户端以GET方法请求/hello路径时，会执行后面的匿名函数</span>
+	r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+			<span class="token string">"animal"</span><span class="token punctuation">:</span> <span class="token string">"walrus"</span><span class="token punctuation">,</span>
+			<span class="token string">"size"</span><span class="token punctuation">:</span>   <span class="token number">10</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Warn</span><span class="token punctuation">(</span><span class="token string">"A group of walrus emerges from the ocean"</span><span class="token punctuation">)</span>
+		<span class="token comment">// c.JSON：返回JSON格式的数据</span>
+		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span>
+			<span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Hello world!"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token comment">// 启动HTTP服务，默认在0.0.0.0:8080启动服务</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">`http://127.0.0.1:8080/hello`</span><span class="token punctuation">)</span>
+	r<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><ul><li>记录日志</li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">&#123;"animal":"walrus","level":"warning","msg":"A group of walrus emerges from the ocean","size":10,"time":"2021-12-23T12:37:21+08:00"&#125;
+[GIN] 2021/12/23 - 12:37:21 | 200 |     705.823µs |       127.0.0.1 | GET      "/hello"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure><h2 id="02-在gin中封装使用"><a href="#02-在gin中封装使用" class="headerlink" title="02.在gin中封装使用"></a>02.在gin中封装使用</h2><h3 id="2-0-目录结构"><a href="#2-0-目录结构" class="headerlink" title="2.0 目录结构"></a>2.0 目录结构</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go">logrus<span class="token operator">-</span>demo
+├── main<span class="token punctuation">.</span><span class="token keyword">go</span>
+└── middleware
+    └── logger<span class="token punctuation">.</span><span class="token keyword">go</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="2-1-main-go"><a href="#2-1-main-go" class="headerlink" title="2.1 main.go"></a>2.1 main.go</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"cobra-demo/middleware"</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">helloWorld</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 测试写入日志</span>
+	middleware<span class="token punctuation">.</span>Logger<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+		<span class="token string">"data"</span>  <span class="token punctuation">:</span> <span class="token string">"访问/hello"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"测试写入info"</span><span class="token punctuation">)</span>
+
+	<span class="token comment">// c.JSON：返回JSON格式的数据</span>
+	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span>
+		<span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Hello world!"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	r<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>middleware<span class="token punctuation">.</span><span class="token function">LoggerMiddleware</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> helloWorld<span class="token punctuation">)</span>
+	<span class="token comment">// 启动HTTP服务，默认在0.0.0.0:8080启动服务</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">`http://127.0.0.1:8080/hello`</span><span class="token punctuation">)</span>
+	r<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="2-2-middleware-x2F-logger-ge"><a href="#2-2-middleware-x2F-logger-ge" class="headerlink" title="2.2 middleware&#x2F;logger.ge"></a>2.2 middleware&#x2F;logger.ge</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> middleware
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"github.com/gin-gonic/gin"</span>
+	rotatelogs <span class="token string">"github.com/lestrrat-go/file-rotatelogs"</span>
+	<span class="token string">"github.com/rifflock/lfshook"</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+	<span class="token string">"os"</span>
+	<span class="token string">"path"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+	logFilePath <span class="token operator">=</span> <span class="token string">"./"</span>
+	logFileName <span class="token operator">=</span> <span class="token string">"system.log"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">LoggerMiddleware</span><span class="token punctuation">(</span><span class="token punctuation">)</span> gin<span class="token punctuation">.</span>HandlerFunc <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 日志文件</span>
+	fileName <span class="token operator">:=</span> path<span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span>logFilePath<span class="token punctuation">,</span> logFileName<span class="token punctuation">)</span>
+	<span class="token comment">// 写入文件</span>
+	src<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">OpenFile</span><span class="token punctuation">(</span>fileName<span class="token punctuation">,</span> os<span class="token punctuation">.</span>O_APPEND<span class="token operator">|</span>os<span class="token punctuation">.</span>O_WRONLY<span class="token punctuation">,</span> os<span class="token punctuation">.</span>ModeAppend<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"err"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">// 实例化</span>
+	logger <span class="token operator">:=</span> logrus<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token comment">//设置日志级别</span>
+	logger<span class="token punctuation">.</span><span class="token function">SetLevel</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>DebugLevel<span class="token punctuation">)</span>
+	<span class="token comment">//设置输出</span>
+	logger<span class="token punctuation">.</span>Out <span class="token operator">=</span> src
+
+	<span class="token comment">// 设置 rotatelogs</span>
+	logWriter<span class="token punctuation">,</span> err <span class="token operator">:=</span> rotatelogs<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>
+		<span class="token comment">// 分割后的文件名称</span>
+		fileName<span class="token operator">+</span><span class="token string">".%Y%m%d.log"</span><span class="token punctuation">,</span>
+
+		<span class="token comment">// 生成软链，指向最新日志文件</span>
+		rotatelogs<span class="token punctuation">.</span><span class="token function">WithLinkName</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+		<span class="token comment">// 设置最大保存时间(7天)</span>
+		rotatelogs<span class="token punctuation">.</span><span class="token function">WithMaxAge</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token operator">*</span><span class="token number">24</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Hour<span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+		<span class="token comment">// 设置日志切割时间间隔(1天)</span>
+		rotatelogs<span class="token punctuation">.</span><span class="token function">WithRotationTime</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Hour<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">)</span>
+
+	writeMap <span class="token operator">:=</span> lfshook<span class="token punctuation">.</span>WriterMap<span class="token punctuation">&#123;</span>
+		logrus<span class="token punctuation">.</span>InfoLevel<span class="token punctuation">:</span>  logWriter<span class="token punctuation">,</span>
+		logrus<span class="token punctuation">.</span>FatalLevel<span class="token punctuation">:</span> logWriter<span class="token punctuation">,</span>
+		logrus<span class="token punctuation">.</span>DebugLevel<span class="token punctuation">:</span> logWriter<span class="token punctuation">,</span>
+		logrus<span class="token punctuation">.</span>WarnLevel<span class="token punctuation">:</span>  logWriter<span class="token punctuation">,</span>
+		logrus<span class="token punctuation">.</span>ErrorLevel<span class="token punctuation">:</span> logWriter<span class="token punctuation">,</span>
+		logrus<span class="token punctuation">.</span>PanicLevel<span class="token punctuation">:</span> logWriter<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	logger<span class="token punctuation">.</span><span class="token function">AddHook</span><span class="token punctuation">(</span>lfshook<span class="token punctuation">.</span><span class="token function">NewHook</span><span class="token punctuation">(</span>writeMap<span class="token punctuation">,</span> <span class="token operator">&amp;</span>logrus<span class="token punctuation">.</span>JSONFormatter<span class="token punctuation">&#123;</span>
+		TimestampFormat<span class="token punctuation">:</span> <span class="token string">"2006-01-02 15:04:05"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token comment">//开始时间</span>
+		startTime <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment">//处理请求</span>
+		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment">//结束时间</span>
+		endTime <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment">// 执行时间</span>
+		latencyTime <span class="token operator">:=</span> endTime<span class="token punctuation">.</span><span class="token function">Sub</span><span class="token punctuation">(</span>startTime<span class="token punctuation">)</span>
+		<span class="token comment">//请求方式</span>
+		reqMethod <span class="token operator">:=</span> c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>Method
+		<span class="token comment">//请求路由</span>
+		reqUrl <span class="token operator">:=</span> c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>RequestURI
+		<span class="token comment">//状态码</span>
+		statusCode <span class="token operator">:=</span> c<span class="token punctuation">.</span>Writer<span class="token punctuation">.</span><span class="token function">Status</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment">//请求ip</span>
+		clientIP <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">ClientIP</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+		<span class="token comment">// 日志格式</span>
+		logger<span class="token punctuation">.</span><span class="token function">WithFields</span><span class="token punctuation">(</span>logrus<span class="token punctuation">.</span>Fields<span class="token punctuation">&#123;</span>
+			<span class="token string">"status_code"</span><span class="token punctuation">:</span>  statusCode<span class="token punctuation">,</span>
+			<span class="token string">"latency_time"</span><span class="token punctuation">:</span> latencyTime<span class="token punctuation">,</span>
+			<span class="token string">"client_ip"</span><span class="token punctuation">:</span>    clientIP<span class="token punctuation">,</span>
+			<span class="token string">"req_method"</span><span class="token punctuation">:</span>   reqMethod<span class="token punctuation">,</span>
+			<span class="token string">"req_uri"</span><span class="token punctuation">:</span>      reqUrl<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="2-3-logging-x2F-logger-go"><a href="#2-3-logging-x2F-logger-go" class="headerlink" title="2.3 logging&#x2F;logger.go"></a>2.3 logging&#x2F;logger.go</h3><figure><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> logging
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	setting <span class="token string">"bamboo.com/pipeline/Go-assault-squad/config"</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"github.com/sirupsen/logrus"</span>
+	<span class="token string">"os"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> WebLog <span class="token operator">*</span>logrus<span class="token punctuation">.</span>Logger
+
+<span class="token keyword">func</span> <span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">initWebLog</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">initWebLog</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	WebLog <span class="token operator">=</span> <span class="token function">initLog</span><span class="token punctuation">(</span>setting<span class="token punctuation">.</span>Conf<span class="token punctuation">.</span>LogConfig<span class="token punctuation">.</span>WebLogName<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 初始化日志句柄</span>
+<span class="token keyword">func</span> <span class="token function">initLog</span><span class="token punctuation">(</span>logFileName <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">*</span>logrus<span class="token punctuation">.</span>Logger<span class="token punctuation">&#123;</span>
+	log <span class="token operator">:=</span> logrus<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span>Formatter <span class="token operator">=</span> <span class="token operator">&amp;</span>logrus<span class="token punctuation">.</span>JSONFormatter<span class="token punctuation">&#123;</span>
+		TimestampFormat<span class="token punctuation">:</span> <span class="token string">"2006-01-02 15:04:05"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+	logFilePath <span class="token operator">:=</span> setting<span class="token punctuation">.</span>Conf<span class="token punctuation">.</span>LogFilePath
+	logName <span class="token operator">:=</span> logFilePath <span class="token operator">+</span> logFileName
+	<span class="token keyword">var</span> f <span class="token operator">*</span>os<span class="token punctuation">.</span>File
+	<span class="token keyword">var</span> err <span class="token builtin">error</span>
+	<span class="token comment">//判断日志文件夹是否存在，不存在则创建</span>
+	<span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Stat</span><span class="token punctuation">(</span>logFilePath<span class="token punctuation">)</span><span class="token punctuation">;</span> os<span class="token punctuation">.</span><span class="token function">IsNotExist</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		os<span class="token punctuation">.</span><span class="token function">MkdirAll</span><span class="token punctuation">(</span>logFilePath<span class="token punctuation">,</span> os<span class="token punctuation">.</span>ModePerm<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token comment">//判断日志文件是否存在，不存在则创建，否则就直接打开</span>
+	<span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Stat</span><span class="token punctuation">(</span>logName<span class="token punctuation">)</span><span class="token punctuation">;</span> os<span class="token punctuation">.</span><span class="token function">IsNotExist</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		f<span class="token punctuation">,</span> err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>logName<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+		f<span class="token punctuation">,</span> err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">OpenFile</span><span class="token punctuation">(</span>logName<span class="token punctuation">,</span>os<span class="token punctuation">.</span>O_APPEND<span class="token operator">|</span>os<span class="token punctuation">.</span>O_WRONLY<span class="token punctuation">,</span> os<span class="token punctuation">.</span>ModeAppend<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"open log file failed"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	log<span class="token punctuation">.</span>Out <span class="token operator">=</span> f
+	log<span class="token punctuation">.</span>Level <span class="token operator">=</span> logrus<span class="token punctuation">.</span>InfoLevel
+	<span class="token keyword">return</span> log
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/*
+---- 日志写入测试 ----
+WebLog.WithFields(logrus.Fields&#123;
+	"data"  : "访问/hello",
+&#125;).Info("测试写入info")
+---- 写入结构如下 ----
+&#123;"data":"访问/hello","level":"info","msg":"测试写入info","time":"2021-12-29 18:15:54"&#125;
+ */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure><h3 id="2-4-访问测试"><a href="#2-4-访问测试" class="headerlink" title="2.4 访问测试"></a>2.4 访问测试</h3><blockquote><p>go run main.go</p></blockquote><ul><li><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/hello">http://127.0.0.1:8080/hello</a></li><li>写入日志格式</li></ul><figure><div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"data"</span><span class="token operator">:</span><span class="token string">"访问/hello"</span><span class="token punctuation">,</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"测试写入info"</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token string">"2021-12-23 15:27:37"</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token property">"client_ip"</span><span class="token operator">:</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span><span class="token property">"latency_time"</span><span class="token operator">:</span><span class="token number">418116</span><span class="token punctuation">,</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"req_method"</span><span class="token operator">:</span><span class="token string">"GET"</span><span class="token punctuation">,</span><span class="token property">"req_uri"</span><span class="token operator">:</span><span class="token string">"/hello"</span><span class="token punctuation">,</span><span class="token property">"status_code"</span><span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token property">"time"</span><span class="token operator">:</span><span class="token string">"2021-12-23 15:27:37"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure></div><hr><div><div class="post-metas my-3"><div class="post-meta mr-3 d-flex align-items-center"><i class="iconfont icon-category"></i> <span class="category-chains"><span class="category-chain"><a href="/categories/golang%E5%B8%B8%E7%94%A8%E5%BA%93/" class="category-chain-item">golang常用库</a></span></span></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/golang%E5%B8%B8%E7%94%A8%E5%BA%93/">#golang常用库</a></div></div><div class="license-box my-3"><div class="license-title"><div>logrus</div><div>http://example.com/2022/06/20/Go常用库介绍 - logrus/</div></div><div class="license-meta"><div class="license-meta-item"><div>作者</div><div>Evan Deng</div></div><div class="license-meta-item license-meta-date"><div>发布于</div><div>2022年6月20日</div></div><div class="license-meta-item"><div>许可协议</div><div><a target="_blank" href="https://creativecommons.org/licenses/by/4.0/"><span class="hint--top hint--rounded" aria-label="BY - 署名"><i class="iconfont icon-by"></i></span></a></div></div></div><div class="license-icon iconfont"></div></div><div class="post-prevnext my-3"><article class="post-prev col-6"><a href="/2022/06/21/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20cron/" title="cron"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">cron</span> <span class="visible-mobile">上一篇</span></a></article><article class="post-next col-6"><a href="/2022/06/19/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20cobor/" title="Makefile"><span class="hidden-mobile">Makefile</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></article></div></div></article></div></div></div><div class="side-col d-none d-lg-block col-lg-2"><aside class="sidebar" style="margin-left:-1rem"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i> <span>目录</span></p><div class="toc-body" id="toc-body"></div></div></aside></div></div></div><a id="scroll-top-button" aria-label="TOP" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div></main><footer><div class="footer-inner"><div class="footer-content"><a href="https://github.com/coderedeng" target="_blank" rel="nofollow noopener"><span>Coder</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/coderedeng" target="_blank" rel="nofollow noopener"><span>Evan</span></a></div></div></footer><script src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js"></script><link rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css"><script>NProgress.configure({showSpinner:!1,trickleSpeed:100}),NProgress.start(),window.addEventListener("load",function(){NProgress.done()})</script><script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script><script src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script><script src="/js/events.js"></script><script src="/js/plugins.js"></script><script src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js"></script><script>!function(t){var e=Fluid.plugins.typing,i=t.getElementById("subtitle");i&&e&&e(i.getAttribute("data-typed-text"))}((window,document))</script><script src="/js/img-lazyload.js"></script><script>Fluid.utils.createScript("https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js",function(){var t,o=jQuery("#toc");0!==o.length&&window.tocbot&&(t=jQuery("#board-ctn").offset().top,window.tocbot.init(Object.assign({tocSelector:"#toc-body",contentSelector:".markdown-body",linkClass:"tocbot-link",activeLinkClass:"tocbot-active-link",listClass:"tocbot-list",isCollapsedClass:"tocbot-is-collapsed",collapsibleClass:"tocbot-is-collapsible",scrollSmooth:!0,includeTitleTags:!0,headingsOffset:-t},CONFIG.toc)),0<o.find(".toc-list-item").length&&o.css("visibility","visible"),Fluid.events.registerRefreshCallback(function(){if("tocbot"in window){tocbot.refresh();var t=jQuery("#toc");if(0===t.length||!tocbot)return;0<t.find(".toc-list-item").length&&t.css("visibility","visible")}}))})</script><script src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script><script src="https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js"></script><script>Fluid.plugins.codeWidget()</script><script>Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });</script><script>Fluid.utils.createScript("https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js",function(){Fluid.plugins.fancyBox()})</script><script>Fluid.plugins.imageCaption()</script><script src="/js/local-search.js"></script><script src="/js/boot.js"></script><noscript><div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div></noscript></body></html>
