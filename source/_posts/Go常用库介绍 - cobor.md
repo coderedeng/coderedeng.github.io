@@ -1,5 +1,5 @@
 ---
-title: Makefile
+title: Cobor
 index_img: /img/cover2-17.png
 date: 2022-06-19 22:26:53
 categories: 

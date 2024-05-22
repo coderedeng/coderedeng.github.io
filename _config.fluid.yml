@@ -155,13 +155,18 @@ navbar:
         icon: "iconfont icon-category-fill",
       }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
-    # - {
-    #     key: "book",
-    #     link: "/books/",
-    #     icon: "iconfont icon-books",
-    #     name: "书单",
-    #   }
-    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - {
+        key: "book",
+        link: "/books/",
+        icon: "iconfont icon-books",
+        name: "书单",
+      }
+    - {
+        key: "links",
+        link: "/links/",
+        icon: "iconfont icon-link-fill",
+        name: "大佬博客",
+      }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
 
 ## 友链
