@@ -12,7 +12,7 @@ sidebar: none
 
 <hr style="margin-bottom:30px;">
 
-<h5 style="margin-bottom:20px;">Go语言相关书籍</h5>
+<h5 style="margin:20px 0;">Go语言相关书籍</h5>
 
 <div style="display: flex; justify-content: left;flex-wrap: wrap;">
   <div style="margin:0 20px 20px 0; text-align: center;">
@@ -51,7 +51,7 @@ sidebar: none
 
 
 
-<h5 style="margin-bottom:20px;">商业相关书籍</h5>
+<h5 style="margin:20px 0;">商业相关书籍</h5>
 
 <div style="display: flex; justify-content: left;flex-wrap: wrap;">
   <div style="margin:0 20px 20px 0; text-align: center;">
@@ -74,7 +74,7 @@ sidebar: none
 
 
 
-<h5 style="margin-bottom:20px;">理财相关书籍</h5>
+<h5 style="margin:20px 0;">理财相关书籍</h5>
 
 <div style="display: flex; justify-content: left;flex-wrap: wrap;">
   <div style="margin:0 20px 20px 0; text-align: center;">
