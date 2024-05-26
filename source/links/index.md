@@ -1,5 +1,5 @@
 ---
-title: 大佬博客
+title: 博客
 layout: links
 comments: false
 sidebar: none

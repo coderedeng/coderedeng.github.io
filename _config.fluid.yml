@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: evan's blog
+title: Deng's blog
 subtitle: ""
 description: ""
 keywords:
@@ -14,7 +14,7 @@ banner_img: https://w.wallhaven.cc/full/l8/wallhaven-l8jr3l.jpg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://coderedeng.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -145,7 +145,7 @@ neat_js:
 # 主题配置
 ## 博客标题
 navbar:
-  blog_title: evan's blog
+  blog_title: Deng's blog
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
@@ -165,7 +165,7 @@ navbar:
         key: "links",
         link: "/links/",
         icon: "iconfont icon-link-fill",
-        name: "大佬博客",
+        name: "博客",
       }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
 

@@ -1,5 +1,5 @@
 ---
-title: sync_Pool
+title: sync.Pool
 index_img: /img/cover26.png
 date: 2021-02-21 21:19:10
 categories: 
