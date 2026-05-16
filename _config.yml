@@ -1,0 +1,39 @@
+hexo:
+  version: 6.3.0
+
+# Server
+server:
+  port: 4000
+  
+# URL
+url: https://coderedeng.github.io/
+root: /
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archives_dir: archives
+permalink: :year/:month/:day/:title/
+
+# Date / Time format
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+index_generator:
+  per_page: 10
+  pagination_dir: page
+
+theme: fluid
+
+# Extensions
+highlight:
+  enable: true
+  
+# Default metadata
+default_layout: post
+
+metadata:
+  posts: auto
+  pages: auto  
