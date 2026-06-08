@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://coderedeng.github.io/2026/06/08/Go%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86%E5%90%88/</loc>
+    
+    <lastmod>2026-06-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/tags/index.html</loc>
     
     <lastmod>2026-06-07</lastmod>
