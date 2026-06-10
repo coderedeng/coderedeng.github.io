@@ -1,6 +1,6 @@
 ---
 title: AI原生IDE革命：Cursor与新一代AI编程工具全景解析
-index_img: /img/cover41.png
+index_img: /img/cover42.png
 date: 2026-06-10 15:30:00
 categories:
 - Tech前沿
