@@ -1,6 +1,6 @@
 ---
 title: Anthropic MCP 协议深度解析：AI 应用互联的下一个基础设施
-index_img: /img/cover38.png
+index_img: /img/cover42.png
 date: 2026-06-09 13:14:00
 categories:
 - Tech前沿

@@ -1,6 +1,6 @@
 ---
 title: DeepSeek R1 深度解析：开源推理模型的范式革命
-index_img: /img/cover40.png
+index_img: /img/cover42.png
 date: 2026-06-10 10:30:00
 categories:
 - Tech前沿
