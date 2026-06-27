@@ -2,25 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://coderedeng.github.io/2026/06/27/skillhub-aihot-stock-selecter-reduce-ai/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/2026/06/16/Kimi-K2-7-Code%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-Moonshot-AI%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0MoE%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/links/index.html</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/tags/index.html</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -38,7 +29,16 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/06/21/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20cron/</loc>
+    <loc>http://coderedeng.github.io/tags/index.html</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/links/index.html</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -74,6 +74,15 @@
   </url>
   
   <url>
+    <loc>http://coderedeng.github.io/2022/06/21/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20cron/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/2022/05/20/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20fmt/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -83,16 +92,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/06/13/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20jwt-go/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2022/06/15/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20go-wrk/</loc>
+    <loc>http://coderedeng.github.io/2022/06/11/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20gRPC/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -119,6 +119,15 @@
   </url>
   
   <url>
+    <loc>http://coderedeng.github.io/2022/06/23/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20regexp2/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/2022/06/01/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20net%20http/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/06/11/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20gRPC/</loc>
+    <loc>http://coderedeng.github.io/2022/06/15/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20go-wrk/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -137,7 +146,43 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/06/23/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20regexp2/</loc>
+    <loc>http://coderedeng.github.io/2022/06/07/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20zap/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2022/06/13/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20jwt-go/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2024/04/30/Go%E7%88%AC%E8%99%AB%20-%20colly/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2024/04/30/Go%E7%88%AC%E8%99%AB%20-%20%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E5%B9%B6%E5%8F%91%E7%88%AC%E5%8F%96%E5%A4%9A%E4%B8%AAurl%E6%A0%87%E9%A2%98/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2022/05/05/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -164,15 +209,6 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/06/07/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20zap/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://coderedeng.github.io/2022/05/15/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -183,15 +219,6 @@
   
   <url>
     <loc>http://coderedeng.github.io/2022/05/17/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2024/04/30/Go%E7%88%AC%E8%99%AB%20-%20%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E5%B9%B6%E5%8F%91%E7%88%AC%E5%8F%96%E5%A4%9A%E4%B8%AAurl%E6%A0%87%E9%A2%98/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -218,15 +245,6 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2024/04/10/Go%E8%AF%AD%E8%A8%80%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B%E5%92%8C%E6%96%B0%E7%89%B9%E6%80%A7[%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0]/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://coderedeng.github.io/2021/01/30/Go%E8%BF%9B%E9%98%B6%20-%20Channel/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -245,7 +263,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/05/03/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</loc>
+    <loc>http://coderedeng.github.io/2024/04/10/Go%E8%AF%AD%E8%A8%80%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B%E5%92%8C%E6%96%B0%E7%89%B9%E6%80%A7[%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0]/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -254,7 +272,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/05/05/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://coderedeng.github.io/2022/05/03/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -272,6 +290,15 @@
   </url>
   
   <url>
+    <loc>http://coderedeng.github.io/2021/02/07/Go%E8%BF%9B%E9%98%B6%20-%20pointer/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/2021/02/15/Go%E8%BF%9B%E9%98%B6%20-%20chan%E8%AF%BB%E5%86%99%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -281,7 +308,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/02/05/Go%E8%BF%9B%E9%98%B6%20-%20interface/</loc>
+    <loc>http://coderedeng.github.io/2021/02/09/Go%E8%BF%9B%E9%98%B6%20-%20%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -290,7 +317,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/02/07/Go%E8%BF%9B%E9%98%B6%20-%20pointer/</loc>
+    <loc>http://coderedeng.github.io/2021/02/05/Go%E8%BF%9B%E9%98%B6%20-%20interface/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -317,34 +344,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2024/04/30/Go%E7%88%AC%E8%99%AB%20-%20colly/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2021/02/22/Go%E8%BF%9B%E9%98%B6%20-%20sync_map/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://coderedeng.github.io/2021/02/21/Go%E8%BF%9B%E9%98%B6%20-%20sync_Pool%20/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2021/02/10/Go%E8%BF%9B%E9%98%B6%20-%20%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -371,6 +371,15 @@
   </url>
   
   <url>
+    <loc>http://coderedeng.github.io/2021/02/10/Go%E8%BF%9B%E9%98%B6%20-%20%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://coderedeng.github.io/2021/01/20/Go%E8%BF%9B%E9%98%B6%20-%20%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -380,7 +389,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/04/21/Go%E8%BF%9B%E9%98%B6%20-%20%E5%B8%B8%E8%A7%81%E5%9D%911~10/</loc>
+    <loc>http://coderedeng.github.io/2021/02/22/Go%E8%BF%9B%E9%98%B6%20-%20sync_map/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -389,7 +398,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/02/09/Go%E8%BF%9B%E9%98%B6%20-%20%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/</loc>
+    <loc>http://coderedeng.github.io/2021/01/25/Go%E8%BF%9B%E9%98%B6%20-%20%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -416,25 +425,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/01/25/Go%E8%BF%9B%E9%98%B6%20-%20%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/books/index.html</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/categories/index.html</loc>
+    <loc>http://coderedeng.github.io/2022/04/21/Go%E8%BF%9B%E9%98%B6%20-%20%E5%B8%B8%E8%A7%81%E5%9D%911~10/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -452,7 +443,25 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/01/08/4.Map/</loc>
+    <loc>http://coderedeng.github.io/categories/index.html</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/books/index.html</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2021/01/07/1.%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -470,7 +479,16 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/01/07/1.%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>http://coderedeng.github.io/2021/01/07/3.%E5%88%87%E7%89%87/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2021/01/09/5.%E6%8C%87%E9%92%88/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -497,25 +515,25 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/01/09/5.%E6%8C%87%E9%92%88/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2021/01/12/8.%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://coderedeng.github.io/2021/01/13/9.go%20mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2026/06/09/Anthropic-MCP-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2026/06/12/GPT-5.5%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-OpenAI%E5%85%A8%E8%AE%AD%E7%BB%83Agentic%E6%A8%A1%E5%9E%8B/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -542,7 +560,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2026/06/09/Anthropic-MCP-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</loc>
+    <loc>http://coderedeng.github.io/2021/01/12/8.%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -551,25 +569,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2021/01/07/3.%E5%88%87%E7%89%87/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2026/06/12/GPT-5.5%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-OpenAI%E5%85%A8%E8%AE%AD%E7%BB%83Agentic%E6%A8%A1%E5%9E%8B/</loc>
-    
-    <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/2022/06/03/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Context/</loc>
+    <loc>http://coderedeng.github.io/2021/01/08/4.Map/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -587,7 +587,7 @@
   </url>
   
   <url>
-    <loc>http://coderedeng.github.io/2022/05/27/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Log/</loc>
+    <loc>http://coderedeng.github.io/2022/06/03/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Context/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -597,6 +597,15 @@
   
   <url>
     <loc>http://coderedeng.github.io/2022/05/29/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20IO%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/2022/05/27/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Log/</loc>
     
     <lastmod>2026-06-26</lastmod>
     
@@ -625,7 +634,7 @@
 
   <url>
     <loc>http://coderedeng.github.io/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -633,91 +642,119 @@
   
   <url>
     <loc>http://coderedeng.github.io/tags/Go%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/tags/Cursor/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/tags/DeepSeek/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/MCP/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/GPT-5-5/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/OpenAI/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/Cursor/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/DeepSeek/</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/Go%E5%B8%B8%E7%94%A8%E5%BA%93/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/tags/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/Go%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/Go%E8%BF%9B%E9%98%B6/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/tags/Kimi-K2-7-Code/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/SkillHub/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/AI%E8%B5%84%E8%AE%AF/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/%E8%82%A1%E7%A5%A8%E7%AD%9B%E9%80%89/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/tags/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -726,42 +763,42 @@
   
   <url>
     <loc>http://coderedeng.github.io/categories/Go%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://coderedeng.github.io/categories/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/categories/Go%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://coderedeng.github.io/categories/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://coderedeng.github.io/categories/Go%E8%BF%9B%E9%98%B6/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
