@@ -6,6 +6,7 @@ tags:
   - AI资讯
   - 股票筛选
   - 工具分享
+index_img: /img/cover42.png
 ---
 
 最近一直在玩 Agent Skill 相关的东西，顺手装了几个挺实用的技能，分享出来给大家参考。

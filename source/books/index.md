@@ -12,73 +12,50 @@ sidebar: none
 
 <hr style="margin-bottom:30px;">
 
-<h5 style="margin:20px 0;">Go语言相关书籍</h5>
+<h5 style="margin:20px 0;">🤖 热门前沿 AI 相关书籍</h5>
 
 <div style="display: flex; justify-content: left;flex-wrap: wrap;">
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img1.doubanio.com/view/subject/s/public/s34071329.jpg" width="200px" height="250px" alt="Go语言设计与实现" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35635836/">Go语言设计与实现</a></p>
+    <img src="https://img3.doubanio.com/view/subject/s/public/s34857961.jpg" width="200px" height="250px" alt="动手学深度学习 (Dive into Deep Learning)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35487169/">动手学深度学习</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img1.doubanio.com/view/subject/l/public/s34082690.jpg" width="200px" height="250px" alt="Go语言精进之路" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35720728/">Go语言精进之路</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s34578266.jpg" width="200px" height="250px" alt="深度学习 (Deep Learning, Ian Goodfellow)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/30496784/">深度学习</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img3.doubanio.com/view/subject/s/public/s34713013.jpg" width="200px" height="250px" alt="深入理解Go语言" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36403287/">深入理解Go语言</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s34785796.jpg" width="200px" height="250px" alt="机器学习 (Machine Learning, 周志华)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/26708319/">机器学习</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img9.doubanio.com/view/subject/s/public/s11162016.jpg" width="200px" height="250px" alt="Go语言编程" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/11577300/">Go语言编程</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s35247689.jpg" width="200px" height="250px" alt="强化学习 (Reinforcement Learning, Sutton)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35496874/">强化学习</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img9.doubanio.com/view/subject/s/public/s33305844.jpg" width="200px" height="250px" alt="Go语言高级编程" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/34442131/">Go语言高级编程</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s35591684.jpg" width="200px" height="250px" alt="自然语言处理：Transformer、大模型与 ChatGPT 视角" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36584787/">自然语言处理：Transformer与大模型</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img3.doubanio.com/view/subject/s/public/s33682507.jpg" width="200px" height="250px" alt="Go语言编程之旅" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35130972/">Go语言编程之旅</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s35826403.jpg" width="200px" height="250px" alt="Attention Is All You Need (Transformer)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36437846/">Attention Is All You Need</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img1.doubanio.com/view/subject/s/public/s29895210.jpg" width="200px" height="250px" alt="Go语言核心编程" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/30351288/">Go语言核心编程</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s35697847.jpg" width="200px" height="250px" alt="Large Language Models (Rabi, Rajkumar)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36751469/">LLM：大模型原理与实践</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="https://img1.doubanio.com/view/subject/s/public/s33964410.jpg" width="200px" height="250px" alt="Go语言底层原理剖析" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/35556889/">Go语言底层原理剖析</a></p>
+    <img src="https://img1.doubanio.com/view/subject/s/public/s34857961.jpg" width="200px" height="250px" alt="计算机视觉：模型、训练与应用" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36409879/">计算机视觉</a></p>
   </div>
 </div>
 
+<hr style="margin-bottom:30px;">
 
-
-<h5 style="margin:20px 0;">商业相关书籍</h5>
-
-<div style="display: flex; justify-content: left;flex-wrap: wrap;">
-  <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img1.doubanio.com/view/subject/s/public/s34654248.jpg" width="200px" height="250px" alt="埃隆·马斯克传" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36518892/">埃隆·马斯克传</a></p>
-  </div>
-  <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img3.doubanio.com/view/subject/s/public/s34500182.jpg" width="200px" height="250px" alt="芯片战争" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36350632/">芯片战争</a></p>
-  </div>
-  <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img9.doubanio.com/view/subject/s/public/s34559695.jpg" width="200px" height="250px" alt="芒格之道" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36438791/">芒格之道</a></p>
-  </div>
-  <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img9.doubanio.com/view/subject/s/public/s34363424.jpg" width="200px" height="250px" alt="深度学习革命" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36171345/">深度学习革命</a></p>
-  </div>
-</div>
-
-
-
-<h5 style="margin:20px 0;">理财相关书籍</h5>
+<h5 style="margin:20px 0;">💰 理财类书籍推荐</h5>
 
 <div style="display: flex; justify-content: left;flex-wrap: wrap;">
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img1.doubanio.com/view/subject/s/public/s11229869.jpg" width="200px" height="250px" alt="富爸爸，穷爸爸" referrerpolicy="no-referrer"/>
+    <img src="http://img1.doubanio.com/view/subject/s/public/s11229869.jpg" width="200px" height="250px" alt="富爸爸穷爸爸" referrerpolicy="no-referrer"/>
     <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/1033778/">富爸爸，穷爸爸</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
@@ -86,34 +63,33 @@ sidebar: none
     <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/3576486/">小狗钱钱</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img3.doubanio.com/view/subject/s/public/s2955123.jpg" width="200px" height="250px" alt="牛奶可乐经济学" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/3000997/">牛奶可乐经济学</a></p>
+    <img src="http://img3.doubanio.com/view/subject/s/public/s31514986.jpg" width="200px" height="250px" alt="穷查理宝典" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/4913781/">穷查理宝典</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img3.doubanio.com/view/subject/s/public/s6462582.jpg" width="200px" height="250px" alt="聪明的投资者" referrerpolicy="no-referrer"/>
+    <img src="http://img3.doubanio.com/view/subject/s/public/s6457319.jpg" width="200px" height="250px" alt="聪明的投资者" referrerpolicy="no-referrer"/>
     <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/5243775/">聪明的投资者</a></p>
   </div>
   <div style="margin:0 20px 20px 0; text-align: center;">
-    <img src="http://img1.doubanio.com/view/subject/s/public/s29500850.jpg" width="200px" height="250px" alt="财富自由之路" referrerpolicy="no-referrer"/>
-    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/27094706/">财富自由之路</a></p>
+    <img src="http://img1.doubanio.com/view/subject/s/public/s29684735.jpg" width="200px" height="250px" alt="漫步华尔街" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/30286409/">漫步华尔街</a></p>
+  </div>
+  <div style="margin:0 20px 20px 0; text-align: center;">
+    <img src="http://img1.doubanio.com/view/subject/s/public/s10857834.jpg" width="200px" height="250px" alt="证券分析 (The Intelligent Investor)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/3704860/">证券分析</a></p>
+  </div>
+  <div style="margin:0 20px 20px 0; text-align: center;">
+    <img src="http://img1.doubanio.com/view/subject/s/public/s31957646.jpg" width="200px" height="250px" alt="投资最重要的事" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/30397875/">投资最重要的事</a></p>
+  </div>
+  <div style="margin:0 20px 20px 0; text-align: center;">
+    <img src="http://img1.doubanio.com/view/subject/s/public/s6462582.jpg" width="200px" height="250px" alt="富可敌国 (The Man Who Solved the Market)" referrerpolicy="no-referrer"/>
+    <p style="margin-top: 10px;"><a href="https://book.douban.com/subject/36497809/">富可敌国</a></p>
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   
 
 
-
+  
