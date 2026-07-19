@@ -1,6 +1,6 @@
 ---
 title: AI 编程代理的生态演进：从 OpenCode 到 Claude Code 的多模型博弈
-index_img: /img/cover43.png
+index_img: /img/cover42.png
 date: 2026-07-18 22:30:00
 last_modified_at: 2026-07-18 22:30:00
 sticky: false
