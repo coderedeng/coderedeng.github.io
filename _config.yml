@@ -102,9 +102,6 @@ ignore:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: https://github.com/coderedeng/coderedeng.github.io.git
-  branch: master
 
 #markdown
 markdown:
