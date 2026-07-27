@@ -1,6 +1,6 @@
 ---
 title: Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的"封神之战"
-index_img: /img/cover41.png
+index_img: /img/cover42.png
 date: 2026-07-25 22:30:00
 last_modified_at: 2026-07-25 22:30:00
 sticky: false
