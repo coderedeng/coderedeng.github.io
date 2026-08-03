@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命 | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="北京时间7月17日凌晨，月之暗面（Moonshot AI）在WAIC 2026开幕前夜正式发布新一代旗舰模型 Kimi K3。这款拥有 2.8万亿参数、基于 Mixture-of-Experts (MoE) 架构的开源模型，一举成为目前全球参数规模最大的开源AI大模型，也是首个突破”3万亿级”门槛的开源系统。 Kimi K3 是什么？Kimi K3 是月之暗面继 Kimi K1、K2 之后的最新一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命">
+<meta property="og:url" content="http://coderedeng.github.io/2026/07/19/Kimi-K3-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E5%8F%91%E5%B8%832.8%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="北京时间7月17日凌晨，月之暗面（Moonshot AI）在WAIC 2026开幕前夜正式发布新一代旗舰模型 Kimi K3。这款拥有 2.8万亿参数、基于 Mixture-of-Experts (MoE) 架构的开源模型，一举成为目前全球参数规模最大的开源AI大模型，也是首个突破”3万亿级”门槛的开源系统。 Kimi K3 是什么？Kimi K3 是月之暗面继 Kimi K1、K2 之后的最新一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-07-19T06:30:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T14:31:21.465Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="AI前沿">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="Kimi K3">
+<meta property="article:tag" content="Moonshot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命",
+  "url": "http://coderedeng.github.io/2026/07/19/Kimi-K3-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E5%8F%91%E5%B8%832.8%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/",
+  "image": "http://coderedeng.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-07-19T06:30:00.000Z",
+  "dateModified": "2026-07-28T14:31:21.465Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://coderedeng.github.io/2026/07/19/Kimi-K3-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E5%8F%91%E5%B8%832.8%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> Books</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1462331940025-49c1b23ed3ee?w=1920);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> Books</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Kimi K3 正式发布：月之暗面推出全球最大开源AI模型，2.8万亿参数的技术革命</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-19T06:30:00.000Z" title="发表于 2026-07-19 14:30:00">2026-07-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-28T14:31:21.465Z" title="更新于 2026-07-28 22:31:21">2026-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%89%8D%E6%B2%BF/">AI前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>北京时间7月17日凌晨，月之暗面（Moonshot AI）在WAIC 2026开幕前夜正式发布新一代旗舰模型 <strong>Kimi K3</strong>。这款拥有 2.8万亿参数、基于 Mixture-of-Experts (MoE) 架构的开源模型，一举成为<strong>目前全球参数规模最大的开源AI大模型</strong>，也是首个突破”3万亿级”门槛的开源系统。</p>
+<h2 id="Kimi-K3-是什么？"><a href="#Kimi-K3-是什么？" class="headerlink" title="Kimi K3 是什么？"></a>Kimi K3 是什么？</h2><p>Kimi K3 是月之暗面继 Kimi K1、K2 之后的最新一代产品，采用 MoE（混合专家）架构设计。与传统的密集参数模型不同，MoE 模型将计算分配给多个”专家”模块——在推理时只激活其中一小部分，从而在保证强大能力的同时大幅降低计算成本。</p>
+<p>根据官方公布的数据：</p>
+<ul>
+<li><strong>总参数量</strong>：2.8万亿（约3万亿级别）</li>
+<li><strong>激活参数</strong>：约490亿（仅占总参数的~1.8%）</li>
+<li><strong>上下文窗口</strong>：原生支持 100万 token</li>
+<li><strong>多模态能力</strong>：原生支持图像理解、Tool Calling</li>
+<li><strong>权重状态</strong>：<strong>开放权重，可免费下载与部署</strong></li>
+</ul>
+<h2 id="架构亮点"><a href="#架构亮点" class="headerlink" title="架构亮点"></a>架构亮点</h2><p>Kimi K3 在架构层面做了多项创新设计。最核心的改进包括：</p>
+<h3 id="1-KDA-混合注意力机制（KAD-Attention）"><a href="#1-KDA-混合注意力机制（KAD-Attention）" class="headerlink" title="1. KDA 混合注意力机制（KAD Attention）"></a>1. KDA 混合注意力机制（KAD Attention）</h3><p>传统的 Transformer 模型在处理长上下文时，注意力计算复杂度随序列长度呈二次增长——这意味着处理百万级 token 时推理延迟会急剧恶化。Kimi K3 引入了 KDA（Kernel-Dependent Attention）混合注意力架构，将注意力残差连接进行了突破性重构，在保持长程依赖捕获能力的同时，显著降低了长窗口推理的计算开销。</p>
+<h3 id="2-Per-Head-Muon-优化器"><a href="#2-Per-Head-Muon-优化器" class="headerlink" title="2. Per-Head Muon 优化器"></a>2. Per-Head Muon 优化器</h3><p>训练阶段的优化算法同样关键。Kimi K3 采用了 Per-Head Muon 优化器——一种针对 Transformer 各注意力头独立调参的新颖优化策略。相比传统的 Adam&#x2F;AdamW，该优化器在大规模模型训练中展现出了更好的收敛特性与泛化表现。</p>
+<h3 id="3-细粒度专家拆分"><a href="#3-细粒度专家拆分" class="headerlink" title="3. 细粒度专家拆分"></a>3. 细粒度专家拆分</h3><p>官方技术博客中提到，Kimi K3 拥有数百个领域专家模块，采用”细粒度专家拆分”模式，可以精准对接到各垂直生态的业务场景——这种设计使得模型在特定任务上能够激活最相关的专家子集，实现了参数能力与产业需求的精准耦合。</p>
+<h2 id="性能表现：对标国际顶尖水平？"><a href="#性能表现：对标国际顶尖水平？" class="headerlink" title="性能表现：对标国际顶尖水平？"></a>性能表现：对标国际顶尖水平？</h2><p>根据月之暗面公布的评测结果（以及多家第三方媒体的交叉报道），Kimi K3 的综合智能水平在多项基准测试中表现亮眼：</p>
+<table>
+<thead>
+<tr>
+<th>基准测试</th>
+<th>排名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frontier SWE (软件工程)</td>
+<td><strong>第3位</strong>，仅次于 Claude Fable 5、GPT-5.6 Sol</td>
+</tr>
+<tr>
+<td>Kimi-internal Coding Benchmarks</td>
+<td><strong>第2位</strong></td>
+</tr>
+<tr>
+<td>Terminal-Bench 2.1</td>
+<td><strong>第2位</strong></td>
+</tr>
+<tr>
+<td>ProgramBench</td>
+<td><strong>第1位</strong>（冠军）</td>
+</tr>
+<tr>
+<td>SWE-Marathon (长周期软件工程)</td>
+<td><strong>第1位</strong>（冠军）</td>
+</tr>
+</tbody></table>
+<p>特别值得注意的是，在长周期软件工程场景（SWE-Marathon、ProgramBench），Kimi K3 夺得了榜首。这类测试模拟真实开发场景中需要跨数十次 commit、反复调试复杂代码库的情况——正是 AI 编程代理最具潜力的应用场景之一。</p>
+<h2 id="开源的意义"><a href="#开源的意义" class="headerlink" title="开源的意义"></a>开源的意义</h2><p>Kimi K3 选择以开放权重的方式发布，这在当前的 AI 格局中具有重要意义：</p>
+<ol>
+<li><strong>打破闭源垄断</strong>：长期以来，最前沿的 AI 能力主要由 OpenAI（GPT系列）、Anthropic（Claude系列）等美国公司掌控。Kimi K3 的出现证明中国团队同样能在基础模型层面实现国际领先。</li>
+<li><strong>降低使用门槛</strong>：企业可以自行部署 Kimi K3，避免了 API 调用费用和数据外泄的顾虑。对于有算力储备的大厂来说，自有部署的综合成本可能更低。</li>
+<li><strong>生态效应</strong>：参考 DeepSeek 的成功经验——开源模型发布后迅速形成开发者社区和周边工具链（如 Ollama、vLLM 等推理框架对它的优化），Kimi K3 有望复制这一路径，构建围绕自身的开发生态。</li>
+</ol>
+<h2 id="月之暗面背后的商业逻辑"><a href="#月之暗面背后的商业逻辑" class="headerlink" title="月之暗面背后的商业逻辑"></a>月之暗面背后的商业逻辑</h2><p>值得注意的是，这次发布的背后是月之暗面高速增长的商业表现。据多家媒体报道，截至2026年7月：</p>
+<ul>
+<li><strong>公司估值</strong>：约 315亿美元（约合人民币超2000亿元）</li>
+<li>**年度经常性收入 (ARR)**：突破 3亿美元</li>
+</ul>
+<p>在 AI 投资热潮退去、许多大模型创业公司面临融资寒冬的背景下，Moonshot AI 能够保持强劲的商业势头，Kimi K3 的发布可以被视为其技术实力向市场信心的又一次有力印证。</p>
+<h2 id="个人看法"><a href="#个人看法" class="headerlink" title="个人看法"></a>个人看法</h2><p>作为长期关注中文 AI 发展的开发者，我对 Kimi K3 有几个观察：</p>
+<p>首先，**”2.8万亿参数”这个数字本身并不等于最强模型**。MoE 架构下真正的竞争维度是”有效激活参数的质量”——哪些专家被激活、如何路由、推理延迟怎样。Kimi K3 在 SWE-Marathon 上的冠军表现，说明月之暗面在这方面的工程能力确实过硬。</p>
+<p>其次，<strong>开源 vs 闭源的选择值得深思</strong>。Moonshot AI 内部拥有 Kimi App（用户量达千万级）这个庞大的商业产品，却选择将最强模型开源，这种”留一手”还是”开放共赢”的考量——我倾向于认为这是一种生态战略：通过开放权重吸引开发者构建基于 K3 的工具链和应用，反过来推动闭源产品 Kimi App 的用户增长。</p>
+<p>最后，在”中美 AI 竞赛”的大叙事下，Kimi K3 的意义超越了单一产品发布。它证明了中国团队在基础模型架构创新、大规模训练工程、以及商业落地三个维度上都具备了国际竞争力——这才是最值得关注的信号。</p>
+<h2 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://moonshotai.github.io/Kimi-K3/">Kimi K3 官方技术博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.moonshot.cn/">Moonshot AI 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reuters.com/world/china/chinas-moonshot-unveils-worlds-largest-open-ai-model-closing-us-rivals-2026-07-17/">Reuters 报道: China’s Moonshot unveils world’s largest open AI model</a></li>
+<li><a target="_blank" rel="noopener" href="https://venturebeat.com/technology/chinas-moonshot-ai-releases-kimi-k3-the-largest-open-source-model-ever-rivaling-top-u-s-systems">VentureBeat: Moonshot AI releases Kimi K3</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnbc.com/2026/07/17/moonshot-ai-kimi-k3-model-openai-anthropic-china.html">CNBC 报道</a></li>
+</ul>
+<hr>
+<p><em>本文基于公开资料整理，数据截至2026年7月。评测结果来自 Moonshot AI 官方发布及第三方媒体报道，可能存在偏差，仅供参考。</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/07/19/Kimi-K3-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E5%8F%91%E5%B8%832.8%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/">http://coderedeng.github.io/2026/07/19/Kimi-K3-%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E5%8F%91%E5%B8%832.8%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E5%89%8D%E6%B2%BF/">AI前沿</a><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a><a class="post-meta__tags" href="/tags/Kimi-K3/">Kimi K3</a><a class="post-meta__tags" href="/tags/Moonshot/">Moonshot</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/07/19/Crawl4AI-v0.9-%E8%87%AA%E9%80%82%E5%BA%94%E6%99%BA%E8%83%BD%E7%88%AC%E5%8F%96%E8%AE%A9AI%E8%AF%BB%E5%8F%96%E6%95%B4%E4%B8%AA%E4%BA%92%E8%81%94%E7%BD%91/" title="Crawl4AI v0.9 发布：自适应智能爬取，让 AI 读取整个互联网"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Crawl4AI v0.9 发布：自适应智能爬取，让 AI 读取整个互联网</div></div><div class="info-2"><div class="info-item-1">Crawl4AI v0.9 发布：自适应智能爬取，让 AI 读取整个互联网在 RAG（检索增强生成）和 AI Agent 时代，如何让大语言模型”读懂”网页内容成为了一个核心难题。传统的 Web 爬虫只负责抓取原始 HTML，而清洗、结构化、去重等后续处理往往需要开发者自行实现——这在面对现代复杂的动态网页时尤为头疼。 近日，开源项目 Crawl4AI（GitHub ★50,000+）发布了 v0.9 版本，带来了全新的”自适应爬取”功能：爬虫不再机械地遍历整个网站，而是像一个人类读者一样——知道什么时候该停下来。 为什么需要 Crawl4AI？Crawl4AI 的创始人 unclecode 在 GitHub 上表示，传统爬虫工具（如 BeautifulSoup、Scrapy）虽然强大，但它们面向的是”提取特定数据”的场景。而 AI 时代的需求截然不同：开发者需要的是一套能生成高质量 LLM 友好型 Markdown 的工具链。 Crawl4AI 的核心设计目标就三个词：快、准、省。  快——基于 Playwright + async I&#x2F;O，支持并发爬取数千页面 准—...</div></div></div></a><a class="pagination-related" href="/2026/07/18/AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%94%9F%E6%80%81%E6%BC%94%E8%BF%9B-OpenCode-Claude-Code-%E4%B8%8E%E5%A4%9A%E6%A8%A1%E5%9E%8B%E7%AB%9E%E4%BA%89/" title="AI 编程代理的生态演进：从 OpenCode 到 Claude Code 的多模型博弈"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AI 编程代理的生态演进：从 OpenCode 到 Claude Code 的多模型博弈</div></div><div class="info-2"><div class="info-item-1">背景：AI 编程工具的”战国时代”2026 年，AI 辅助编程已经不再是噱头，而成为开发者基础设施的核心组成部分。据 Anthropic 官方数据，OpenCode 的月活跃用户数已突破 750 万，GitHub Stars 超过 16 万，贡献者达到 900 人、提交记录超过 1.3 万次——这个数字在短短一年间增长惊人。 与此同时，Anthropic 自家的 Claude Code（基于 Claude Opus&#x2F;Pro 模型）也在持续进化，2026 年 7 月初刚刚完成了对 Opus 4 和 4.1 模型的全面退役迁移，并推出了全新的 EndSubsetConversations 工具——一个专门用于应对恶意攻击的会话终止机制。 这个领域的竞争格局正在发生深刻变化：单一模型绑定的封闭方案与多模型支持的开放平台之间的路线之争日益明朗。 OpenCode：开源编程代理的全面崛起OpenCode（github.com/anomalyco/opencode）由 Anomaly Labs 团队开发，其核心设计哲学可以用一句话概括——模型无关性。与传统 AI 编程助手不同，Op...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/06/%E6%99%BA%E8%B0%B1GLM-5.2%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87Token%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8EMIT%E5%BC%80%E6%BA%90%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%A0%B4%E5%B1%80/" title="智谱GLM-5.2发布：百万Token上下文与MIT开源编程模型的破局"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-06</div><div class="info-item-2">智谱GLM-5.2发布：百万Token上下文与MIT开源编程模型的破局</div></div><div class="info-2"><div class="info-item-1">百万Token不再是”纸面参数”2026年6月13日，智谱AI在同一天发布了两样东西：开源大模型 GLM-5.2 和编程工具 ZCode 3.0。从规格上看并不惊艳——MoE架构约753B参数，1M Token上下文窗口，最大输出131K tokens。但真正让行业侧目的，是”可用”这两个字。 过去几年，大模型的上下文窗口一直在膨胀：50K → 100K → 200K → 1M。问题在于，很多模型只是把数字堆上去，在真实场景下根本用不了——长程任务中注意力分散、遗忘前面指令、性能断崖式下降。GLM-5.2宣称的”Solid 1M无损上下文”，核心是针对长程Coding Agent场景做了数月的强化训练。 这不是营销话术。看看它在长程基准上的表现：    Benchmark GLM-5.2 Claude Opus 4.8*    FrontierSWE 前列 —   PostTrainBench 前列 —   SWE-Marathon 前列 —   Terminal-Bench 2.1 81.0 —   SWE-bench Pro 62.1 ~65   * Opus数据来自公开评测...</div></div></div></a><a class="pagination-related" href="/2026/07/23/Qwen3.8-Max-%E9%98%BF%E9%87%8C2.4%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E5%A4%9A%E6%A8%A1%E6%80%81%E6%97%97%E8%88%B0%E9%A2%84%E8%A7%88/" title="Qwen3.8-Max 发布：阿里 2.4 万亿参数多模态旗舰，向全球最强 AI 发起挑战？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-23</div><div class="info-item-2">Qwen3.8-Max 发布：阿里 2.4 万亿参数多模态旗舰，向全球最强 AI 发起挑战？</div></div><div class="info-2"><div class="info-item-1">背景：WAIC 上的重磅发布2026年7月19日，世界人工智能大会（WAIC）在上海拉开帷幕。阿里巴巴在大会上展示了其最新 AI 旗舰模型——Qwen3.8-Max Preview。这个以”预览版”形式亮相的模型，迅速在全球 AI 社区引发轰动：总参数规模高达 2.4 万亿（2.4T），成为 Qwen 家族首个突破万亿参数大关的成员。 此前，阿里巴巴已在 WAIC 上展示了基于 Qwen3.8-Max 构建的多模态工作区应用，涵盖文档理解、网页搜索、代码生成和智能体任务等多种场景。模型本身支持文本、图像和视频的统一处理——这也是”多模态”标签的由来。 值得注意的是，截至发文时（7月22日），官方尚未公布任何基准测试成绩、许可证信息或激活参数（Active Parameters）数量。Qwen 团队仅表示将在后续发布完整的开源权重版本和更详尽的技术报告。这种”先声夺人”的策略，既体现了阿里巴巴对自家模型的信心，也让外界对 Qwen3.8-Max 的真实能力充满了期待与猜测。 核心亮点：万亿参数时代的到来2.4T 参数的意义在传统认知中，2 万亿参数量级几乎只存在于 GPT-4&#x...</div></div></div></a><a class="pagination-related" href="/2026/06/10/DeepSeek-R1-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/" title="DeepSeek R1 深度解析：开源推理模型的范式革命"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-10</div><div class="info-item-2">DeepSeek R1 深度解析：开源推理模型的范式革命</div></div><div class="info-2"><div class="info-item-1">背景：当开源打破”算力霸权”在大型语言模型的发展史上，DeepSeek R1 的发布堪称一次地震。2025年1月，深度求索（DeepSeek）发布了其新一代推理模型 R1，以不到前代十分之一的训练成本，实现了与 GPT-4o、Claude Opus 等顶级商业模型相媲美的推理能力。这一事件不仅重塑了开源模型的格局，更让全球 AI 社区开始重新审视”算力&#x3D;智能”的传统假设。 长期以来，AI 推理能力的提升被绑定在”更大参数 + 更多数据 + 更强硬件”的线性增长范式上。OpenAI 的 o1 系列通过万亿token训练和强化学习刷新了 benchmarks，但高昂的成本让多数研究者望而却步。DeepSeek R1 的出现打破了这一迷思——它证明了一条不同的技术路径：用更聪明的训练方法替代堆砌算力。 核心架构：强化学习与思维链的深度融合R1 的核心突破在于其独特的 RLVR（Reinforcement Learning via Verifiable Rewards） 训练框架。与传统 RLHF（人类反馈强化学习）不同，RLVR 利用可验证的奖励信号——即答案的正确性本身——...</div></div></div></a><a class="pagination-related" href="/2026/08/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%8F%91%E5%B8%83Qwen3.8-Max/" title="阿里巴巴发布Qwen3.8-Max：2.4万亿参数多模态旗舰，对标Claude Fable 5"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-02</div><div class="info-item-2">阿里巴巴发布Qwen3.8-Max：2.4万亿参数多模态旗舰，对标Claude Fable 5</div></div><div class="info-2"><div class="info-item-1">前言：万亿参数时代的又一颗重磅炸弹北京时间7月19日，在上海世界人工智能大会上，阿里巴巴正式发布Qwen3.8-Max Preview——一个参数量高达2.4万亿的超大规模多模态AI旗舰模型。这是通义千问（Qwen）家族史上首个突破万亿参数的多模态系统，也是阿里在2026年AI竞赛中丢出的又一枚重磅武器。 根据官方消息，Qwen3.8-Max采用稀疏混合专家架构（MoE），总参数量达2.4万亿，但激活参数尚未公开。模型声称“性能仅次于Anthropic的Claude Fable 5”，在多项基准测试中逼近Claude Fable 5的水平——尽管目前还没有公布官方Benchmark数据。 本文将对这一里程碑式发布进行深度解读：它到底有多大、有什么特点、技术架构如何，以及它对整个AI行业意味着什么。  一、2.4万亿参数是什么概念？在参数量上，Qwen3.8-Max直接跨过了一个门槛——万亿大关。让我们做个对比：  GPT-3（2020）：1,750亿参数 PaLM 2（2023）：约5,400亿参数   Claude Opus 3（2023）：估计在百万级别，但业界普遍认为是千亿...</div></div></div></a><a class="pagination-related" href="/2026/06/27/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E5%BC%80%E6%BA%90UI-TARS-15%E5%A4%9A%E6%A8%A1%E6%80%81GUI%E6%99%BA%E8%83%BD%E4%BD%93/" title="字节跳动发布UI-TARS-1.5：开源多模态GUI智能体实现SOTA性能"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-27</div><div class="info-item-2">字节跳动发布UI-TARS-1.5：开源多模态GUI智能体实现SOTA性能</div></div><div class="info-2"><div class="info-item-1">在人工智能领域，多模态大模型与智能体（Agent）技术的结合正在引发一场深刻的变革。近日，字节跳动（ByteDance）旗下 Seed 团队正式开源了 UI-TARS-1.5，这是一个基于强大视觉语言模型（Vision-Language Model, VLM）构建的多模态智能体框架。该项目专注于图形用户界面（GUI）交互和游戏环境中的自动化任务，旨在让 AI 模型能够像人类一样理解屏幕内容并执行复杂的交互式操作。 背景与上下文：从文本对话到”视觉+行动”的智能体传统的 AI 助手大多基于纯文本或简单的图文输入进行交互，用户需要通过自然语言描述需求，再由模型生成代码、文本或建议。然而，在真实的计算机使用场景中，人类更多的是通过”看屏幕-理解界面-执行操作”的闭环来完成复杂任务。UI-TARS 系列项目的出现，正是为了解决这一痛点：让 AI 具备直接”看见”并”操作”GUI 的能力。 UI-TARS-1.5 作为该系列的最新迭代版本，不仅在视觉理解上进行了大幅增强，还在长程推理和跨应用工作流编排方面实现了显著突破。它标志着 AI 从单纯的”信息处理者”向”行动执行者”的重要转变。 核...</div></div></div></a><a class="pagination-related" href="/2026/07/15/OpenClaw%E7%99%BB%E9%A1%B6GitHub%EF%BC%9A25%E4%B8%87%E6%98%9F%E5%BC%80%E6%BA%90AI%E5%8A%A9%E6%89%8B%E7%9A%84%E7%A7%81%E4%BA%BA%E6%95%B0%E5%AD%97%E7%AE%A1%E5%AE%B6/" title="OpenClaw登顶GitHub：25万星开源AI助手，打造你的私人数字管家"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-15</div><div class="info-item-2">OpenClaw登顶GitHub：25万星开源AI助手，打造你的私人数字管家</div></div><div class="info-2"><div class="info-item-1">OpenClaw：你的AI私人管家，已经跑在GitHub最火的开源项目里了导语如果说 Claude Code 和 Cursor 是程序员手中的”AI编程利器”，那么 OpenClaw 就是每个普通人都在渴望的「AI数字管家」。 截至2026年7月，这个开源项目的 GitHub Star 数已突破 31万，成为 GitHub 历史上增长最快的 AI 项目之一。MIT 协议、完全开源、支持自托管——它正在重新定义”个人 AI 助手”的标准。 OpenClaw 是什么？OpenClaw（官方文档见 docs.openclaw.ai）是一个可以运行在你自己机器上的开源 AI 助手框架。它的核心理念很简单：  “你不需要一个新的界面——只需像同事一样，在任何聊天平台里给它发消息即可。”  与传统 AI 产品不同，OpenClaw 不要求你切换到一个新的应用或网页。它直接接入你已经使用的通信工具：  WhatsApp Telegram Discord iMessage（通过 macOS 终端） Slack、Signal、微信（通过 Bridge 模式） 以及数十种其他平台…  这意味着你可以...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kimi-K3-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">Kimi K3 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E4%BA%AE%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">架构亮点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-KDA-%E6%B7%B7%E5%90%88%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88KAD-Attention%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">1. KDA 混合注意力机制（KAD Attention）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Per-Head-Muon-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2. Per-Head Muon 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%86%E7%B2%92%E5%BA%A6%E4%B8%93%E5%AE%B6%E6%8B%86%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text">3. 细粒度专家拆分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%A1%A8%E7%8E%B0%EF%BC%9A%E5%AF%B9%E6%A0%87%E5%9B%BD%E9%99%85%E9%A1%B6%E5%B0%96%E6%B0%B4%E5%B9%B3%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">性能表现：对标国际顶尖水平？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">开源的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E8%83%8C%E5%90%8E%E7%9A%84%E5%95%86%E4%B8%9A%E9%80%BB%E8%BE%91"><span class="toc-number">5.</span> <span class="toc-text">月之暗面背后的商业逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">个人看法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">资源链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/03/Gemini-3.6-Flash%E5%8F%91%E5%B8%83%EF%BC%9AGoogle%E7%9A%84AI%E7%BC%96%E7%A8%8B%E6%96%B0%E5%BC%95%E6%93%8E/" title="Gemini 3.6 Flash发布：Google的AI编程新引擎，DeepSWE跑分49%的性价比之王">Gemini 3.6 Flash发布：Google的AI编程新引擎，DeepSWE跑分49%的性价比之王</a><time datetime="2026-08-03T02:00:00.000Z" title="发表于 2026-08-03 10:00:00">2026-08-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%8F%91%E5%B8%83Qwen3.8-Max/" title="阿里巴巴发布Qwen3.8-Max：2.4万亿参数多模态旗舰，对标Claude Fable 5">阿里巴巴发布Qwen3.8-Max：2.4万亿参数多模态旗舰，对标Claude Fable 5</a><time datetime="2026-08-02T06:30:00.000Z" title="发表于 2026-08-02 14:30:00">2026-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/01/OpenWork-%E5%BC%80%E6%BA%90AI%E5%8D%8F%E4%BD%9C%E8%80%85%E9%A2%A0%E8%A6%86ClaudeCowork/" title="OpenWork开源项目：19.5K Stars！用OpenCode打造你的专属AI协作者">OpenWork开源项目：19.5K Stars！用OpenCode打造你的专属AI协作者</a><time datetime="2026-08-01T02:30:00.000Z" title="发表于 2026-08-01 10:30:00">2026-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/31/xAI%E5%8F%91%E5%B8%83Grok-4.5%EF%BC%9A%E4%B8%8ECursor%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%EF%BC%8C%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89AI%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/" title="xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板">xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板</a><time datetime="2026-07-31T14:00:00.000Z" title="发表于 2026-07-31 22:00:00">2026-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/30/OmniRoute-%E5%BC%80%E6%BA%90AI%E7%BD%91%E5%85%B3/" title="OmniRoute横空出世：一站式AI网关如何让你以1/5的成本调用500+模型">OmniRoute横空出世：一站式AI网关如何让你以1/5的成本调用500+模型</a><time datetime="2026-07-30T02:00:00.000Z" title="发表于 2026-07-30 10:00:00">2026-07-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
