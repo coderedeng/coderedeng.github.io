@@ -68,9 +68,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="多模态模型" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/"/>
-    
     <category term="Qwen" scheme="http://coderedeng.github.io/tags/Qwen/"/>
+    
+    <category term="多模态模型" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
@@ -236,13 +236,13 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
-    
     <category term="大模型" scheme="http://coderedeng.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
-    <category term="GPT" scheme="http://coderedeng.github.io/tags/GPT/"/>
-    
     <category term="LLM" scheme="http://coderedeng.github.io/tags/LLM/"/>
+    
+    <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
+    
+    <category term="GPT" scheme="http://coderedeng.github.io/tags/GPT/"/>
     
   </entry>
   
@@ -470,11 +470,11 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="LLM" scheme="http://coderedeng.github.io/tags/LLM/"/>
-    
     <category term="Crawl4AI" scheme="http://coderedeng.github.io/tags/Crawl4AI/"/>
     
     <category term="开源爬虫" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="LLM" scheme="http://coderedeng.github.io/tags/LLM/"/>
     
   </entry>
   
@@ -528,13 +528,13 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
-    
-    <category term="MCP协议" scheme="http://coderedeng.github.io/tags/MCP%E5%8D%8F%E8%AE%AE/"/>
-    
     <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
     
     <category term="OpenCode" scheme="http://coderedeng.github.io/tags/OpenCode/"/>
+    
+    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="MCP协议" scheme="http://coderedeng.github.io/tags/MCP%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
@@ -586,11 +586,11 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
     
     <category term="Anthropic" scheme="http://coderedeng.github.io/tags/Anthropic/"/>
     
-    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
