@@ -74,11 +74,11 @@
     
     <category term="发布" scheme="http://coderedeng.github.io/tags/%E5%8F%91%E5%B8%83/"/>
     
-    <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
+    <category term="Google" scheme="http://coderedeng.github.io/tags/Google/"/>
     
     <category term="Flash" scheme="http://coderedeng.github.io/tags/Flash/"/>
     
-    <category term="Google" scheme="http://coderedeng.github.io/tags/Google/"/>
+    <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
     
     <category term="DeepSWE" scheme="http://coderedeng.github.io/tags/DeepSWE/"/>
     
@@ -142,11 +142,11 @@
     
     <category term="AI" scheme="http://coderedeng.github.io/tags/AI/"/>
     
+    <category term="OpenCode" scheme="http://coderedeng.github.io/tags/OpenCode/"/>
+    
     <category term="OpenWork" scheme="http://coderedeng.github.io/tags/OpenWork/"/>
     
     <category term="Stars" scheme="http://coderedeng.github.io/tags/Stars/"/>
-    
-    <category term="OpenCode" scheme="http://coderedeng.github.io/tags/OpenCode/"/>
     
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
@@ -175,9 +175,9 @@
     
     <category term="AI" scheme="http://coderedeng.github.io/tags/AI/"/>
     
-    <category term="发布" scheme="http://coderedeng.github.io/tags/%E5%8F%91%E5%B8%83/"/>
-    
     <category term="Cursor" scheme="http://coderedeng.github.io/tags/Cursor/"/>
+    
+    <category term="发布" scheme="http://coderedeng.github.io/tags/%E5%8F%91%E5%B8%83/"/>
     
     <category term="xAI" scheme="http://coderedeng.github.io/tags/xAI/"/>
     
@@ -243,9 +243,9 @@
     
     <category term="AI" scheme="http://coderedeng.github.io/tags/AI/"/>
     
-    <category term="GPT-5" scheme="http://coderedeng.github.io/tags/GPT-5/"/>
-    
     <category term="Claude" scheme="http://coderedeng.github.io/tags/Claude/"/>
+    
+    <category term="GPT-5" scheme="http://coderedeng.github.io/tags/GPT-5/"/>
     
     <category term="Opus" scheme="http://coderedeng.github.io/tags/Opus/"/>
     
@@ -425,9 +425,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="Flash" scheme="http://coderedeng.github.io/tags/Flash/"/>
-    
     <category term="Google-Gemini" scheme="http://coderedeng.github.io/tags/Google-Gemini/"/>
+    
+    <category term="Flash" scheme="http://coderedeng.github.io/tags/Flash/"/>
     
     <category term="三款新模型发布" scheme="http://coderedeng.github.io/tags/%E4%B8%89%E6%AC%BE%E6%96%B0%E6%A8%A1%E5%9E%8B%E5%8F%91%E5%B8%83/"/>
     
