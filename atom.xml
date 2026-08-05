@@ -278,9 +278,9 @@
     
     <category term="LLM" scheme="http://coderedeng.github.io/tags/LLM/"/>
     
-    <category term="GPT" scheme="http://coderedeng.github.io/tags/GPT/"/>
-    
     <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
+    
+    <category term="GPT" scheme="http://coderedeng.github.io/tags/GPT/"/>
     
   </entry>
   
