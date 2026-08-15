@@ -1,6 +1,6 @@
 ---
 title: mutex锁原理
-index_img: /img/cover24.png
+cover: /img/cover24.png
 date: 2021-02-23 22:14:30
 categories: 
 - Go进阶

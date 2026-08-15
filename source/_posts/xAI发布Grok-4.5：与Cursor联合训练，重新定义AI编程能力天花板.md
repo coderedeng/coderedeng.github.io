@@ -1,6 +1,6 @@
 ---
 title: xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-31 22:00:00
 categories: 
 - AI前沿

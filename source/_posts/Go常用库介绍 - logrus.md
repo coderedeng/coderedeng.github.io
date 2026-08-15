@@ -1,6 +1,6 @@
 ---
 title: logrus
-index_img: /img/cover2-18.png
+cover: /img/cover2-18.png
 date: 2022-06-20 21:54:53
 categories: 
 - Go常用库

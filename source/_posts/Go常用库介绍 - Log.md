@@ -1,6 +1,6 @@
 ---
 title: Log
-index_img: /img/cover2-5.png
+cover: /img/cover2-5.png
 date: 2022-05-27 22:17:35
 categories: 
 - Go常用库

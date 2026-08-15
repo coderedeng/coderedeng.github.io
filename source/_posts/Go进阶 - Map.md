@@ -1,6 +1,6 @@
 ---
 title: Map
-index_img: /img/cover23.png
+cover: /img/cover23.png
 date: 2021-01-23 22:45:18
 categories: 
 - Go进阶

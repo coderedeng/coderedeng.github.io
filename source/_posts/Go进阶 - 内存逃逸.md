@@ -1,6 +1,6 @@
 ---
 title: 内存逃逸
-index_img: /img/cover12.png
+cover: /img/cover12.png
 date: 2021-02-09 22:01:35
 categories: 
 - Go进阶

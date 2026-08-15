@@ -1,6 +1,6 @@
 ---
 title: Golang常犯错误
-index_img: /img/cover20.png
+cover: /img/cover20.png
 date: 2022-04-20 22:35:42
 categories: 
 - Go进阶

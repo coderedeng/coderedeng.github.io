@@ -1,6 +1,6 @@
 ---
 title: go-wrk
-index_img: /img/cover2-15.png
+cover: /img/cover2-15.png
 date: 2022-06-15 21:52:47
 categories: 
 - Go常用库

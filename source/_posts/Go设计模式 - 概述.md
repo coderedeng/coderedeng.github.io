@@ -1,6 +1,6 @@
 ---
 title: Go设计模式 - 概述
-index_img: /img/cover28.png
+cover: /img/cover28.png
 date: 2022-05-01 21:50:21
 categories: 
 - Go设计模式

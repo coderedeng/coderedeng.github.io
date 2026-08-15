@@ -1,6 +1,6 @@
 ---
 title: Google I/O 2026重磅发布Gemini Omni Flash——多模态视频生成新纪元
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-05 10:00:00
 last_modified_at: 2026-07-05 10:00:00
 sticky: false

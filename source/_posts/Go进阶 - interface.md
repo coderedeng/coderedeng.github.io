@@ -1,6 +1,6 @@
 ---
 title: interface
-index_img: /img/cover21.png
+cover: /img/cover21.png
 date: 2021-02-05 22:15:27
 categories: 
 - Go进阶

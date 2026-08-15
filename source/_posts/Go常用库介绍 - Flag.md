@@ -1,6 +1,6 @@
 ---
 title: Flag
-index_img: /img/cover2-4.png
+cover: /img/cover2-4.png
 date: 2022-05-26 22:01:24
 categories: 
 - Go常用库

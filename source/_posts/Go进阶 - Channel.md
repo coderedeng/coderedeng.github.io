@@ -1,6 +1,6 @@
 ---
 title: Channel
-index_img: /img/cover19.png
+cover: /img/cover19.png
 date: 2021-01-30 21:26:15
 categories: 
 - Go进阶

@@ -1,6 +1,6 @@
 ---
 title: RuView：用WiFi信号实现无摄像头空间智能的开源项目，GitHub 83k+星
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-22 15:00:00
 last_modified_at: 2026-07-22 15:00:00
 sticky: false

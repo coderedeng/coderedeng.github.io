@@ -1,6 +1,6 @@
 ---
 title: GPT-5.5 深度解析：OpenAI 首个全训练 Agentic 模型，终结"对话式 AI"时代？
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-06-12 09:30:00
 categories:
 - Tech前沿

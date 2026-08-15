@@ -1,6 +1,6 @@
 ---
 title: DeepSeek 发布 Harness：一个“万物皆插件”的 AI 智能体框架，18k+ Star 引爆 GitHub
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-13 10:00:00
 last_modified_at: 2026-08-13 10:00:00
 sticky: false

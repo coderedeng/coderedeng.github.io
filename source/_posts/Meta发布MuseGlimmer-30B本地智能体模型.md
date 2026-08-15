@@ -1,6 +1,6 @@
 ---
 title: Meta发布MuseGlimmer：30B参数级本地AI智能体，Apache 2.0开源
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-10 22:10:00
 categories:
 - AI前沿

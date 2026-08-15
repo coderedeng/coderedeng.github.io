@@ -1,6 +1,6 @@
 ---
 title: jwt-go
-index_img: /img/cover2-14.png
+cover: /img/cover2-14.png
 date: 2022-06-13 21:01:24
 categories: 
 - Go常用库

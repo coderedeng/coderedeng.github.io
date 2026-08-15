@@ -1,6 +1,6 @@
 ---
 title: 阿里巴巴发布Qwen3.8-Max：2.4万亿参数多模态旗舰，对标Claude Fable 5
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-02 14:30:00
 last_modified_at: 2026-08-02 14:30:00
 sticky: false

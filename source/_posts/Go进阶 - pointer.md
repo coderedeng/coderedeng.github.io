@@ -1,6 +1,6 @@
 ---
 title: pointer
-index_img: /img/cover25.png
+cover: /img/cover25.png
 date: 2021-02-07 22:28:36
 categories: 
 - Go进阶

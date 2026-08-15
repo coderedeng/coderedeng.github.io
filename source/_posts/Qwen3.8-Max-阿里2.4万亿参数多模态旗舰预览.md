@@ -1,6 +1,6 @@
 ---
 title: Qwen3.8-Max 发布：阿里 2.4 万亿参数多模态旗舰，向全球最强 AI 发起挑战？
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-23 10:00:00
 last_modified_at: 2026-07-23 10:00:00
 sticky: false

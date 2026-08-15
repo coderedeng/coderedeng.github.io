@@ -1,6 +1,6 @@
 ---
 title: Go设计模式 - 面向对象设计原则
-index_img: /img/cover29.png
+cover: /img/cover29.png
 date: 2022-05-03 21:15:11
 categories: 
 - Go设计模式

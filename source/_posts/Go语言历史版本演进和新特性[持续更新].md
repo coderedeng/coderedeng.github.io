@@ -1,6 +1,6 @@
 ---
 title: Go语言十年演进史：从诞生到Go 1.24的蜕变之路
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-28 10:30:00
 sticky: true
 categories: 

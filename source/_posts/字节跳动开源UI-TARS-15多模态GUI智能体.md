@@ -1,6 +1,6 @@
 ---
 title: 字节跳动发布UI-TARS-1.5：开源多模态GUI智能体实现SOTA性能
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-06-27 12:00:00
 categories:
 - AI前沿

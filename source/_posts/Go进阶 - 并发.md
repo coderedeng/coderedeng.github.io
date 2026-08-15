@@ -1,6 +1,6 @@
 ---
 title: 并发
-index_img: /img/cover34.png
+cover: /img/cover34.png
 date: 2023-10-20 20:50:13
 categories: 
 - Go进阶

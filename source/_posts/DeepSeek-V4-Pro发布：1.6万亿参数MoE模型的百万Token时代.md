@@ -1,6 +1,6 @@
 ---
 title: DeepSeek V4 Pro 发布：1.6 万亿参数的 MoE 模型如何开启百万 Token 时代？
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-08 22:00:00
 last_modified_at: 2026-07-08 22:00:00
 sticky: false

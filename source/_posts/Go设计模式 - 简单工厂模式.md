@@ -1,6 +1,6 @@
 ---
 title: Go设计模式 - 简单工厂模式
-index_img: /img/cover31.png
+cover: /img/cover31.png
 date: 2022-05-10 21:22:57
 categories: 
 - Go设计模式

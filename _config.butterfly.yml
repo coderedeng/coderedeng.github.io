@@ -1,0 +1,58 @@
+# Butterfly 主题配置
+# Hexo 会优先读取此文件（根目录），而不是主题目录下的 _config.yml
+
+# 导航栏设置
+nav:
+  logo: null
+  display_title: true
+  display_post_title: true
+  fixed: false
+
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-th
+  标签: /tags/ || fas fa-tags
+  书单: /books/ || fas fa-book
+  关于: /about/ || fas fa-user
+
+# 代码块设置
+code_blocks:
+  theme: light
+  macStyle: false
+  height_limit: false
+  word_wrap: false
+  copy: true
+  language: true
+  shrink: false
+  fullpage: false
+
+# 社交链接
+social: null
+
+# 图片设置
+favicon: /img/favicon.ico
+error_img:
+  flink: /img/avatar.png
+  post_page: /img/404.jpg
+avatar:
+  img: /img/avatar_20260807.jpg
+  onerror: /img/avatar.png
+  alt: Avatar
+background: ''
+index_img: /img/index-cover.jpg
+disable_top_img: false
+
+# 副标题设置 - 一言随机生成
+subtitle:
+  enable: true
+  effect: true
+  source: 1  # 1 = hitokoto.cn 一言API
+  sub: 一句一言
+
+# 自定义格式
+custom_format:
+  option: null
+
+# 首页布局 - 交错布局
+index_layout: 3  # 3 = 左右交错（0:默认 1:全靠左 2:全靠右 3:交错）

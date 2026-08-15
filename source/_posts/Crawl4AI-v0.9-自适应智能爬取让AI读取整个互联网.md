@@ -1,6 +1,6 @@
 ---
 title: Crawl4AI v0.9 发布：自适应智能爬取，让 AI 读取整个互联网
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-19 20:30:00
 last_modified_at: 2026-07-19 20:30:00
 sticky: false

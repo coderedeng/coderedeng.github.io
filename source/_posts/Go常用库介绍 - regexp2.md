@@ -1,6 +1,6 @@
 ---
 title: regexp2
-index_img: /img/cover2-21.png
+cover: /img/cover2-21.png
 date: 2022-06-23 22:02:41
 categories: 
 - Go常用库

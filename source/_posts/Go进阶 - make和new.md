@@ -1,6 +1,6 @@
 ---
 title: make和new
-index_img: /img/cover22.png
+cover: /img/cover22.png
 date: 2021-02-08 21:21:28
 categories: 
 - Go进阶

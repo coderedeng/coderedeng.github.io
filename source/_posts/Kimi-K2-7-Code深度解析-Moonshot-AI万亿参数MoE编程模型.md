@@ -1,6 +1,6 @@
 ---
 title: Kimi K2.7-Code深度解析：Moonshot AI万亿参数MoE编程模型，推理Token减少30%
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-06-16 08:00:00
 categories:
 - Tech前沿

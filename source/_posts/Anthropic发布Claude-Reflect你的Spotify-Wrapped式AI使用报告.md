@@ -1,6 +1,6 @@
 ---
 title: Anthropic发布Claude Reflect：你的"Spotify Wrapped"式AI使用报告
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-10 22:30:00
 last_modified_at: 2026-07-10 22:30:00
 sticky: false

@@ -1,6 +1,6 @@
 ---
 title: 深浅拷贝
-index_img: /img/cover14.png
+cover: /img/cover14.png
 date: 2021-02-12 22:24:10
 categories: 
 - Go进阶

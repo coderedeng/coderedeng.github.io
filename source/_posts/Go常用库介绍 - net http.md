@@ -1,6 +1,6 @@
 ---
 title: net/http
-index_img: /img/cover2-8.png
+cover: /img/cover2-8.png
 date: 2022-06-01 21:35:53
 categories: 
 - Go常用库

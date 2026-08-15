@@ -1,6 +1,6 @@
 ---
 title: 垃圾回收
-index_img: /img/cover11.png
+cover: /img/cover11.png
 date: 2021-02-11 21:24:31
 categories: 
 - Go进阶

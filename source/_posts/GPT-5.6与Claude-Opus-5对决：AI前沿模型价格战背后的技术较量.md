@@ -1,6 +1,6 @@
 ---
 title: GPT-5.6与Claude Opus 5对决：AI前沿模型"价格战"背后的技术较量
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-29 08:00:00
 last_modified_at: 2026-07-29 08:00:00
 sticky: false

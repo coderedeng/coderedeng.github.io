@@ -1,6 +1,6 @@
 ---
 title: encodingjson
-index_img: /img/cover2-3.png
+cover: /img/cover2-3.png
 date: 2022-05-24 21:11:52
 categories: 
 - Go常用库

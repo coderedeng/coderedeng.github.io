@@ -1,6 +1,6 @@
 ---
 title: firecrawl/anydoc：文档转 Markdown 的 Rust 利器，10k Star 开源项目解读
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-07 23:00:00
 categories: 
 - Tech前沿

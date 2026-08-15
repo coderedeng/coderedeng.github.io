@@ -1,6 +1,6 @@
 ---
 title: OmniRoute横空出世：一站式AI网关如何让你以1/5的成本调用500+模型
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-30 10:00:00
 last_modified_at: 2026-07-30 10:00:00
 sticky: false

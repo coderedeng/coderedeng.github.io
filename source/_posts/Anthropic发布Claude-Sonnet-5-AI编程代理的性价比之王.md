@@ -1,6 +1,6 @@
 ---
 title: Anthropic发布Claude Sonnet 5：AI编程代理的"性价比之王"
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-14 22:00:00
 last_modified_at: 2026-07-14 22:00:00
 sticky: false

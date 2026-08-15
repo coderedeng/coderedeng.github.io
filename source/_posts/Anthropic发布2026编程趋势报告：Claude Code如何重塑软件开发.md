@@ -1,6 +1,6 @@
 ---
 title: Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-12 22:00:00
 last_modified_at: 2026-07-12 22:00:00
 sticky: false

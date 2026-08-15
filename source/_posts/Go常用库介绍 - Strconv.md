@@ -1,6 +1,6 @@
 ---
 title: Strconv
-index_img: /img/cover2-7.png
+cover: /img/cover2-7.png
 date: 2022-05-31 22:24:31
 categories: 
 - Go常用库

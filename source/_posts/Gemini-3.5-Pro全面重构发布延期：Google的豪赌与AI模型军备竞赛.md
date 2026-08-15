@@ -1,6 +1,6 @@
 ---
 title: Gemini 3.5 Pro 全面重构发布延期：Google 的豪赌与 AI 模型军备竞赛
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-08 10:00:00
 last_modified_at: 2026-07-08 10:00:00
 sticky: false

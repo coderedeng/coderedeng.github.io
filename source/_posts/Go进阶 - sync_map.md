@@ -1,6 +1,6 @@
 ---
 title: sync.Map
-index_img: /img/cover27.png
+cover: /img/cover27.png
 date: 2021-02-22 21:54:21
 categories: 
 - Go进阶

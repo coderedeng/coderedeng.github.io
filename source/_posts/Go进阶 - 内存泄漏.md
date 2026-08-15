@@ -1,6 +1,6 @@
 ---
 title: 内存泄露
-index_img: /img/cover13.png
+cover: /img/cover13.png
 date: 2021-02-10 21:10:32
 categories: 
 - Go进阶

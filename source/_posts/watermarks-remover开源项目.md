@@ -1,6 +1,6 @@
 ---
 title: watermarks-remover：一键清除Claude、Gemini等AI水印的开源利器，750星引爆隐私讨论
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-12 16:30:00
 categories:
 - 热门开源项目

@@ -1,6 +1,6 @@
 ---
 title: 字符串
-index_img: /img/cover17.png
+cover: /img/cover17.png
 date: 2021-01-20 21:25:14
 categories: 
 - Go进阶

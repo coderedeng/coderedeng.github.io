@@ -1,6 +1,6 @@
 ---
 title: machinery
-index_img: /img/cover2-20.png
+cover: /img/cover2-20.png
 date: 2022-06-22 22:52:21
 categories: 
 - Go常用库

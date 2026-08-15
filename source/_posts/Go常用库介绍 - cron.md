@@ -1,6 +1,6 @@
 ---
 title: cron
-index_img: /img/cover2-19.png
+cover: /img/cover2-19.png
 date: 2022-06-21 21:24:57
 categories: 
 - Go常用库

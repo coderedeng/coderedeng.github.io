@@ -1,6 +1,6 @@
 ---
 title: Makefile
-index_img: /img/cover2-16.png
+cover: /img/cover2-16.png
 date: 2022-06-17 22:21:58
 categories: 
 - Go常用库

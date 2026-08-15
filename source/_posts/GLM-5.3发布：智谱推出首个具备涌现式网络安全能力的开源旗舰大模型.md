@@ -1,6 +1,6 @@
 ---
 title: GLM-5.3发布：智谱推出首个具备"涌现式网络安全能力"的开源旗舰大模型
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-14 22:30:00
 categories:
 - AI前沿

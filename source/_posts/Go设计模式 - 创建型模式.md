@@ -1,6 +1,6 @@
 ---
 title: Go设计模式 - 创建型模式
-index_img: /img/cover30.png
+cover: /img/cover30.png
 date: 2022-05-05 20:55:14
 categories: 
 - Go设计模式

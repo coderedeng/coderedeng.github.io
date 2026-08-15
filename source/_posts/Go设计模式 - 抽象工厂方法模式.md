@@ -1,6 +1,6 @@
 ---
 title: Go设计模式 - 抽象工厂方法模式
-index_img: /img/cover33.png
+cover: /img/cover33.png
 date: 2022-05-17 22:15:10
 categories: 
 - Go设计模式

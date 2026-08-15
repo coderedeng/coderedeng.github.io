@@ -1,6 +1,6 @@
 ---
 title: chan读写问题
-index_img: /img/cover18.png
+cover: /img/cover18.png
 date: 2021-02-15 22:38:41
 categories: 
 - Go进阶

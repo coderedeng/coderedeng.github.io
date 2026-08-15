@@ -1,6 +1,6 @@
 ---
 title: 协程调度GMP模型
-index_img: /img/cover16.png
+cover: /img/cover16.png
 date: 2021-02-20 22:15:12
 categories: 
 - Go进阶

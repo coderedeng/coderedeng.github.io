@@ -1,6 +1,6 @@
 ---
 title: IO
-index_img: /img/cover2-6.png
+cover: /img/cover2-6.png
 date: 2022-05-29 22:13:26
 categories: 
 - Go常用库

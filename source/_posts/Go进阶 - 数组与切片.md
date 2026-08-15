@@ -1,6 +1,6 @@
 ---
 title: 数组与切片
-index_img: /img/cover15.png
+cover: /img/cover15.png
 date: 2021-01-25 22:10:18
 categories: 
 - Go进阶

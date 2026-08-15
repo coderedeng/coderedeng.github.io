@@ -1,6 +1,6 @@
 ---
 title: 使用 net/http 实现并发爬取多个 url 标题
-index_img: /img/cover37.png
+cover: /img/cover37.png
 date: 2024-04-30 21:26:38
 categories: 
 - Go爬虫

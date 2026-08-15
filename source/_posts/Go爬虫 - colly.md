@@ -1,6 +1,6 @@
 ---
 title: colly
-index_img: /img/cover36.png
+cover: /img/cover36.png
 date: 2024-04-30 20:12:11
 categories: 
 - Go爬虫

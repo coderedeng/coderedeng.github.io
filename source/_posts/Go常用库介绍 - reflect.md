@@ -1,6 +1,6 @@
 ---
 title: reflect
-index_img: /img/cover2-11.png
+cover: /img/cover2-11.png
 date: 2022-06-05 22:14:35
 categories: 
 - Go常用库
