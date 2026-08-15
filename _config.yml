@@ -29,6 +29,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+- .github/**/*
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -91,6 +92,7 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+- .github/**/*
 exclude:
 ignore:
 
@@ -105,6 +107,8 @@ deploy:
   type: git
   repo: https://github.com/coderedeng/coderedeng.github.io.git
   branch: master
+  ignore_hidden: false        # copy .github/workflows into deploy repo (default true skips dot-dirs)
+  ignore_pattern: ^placeholder$|^\.git$
 
 #markdown
 markdown:
