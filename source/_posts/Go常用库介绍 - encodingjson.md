@@ -1,12 +1,14 @@
 ---
+---
 title: encodingjson
-cover: /img/cover2-3.png
+cover: /img/cover2-3.png: /img/cover42.png
 date: 2022-05-24 21:11:52
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 03.encoding/json包
 

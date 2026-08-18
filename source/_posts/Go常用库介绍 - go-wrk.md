@@ -1,12 +1,14 @@
 ---
+---
 title: go-wrk
-cover: /img/cover2-15.png
+cover: /img/cover2-15.png: /img/cover42.png
 date: 2022-06-15 21:52:47
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 15.go-wrk压测
 

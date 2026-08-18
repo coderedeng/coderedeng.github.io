@@ -1,12 +1,14 @@
 ---
+---
 title: Makefile
-cover: /img/cover2-16.png
+cover: /img/cover2-16.png: /img/cover42.png
 date: 2022-06-17 22:21:58
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 16.Makefile
 

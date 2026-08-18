@@ -1,12 +1,14 @@
 ---
+---
 title: Time
-cover: /img/cover2-2.png
+cover: /img/cover2-2.png: /img/cover42.png
 date: 2022-05-22 21:22:12
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 02.Time
 

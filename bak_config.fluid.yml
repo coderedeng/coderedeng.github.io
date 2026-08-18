@@ -1,0 +1,29 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives/
+  Categories: /categories/
+  Tags: /tags/
+  About: /about/
+  Links: /links/
+
+# Sidebar
+sidebar:
+  position: left
+  display: post
+
+# Footer
+footer:
+  since: 2019
+  icon_name: "fa-solid fa-heart"
+  animated: true
+  color: "#ff5722"
+
+# Body
+body_background: false
+
+# Code block theme
+highlight_theme: mac
+
+# Index page settings
+index_img: https://w.wallhaven.cc/full/l8/wallhaven-l8jr3l.jpg

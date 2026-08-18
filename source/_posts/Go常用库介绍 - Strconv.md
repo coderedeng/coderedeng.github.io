@@ -1,12 +1,14 @@
 ---
+---
 title: Strconv
-cover: /img/cover2-7.png
+cover: /img/cover2-7.png: /img/cover42.png
 date: 2022-05-31 22:24:31
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 07.Strconv
 

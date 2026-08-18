@@ -1,12 +1,14 @@
 ---
+---
 title: logrus
-cover: /img/cover2-18.png
+cover: /img/cover2-18.png: /img/cover42.png
 date: 2022-06-20 21:54:53
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 18.logrus
 

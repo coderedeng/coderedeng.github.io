@@ -1,12 +1,14 @@
 ---
+---
 title: reflect
-cover: /img/cover2-11.png
+cover: /img/cover2-11.png: /img/cover42.png
 date: 2022-06-05 22:14:35
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 10.reflect
 

@@ -1,12 +1,14 @@
 ---
+---
 title: gRPC
-cover: /img/cover2-13.png
+cover: /img/cover2-13.png: /img/cover42.png
 date: 2022-06-11 22:11:19
 categories: 
 - Go常用库
 tags:
 - Go常用库
 ---
+
 
 # 13.gRPC
 
