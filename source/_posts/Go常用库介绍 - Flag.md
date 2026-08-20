@@ -1,7 +1,7 @@
 ---
 ---
 title: Flag
-cover: /img/cover2-4.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-05-26 22:01:24
 categories: 
 - Go常用库

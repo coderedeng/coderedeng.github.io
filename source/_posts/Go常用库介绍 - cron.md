@@ -1,7 +1,7 @@
 ---
 ---
 title: cron
-cover: /img/cover2-19.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-06-21 21:24:57
 categories: 
 - Go常用库

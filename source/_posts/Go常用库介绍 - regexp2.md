@@ -1,7 +1,7 @@
 ---
 ---
 title: regexp2
-cover: /img/cover2-21.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-06-23 22:02:41
 categories: 
 - Go常用库

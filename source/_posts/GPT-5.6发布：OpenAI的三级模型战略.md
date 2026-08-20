@@ -1,7 +1,7 @@
 ---
 ---
 title: GPT-5.6发布：OpenAI的三级模型战略与编码能力新标杆
-cover: /img/cover2-18.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-07-28 10:00:00
 last_modified_at: 2026-07-28 10:00:00
 sticky: false

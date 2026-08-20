@@ -1,7 +1,7 @@
 ---
 ---
 title: net/http
-cover: /img/cover2-8.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-06-01 21:35:53
 categories: 
 - Go常用库

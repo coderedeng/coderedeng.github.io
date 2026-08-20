@@ -1,7 +1,7 @@
 ---
 ---
 title: fmt
-cover: /img/cover2-1.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-05-20 20:31:14
 categories: 
 - Go常用库

@@ -1,7 +1,7 @@
 ---
 ---
 title: Log
-cover: /img/cover2-5.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-05-27 22:17:35
 categories: 
 - Go常用库

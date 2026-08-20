@@ -1,7 +1,7 @@
 ---
 ---
 title: encodingjson
-cover: /img/cover2-3.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-05-24 21:11:52
 categories: 
 - Go常用库

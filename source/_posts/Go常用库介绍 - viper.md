@@ -1,7 +1,7 @@
 ---
 ---
 title: viper配置管理
-cover: /img/cover2-12.png: /img/cover42.png
+cover: /img/cover42.png
 date: 2022-06-09 21:24:37
 categories: 
 - Go常用库
