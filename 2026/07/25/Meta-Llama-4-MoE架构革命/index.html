@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot; | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot; 引言：OpenAI一骑绝尘之后，Meta的反击来了 2025年4月，Meta AI正式发布Llama 4系列——这是该家族迄今为止最激进的一次升级。不同于以往在参数量上&quot;堆料&quot;的做法，Llama 4选择了一条技术路线更复杂、工程难度更高的路径：原生多模态+混合专家（Mixt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot;">
+<meta property="og:url" content="http://coderedeng.github.io/2026/07/25/Meta-Llama-4-MoE%E6%9E%B6%E6%9E%84%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot; 引言：OpenAI一骑绝尘之后，Meta的反击来了 2025年4月，Meta AI正式发布Llama 4系列——这是该家族迄今为止最激进的一次升级。不同于以往在参数量上&quot;堆料&quot;的做法，Llama 4选择了一条技术路线更复杂、工程难度更高的路径：原生多模态+混合专家（Mixt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-07-25T14:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-15T06:54:03.029Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="Meta">
+<meta property="article:tag" content="Llama4">
+<meta property="article:tag" content="MoE架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的\"封神之战\"",
+  "url": "http://coderedeng.github.io/2026/07/25/Meta-Llama-4-MoE%E6%9E%B6%E6%9E%84%E9%9D%A9%E5%91%BD/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-07-25T14:30:00.000Z",
+  "dateModified": "2026-08-15T06:54:03.029Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/07/25/Meta-Llama-4-MoE%E6%9E%B6%E6%9E%84%E9%9D%A9%E5%91%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的"封神之战"',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">107</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot;</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot;</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-25T14:30:00.000Z" title="发表于 2026-07-25 22:30:00">2026-07-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-15T06:54:03.029Z" title="更新于 2026-08-15 14:54:03">2026-08-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%89%8D%E6%B2%BF/">AI前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Meta-Llama-4重磅发布：MoE架构-千万级上下文，开源大模型的-封神之战">Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot;</h1>
+<h2 id="引言：OpenAI一骑绝尘之后，Meta的反击来了">引言：OpenAI一骑绝尘之后，Meta的反击来了</h2>
+<p>2025年4月，Meta AI正式发布Llama 4系列——这是该家族迄今为止最激进的一次升级。不同于以往在参数量上&quot;堆料&quot;的做法，Llama 4选择了一条技术路线更复杂、工程难度更高的路径：<strong>原生多模态+混合专家（Mixture of Experts, MoE）架构</strong>。</p>
+<p>在OpenAI的GPT-5系列和Anthropic Claude Opus占据闭源大模型话语权之际，Meta用Llama 4宣告了开源社区的一次重要反击。这不仅是一个模型的发布，更是整个AI产业格局正在发生微妙变化的信号。</p>
+<h2 id="Llama-4家族：三款模型，各有所长">Llama 4家族：三款模型，各有所长</h2>
+<p>Meta此次发布的Llama 4并非单一模型，而是涵盖三个子型号的完整产品矩阵：</p>
+<h3 id="1-Llama-4-Scout-——-“万级上下文之王”">1. Llama 4 Scout —— “万级上下文之王”</h3>
+<p>Scout最大的亮点在于其高达 <strong>1000万token的上下文窗口</strong>——这几乎可以容纳一本25万字的长篇小说。在实际场景中，这意味着你可以一次性将完整的代码仓库、整本技术白皮书或数十份PDF文档喂给模型进行分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> llama4 <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line">client = Client()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次性分析整个代码库</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;entire_repo_code.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    code_context = f.read()</span><br><span class="line"></span><br><span class="line">response = client.chat(</span><br><span class="line">    model=<span class="string">&#x27;llama-4-scout&#x27;</span>,</span><br><span class="line">    messages=[&#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: <span class="string">f&quot;请分析以下代码库的整体架构，并找出潜在的安全漏洞：\n\n<span class="subst">&#123;code_context&#125;</span>&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(response.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+<p>在多项基准测试中，Scout超越了Gemma 3、Gemini 2.0 Flash-Lite和Mistral 3.1。其核心优势在于超长上下文下的&quot;注意力保持能力&quot;——很多模型在超过5万token后性能急剧下降，而Scout能够将衰减控制在极低范围内。</p>
+<h3 id="2-Llama-4-Maverick-——-“全能型选手”">2. Llama 4 Maverick —— “全能型选手”</h3>
+<p>Maverick是Llama 4系列中最具竞争力的通用模型，直接对标GPT-4o和Gemini 2.0 Flash。在LMSYS Chatbot Arena的ELO评级中，Maverick实验版达到了 <strong>1417分</strong>，与Claude Opus 4.5、GPT-5.4等顶级闭源模型形成了有力竞争。</p>
+<p>最引人注目的是其性价比优势——由于MoE架构的设计，Maverick在单张H100 GPU上即可运行。这意味着中小团队和企业能够以极低成本部署私有化大模型服务。</p>
+<h3 id="3-Llama-4-Behemoth-——-“研究预览版”">3. Llama 4 Behemoth —— “研究预览版”</h3>
+<p>Behemoth是面向科研社区的研究预览模型，参数量达到惊人的 <strong>2万亿（2T）</strong>。虽然目前不对外商用发布，但它代表了Meta在超大参数模型上的技术探索——未来可能会成为Llama家族的旗舰版本。</p>
+<h2 id="MoE架构：为什么它能改变游戏规则？">MoE架构：为什么它能改变游戏规则？</h2>
+<p>MoE（Mixture of Experts）是理解Llama 4的关键。传统Transformer模型在处理每个token时，需要激活全部参数进行计算。而MoE引入了&quot;门控路由机制&quot;——对于每个输入token，系统只激活一小部分专门处理该内容的专家网络。</p>
+<p>以Maverick为例：其总参数量为 <strong>380B</strong>，但每层仅使用约 <strong>128位专家</strong> 中的一个子集来生成输出。这意味着虽然总参数量巨大，实际推理时的计算开销却与传统模型相当。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入Token → Gate Router → [Expert 7] 激活 (其余8位休眠)</span><br><span class="line">                        → [Expert 13] 激活</span><br><span class="line">                        → 结果聚合 → 输出Token</span><br></pre></td></tr></table></figure>
+<p>这种设计带来了三个核心优势：</p>
+<ul>
+<li><strong>推理效率大幅提升</strong>——参数量翻倍时，推理成本几乎不变</li>
+<li><strong>知识容量显著增加</strong>——更多专家意味着模型可以学习更丰富的专业知识</li>
+<li><strong>微调灵活性增强</strong>——针对特定领域（如医疗、法律），只需更新对应的少数专家即可</li>
+</ul>
+<h2 id="Benchmark对比：开源能否真的打败闭源？">Benchmark对比：开源能否真的打败闭源？</h2>
+<p>根据LMSYS Chatbot Arena的社区投票数据和2026年7月的多源benchmark报告，各模型的竞技状态如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>ELO评分 (Chatbot Arena)</th>
+<th>代码能力</th>
+<th>推理能力</th>
+<th>部署成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Llama 4 Maverick</td>
+<td>~1417</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>🟢 单卡H100</td>
+</tr>
+<tr>
+<td>Claude Opus 4.6</td>
+<td>~1548</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>🔴 API调用</td>
+</tr>
+<tr>
+<td>GPT-5.4</td>
+<td>~1520</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>🔴 API调用</td>
+</tr>
+<tr>
+<td>Gemini 3.1 Pro</td>
+<td>~1480</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>🟡 Google Cloud</td>
+</tr>
+</tbody>
+</table>
+<p>需要指出的是，闭源模型在评测分数上仍保持一定领先。但Maverick的优势在于<strong>私有化部署带来的数据安全和成本优势</strong>——对于金融、医疗等敏感行业，这一点往往比零点几的benchmark差异更具实际价值。</p>
+<h2 id="开源生态的深远影响">开源生态的深远影响</h2>
+<p>Llama 4的意义远不止于其技术指标本身。它的发布将深刻改变AI产业的力量分配：</p>
+<ol>
+<li><strong>降低创业门槛</strong>：以前只有硅谷大厂才能&quot;玩得起&quot;大模型，现在一家三人初创公司也能用Maverick构建自己的AI产品</li>
+<li><strong>加速应用创新</strong>：开源可商用（Apache 2.0授权）让全球开发者能够直接在其基础上进行微调、二次开发</li>
+<li><strong>倒逼闭源模型降价</strong>：随着Llama系列不断逼近甚至在部分场景超越GPT-4o，OpenAI等公司不得不调整定价策略</li>
+</ol>
+<p>Meta对EU用户的分发限制也值得关注——受欧盟《人工智能法案》（AI Act）影响，目前居住在欧盟的用户和企业暂时无法使用或分发这些模型。这意味着未来&quot;开源&quot;的定义可能会因地区法规而有所不同。</p>
+<h2 id="写在最后：开源大模型的2026">写在最后：开源大模型的2026</h2>
+<p>站在2026年7月的节点回顾，AI开源社区在过去两年经历了从&quot;跟随者&quot;到&quot;竞争者&quot;的角色转变。Llama 4的出现标志着这个转变进入了新阶段——不再是简单的&quot;仿制&quot;，而是在架构层面提出了独特的创新路径。</p>
+<p>对于开发者而言，现在是一个拥抱本地大模型部署的黄金窗口期。H100的成本正在快速下降，Ollama、vLLM等工具链日趋成熟，而Llama 4的MoE架构更是让单卡运行千亿参数模型成为现实。</p>
+<p>闭源模型在通用能力上或许仍占上风，但开源社区已经证明了：<strong>真正的AI未来，不应该只掌握在少数公司手中。</strong></p>
+<hr>
+<p><strong>参考来源：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/">Meta AI官方博客 - Llama 4 Multimodal Intelligence</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aimadetools.com/blog/llama-4-complete-guide/">Llama 4 Complete Guide (2026)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.buildmvpfast.com/blog/llama-4-vs-gpt-5-benchmark-comparison-self-hosted-2026">BuildMVPFast - Llama 4 vs GPT-5 Benchmarks</a></li>
+<li><a target="_blank" rel="noopener" href="https://lmcouncil.ai/benchmarks">LM Council AI Model Benchmarks (July 2026)</a></li>
+<li><a target="_blank" rel="noopener" href="https://serenitiesai.com/articles/llama-4-behemoth-maverick-scout-review-2026">Serenities AI - Llama 4 Scout &amp; Maverick Status</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/07/25/Meta-Llama-4-MoE%E6%9E%B6%E6%9E%84%E9%9D%A9%E5%91%BD/">http://coderedeng.github.io/2026/07/25/Meta-Llama-4-MoE%E6%9E%B6%E6%9E%84%E9%9D%A9%E5%91%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Meta/">Meta</a><a class="post-meta__tags" href="/tags/Llama4/">Llama4</a><a class="post-meta__tags" href="/tags/MoE%E6%9E%B6%E6%9E%84/">MoE架构</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/07/26/GLM-5.2-%E6%99%BA%E8%B0%B1%E6%97%97%E8%88%B0%E6%A8%A1%E5%9E%8B/" title="GLM-5.2 发布：智谱开源744B MoE旗舰，1M上下文窗口成&quot;真可用&quot;"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">GLM-5.2 发布：智谱开源744B MoE旗舰，1M上下文窗口成"真可用"</div></div><div class="info-2"><div class="info-item-1">背景：国产大模型进入&quot;百万Token时代&quot; 2026年6月13日，智谱AI（Zhipu AI）正式发布了新一代旗舰大模型 GLM-5.2。作为清华系孵化的老牌AI创业公司，智谱在过去几年持续输出高质量开源项目——ChatGLM系列曾是国内最早开放对话能力的开源大模型之一。而此次发布的GLM-5.2被智谱定位为&quot;面向长任务时代的旗舰模型&quot;，其核心卖点是真正可用的1M上下文窗口。 为什么&quot;百万Token上下文&quot;值得关注？因为在过去很长一段时间里，各大厂商虽然标称了200K甚至更长的上下文支持，但实际体验中一旦超过一定长度（通常是200K token左右），模型就会出现明显的性能衰减——信息丢失、注意力分散、推理质量下降。GLM-5.2的突破在于通过DSA（Dense-Sparse Attention）机制的深度优化，在1M token的全长度范围内保持了稳定的性能表现。这意味着开发者终于可以把一个完整的工程项目文件作为上下文喂给大模型了。 架构亮点：744B参数、MoE设计、FP8量化版 GLM-5.2采用 Mixture ...</div></div></div></a><a class="pagination-related" href="/2026/07/24/Google-Gemini-3.6-Flash%E4%B8%89%E6%AC%BE%E6%96%B0%E6%A8%A1%E5%9E%8B%E5%8F%91%E5%B8%83/" title="Google 一口气发布三款 Gemini 新模型：3.6 Flash、Flash-Lite 和 Cyber，旗舰版还在憋大招"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Google 一口气发布三款 Gemini 新模型：3.6 Flash、Flash-Lite 和 Cyber，旗舰版还在憋大招</div></div><div class="info-2"><div class="info-item-1">Google 一口气发布三款 Gemini 新模型：3.6 Flash、Flash-Lite 和 Cyber，旗舰版还在憋大招 7月21日，Google 在 I/O 大会之后再次引爆 AI 圈——一口气发布了三个全新的 Gemini 模型：Gemini 3.6 Flash、Gemini 3.5 Flash-Lite 以及 Gemini 3.5 Flash Cyber。但最让外界关注的是：备受期待的旗舰版 Gemini 3.5 Pro 仍在内部测试中，尚未正式开放。 这已经是 Google 在 2026 年 5 月推出 Gemini 3.5 Flash 后的第二次快速迭代，展现了其在 AI 模型赛道上密集的更新节奏。 三款新模型各有所长 Gemini 3.6 Flash — 速度与质量的再平衡 Gemini 3.6 Flash 是此次更新的旗舰产品，主打更低的延迟和更高的性价比。根据 Google 官方介绍，该模型在推理速度和成本方面都有显著改善——虽然具体的 benchmark 数据尚未公开，但从定位来看，它旨在取代此前 Gemini 3.5 Flash 成为轻量级场景的首选方案...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/27/OpenAI-gpt-oss%E5%8F%91%E5%B8%83%EF%BC%9A%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B0%E7%BA%AA%E5%85%83/" title="OpenAI gpt-oss 发布：开放权重模型的新纪元"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-27</div><div class="info-item-2">OpenAI gpt-oss 发布：开放权重模型的新纪元</div></div><div class="info-2"><div class="info-item-1">开放，终于来了 长期以来，OpenAI 一直是人工智能领域最大的&quot;封闭玩家&quot;——GPT、o1、o3 系列无一例外地将权重锁在自家服务器中。然而，2025年4月16日，这家 AI 巨头终于向公众敞开了大门：gpt-oss 开源模型正式发布，包括 gpt-oss-120b（120B参数）和 gpt-oss-20b（20B参数）两个版本，采用 Apache 2.0 协议授权。 这标志着 AI 行业一个重要的分水岭时刻——当最顶级的推理模型开始开源，整个生态将发生怎样的变化？ 架构亮点：MoE 的极致运用 gpt-oss-120b 是一个基于 混合专家（Mixture-of-Experts, MoE） 架构的大语言模型。总参数量高达 117B，但通过稀疏激活机制，每次推理仅使用约 5.1B 个活跃参数。这种设计使得它能够在单个 80GB GPU（如 NVIDIA A100/H100）上高效运行，同时保持接近闭源模型的性能水准。 小版本 gpt-oss-20b 则为更低延迟场景而生——总参数量约 21B，活跃参数仅 3.6B。尽管体积仅为大模型的六分之一，其性能表现依然...</div></div></div></a><a class="pagination-related" href="/2026/08/10/Meta%E5%8F%91%E5%B8%83MuseGlimmer-30B%E6%9C%AC%E5%9C%B0%E6%99%BA%E8%83%BD%E4%BD%93%E6%A8%A1%E5%9E%8B/" title="Meta发布MuseGlimmer：30B参数级本地AI智能体，Apache 2.0开源"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-10</div><div class="info-item-2">Meta发布MuseGlimmer：30B参数级本地AI智能体，Apache 2.0开源</div></div><div class="info-2"><div class="info-item-1">本地AI Agent的新里程碑：Meta发布30B参数级MuseGlimmer，Apache 2.0开源 今天（8月10日），Meta AI Research在官方博客发布了 MuseGlimmer——一个专为本地AI智能体工作流设计的30B参数模型。这是Meta Superintelligence Labs的最新成果，权重以 Apache 2.0 协议在 HuggingFace 上完全开源，意味着任何人都可以下载、部署和二次开发。 这个看似简单的发布背后，其实标志着&quot;AI智能体从云端走向本地&quot;的一个关键转折点。  为什么是30B参数？——规模与性能的黄金平衡点 MuseGlimmer的参数量设计得极为克制：只有 30 billion（300亿）个参数。这个数字乍看之下远不及动辄万亿参数的闭源旗舰模型，但它的定位非常清晰——不是要打败所有模型，而是要在消费级硬件上跑出一个&quot;够用、好用、随时可用&quot;的本地智能体。 具体来说：  全精度状态下需要约55GB显存（远超任何消费者GPU） 通过 4-bit量化压缩到不到20GB，可以在RTX 3060...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">107</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Meta-Llama-4%E9%87%8D%E7%A3%85%E5%8F%91%E5%B8%83%EF%BC%9AMoE%E6%9E%B6%E6%9E%84-%E5%8D%83%E4%B8%87%E7%BA%A7%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%8C%E5%BC%80%E6%BA%90%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84-%E5%B0%81%E7%A5%9E%E4%B9%8B%E6%88%98"><span class="toc-number">1.</span> <span class="toc-text">Meta Llama 4重磅发布：MoE架构+千万级上下文，开源大模型的&quot;封神之战&quot;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9AOpenAI%E4%B8%80%E9%AA%91%E7%BB%9D%E5%B0%98%E4%B9%8B%E5%90%8E%EF%BC%8CMeta%E7%9A%84%E5%8F%8D%E5%87%BB%E6%9D%A5%E4%BA%86"><span class="toc-number">1.1.</span> <span class="toc-text">引言：OpenAI一骑绝尘之后，Meta的反击来了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Llama-4%E5%AE%B6%E6%97%8F%EF%BC%9A%E4%B8%89%E6%AC%BE%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%90%84%E6%9C%89%E6%89%80%E9%95%BF"><span class="toc-number">1.2.</span> <span class="toc-text">Llama 4家族：三款模型，各有所长</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Llama-4-Scout-%E2%80%94%E2%80%94-%E2%80%9C%E4%B8%87%E7%BA%A7%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B9%8B%E7%8E%8B%E2%80%9D"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Llama 4 Scout —— “万级上下文之王”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Llama-4-Maverick-%E2%80%94%E2%80%94-%E2%80%9C%E5%85%A8%E8%83%BD%E5%9E%8B%E9%80%89%E6%89%8B%E2%80%9D"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. Llama 4 Maverick —— “全能型选手”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Llama-4-Behemoth-%E2%80%94%E2%80%94-%E2%80%9C%E7%A0%94%E7%A9%B6%E9%A2%84%E8%A7%88%E7%89%88%E2%80%9D"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. Llama 4 Behemoth —— “研究预览版”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MoE%E6%9E%B6%E6%9E%84%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E8%83%BD%E6%94%B9%E5%8F%98%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">MoE架构：为什么它能改变游戏规则？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Benchmark%E5%AF%B9%E6%AF%94%EF%BC%9A%E5%BC%80%E6%BA%90%E8%83%BD%E5%90%A6%E7%9C%9F%E7%9A%84%E6%89%93%E8%B4%A5%E9%97%AD%E6%BA%90%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">Benchmark对比：开源能否真的打败闭源？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E7%94%9F%E6%80%81%E7%9A%84%E6%B7%B1%E8%BF%9C%E5%BD%B1%E5%93%8D"><span class="toc-number">1.5.</span> <span class="toc-text">开源生态的深远影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E%EF%BC%9A%E5%BC%80%E6%BA%90%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%842026"><span class="toc-number">1.6.</span> <span class="toc-text">写在最后：开源大模型的2026</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/DeepSeek-Harness-%E7%99%BB%E9%A1%B6-GitHub/" title="DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！"/></a><div class="content"><a class="title" href="/2026/08/19/DeepSeek-Harness-%E7%99%BB%E9%A1%B6-GitHub/" title="DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！">DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！</a><time datetime="2026-08-19T07:30:00.000Z" title="发表于 2026-08-19 15:30:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/GPT-5.6-Sol-%E4%BB%B7%E6%A0%BC%E8%85%B0%E6%96%A9/" title="GPT-5.6 Sol 价格腰斩：OpenAI 的定价战略与 AI 模型市场的重新洗牌"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GPT-5.6 Sol 价格腰斩：OpenAI 的定价战略与 AI 模型市场的重新洗牌"/></a><div class="content"><a class="title" href="/2026/08/18/GPT-5.6-Sol-%E4%BB%B7%E6%A0%BC%E8%85%B0%E6%96%A9/" title="GPT-5.6 Sol 价格腰斩：OpenAI 的定价战略与 AI 模型市场的重新洗牌">GPT-5.6 Sol 价格腰斩：OpenAI 的定价战略与 AI 模型市场的重新洗牌</a><time datetime="2026-08-18T09:30:00.000Z" title="发表于 2026-08-18 17:30:00">2026-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/%E7%99%BE%E5%BA%A6%E5%8F%91%E5%B8%83ERNIE-Bot-4.5-Turbo%EF%BC%9A%E6%96%87%E5%BF%83%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%B6%E6%97%8F%E5%86%8D%E6%B7%BB%E6%96%B0%E6%88%90%E5%91%98/" title="百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员"/></a><div class="content"><a class="title" href="/2026/08/18/%E7%99%BE%E5%BA%A6%E5%8F%91%E5%B8%83ERNIE-Bot-4.5-Turbo%EF%BC%9A%E6%96%87%E5%BF%83%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%B6%E6%97%8F%E5%86%8D%E6%B7%BB%E6%96%B0%E6%88%90%E5%91%98/" title="百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员">百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员</a><time datetime="2026-08-18T02:30:00.000Z" title="发表于 2026-08-18 10:30:00">2026-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BC%80%E6%BA%90OpenWorker%EF%BC%9A%E4%BD%8F%E8%BF%9B%E6%A1%8C%E9%9D%A2%E7%9A%84AI%E5%90%8C%E4%BA%8B%EF%BC%8C%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C%E8%80%8C%E9%9D%9E%E5%AF%B9%E8%AF%9D/" title="吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话"/></a><div class="content"><a class="title" href="/2026/08/16/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BC%80%E6%BA%90OpenWorker%EF%BC%9A%E4%BD%8F%E8%BF%9B%E6%A1%8C%E9%9D%A2%E7%9A%84AI%E5%90%8C%E4%BA%8B%EF%BC%8C%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C%E8%80%8C%E9%9D%9E%E5%AF%B9%E8%AF%9D/" title="吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话">吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话</a><time datetime="2026-08-16T02:00:00.000Z" title="发表于 2026-08-16 10:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/15/Google%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E8%AE%A9%E7%A7%81%E6%9C%89AI%E8%B5%B0%E5%90%91%E5%AE%9E%E7%94%A8/" title="Google让私有AI走向实用：同态加密与HEIR编译器让AI在密文上推理成真"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Google让私有AI走向实用：同态加密与HEIR编译器让AI在密文上推理成真"/></a><div class="content"><a class="title" href="/2026/08/15/Google%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E8%AE%A9%E7%A7%81%E6%9C%89AI%E8%B5%B0%E5%90%91%E5%AE%9E%E7%94%A8/" title="Google让私有AI走向实用：同态加密与HEIR编译器让AI在密文上推理成真">Google让私有AI走向实用：同态加密与HEIR编译器让AI在密文上推理成真</a><time datetime="2026-08-15T07:30:00.000Z" title="发表于 2026-08-15 15:30:00">2026-08-15</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
