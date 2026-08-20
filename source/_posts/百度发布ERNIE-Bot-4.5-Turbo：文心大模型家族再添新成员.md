@@ -1,6 +1,6 @@
 ---
 title: 百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-18 10:30:00
 last_modified_at: 2026-08-18 10:30:00
 sticky: false

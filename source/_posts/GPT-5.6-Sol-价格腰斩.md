@@ -1,6 +1,6 @@
 ---
 title: GPT-5.6 Sol 价格腰斩：OpenAI 的定价战略与 AI 模型市场的重新洗牌
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-18 17:30:00
 last_modified_at: 2026-08-18 17:30:00
 sticky: false

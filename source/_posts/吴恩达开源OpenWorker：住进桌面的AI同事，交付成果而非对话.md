@@ -1,6 +1,6 @@
 ---
 title: 吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话
-index_img: /img/cover42.png
+cover: /img/cover42.png
 date: 2026-08-16 10:00:00
 last_modified_at: 2026-08-16 10:00:00
 sticky: false
