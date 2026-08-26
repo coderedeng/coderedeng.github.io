@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-08-26T00:14:25.404Z</updated>
+  <updated>2026-08-26T08:44:37.068Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Meta发布Muse Code与Muse Spark 1.2：终端编码代理的Plan-Grill-Goal工作流</title>
+    <link href="http://coderedeng.github.io/2026/08/26/Meta%E5%8F%91%E5%B8%83Muse-Code%E4%B8%8EMuse-Spark-1.2%EF%BC%9A%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%BB%A3%E7%90%86%E7%9A%84Plan-Grill-Goal%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+    <id>http://coderedeng.github.io/2026/08/26/Meta%E5%8F%91%E5%B8%83Muse-Code%E4%B8%8EMuse-Spark-1.2%EF%BC%9A%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%BB%A3%E7%90%86%E7%9A%84Plan-Grill-Goal%E5%B7%A5%E4%BD%9C%E6%B5%81/</id>
+    <published>2026-08-26T08:40:00.000Z</published>
+    <updated>2026-08-26T08:44:37.068Z</updated>
+    
+    <content type="html"><![CDATA[<p>8月5日，Meta Superintelligence Labs 一次性放出了两件东西：终端编码代理 <strong>Muse Code</strong>（公测）和为其量身打造的推理模型 <strong>Muse Spark 1.2</strong>。与以往”模型 + 第三方壳子”的组合不同，Meta 明确宣称两者是<strong>联合训练（co-trained）</strong>的——模型在训练时就运行在它推理时所在的同一个 Agent 环境里。这是 Meta 第一次以”运行时即产品”的姿态正面切入 AI 编程赛道，而它公布的那份基准测试幻灯片，甚至包含了自己输掉的图表。</p><h2 id="背景：Meta-的编码模型路线"><a href="#背景：Meta-的编码模型路线" class="headerlink" title="背景：Meta 的编码模型路线"></a>背景：Meta 的编码模型路线</h2><p>Muse Spark 系列是 Meta 首个闭源推理模型线（1.1 于7月16日发布），参数规模未公开——这与 Anthropic 对 Claude 的做法如出一辙，用外部基准而非参数量说话。1.2 版本在编码任务上大幅扩充了训练算力，并扩展了训练环境的多样性，目标直指<strong>长程任务（long-horizon work）</strong>：整库生成、多文件重构、长时间调试。</p><p>Meta 给出的最硬核演示是一个 GPU kernel 优化案例：让 Muse Spark 1.2 在 NVIDIA Hopper 硬件上用 Triton 语言连续工作，单次任务超过 <strong>1000 次工具调用、最长运行 24 小时</strong>，且禁止直接包装现成的第三方库。这种”马拉松式”评测正是当前编码模型竞争的分水岭——短程补全早已不是卖点，能扛住多日任务的 Agent 才是。</p><h2 id="核心特性：Muse-Code-的运行时设计"><a href="#核心特性：Muse-Code-的运行时设计" class="headerlink" title="核心特性：Muse Code 的运行时设计"></a>核心特性：Muse Code 的运行时设计</h2><p>Muse Code 是一个纯终端 CLI（macOS &#x2F; Linux，暂无 Windows 原生版），一行命令安装：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://dev.meta.ai/install.sh | bash</span><br></pre></td></tr></table></figure><p>它的架构亮点集中在”可靠性工程”上：</p><ul><li><strong>并行子代理 + Git worktree 隔离</strong>：多个子任务在独立的 git worktree 中并行推进，互不污染工作区；</li><li><strong>崩溃安全事件日志（crash-safe event log）</strong>：所有本地动作落盘记录，会话状态持久化，进程崩溃后可恢复——对跑数小时的长任务至关重要；</li><li><strong>Plan-Grill-Goal 三段式工作流</strong>：内置三个技能命令。<code>/plan</code> 先生成一份需人工审批的计划；<code>/grill</code> 对计划进行”拷问式”压力测试；<code>/goal</code> 则朝着既定目标持续推进直到完成。这套模式其实是资深 Claude Code &#x2F; Codex 用户手动摸索出来的最佳实践，现在被 Meta 做成了第一方命令。</li></ul><p>模型侧的规格同样激进：<strong>1,048,576 token（1M）上下文</strong>、最大输出 131,072 token，输入支持文本、图像、视频、音频和 PDF 多模态。API 层面提供 OpenAI SDK 与 Anthropic SDK 的双向 drop-in 兼容，模型 ID 为 <code>muse-spark-1.2</code>（标准档）和 <code>muse-spark-1.2-contributor</code>（贡献者档）。</p><h2 id="技术分析：一份”自己输掉”的基准测试"><a href="#技术分析：一份”自己输掉”的基准测试" class="headerlink" title="技术分析：一份”自己输掉”的基准测试"></a>技术分析：一份”自己输掉”的基准测试</h2><p>Meta 这次发布最有意思的地方在于它<strong>主动公布了 Claude Opus 5 领先的图表</strong>。在 Meta 自选的三块看板上，Opus 5 全部占优：</p><table><thead><tr><th>基准</th><th>Muse Spark 1.2</th><th>Claude Opus 5</th></tr></thead><tbody><tr><td>Terminal-Bench 2.1（Muse Code 集成）</td><td>82.9%</td><td>86.7%</td></tr><tr><td>DeepSWE 1.1</td><td>59.3%</td><td>65.0%</td></tr><tr><td>Meta 内部编码基准</td><td>70.6%</td><td>79.4%</td></tr></tbody></table><p>独立评测给出了另一幅图景：Vals Index v1.2（综合编码 + 金融任务）中 Muse Spark 1.2 得分 <strong>71.88% ± 1.12，位列 45 个模型中的第 5</strong>；在通用 Terminus 2 harness 下的 Terminal-Bench 则排在第 14&#x2F;50。两个数字的落差恰好印证了”联合训练溢价”的争议——模型在自己的壳子里表现更好，但换到第三方 harness 后优势缩水。</p><p>真正杀出重围的是<strong>价格</strong>。Contributor 档定价 <strong>$0.10 &#x2F; $0.20（每百万 token 输入&#x2F;输出）</strong>，是当下所有有竞争力的编码模型中最激进的；标准档为 $1.25 &#x2F; $4.25。Vals 实测单次测试成本仅 <strong>$0.69</strong>，是 Top-5 中最低的。代价也很明确：contributor 档会用你的代码参与训练——对私有仓库来说，这是一笔用源码支付的账单。</p><h2 id="影响与未来"><a href="#影响与未来" class="headerlink" title="影响与未来"></a>影响与未来</h2><p>Muse Code 的发布标志着 AI 编程竞争从”模型能力军备赛”转向”<strong>运行时工程 + 价格战</strong>“的双线作战。Meta 没有试图在峰值能力上击败 Opus 5（它自己都不回避这一点），而是押注两个更实际的卖点：能扛住 24 小时任务的可靠运行时，以及低一个数量级的成本。</p><p>对开发者而言，Muse Code 值得本周就装上试试——尤其是需要并行处理大型多特性任务、或想验证”计划-拷问-执行”工作流价值的团队。但有两点需要留意：一是公测阶段的稳定性与 Windows 支持缺位；二是 contributor 档的数据条款，企业用户应默认使用标准档。</p><p>另一个值得跟踪的信号是开源路线：Muse Spark 1.2 的开放权重”在路上”，而 Meta 已于8月10日先行放出了从 1.2 蒸馏的 <strong>Muse Glimmer 30B</strong>（Apache 2.0），主打本地运行 Agent。如果完整权重的 Muse Spark 真的开源，Meta 将同时握有闭源旗舰与开源生态两张牌——那才是对 Claude Code 阵营真正的重击。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;8月5日，Meta Superintelligence Labs 一次性放出了两件东西：终端编码代理 &lt;strong&gt;Muse Code&lt;/strong&gt;（公测）和为其量身打造的推理模型 &lt;strong&gt;Muse Spark 1.2&lt;/strong&gt;。与以往”模型 + 第三</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="Meta" scheme="http://coderedeng.github.io/tags/Meta/"/>
+    
+    <category term="Muse Code" scheme="http://coderedeng.github.io/tags/Muse-Code/"/>
+    
+  </entry>
   
   <entry>
     <title>CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行</title>
@@ -200,9 +228,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
-    
     <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
+    
+    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
     
     <category term="AI定价" scheme="http://coderedeng.github.io/tags/AI%E5%AE%9A%E4%BB%B7/"/>
     
@@ -553,36 +581,6 @@
     <category term="OpenCode" scheme="http://coderedeng.github.io/tags/OpenCode/"/>
     
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板</title>
-    <link href="http://coderedeng.github.io/2026/07/31/xAI%E5%8F%91%E5%B8%83Grok-4.5%EF%BC%9A%E4%B8%8ECursor%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%EF%BC%8C%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89AI%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/"/>
-    <id>http://coderedeng.github.io/2026/07/31/xAI%E5%8F%91%E5%B8%83Grok-4.5%EF%BC%9A%E4%B8%8ECursor%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%EF%BC%8C%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89AI%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</id>
-    <published>2026-07-31T14:00:00.000Z</published>
-    <updated>2026-08-25T09:14:21.436Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="xAI发布Grok-4-5：与Cursor联合训练，重新定义AI编程能力天花板"><a href="#xAI发布Grok-4-5：与Cursor联合训练，重新定义AI编程能力天花板" class="headerlink" title="xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板"></a>xAI发布Grok 4.5：与Cursor联合训练，重新定义AI编程能力天花板</h1><p>2026年7月8日，xAI正式发布了其旗舰大模型 <strong>Grok 4.5</strong>——这是该公司迄今为止最强大的编程智能体模型。不同于以往仅将编码作为通用能力的附属品，Grok 4.5从架构到训练数据都围绕”真实工程场景”重新设计，最令人瞩目的细节在于：它与Cursor公司进行了深度联合训练，直接吸收了Cursor平台上的海量真实开发者交互数据。</p><h2 id="背景：大模型的”编程竞赛”进入白热化阶段"><a href="#背景：大模型的”编程竞赛”进入白热化阶段" class="headerlink" title="背景：大模型的”编程竞赛”进入白热化阶段"></a>背景：大模型的”编程竞赛”进入白热化阶段</h2><p>过去两年，AI辅助编程的赛道经历了从工具到代理（agent）的范式转变。早期工具如GitHub Copilot专注于代码补全，而2025年后兴起的Claude Code、OpenClaw等终端优先的自主编码代理则能直接接管整个开发流程——理解需求、编写代码、调试、提交，全流程无需人类干预。</p><p>xAI在这一轮竞赛中起步较晚。其早期模型Grok 3.5在通用对话和推理上表现不俗，但编码能力始终落后于Anthropic的Claude Opus系列和OpenAI的GPT-4&#x2F;4.5系列。直到今年年初，马斯克将目光转向了编程领域，xAI开始与Cursor展开深度合作——这一合作直接催生了Grok 4.5。</p><h2 id="Grok-4-5的核心突破：不只是又一个”代码生成器”"><a href="#Grok-4-5的核心突破：不只是又一个”代码生成器”" class="headerlink" title="Grok 4.5的核心突破：不只是又一个”代码生成器”"></a>Grok 4.5的核心突破：不只是又一个”代码生成器”</h2><h3 id="1-与Cursor联合训练：从”学习语法”到”理解工程思维”"><a href="#1-与Cursor联合训练：从”学习语法”到”理解工程思维”" class="headerlink" title="1. 与Cursor联合训练：从”学习语法”到”理解工程思维”"></a>1. 与Cursor联合训练：从”学习语法”到”理解工程思维”</h3><p>Grok 4.5最与众不同的地方在于其训练数据构成。xAI公开透露，该模型在训练中使用了Cursor平台上的真实开发者交互数据集——包括数百万次IDE中的代码生成、调试和重构请求。这意味着Grok 4.5学到的不只是编程语言语法或算法知识，而是<strong>真实的工程思维模式</strong>：如何阅读遗留代码、如何处理模糊需求、如何在复杂项目中做出合理的技术选择。</p><p>这种训练方式带来的效果立竿见影。在SWE-Bench Pro（一个需要解决真实GitHub Issue的基准测试）上，Grok 4.5达到了64.7%的任务完成度；在多语言版本上更是达到了78.0%，这在所有公开模型中排名前列。</p><h3 id="2-Terminal-Bench-2-1上的统治级表现"><a href="#2-Terminal-Bench-2-1上的统治级表现" class="headerlink" title="2. Terminal-Bench 2.1上的统治级表现"></a>2. Terminal-Bench 2.1上的统治级表现</h3><p>如果说SWE-Bench Pro衡量的是”写代码改bug”的能力，那么Terminal-Bench 2.1测试的就是<strong>独立在终端环境中完成复杂任务</strong>的代理能力——这恰恰是当前AI编程工具最具前瞻性的方向。Grok 4.5在该基准上以83.3%的成绩仅次于Anthropic的Claude Fable 5（同样是一款专注于终端工作的模型），远超同期其他大模型的60-70%区间。</p><p>值得注意的是，Claude Fable 5在Terminal-Bench上的表现说明”终端代理”正在成为一个独立的技术赛道，而Grok 4.5能以如此高的成绩紧随其后，证明xAI的联合训练策略在终端工作流建模方面同样成功。</p><h3 id="3-WebDev-Arena-Elo-1566：前端与后端全栈能力"><a href="#3-WebDev-Arena-Elo-1566：前端与后端全栈能力" class="headerlink" title="3. WebDev Arena Elo 1566：前端与后端全栈能力"></a>3. WebDev Arena Elo 1566：前端与后端全栈能力</h3><p>WebDev Arena是衡量模型实际开发能力的综合竞技场——它要求AI生成完整的前端页面、处理API集成、调试CSS问题，并在一个交互式环境中实时评估代码效果。Grok 4.5在这里获得了1566 Elo分，这一分数意味着它在实际编码场景中已经具备了超越大多数初级至中级人类工程师的”全栈”能力：既能写React组件，也能设计数据库schema，还能处理部署脚本中的边界情况。</p><h2 id="技术架构与训练细节"><a href="#技术架构与训练细节" class="headerlink" title="技术架构与训练细节"></a>技术架构与训练细节</h2><p>根据xAI在官方博客中披露的信息，Grok 4.5的核心创新在于其<strong>推理-效率双引擎设计</strong>。模型同时支持两种推理模式：</p><ul><li><p><strong>智能推理模式（Intelligent Reasoning）</strong>：面对需要深度分析、多步骤规划的任务时激活，耗时较长但输出质量极高。这一模式类似于”慢思考”系统，适合代码架构设计和复杂bug排查。</p></li><li><p><strong>高效推理模式（Efficient Reasoning）</strong>：面向简单的补全和翻译类任务，延迟更低、成本更优，适合日常编码辅助。</p></li></ul><p>这种双轨设计使得Grok 4.5既能胜任高难度的系统设计评审，也能作为高效的IDE内联助手——两者对用户体验来说都至关重要。模型还采用了<strong>上下文感知度提升技术</strong>，其最大支持50万Token的上下文窗口（远超多数竞争者），能够一次性理解大型项目的全局结构。</p><h2 id="API定价与可用性：亲民的价格策略"><a href="#API定价与可用性：亲民的价格策略" class="headerlink" title="API定价与可用性：亲民的价格策略"></a>API定价与可用性：亲民的价格策略</h2><p>对于开发者而言，能力固然重要，但价格决定了一切。Grok 4.5的API定价极具侵略性：**$2&#x2F;百万token的快速模式<strong>、</strong>$6&#x2F;百万token的智能模式**。对比Claude Opus ($15&#x2F;$75)、GPT-4o ($5&#x2F;$30)和Gemini Ultra（更高），Grok 4.5在同等能力下成本仅为竞品的一半甚至更低。</p><p>这种定价策略并非单纯的价格战——xAI通过联合Cursor的训练方式，大幅降低了模型训练的总体数据成本；而”智能模式&#x2F;快速模式”的分层也避免了用户为不需要的推理深度付费。对于需要大规模自动化代码生成的企业场景来说，这一价格曲线几乎是当前最优解。</p><h2 id="对行业格局的潜在影响"><a href="#对行业格局的潜在影响" class="headerlink" title="对行业格局的潜在影响"></a>对行业格局的潜在影响</h2><p>Grok 4.5的出现正在改变三个维度的竞争格局：</p><p><strong>第一，xAI从追赶者变为挑战者。</strong> 在编程能力上，Grok 4.5已经缩小了与Claude Opus系列和GPT-4.5系列的差距——在某些特定基准（如Terminal-Bench）上甚至形成反超之势。这使得xAI正式进入AI编程工具链的核心玩家行列。</p><p><strong>第二，Cursor生态的强化。</strong> xAI与Cursor的深度绑定意味着Grok 4.5将成为Cursor的最优后端选择之一，反过来也推动了Cursor在开发者中的渗透率——这是一个双向增强的飞轮效应。</p><p><strong>第三，终端代理路线的加速普及。</strong> Grok 4.5在Terminal-Bench上的高分释放了一个明确信号：未来AI编程工具的核心竞争力将越来越取决于”能否直接操作终端完成端到端任务”。这可能会促使更多大模型厂商将终端交互作为一等优先事项，而非简单的附加工具。</p><h2 id="个人观察与展望"><a href="#个人观察与展望" class="headerlink" title="个人观察与展望"></a>个人观察与展望</h2><p>从技术发展的角度来看，Grok 4.5最值得关注的不是某个具体的基准分数——而是它展示了一种可复制的范式：<strong>通过与真实工具深度协作、吸收实际工作流数据来训练模型</strong>。Cursor平台提供了数百万级的开发者交互样本，这些数据的”真实性”和”多样性”是任何合成数据集无法比拟的。</p><p>未来一年，我们可能会看到更多类似的”联合训练”案例——大模型厂商与具体应用场景（如数据库管理、网络运维、测试自动化）的深度绑定，将会产生一批真正能在生产环境中落地的AI代理。Grok 4.5只是这一趋势的第一个里程碑式作品。</p><hr><p><strong>参考来源：</strong></p><ul><li><a href="https://x.ai/news/grok-4-5">xAI官方公告：Introducing Grok 4.5</a></li><li><a href="https://aireleasetracker.com/model/xai/grok-4-5">Grok 4.5 Benchmarks &amp; Specs</a></li><li><a href="https://mungomash.com/ai/grok/versions/">Grok Versions 完整版本历史</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;xAI发布Grok-4-5：与Cursor联合训练，重新定义AI编程能力天花板&quot;&gt;&lt;a href=&quot;#xAI发布Grok-4-5：与Cursor联合训练，重新定义AI编程能力天花板&quot; class=&quot;headerlink&quot; title=&quot;xAI发布Grok 4.5：</summary>
-      
-    
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="xAI" scheme="http://coderedeng.github.io/tags/xAI/"/>
-    
-    <category term="Grok" scheme="http://coderedeng.github.io/tags/Grok/"/>
-    
-    <category term="代码生成" scheme="http://coderedeng.github.io/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/"/>
     
   </entry>
   
