@@ -36,9 +36,9 @@
     <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="Cursor" scheme="http://coderedeng.github.io/tags/Cursor/"/>
+    
+    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
     
     <category term="GitHub" scheme="http://coderedeng.github.io/tags/GitHub/"/>
     
@@ -310,11 +310,11 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
     <category term="DeepSeek" scheme="http://coderedeng.github.io/tags/DeepSeek/"/>
     
     <category term="Agent" scheme="http://coderedeng.github.io/tags/Agent/"/>
-    
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
@@ -338,9 +338,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
-    
     <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
+    
+    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
     
     <category term="AI定价" scheme="http://coderedeng.github.io/tags/AI%E5%AE%9A%E4%BB%B7/"/>
     
@@ -452,9 +452,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="智谱AI" scheme="http://coderedeng.github.io/tags/%E6%99%BA%E8%B0%B1AI/"/>
-    
     <category term="GLM-5.3" scheme="http://coderedeng.github.io/tags/GLM-5-3/"/>
+    
+    <category term="智谱AI" scheme="http://coderedeng.github.io/tags/%E6%99%BA%E8%B0%B1AI/"/>
     
     <category term="网络安全" scheme="http://coderedeng.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
