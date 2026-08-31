@@ -120,9 +120,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="Google" scheme="http://coderedeng.github.io/tags/Google/"/>
-    
     <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
+    
+    <category term="Google" scheme="http://coderedeng.github.io/tags/Google/"/>
     
   </entry>
   
@@ -452,9 +452,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="GLM-5.3" scheme="http://coderedeng.github.io/tags/GLM-5-3/"/>
-    
     <category term="智谱AI" scheme="http://coderedeng.github.io/tags/%E6%99%BA%E8%B0%B1AI/"/>
+    
+    <category term="GLM-5.3" scheme="http://coderedeng.github.io/tags/GLM-5-3/"/>
     
     <category term="网络安全" scheme="http://coderedeng.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
