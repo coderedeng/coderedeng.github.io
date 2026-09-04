@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot; | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot; 当 NVIDIA 凭借 Blackwell 与即将推出的 Vera Rubin 系列构建起以 NVLink + NVL72 机架为核心的封闭算力帝国时，整个 AI 硬件市场似乎正在向&quot;双雄格局&quot;收敛——AMD 用 Instinct MI400 系列在 2nm 节点上正面硬刚，而真正长">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;">
+<meta property="og:url" content="http://coderedeng.github.io/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot; 当 NVIDIA 凭借 Blackwell 与即将推出的 Vera Rubin 系列构建起以 NVLink + NVL72 机架为核心的封闭算力帝国时，整个 AI 硬件市场似乎正在向&quot;双雄格局&quot;收敛——AMD 用 Instinct MI400 系列在 2nm 节点上正面硬刚，而真正长">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-09-02T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-02T14:16:25.423Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="AI芯片">
+<meta property="article:tag" content="Intel Gaudi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Intel发布Habana Gaudi4：押注开放生态的AI芯片\"第三极\"",
+  "url": "http://coderedeng.github.io/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-09-02T02:00:00.000Z",
+  "dateModified": "2026-09-02T14:16:25.423Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Intel发布Habana Gaudi4：押注开放生态的AI芯片"第三极"',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-02T02:00:00.000Z" title="发表于 2026-09-02 10:00:00">2026-09-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-02T14:16:25.423Z" title="更新于 2026-09-02 22:16:25">2026-09-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tech%E5%89%8D%E6%B2%BF/">Tech前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Intel发布Habana-Gaudi4：押注开放生态的AI芯片-第三极">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</h1>
+<p>当 NVIDIA 凭借 Blackwell 与即将推出的 Vera Rubin 系列构建起以 NVLink + NVL72 机架为核心的封闭算力帝国时，整个 AI 硬件市场似乎正在向&quot;双雄格局&quot;收敛——AMD 用 Instinct MI400 系列在 2nm 节点上正面硬刚，而真正长期被边缘化的第三方，Intel 旗下的 Habana 芯片组，正试图以&quot;开放生态&quot;为利刃撕开一道缺口。</p>
+<p>2026 年 3 月 18 日，Intel 正式发布了 <strong>Habana Gaudi4</strong> 加速器——这是 Intel 自收购 Habana Labs 以来，面向大规模模型训练与推理场景推出的第四代专用 AI 芯片。与前几代相比，Gaudi4 最大的卖点不再是单纯的算力堆叠，而是<strong>优化的内存路径、可扩展的多芯片互连，以及对主流 ML 框架的原生支持</strong>。在 NVIDIA CUDA 与 AMD ROCm 两大软件生态之外，Intel 正努力让 SynapseAI 成为第三个&quot;够用且开放&quot;的选择。</p>
+<h2 id="一、为什么需要-第三极-？">一、为什么需要&quot;第三极&quot;？</h2>
+<p>过去两年，AI 训练硬件的竞争本质上是**供应商锁定（vendor lock-in）**的博弈。NVIDIA 通过 CUDA 建立了近乎垄断的软件护城河——几乎所有主流框架、开源模型、科研代码都默认面向 CUDA 优化。开发者一旦进入这个生态，迁移成本极高。AMD 用 ROCm 试图打破这一僵局，但长期以来的兼容性与稳定性问题让不少团队望而却步。</p>
+<p>正是在这样的背景下，Intel Gaudi4 的战略意义凸显：<strong>它不追求在单项 benchmark 上超越旗舰 GPU，而是主打&quot;可移植性、部署灵活性和成本效率&quot;</strong>。对于正在被算力账单和供应商绑定双重焦虑困扰的超大规模云厂商与企业 AI 团队而言，一个真正开放的第三方选项本身就是巨大的价值。</p>
+<h2 id="二、核心规格与技术亮点">二、核心规格与技术亮点</h2>
+<p>根据 Intel 及行业分析披露的信息，Gaudi4 在硬件层面做出了几项关键升级：</p>
+<ul>
+<li><strong>制程工艺</strong>：Gaudi4 采用先进制程节点（不同来源对具体工艺存在差异报道，部分指向 TSMC 5nm，Intel 亦将其纳入 18A 长期战略的叙事中），代表了 Intel 在制程上重夺话语权的豪赌。</li>
+<li><strong>显存与带宽</strong>：配备 HBM3E 高带宽内存，官方强调&quot;优化的内存路径&quot;——这正是缓解大模型推理中&quot;内存墙&quot;（memory wall）瓶颈的关键。更高的显存带宽意味着更少的数据搬运、更快的 token 生成速度。</li>
+<li><strong>多芯片互连</strong>：通过可扩展的多芯片互联架构，Gaudi4 支持将多个加速单元组合成大规模训练集群，面向需要数千卡并行的前沿模型训练场景。</li>
+<li><strong>Tensor 处理器 + GEMM 引擎</strong>：区别于早期从 GPU 改造而来的设计，Gaudi4 从底层即为 Transformer 负载定制，理论上在特定算子上具备更高的能效比。</li>
+</ul>
+<p>在软件层面，Intel 一贯的杀手锏是 <strong>SynapseAI 软件栈</strong>。它兼容 PyTorch、JAX、TensorFlow 等主流框架，并提供模型迁移工具（Model Migration Tool），大幅降低了从 CUDA 生态迁移的门槛。用 Intel 自己的话说：<strong>“你写的代码不需要为了我们的芯片而重写。”</strong></p>
+<h2 id="三、一个耐人寻味的战略转折">三、一个耐人寻味的战略转折</h2>
+<p>2026 年 5 月 14 日，Intel 宣布<strong>取消 Falcon Shores</strong>（原计划将 Gaudi4 与 GPU 融合的芯片），转而押注机架级系统 <strong>Jaguar Shores</strong>。这一决策释放了几个重要信号：</p>
+<ol>
+<li><strong>Gaudi4 可能是最后一代&quot;独立&quot; Gaudi 加速器。</strong> Intel 的 AI 路线图正从单卡转向系统集成——Jaguar Shores 将 Gaudi IP、Xeon CPU 与 800G 网卡整合到同一个机架中，直接对标 NVIDIA 的 rack-scale 策略。</li>
+<li><strong>&quot;开放&quot;的定义在升级。</strong> Intel 主张用开放以太网互连（如多端口 200GbE）替代封闭的高成本互联方案，试图在 scale-out 阶段为客户提供更经济的扩展路径。</li>
+<li><strong>迁移路径清晰化。</strong> Intel 建议客户规划一条 “Gaudi4 → Jaguar Shores” 的渐进式升级路线，降低一次性迁移风险。</li>
+</ol>
+<h2 id="四、影响与未来展望">四、影响与未来展望</h2>
+<p>Intel Gaudi4 的意义，不能仅用性能参数衡量。它代表的是 AI 硬件市场**从&quot;双雄争霸&quot;向&quot;多极共存&quot;**演进的潜在可能：</p>
+<ul>
+<li><strong>对超大规模厂商</strong>：一个可靠的第三方训练平台意味着更强的议价能力和架构弹性。</li>
+<li><strong>对开源社区</strong>：更多硬件生态 = 更多的移植适配、更少的供应商绑定，长期利好整个开放 AI 生态。</li>
+<li><strong>对行业格局</strong>：当 NVIDIA 的封闭生态遭遇真正有力的挑战者（无论是 AMD 还是 Intel），最终受益的将是每一个希望以更低成本部署 AI 的团队。</li>
+</ul>
+<p>当然，挑战依然严峻。SynapseAI 在生态成熟度、社区支持、长尾框架兼容上仍落后于 CUDA；而 Intel 将重心转向机架级系统后，独立 Gaudi4 芯片的持续迭代力度也存疑。但可以肯定的是，<strong>&quot;第三极&quot;的存在本身，已经改变了谈判桌的力量对比。</strong></p>
+<p>未来一年，随着 Jaguar Shores 的推进和 Gaudi5（预计 2027+）的布局，Intel 能否真正在 AI 算力市场站稳脚跟，将决定这场&quot;去中心化&quot;的硬件革命走向何方。对开发者而言，保持观望、提前适配多生态代码，或许是当下最务实的选择。</p>
+<p><em>参考来源：<a target="_blank" rel="noopener" href="https://www.theia.global/article/intel-launches-habana-gaudi4-custom-ai-accelerators-for-large-scale-model-training-a7e4488d">Theia - Intel Launches Habana Gaudi4</a>、<a target="_blank" rel="noopener" href="https://mirrorfrog.com/en/blog/intel-gaudi-4-jaguar-shores-2026/">MirrorFrog - Intel Gaudi 4 / Jaguar Shores Progress</a>、<a target="_blank" rel="noopener" href="https://futurefestival.com/trends/habana-gaudi">Future Festival - Custom AI Chip Deployments</a></em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/">http://coderedeng.github.io/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E8%8A%AF%E7%89%87/">AI芯片</a><a class="post-meta__tags" href="/tags/Intel-Gaudi/">Intel Gaudi</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">阿里开源Wan2.5视频大模型：开源力量如何反超Sora</div></div><div class="info-2"><div class="info-item-1">一、开源视频模型的&quot;封神之战&quot; 在AI视频生成领域，OpenAI的Sora长期被视为难以逾越的高山。然而2026年，阿里巴巴通义实验室开源的**Wan 2.5（万相）以开源之力实现了反超——在权威基准VBench上，Wan 2.5取得了86.22%**的整体得分，超越了Sora的84.28%。 这一结果的意义远超技术本身：它标志着开源社区首次在生成质量上正面击败闭源巨头，为整个AI视频生成领域注入了新的活力。对于创作者、开发者和企业而言，这意味着不再需要为高质量视频生成支付高昂的API费用——一套完整的本地部署方案触手可及。 二、Wan 2.5的技术架构 1. Diffusion Transformer（DiT）核心 Wan 2.5建立在主流的扩散Transformer范式之上。与传统的卷积网络不同，DiT通过自注意力机制同时建模视频的空间时间和语义信息，能够生成连贯且细节丰富的动态画面。其核心创新在于：  时空隐空间网格编码：将视频编码为时空隐空间网格，再进行去噪处理 多尺度特征融合：在不同分辨率层面对视频特征进行整合 大规模数据预训练：基于海量高质量视频数...</div></div></div></a><a class="pagination-related" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin</div></div><div class="info-2"><div class="info-item-1">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin AI 芯片市场的竞争格局正在经历一次深刻的重构。当 NVIDIA 凭借 Blackwell 架构在训练与推理市场独占鳌头之际，AMD 于 2026 年 7 月 23 日的 Advancing AI 2026 大会上正式推出了 Instinct MI400 系列——这是 AMD 首款登陆 2nm 制程的数据中心 GPU 家族，也是其对抗 NVIDIA Vera Rubin NVL72 平台的核心武器。 背景：AI 基础设施的&quot;分岔路口&quot; 过去两年，大模型的参数量呈指数级增长，训练与推理的成本压力迫使整个行业重新思考硬件架构。NVIDIA 通过 Blackwell 和即将推出的 Rubin 系列建立了以 NVLink + NVL72 机架为核心的封闭生态。然而，随着&quot;主权 AI&quot;（Sovereign AI）、科学计算、前沿模型训练三大场景的分化，单一架构难以同时满足所有需求。 AMD 敏锐地捕捉到了这一趋势。MI400 系列...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-01</div><div class="info-item-2">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin</div></div><div class="info-2"><div class="info-item-1">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin AI 芯片市场的竞争格局正在经历一次深刻的重构。当 NVIDIA 凭借 Blackwell 架构在训练与推理市场独占鳌头之际，AMD 于 2026 年 7 月 23 日的 Advancing AI 2026 大会上正式推出了 Instinct MI400 系列——这是 AMD 首款登陆 2nm 制程的数据中心 GPU 家族，也是其对抗 NVIDIA Vera Rubin NVL72 平台的核心武器。 背景：AI 基础设施的&quot;分岔路口&quot; 过去两年，大模型的参数量呈指数级增长，训练与推理的成本压力迫使整个行业重新思考硬件架构。NVIDIA 通过 Blackwell 和即将推出的 Rubin 系列建立了以 NVLink + NVL72 机架为核心的封闭生态。然而，随着&quot;主权 AI&quot;（Sovereign AI）、科学计算、前沿模型训练三大场景的分化，单一架构难以同时满足所有需求。 AMD 敏锐地捕捉到了这一趋势。MI400 系列...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A%E6%8A%BC%E6%B3%A8%E5%BC%80%E6%94%BE%E7%94%9F%E6%80%81%E7%9A%84AI%E8%8A%AF%E7%89%87-%E7%AC%AC%E4%B8%89%E6%9E%81"><span class="toc-number">1.</span> <span class="toc-text">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-%E7%AC%AC%E4%B8%89%E6%9E%81-%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、为什么需要&quot;第三极&quot;？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E8%A7%84%E6%A0%BC%E4%B8%8E%E6%8A%80%E6%9C%AF%E4%BA%AE%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">二、核心规格与技术亮点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E4%B8%AA%E8%80%90%E4%BA%BA%E5%AF%BB%E5%91%B3%E7%9A%84%E6%88%98%E7%95%A5%E8%BD%AC%E6%8A%98"><span class="toc-number">1.3.</span> <span class="toc-text">三、一个耐人寻味的战略转折</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">1.4.</span> <span class="toc-text">四、影响与未来展望</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"/></a><div class="content"><a class="title" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora">阿里开源Wan2.5视频大模型：开源力量如何反超Sora</a><time datetime="2026-09-03T02:00:00.000Z" title="发表于 2026-09-03 10:00:00">2026-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"/></a><div class="content"><a class="title" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</a><time datetime="2026-09-02T02:00:00.000Z" title="发表于 2026-09-02 10:00:00">2026-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"/></a><div class="content"><a class="title" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin</a><time datetime="2026-09-01T01:00:00.000Z" title="发表于 2026-09-01 09:00:00">2026-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"/></a><div class="content"><a class="title" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线">Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线</a><time datetime="2026-08-31T14:00:00.000Z" title="发表于 2026-08-31 22:00:00">2026-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"/></a><div class="content"><a class="title" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战">Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战</a><time datetime="2026-08-30T02:00:00.000Z" title="发表于 2026-08-30 10:00:00">2026-08-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发 | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Anthropic近日发布了《2026年Agentic编程趋势报告》（Agentic Coding Trends Report），这份基于Claude Code在2025年至2026年第一季度真实使用数据的分析，揭示了AI辅助编码正在经历一场从&quot;代码补全&quot;到&quot;智能体自治&quot;的范式转变。 Claude Code的用户爆炸式增长 数据显示，仅2026年2月一个月，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发">
+<meta property="og:url" content="http://coderedeng.github.io/2026/07/12/Anthropic%E5%8F%91%E5%B8%832026%E7%BC%96%E7%A8%8B%E8%B6%8B%E5%8A%BF%E6%8A%A5%E5%91%8A%EF%BC%9AClaude%20Code%E5%A6%82%E4%BD%95%E9%87%8D%E5%A1%91%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="Anthropic近日发布了《2026年Agentic编程趋势报告》（Agentic Coding Trends Report），这份基于Claude Code在2025年至2026年第一季度真实使用数据的分析，揭示了AI辅助编码正在经历一场从&quot;代码补全&quot;到&quot;智能体自治&quot;的范式转变。 Claude Code的用户爆炸式增长 数据显示，仅2026年2月一个月，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-07-12T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-25T09:14:21.402Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Anthropic">
+<meta property="article:tag" content="Agentic编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发",
+  "url": "http://coderedeng.github.io/2026/07/12/Anthropic%E5%8F%91%E5%B8%832026%E7%BC%96%E7%A8%8B%E8%B6%8B%E5%8A%BF%E6%8A%A5%E5%91%8A%EF%BC%9AClaude%20Code%E5%A6%82%E4%BD%95%E9%87%8D%E5%A1%91%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-07-12T14:00:00.000Z",
+  "dateModified": "2026-08-25T09:14:21.402Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/07/12/Anthropic%E5%8F%91%E5%B8%832026%E7%BC%96%E7%A8%8B%E8%B6%8B%E5%8A%BF%E6%8A%A5%E5%91%8A%EF%BC%9AClaude%20Code%E5%A6%82%E4%BD%95%E9%87%8D%E5%A1%91%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Anthropic发布2026编程趋势报告：Claude Code如何重塑软件开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-12T14:00:00.000Z" title="发表于 2026-07-12 22:00:00">2026-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-25T09:14:21.402Z" title="更新于 2026-08-25 17:14:21">2026-08-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%89%8D%E6%B2%BF/">AI前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Anthropic近日发布了《2026年Agentic编程趋势报告》（Agentic Coding Trends Report），这份基于Claude Code在2025年至2026年第一季度真实使用数据的分析，揭示了AI辅助编码正在经历一场从&quot;代码补全&quot;到&quot;智能体自治&quot;的范式转变。</p>
+<h2 id="Claude-Code的用户爆炸式增长">Claude Code的用户爆炸式增长</h2>
+<p>数据显示，仅2026年2月一个月，Claude Code就产生了超过<strong>100万次</strong>独立的Agentic编程会话（即至少包含一次工具调用的完整任务）。值得注意的是，这个数字是单月独立会话数，而非历史累计总量。</p>
+<p>相比之下，传统AI编码工具（如早期的GitHub Copilot自动补全时代）平均每轮会话仅持续约4分钟、执行寥寥几次操作。而当前Claude Code的平均会话时长已攀升至<strong>23分钟</strong>——增长近六倍。</p>
+<h2 id="从单文件补全到多文件重构">从单文件补全到多文件重构</h2>
+<p>报告中最令人瞩目的数据之一是<strong>多文件编辑占比的飙升</strong>：Q1 2026中，78%的Claude Code会话涉及跨多个文件的修改操作，而同期（Q1 2025）这个数字仅为34%。</p>
+<p>这意味着开发者正在将Claude Code用于更复杂的任务——重构整个模块、同时更新API接口和对应的测试文件、或者跨仓库进行依赖升级——这些过去需要人工反复切换上下文的工作，如今可以通过单一对话完成。</p>
+<h2 id="工具调用：智能体编程的真正核心">工具调用：智能体编程的真正核心</h2>
+<p>每次会话平均<strong>47次工具调用</strong>，这个数字直观地展示了Agentic编程的本质。在一次典型的开发任务中，Claude Code会执行数十次阅读、写入文件、运行测试、查看文档等操作，而不仅仅是生成几行代码片段。</p>
+<p>以下是一个真实场景的演示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开发者只需输入自然语言描述</span></span><br><span class="line">$ claude <span class="string">&quot;将auth模块从JWT迁移到OAuth2.1，更新所有相关API端点&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Claude Code会自动执行一系列操作：</span></span><br><span class="line"><span class="comment"># 1. 读取现有auth中间件代码</span></span><br><span class="line"><span class="comment"># 2. 查找所有调用auth的API路由文件  </span></span><br><span class="line"><span class="comment"># 3. 生成OAuth2.1兼容的新实现</span></span><br><span class="line"><span class="comment"># 4. 批量修改各路由文件的认证逻辑</span></span><br><span class="line"><span class="comment"># 5. 更新测试用例以覆盖新流程</span></span><br><span class="line"><span class="comment"># 6. 运行测试套件验证正确性</span></span><br></pre></td></tr></table></figure>
+<p>开发者只需描述意图，智能体负责将其拆解为可执行的开发任务。这种交互模式彻底改变了编码的抽象层级——从&quot;如何实现这个函数&quot;上升到&quot;需要完成什么功能&quot;。</p>
+<h2 id="开发者在做什么？27-的真正增量价值">开发者在做什么？27%的真正增量价值</h2>
+<p>Anthropic的Societal Impacts研究团队还揭示了一个关键发现：在使用AI辅助编程的工作中，约<strong>60%<strong>的工作仍由人类主导（开发者使用AI），但仅有</strong>0-20%<strong>的任务被完全委托给AI。更重要的是，在所有AI辅助完成的工作产出中，有</strong>27%属于增量价值</strong>——即原本不会被开发、也不会被投入生产的代码，如今因AI能力而被创造出来。</p>
+<p>这意味着AI编码工具不仅提高了开发者的效率（让原有工作更快完成），更关键的是它解锁了新的功能可能性：小团队可以做出过去需要大型工程团队才能交付的产品，初创公司可以用极少的资源验证复杂的技术想法。</p>
+<h2 id="从-开发者专属工具-到全民编程">从&quot;开发者专属工具&quot;到全民编程</h2>
+<p>Anthropic在报告中指出一个趋势正在显现：<strong>AI编程工具的最终目标不是帮助开发者写得更快，而是让非开发者也能构建软件</strong>。</p>
+<p>Rakuten、TELUS等国际企业已经开始部署Claude Code用于内部自动化流程——包括自动生成文档、批量修复安全漏洞、甚至创建全新的微服务模块。Zapier等低代码平台的工程师也在使用Claude Code加速原型开发。</p>
+<p>这种转变的深层意义在于：当编码工具足够智能时，编程不再是&quot;开发者专属技能&quot;，而是所有人构建数字产品的通用能力。就像Word让不擅长打字的人也能写作一样，Agentic AI正在将软件开发的门槛降到前所未有的水平。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>Claude Code所代表的Agentic编程趋势，本质上是一场从&quot;人机协作编码&quot;到&quot;机器自主编码&quot;的渐进式演进。Anthropic通过这份报告向外界展示了他们观察到的技术轨迹——未来的软件开发可能不再需要传统的开发团队分工（前端、后端、测试），而是由人类提出需求与架构决策，AI智能体负责落地执行。</p>
+<p>这一愿景虽然令人兴奋，但也引发了关于代码质量、安全责任以及开发者角色重新定位的深刻讨论。Agentic编程的成熟之路还有很长，但Anthropic的数据至少证明了一个事实：这场变革已经开始，而且速度比我们想象得更快。</p>
+<hr>
+<p><strong>参考资料：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.anthropic.com/research">Anthropic 2026 Agentic Coding Trends Report</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/anthropics/claude-code">Claude Code GitHub Repository (78.4K stars)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anthropic.com/research/2026-agentic-coding-trends-report">Anthropic Societal Impacts Research on Agentic Coding</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.augmentcode.com/learn/claude-code-github">Claude Code surpasses 82K GitHub Stars — Augment Code</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/07/12/Anthropic%E5%8F%91%E5%B8%832026%E7%BC%96%E7%A8%8B%E8%B6%8B%E5%8A%BF%E6%8A%A5%E5%91%8A%EF%BC%9AClaude%20Code%E5%A6%82%E4%BD%95%E9%87%8D%E5%A1%91%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">http://coderedeng.github.io/2026/07/12/Anthropic%E5%8F%91%E5%B8%832026%E7%BC%96%E7%A8%8B%E8%B6%8B%E5%8A%BF%E6%8A%A5%E5%91%8A%EF%BC%9AClaude%20Code%E5%A6%82%E4%BD%95%E9%87%8D%E5%A1%91%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Claude-Code/">Claude Code</a><a class="post-meta__tags" href="/tags/Anthropic/">Anthropic</a><a class="post-meta__tags" href="/tags/Agentic%E7%BC%96%E7%A8%8B/">Agentic编程</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/07/13/OpenCode%E5%BC%80%E6%BA%90AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E7%99%BB%E9%A1%B6GitHub%EF%BC%9A17%E4%B8%87%E6%98%9F%E8%83%8C%E5%90%8E%E7%9A%84%E6%8A%80%E6%9C%AF%E9%9D%A9%E5%91%BD/" title="OpenCode开源AI编程助手登顶GitHub：17万星背后的技术革命"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">OpenCode开源AI编程助手登顶GitHub：17万星背后的技术革命</div></div><div class="info-2"><div class="info-item-1">背景：AI辅助编程进入&quot;群雄逐鹿&quot;时代 2025年，GitHub Copilot用户量突破2000万大关；2026年上半年，AI编码工具市场迎来了真正的爆发。从Cursor、Claude Code到Cline、Aider，再到新兴的OpenCode——开发者们正在用脚投票，选择那些真正能改变工作流的AI编程助手。 而今天，一个名为 OpenCode（仓库地址：anomalyco/opencode）的项目以超过 17.2万星 的成绩登顶GitHub开源AI编码代理排行榜，成为该项目有史以来获得星标最多的开源项目。这背后到底有什么秘密？ OpenCode是什么？ OpenCode是由Anomaly公司开发的全命令行AI编程助手。与Cursor等图形化IDE不同，OpenCode完全运行在终端中——它支持 75+个大语言模型提供商（通过AI SDK和Models.dev目录），包括本地部署的开源模型。 核心特性包括：  全终端交互 — 无需GUI，在熟悉的shell环境中完成编码 多模型支持 — 一次配置即可切换Claude、GPT、Gemini、本地Llama等多...</div></div></div></a><a class="pagination-related" href="/2026/07/11/OpenAI%E4%B8%83%E5%B9%B4%E6%B2%89%E5%AF%82%E5%90%8E%E5%8F%91%E5%B8%83gpt-oss%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B%EF%BC%9A120B%E5%8F%82%E6%95%B0%E4%B8%8EApache-2.0%E5%8D%8F%E8%AE%AE/" title="OpenAI七年沉寂后发布gpt-oss开源模型：120B参数与Apache-2.0协议"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">OpenAI七年沉寂后发布gpt-oss开源模型：120B参数与Apache-2.0协议</div></div><div class="info-2"><div class="info-item-1">沉寂七年，OpenAI终于&quot;开源&quot;了 2025年8月5日，OpenAI在官方博客发布了一篇标题为《Introducing gpt-oss》的文章，正式推出两款全新开源权重模型：gpt-oss-120b（117B参数）和 gpt-oss-20b（21B参数）。 这是自2019年发布GPT-2以来，OpenAI首次将自家核心模型的权重对外公开。七年之久的沉默被打破，标志着开源大模型格局的重大转折。 gpt-oss 系列：技术规格与定位 两款模型均基于 Apache 2.0 协议发布，允许自由使用、修改和商业化部署，无需向 OpenAI 支付许可费用或获取额外授权。 gpt-oss-120b — 旗舰级推理模型  参数量：约117B（基于MoE架构） 在多项核心基准测试中逼近甚至超越 OpenAI o4-mini 水平 支持高达128K token的上下文窗口 设计目标：深度推理、Agent任务与通用开发者场景  gpt-oss-20b — 轻量级模型  参数量：约21B 在同类尺寸模型中具有竞争力 可在消费级硬件上运行（如单张RTX 4090）  OpenAI在官...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/16/Claude-Code-7%E6%9C%88%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E4%BD%93%E9%AA%8C/" title="Claude Code 7月更新深度体验：流式子代理与权限管理，AI编程助手进入&quot;自动化时代&quot;"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-16</div><div class="info-item-2">Claude Code 7月更新深度体验：流式子代理与权限管理，AI编程助手进入&quot;自动化时代&quot;</div></div><div class="info-2"><div class="info-item-1">引言：从&quot;聊天工具&quot;到&quot;工作流引擎&quot; Anthropic 的 Claude Code 自发布以来，一直是 AI 辅助开发领域最受关注的 CLI 工具之一。2026 年 7 月，Anthropic 为 Claude Code 推送了一次规模罕见的功能更新——不仅涉及底层架构调整，更在子代理（subagent）、权限管理、文件上传等核心工作流环节带来了实质性改进。 如果说此前的 Claude Code 还是一个&quot;聪明的代码助手&quot;，那么这次更新之后，它正变得越来越像一个可以自主编排任务的开发代理。 本次更新的核心变化 1. Subagent 文本流式输出（Subagent Text Streaming） 这是本次更新中最值得关注的新特性。 在之前的版本中，当你让 Claude Code 执行一个复杂的多步骤任务时，它通常会先&quot;思考&quot;整个过程，然后一次性返回结果。这种模式对于中等复杂度任务是 OK 的，但对于需要长时间运行的多步工作流（如重构整个模块、跨文件迁移），用户需要等待很长时间才能看到进展。 Suba...</div></div></div></a><a class="pagination-related" href="/2026/07/03/Claude%E4%BA%A4%E9%94%99%E6%80%9D%E8%80%83%E8%83%BD%E5%8A%9B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-Agent%E7%9C%9F%E6%AD%A3%E8%BE%B9%E5%81%9A%E8%BE%B9%E6%83%B3/" title="Claude 交错思考能力深度解析：让 Agent 真正具备&quot;边做边想&quot;的能力"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-03</div><div class="info-item-2">Claude 交错思考能力深度解析：让 Agent 真正具备&quot;边做边想&quot;的能力</div></div><div class="info-2"><div class="info-item-1">背景：从&quot;一次性思考&quot;到&quot;动态推理&quot; 2026 年，AI Agent 已经从概念验证走向大规模落地。但一个核心问题始终困扰着开发者：如何让 Agent 在工具调用过程中持续推理？ 传统的 thinking block（如 Claude Extended Thinking）只在所有动作之前执行一次——模型先花几秒钟思考策略，然后按预设计划执行一系列工具调用。这种模式适合简单的多步任务，但对于复杂的调试、重构或多轮对话场景，一旦初始规划有误，Agent 就无法中途修正路线。 Anthropic 提出的解决方案是 Interleaved Thinking（交错思考）——一个看似简单却影响深远的创新。 Interleaved Thinking 是什么？ 传统的 thinking block 结构如下： 12345[用户请求]→ [thinking block: 规划整个任务]→ [工具调用 1] → [结果]→ [工具调用 2] → [结果]→ ...（所有动作完成后才回复） Interleaved Thinking 将推理块分散到每个工具调用之后...</div></div></div></a><a class="pagination-related" href="/2026/07/29/GPT-5.6%E4%B8%8EClaude-Opus-5%E5%AF%B9%E5%86%B3%EF%BC%9AAI%E5%89%8D%E6%B2%BF%E6%A8%A1%E5%9E%8B%E4%BB%B7%E6%A0%BC%E6%88%98%E8%83%8C%E5%90%8E%E7%9A%84%E6%8A%80%E6%9C%AF%E8%BE%83%E9%87%8F/" title="GPT-5.6与Claude Opus 5对决：AI前沿模型&quot;价格战&quot;背后的技术较量"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-29</div><div class="info-item-2">GPT-5.6与Claude Opus 5对决：AI前沿模型&quot;价格战&quot;背后的技术较量</div></div><div class="info-2"><div class="info-item-1">引言：七月&quot;神仙打架&quot; 如果说六月是 OpenAI 发布 GPT-5.6 的预热月，那么七月就是两家巨头正面交锋的&quot;神仙打架&quot;。GPT-5.6 于 7 月 9 日正式 GA（General Availability），Claude Opus 5 紧随其后在 7 月 24 日上线——短短两周，AI 前沿领域同时迎来了两位重量级新选手。 更引人注目的是，两家都采取了&quot;降价抢量&quot;的策略：Opus 5 号称性能接近 Claude Fable 5（旗舰模型），但价格只有后者的一半；GPT-5.6 Sol 则通过分层定价策略覆盖了从日常使用到重度推理的全场景需求。这场对决不仅仅是一次产品发布，更是大模型行业进入&quot;性价比竞争&quot;时代的标志性事件。 GPT-5.6：三层架构的价格分级 OpenAI 这次采用了罕见的三层产品线设计：Sol、Terra、Luna，分别定位旗舰、均衡和轻量三种使用场景。    层级 输入价格 ($/1M tokens) 输出价格 ($/1M tokens) 典型用途     Sol $5.0...</div></div></div></a><a class="pagination-related" href="/2026/07/14/Anthropic%E5%8F%91%E5%B8%83Claude-Sonnet-5-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94%E4%B9%8B%E7%8E%8B/" title="Anthropic发布Claude Sonnet 5：AI编程代理的&quot;性价比之王&quot;"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-14</div><div class="info-item-2">Anthropic发布Claude Sonnet 5：AI编程代理的&quot;性价比之王&quot;</div></div><div class="info-2"><div class="info-item-1">背景：AI编程进入&quot;代理化&quot;时代 2025年底到2026年上半年，大模型在代码生成领域的竞争已经白热化。从OpenAI的GPT系列、Google的Gemini到Anthropic自家的Claude Opus和Sonnet，各家都在比拼谁能更好地完成实际软件开发任务。而到了2026年6月30日，Anthropic终于交出了他们的最新答卷——Claude Sonnet 5（内部代号&quot;Fennec&quot;），并把它定位为&quot;专为代理式编程工作流打造的中端模型&quot;。 这个定位很有讲究。过去两年，AI编程工具从简单的代码补全进化为能够自主编写、调试、运行测试的&quot;智能体&quot;（Agent）。Claude Code、Cursor、GitHub Copilot Workspace等工具背后都需要一个能够长时间稳定运行的执行层——Claude Sonnet 5正是瞄准了这个需求。 核心亮点 🧠 100万token上下文窗口 Sonnet 5拥有1M token的上下文窗口，足以容纳整个代码仓库的上下文信息。配合显式的思维链推理（C...</div></div></div></a><a class="pagination-related" href="/2026/07/21/Claude-Opus-4.8%E5%8F%91%E5%B8%83%E5%8A%A8%E6%80%81%E6%80%9D%E8%80%83%E8%83%BD%E5%8A%9B%E4%B8%8EEffort%E6%8E%A7%E5%88%B6/" title="Claude Opus 4.8发布：动态思考能力与 Effort 控制，AI推理再升级"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-21</div><div class="info-item-2">Claude Opus 4.8发布：动态思考能力与 Effort 控制，AI推理再升级</div></div><div class="info-2"><div class="info-item-1">背景：Claude Opus 系列的持续进化 2026年5月28日，Anthropic正式发布了 Claude Opus 4.8——Opus 4 家族的第八次重大升级。距离上一次 Opus 4.7（2026年3月）仅过去了不到两个月，Anthropic 再次将旗舰模型推向新的高度。 在 AI 大模型竞争白热化的今天，OpenAI 推出了 GPT-5.4/5.5、Google 发布了 Gemini 3.1 Pro、DeepSeek 和 Qwen 系列持续迭代，而 Anthropic 凭借 Claude Opus 系列始终保持着强大的竞争力。Opus 4.8 的发布不仅是一次常规更新，更带来了多项影响深远的核心创新。 核心亮点：动态思考（Adaptive Thinking）与 Effort 控制 自适应推理：让模型自己决定&quot;想多久&quot; Claude Opus 4.8 最大的改变是引入了自适应思考能力（adaptive thinking）——模型会根据问题的复杂程度，自动调整其内部推理的深度和广度。对于简单问题，它会快速响应；而对于复杂任务，它会自动展开更深入的分析和...</div></div></div></a><a class="pagination-related" href="/2026/07/01/Anthropic%E5%8F%91%E5%B8%83Claude%20Sonnet%205-%E6%96%B0%E4%B8%80%E4%BB%A3%E6%99%BA%E8%83%BD%E4%BD%93%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" title="Anthropic发布Claude Sonnet 5，新一代&quot;智能体&quot;语言模型横空出世"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-01</div><div class="info-item-2">Anthropic发布Claude Sonnet 5，新一代&quot;智能体&quot;语言模型横空出世</div></div><div class="info-2"><div class="info-item-1">事件背景 2026年6月30日，Anthropic正式发布了Claude Sonnet 5——这是该公司Sonnet系列中迄今为止&quot;最具智能体能力&quot;的模型。在同一天，该模型同时成为ChatGPT和Claude Pro用户的默认模型，标志着Anthropic在商业化路线上迈出了重要一步。 更值得关注的背景是，就在一个月前的2026年5月31日，Anthropic刚刚发布了Claude Opus 4.8，作为其旗舰级最强模型。而Sonnet 5的发布，让业界重新审视了&quot;高端模型&quot;与&quot;性价比模型&quot;之间的格局变化。 Sonnet 5的核心亮点 智能体能力的显著提升 根据Anthropic官方介绍和第三方评测，Claude Sonnet 5在以下几个关键维度上表现突出：   自主代码编写能力：Sonnet 5被描述为&quot;有史以来最具智能体的Sonnet模型&quot;。在实际测试中，它能够在无需人工干预的情况下完成复杂的编程任务，包括理解需求、设计架构、编写代码和调试错误的全流程。这在多轮对话和长上下文场景下表现尤为明显。...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Claude-Code%E7%9A%84%E7%94%A8%E6%88%B7%E7%88%86%E7%82%B8%E5%BC%8F%E5%A2%9E%E9%95%BF"><span class="toc-number">1.</span> <span class="toc-text">Claude Code的用户爆炸式增长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E6%96%87%E4%BB%B6%E8%A1%A5%E5%85%A8%E5%88%B0%E5%A4%9A%E6%96%87%E4%BB%B6%E9%87%8D%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">从单文件补全到多文件重构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%EF%BC%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%E7%9A%84%E7%9C%9F%E6%AD%A3%E6%A0%B8%E5%BF%83"><span class="toc-number">3.</span> <span class="toc-text">工具调用：智能体编程的真正核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%80%85%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F27-%E7%9A%84%E7%9C%9F%E6%AD%A3%E5%A2%9E%E9%87%8F%E4%BB%B7%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">开发者在做什么？27%的真正增量价值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E-%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%93%E5%B1%9E%E5%B7%A5%E5%85%B7-%E5%88%B0%E5%85%A8%E6%B0%91%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">从&quot;开发者专属工具&quot;到全民编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">6.</span> <span class="toc-text">写在最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"/></a><div class="content"><a class="title" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora">阿里开源Wan2.5视频大模型：开源力量如何反超Sora</a><time datetime="2026-09-03T02:00:00.000Z" title="发表于 2026-09-03 10:00:00">2026-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"/></a><div class="content"><a class="title" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</a><time datetime="2026-09-02T02:00:00.000Z" title="发表于 2026-09-02 10:00:00">2026-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"/></a><div class="content"><a class="title" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin</a><time datetime="2026-09-01T01:00:00.000Z" title="发表于 2026-09-01 09:00:00">2026-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"/></a><div class="content"><a class="title" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线">Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线</a><time datetime="2026-08-31T14:00:00.000Z" title="发表于 2026-08-31 22:00:00">2026-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"/></a><div class="content"><a class="title" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战">Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战</a><time datetime="2026-08-30T02:00:00.000Z" title="发表于 2026-08-30 10:00:00">2026-08-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

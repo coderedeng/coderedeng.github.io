@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Deng的博客">
+<meta property="og:url" content="http://coderedeng.github.io/page/9/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/avatar_20260807.jpg">
+<meta property="article:author" content="Evan Deng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/avatar_20260807.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/page/9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Deng的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/index-cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Deng的博客</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/06/07/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20zap/" title="zap"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="zap"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/07/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20zap/" title="zap">zap</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-07T12:12:28.000Z" title="发表于 2022-06-07 20:12:28">2022-06-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">11.zap日志包 01.日志模块介绍  参考博客(opens new window)  1.1 介绍 在许多Go语言项目中，我们需要一个好的日志记录器能够提供下面这些功能  能够将事件记录到文件中，而不是应用程序控制台。 日志切割-能够根据文件大小、时间或间隔等来切割日志文件。 支持不同的日志级别。例如INFO，DEBUG，ERROR等。 能够打印基本信息，如调用文件/函数名和行号，日志时间等。  1.2 默认的Go Logger  实现一个Go语言中的日志记录器非常简单——创建一个新的日志文件，然后设置它为日志的输出位置。  1234567891011121314151617181920212223242526272829package mainimport (	&quot;log&quot;	&quot;net/http&quot;	&quot;os&quot;)// 第一：设置Loggerfunc SetupLogger() &#123;	logFileLocation, _ := os.OpenFile(&quot;./test.log&quot;, os.O_CREA...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/06/05/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20reflect/" title="reflect"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="reflect"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/05/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20reflect/" title="reflect">reflect</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-05T14:14:35.000Z" title="发表于 2022-06-05 22:14:35">2022-06-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">10.reflect 01.反射  反射是指在程序运行期对程序本身进行访问和修改的能力  1.1 变量的内在机制  变量包含类型信息和值信息 var arr [10]int arr[0] = 10 类型信息：是静态的元信息，是预先定义好的 值信息：是程序运行过程中动态改变的  1.2 反射的使用  反射是指在程序运行期对程序本身进行访问和修改的能力。 程序在编译时，变量被转换为内存地址，变量名不会被编译器写入到可执行部分。 在运行程序时，程序无法获取自身的信息。 支持反射的语言可以在程序编译期将变量的反射信息，如字段名称、类型信息、结构体信息等整合到可执行文件中 并给程序提供接口访问反射信息，这样就可以在程序运行期获取类型的反射信息，并且有能力修改它们。 Go程序在运行期使用reflect包访问程序的反射信息。  02.反射方法  反射可以在运行时动态获取程序的各种详细信息  2.1 TypeOf  reflect.TypeOf()获取类型信息  12345678910111213141516package mainimport (&quot;fmt&quot;&quot;ref...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/06/03/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Context/" title="Context"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Context"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/03/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Context/" title="Context">Context</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-03T14:42:57.000Z" title="发表于 2022-06-03 22:42:57">2022-06-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">09.Context 01.context介绍 1.1 context由来  context在Go1.7之后就进入标准库中了，是在于控制goroutine的生命周期。 由于在Golang severs中，每个request都是在单个goroutine中完成 并且在单个goroutine（不妨称之为A）中也会有请求其他服务（启动另一个goroutine（称之为B）去完成）的场景 这就会涉及多个Goroutine之间的调用 如果某一时刻请求其他服务被取消或者超时，则作为深陷其中的当前goroutine B需要立即退出，然后系统才可回收B所占用的资源。 即一个request中通常包含多个goroutine，这些goroutine之间通常会有交互。    那么，如何有效管理这些goroutine成为一个问题（主要是退出通知和元数据传递问题） Google的解决方法是Context机制，相互调用的goroutine之间通过传递context变量保持关联 这样在不用暴露各goroutine内部实现细节的前提下，有效地控制各goroutine的运行。    如此一来，通过传递Context就可...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/06/01/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20net%20http/" title="net/http"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="net/http"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/01/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20net%20http/" title="net/http">net/http</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-01T13:35:53.000Z" title="发表于 2022-06-01 21:35:53">2022-06-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">08.net/http 01.net/http（GET）  Go语言内置的net/http包十分的优秀，提供了HTTP客户端和服务端的实现。  1.1 无参GET  使用net/http包编写一个简单的发送HTTP请求的Client端  12345678910111213141516171819202122package mainimport (	&quot;fmt&quot;	&quot;io/ioutil&quot;	&quot;net/http&quot;)func main() &#123;	resp, err := http.Get(&quot;https://www.baidu.com/&quot;)	if err != nil &#123;		fmt.Println(&quot;get failed, err:&quot;, err)		return	&#125;	defer resp.Body.Close()	body, err := ioutil.ReadAll(resp.Body)	if err != nil &#123;		fmt.Println(&quot...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/31/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Strconv/" title="Strconv"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Strconv"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/31/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Strconv/" title="Strconv">Strconv</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-31T14:24:31.000Z" title="发表于 2022-05-31 22:24:31">2022-05-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">07.Strconv 01.string与int类型转换 1.0 strconv包介绍  strconv包实现了基本数据类型与其字符串表示的转换 主要有以下常用函数： Atoi()、Itia()、parse系列、format系列、append系列。 更多函数请查看官方文档 (opens new window)。  1.1 Atoi()转int  Atoi()函数用于将字符串类型的整数转换为int类型，函数签名如下。  123456789101112131415package mainimport (	&quot;fmt&quot;	&quot;strconv&quot;)func main() &#123;    s1 := &quot;100&quot;    i1, err := strconv.Atoi(s1)    if err != nil &#123;        fmt.Println(&quot;can&#x27;t convert to int&quot;)    &#125; else &#123;        fmt.Printf(&quot;type:...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/29/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20IO%E6%93%8D%E4%BD%9C/" title="IO"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IO"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/29/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20IO%E6%93%8D%E4%BD%9C/" title="IO">IO</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-29T14:13:26.000Z" title="发表于 2022-05-29 22:13:26">2022-05-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">06.IO操作 01.打开和关闭文件  os.Open()函数能够打开一个文件，返回一个*File和一个err。 对得到的文件实例调用close()方法能够关闭文件。 为了防止文件忘记关闭，我们通常使用defer注册文件关闭语句。  12345678910111213141516package mainimport (    &quot;fmt&quot;    &quot;os&quot;)func main() &#123;    // 只读方式打开当前目录下的main.go文件    file, err := os.Open(&quot;./main.go&quot;)    if err != nil &#123;        fmt.Println(&quot;open file failed!, err:&quot;, err)        return    &#125;    // 关闭文件    file.Close()&#125; 02.读取文件 2.1 file.Read()指定读取size 1234567891011121314151617181920...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/27/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Log/" title="Log"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Log"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/27/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Log/" title="Log">Log</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-27T14:17:35.000Z" title="发表于 2022-05-27 22:17:35">2022-05-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">05.Log 01.日志模块介绍  参考博客(opens new window)  1.1 介绍 在许多Go语言项目中，我们需要一个好的日志记录器能够提供下面这些功能  能够将事件记录到文件中，而不是应用程序控制台。 日志切割-能够根据文件大小、时间或间隔等来切割日志文件。 支持不同的日志级别。例如INFO，DEBUG，ERROR等。 能够打印基本信息，如调用文件/函数名和行号，日志时间等。  1.2 默认的Go Logger  实现一个Go语言中的日志记录器非常简单——创建一个新的日志文件，然后设置它为日志的输出位置。  1234567891011121314151617181920212223242526272829package mainimport (	&quot;log&quot;	&quot;net/http&quot;	&quot;os&quot;)// 第一：设置Loggerfunc SetupLogger() &#123;	logFileLocation, _ := os.OpenFile(&quot;./test.log&quot;, os.O_CREATE|...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/26/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Flag/" title="Flag"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flag"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/26/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Flag/" title="Flag">Flag</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-26T14:01:24.000Z" title="发表于 2022-05-26 22:01:24">2022-05-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">04.Flag 01.Flag  Go语言内置的flag包实现了命令行参数的解析，flag包使得开发命令行工具更为简单。  1.1 os.Args  如果你只是简单的想要获取命令行参数，可以像下面的代码示例一样使用os.Args来获取命令行参数 os.Args是一个存储命令行参数的字符串切片，它的第一个元素是执行文件的名称。  123456789101112131415161718192021package mainimport (	&quot;fmt&quot;	&quot;os&quot;)//os.Args demofunc main() &#123;	//os.Args是一个[]string	if len(os.Args) &gt; 0 &#123;		for index, arg := range os.Args &#123;			fmt.Printf(&quot;args[%d]=%v\n&quot;, index, arg)		&#125;	&#125;&#125;/* C:\aaa\gin_demo&gt; go run main.go a b cargs[1]=...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/24/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20encodingjson/" title="encodingjson"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="encodingjson"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/24/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20encodingjson/" title="encodingjson">encodingjson</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-24T13:11:52.000Z" title="发表于 2022-05-24 21:11:52">2022-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">03.encoding/json包 01.struct与json  比如我们 Golang 要给 App 或者小程序提供 Api 接口数据，这个时候就需要涉及到结构体和Json 之间的相互转换 GolangJSON 序列化是指把结构体数据转化成 JSON 格式的字符串 Golang JSON 的反序列化是指把 JSON 数据转化成 Golang 中的结构体对象 Golang 中 的 序 列 化 和 反 序 列 化 主 要 通 过 “encoding/json” 包 中 的 json.Marshal() 和json.Unmarshal()方法实现  1.1 struct转Json字符串 1234567891011121314151617181920212223package mainimport (	&quot;encoding/json&quot;	&quot;fmt&quot;)type Student struct &#123;	ID int	Gender string	name string     //私有属性不能被 json 包访问	Sno string&#125;fu...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/22/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Time/" title="Time"><img class="post-bg" src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Time"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/22/Go%E5%B8%B8%E7%94%A8%E5%BA%93%E4%BB%8B%E7%BB%8D%20-%20Time/" title="Time">Time</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-22T13:22:12.000Z" title="发表于 2022-05-22 21:22:12">2022-05-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/">Go常用库</a></span></div><div class="content">02.Time 01.时间类型  我们可以通过 time.Now()函数获取当前的时间对象，然后获取时间对象的年月日时分秒等信息。 注意：%02d 中的 2 表示宽度，如果整数不够 2 列就补上 0  1234567891011121314151617181920package mainimport (	&quot;fmt&quot;	&quot;time&quot;)func main() &#123;	now := time.Now()   //获取当前时间	fmt.Printf(&quot;current time:%v\n&quot;, now)		year := now.Year()     //年	month := now.Month()   //月	day := now.Day()       //日	hour := now.Hour()        //小时	minute := now.Minute()     //分钟	second := now.Second()     //秒		// 打印结果为：2021-05-19 09:20:06	fmt.Printf...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/8/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#content-inner">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#content-inner">13</a><a class="extend next" rel="next" href="/page/10/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿里开源Wan2.5视频大模型：开源力量如何反超Sora"/></a><div class="content"><a class="title" href="/2026/09/03/%E9%98%BF%E9%87%8C%E5%BC%80%E6%BA%90Wan2.5%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%BC%80%E6%BA%90%E5%8A%9B%E9%87%8F%E5%A6%82%E4%BD%95%E5%8F%8D%E8%B6%85Sora/" title="阿里开源Wan2.5视频大模型：开源力量如何反超Sora">阿里开源Wan2.5视频大模型：开源力量如何反超Sora</a><time datetime="2026-09-03T02:00:00.000Z" title="发表于 2026-09-03 10:00:00">2026-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;"/></a><div class="content"><a class="title" href="/2026/09/02/Intel%E5%8F%91%E5%B8%83Habana-Gaudi4%EF%BC%9A18A%E5%88%B6%E7%A8%8B%E7%9A%84%E8%B1%AA%E8%B5%8C%E4%B8%8EAI%E8%8A%AF%E7%89%87%EF%80%A2%E7%AC%AC%E4%B8%89%E6%9E%81%EF%80%A2/" title="Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;">Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</a><time datetime="2026-09-02T02:00:00.000Z" title="发表于 2026-09-02 10:00:00">2026-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin"/></a><div class="content"><a class="title" href="/2026/09/01/AMD%E5%8F%91%E5%B8%83Instinct-MI400%E7%B3%BB%E5%88%97%EF%BC%9ACDNA-5%E7%99%BB%E9%99%862nm%EF%BC%8C432GB-HBM4%E6%AD%A3%E9%9D%A2%E7%A1%AC%E5%88%9ANVIDIA-Rubin/" title="AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin">AMD发布Instinct MI400系列：CDNA 5登陆2nm，432GB HBM4正面硬刚NVIDIA Rubin</a><time datetime="2026-09-01T01:00:00.000Z" title="发表于 2026-09-01 09:00:00">2026-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线"/></a><div class="content"><a class="title" href="/2026/08/31/Claude-Opus-5%E5%8F%91%E5%B8%83%EF%BC%9A%E9%80%BC%E8%BF%91Fable-5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8D%8A%E4%BB%B7%E6%97%97%E8%88%B0/" title="Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线">Claude Opus 5发布：逼近Fable-5智能的半价旗舰，重新定义AI编程成本曲线</a><time datetime="2026-08-31T14:00:00.000Z" title="发表于 2026-08-31 22:00:00">2026-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战"/></a><div class="content"><a class="title" href="/2026/08/30/Cursor%E5%8F%91%E5%B8%83Origin%EF%BC%9AAgent%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%90%91GitHub%E5%8F%91%E8%B5%B7%E6%8C%91%E6%88%98/" title="Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战">Cursor发布Origin：Agent原生代码托管平台，向GitHub发起挑战</a><time datetime="2026-08-30T02:00:00.000Z" title="发表于 2026-08-30 10:00:00">2026-08-30</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%89%8D%E6%B2%BF/"><span class="card-category-list-name">AI前沿</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub%E5%BC%80%E6%BA%90/"><span class="card-category-list-name">GitHub开源</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Go基础</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go%E5%B8%B8%E7%94%A8%E5%BA%93/"><span class="card-category-list-name">Go常用库</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go%E7%88%AC%E8%99%AB/"><span class="card-category-list-name">Go爬虫</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">Go设计模式</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go%E8%BF%9B%E9%98%B6/"><span class="card-category-list-name">Go进阶</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech%E5%89%8D%E6%B2%BF/"><span class="card-category-list-name">Tech前沿</span><span class="card-category-list-count">21</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Gemini/" style="font-size: 1.26em; color: #999fa8">Gemini</a> <a href="/tags/Go%E8%AF%AD%E8%A8%80/" style="font-size: 1.1em; color: #999">Go语言</a> <a href="/tags/Google-I-O/" style="font-size: 1.1em; color: #999">Google I/O</a> <a href="/tags/gpt-oss/" style="font-size: 1.18em; color: #999ca1">gpt-oss</a> <a href="/tags/OpenWorker/" style="font-size: 1.1em; color: #999">OpenWorker</a> <a href="/tags/Qwen/" style="font-size: 1.18em; color: #999ca1">Qwen</a> <a href="/tags/Google-I-O-2026/" style="font-size: 1.1em; color: #999">Google I/O 2026</a> <a href="/tags/AMD-Instinct-MI400/" style="font-size: 1.1em; color: #999">AMD Instinct MI400</a> <a href="/tags/AI%E6%B0%B4%E5%8D%B0/" style="font-size: 1.1em; color: #999">AI水印</a> <a href="/tags/Go%E8%BF%9B%E9%98%B6/" style="font-size: 1.5em; color: #99a9bf">Go进阶</a> <a href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/" style="font-size: 1.1em; color: #999">隐私保护</a> <a href="/tags/Agent-Skills/" style="font-size: 1.1em; color: #999">Agent Skills</a> <a href="/tags/Llama4/" style="font-size: 1.1em; color: #999">Llama4</a> <a href="/tags/DeepSeek/" style="font-size: 1.26em; color: #999fa8">DeepSeek</a> <a href="/tags/Kimi-K3/" style="font-size: 1.1em; color: #999">Kimi K3</a> <a href="/tags/LLM%E6%9E%B6%E6%9E%84/" style="font-size: 1.1em; color: #999">LLM架构</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/Go%E7%88%AC%E8%99%AB/" style="font-size: 1.18em; color: #999ca1">Go爬虫</a> <a href="/tags/IPO/" style="font-size: 1.1em; color: #999">IPO</a> <a href="/tags/Agentic%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">Agentic编程</a> <a href="/tags/UI-TARS/" style="font-size: 1.1em; color: #999">UI-TARS</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.26em; color: #999fa8">大模型</a> <a href="/tags/OmniRoute/" style="font-size: 1.1em; color: #999">OmniRoute</a> <a href="/tags/SynthID/" style="font-size: 1.1em; color: #999">SynthID</a> <a href="/tags/Cursor/" style="font-size: 1.18em; color: #999ca1">Cursor</a> <a href="/tags/Anthropic/" style="font-size: 1.42em; color: #99a6b7">Anthropic</a> <a href="/tags/Grok/" style="font-size: 1.1em; color: #999">Grok</a> <a href="/tags/OpenClaw/" style="font-size: 1.1em; color: #999">OpenClaw</a> <a href="/tags/ESP32/" style="font-size: 1.1em; color: #999">ESP32</a> <a href="/tags/SkillHub/" style="font-size: 1.1em; color: #999">SkillHub</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81AI/" style="font-size: 1.1em; color: #999">多模态AI</a> <a href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" style="font-size: 1.1em; color: #999">大语言模型</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" style="font-size: 1.1em; color: #999">工具分享</a> <a href="/tags/Mojo/" style="font-size: 1.1em; color: #999">Mojo</a> <a href="/tags/MCP/" style="font-size: 1.1em; color: #999">MCP</a> <a href="/tags/NVIDIA/" style="font-size: 1.1em; color: #999">NVIDIA</a> <a href="/tags/AI%E6%8E%A8%E7%90%86/" style="font-size: 1.1em; color: #999">AI推理</a> <a href="/tags/OpenAI/" style="font-size: 1.34em; color: #99a3b0">OpenAI</a> <a href="/tags/%E6%9C%AC%E5%9C%B0AI/" style="font-size: 1.1em; color: #999">本地AI</a> <a href="/tags/Claude-Opus-5/" style="font-size: 1.1em; color: #999">Claude Opus 5</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/09/">
+            <span class="card-archive-list-date">
+              九月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/08/">
+            <span class="card-archive-list-date">
+              八月 2026
+            </span>
+            <span class="card-archive-list-count">25</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">30</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">9</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              七月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/10/">
+            <span class="card-archive-list-date">
+              十月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/06/">
+            <span class="card-archive-list-date">
+              六月 2022
+            </span>
+            <span class="card-archive-list-count">13</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">124</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-09-04T09:38:45.980Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@3.0.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["一句一言"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed && typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const from = data.from ? '出自 ' + data.from : ''
+      typedJSFn.processSubtitle(data.hitokoto, from ? [from] : [])
+    })
+    .catch(err => {
+      console.error('Failed to get the Hitokoto API:', err)
+      typedJSFn.processSubtitle(["一句一言"])
+    })
+}
+typedJSFn.run(subtitleType)
+</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
