@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-09-02T14:16:25.423Z</updated>
+  <updated>2026-09-04T03:22:55.680Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DeepSeek发布Harness：一切皆插件的开源Agent框架</title>
+    <link href="http://coderedeng.github.io/2026/09/03/DeepSeek%E5%8F%91%E5%B8%83Harness%EF%BC%9A%E4%B8%80%E5%88%87%E7%9A%86%E6%8F%92%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90Agent%E6%A1%86%E6%9E%B6/"/>
+    <id>http://coderedeng.github.io/2026/09/03/DeepSeek%E5%8F%91%E5%B8%83Harness%EF%BC%9A%E4%B8%80%E5%88%87%E7%9A%86%E6%8F%92%E4%BB%B6%E7%9A%84%E5%BC%80%E6%BA%90Agent%E6%A1%86%E6%9E%B6/</id>
+    <published>2026-09-03T02:00:00.000Z</published>
+    <updated>2026-09-04T03:22:55.680Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、一个”懒到极致”的-Agent-框架横空出世"><a href="#一、一个”懒到极致”的-Agent-框架横空出世" class="headerlink" title="一、一个”懒到极致”的 Agent 框架横空出世"></a>一、一个”懒到极致”的 Agent 框架横空出世</h2><p>2026年8月，DeepSeek 开源了 <strong>Harness（<code>deepseek-harness</code>，简称 dsh）</strong>——一个以”一切皆插件”（Everything is a Plugin）为核心理念的开源 Agent 开发框架。发布不到三周，GitHub Star 迅速突破 <strong>20.9万</strong>，一周内净增约 1.3万，成为继 Claude Code、Codex 之后又一款现象级开源编程工具。</p><p>与市面上大多数”模型 + 第三方外壳”的组合不同，DeepSeek Harness 的野心在于重新定义 Agent 的构建方式：<strong>模型不再是框架的核心，而只是可被任意替换的一个插件</strong>。开发者可以在不改动一行代码的前提下，通过配置文件自由切换模型、工具、技能、会话管理、沙箱、存储乃至用户界面。</p><h2 id="二、核心理念：一切皆插件"><a href="#二、核心理念：一切皆插件" class="headerlink" title="二、核心理念：一切皆插件"></a>二、核心理念：一切皆插件</h2><p>DeepSeek Harness 的设计哲学可以概括为一句话——**”Everything is a Plugin”**。在这个框架里，Agent 所需的全部能力都被抽象为插件：</p><ul><li><strong>模型（Model）</strong>：任何兼容 OpenAI 接口的端点都可以作为模型插件接入</li><li><strong>工具（Tool）</strong>：文件读写、代码执行、网络请求等外部能力</li><li><strong>技能（Skill）</strong>：可复用的任务模板与工作流</li><li><strong>会话（Session）</strong>：对话状态与上下文的持久化</li><li><strong>沙箱（SandBox）</strong>：隔离的代码执行环境</li><li><strong>存储（Storage）</strong>：数据与记忆的存取</li><li><strong>循环（Loop）</strong>：Agent 的推理迭代逻辑</li><li><strong>调度（Schedule）</strong>：定时任务与后台作业</li><li><strong>UI</strong>：命令行、Web、IDE 插件等交互界面</li></ul><p>这种设计带来的最大好处是<strong>解耦</strong>。传统 Agent 框架往往将模型与运行时深度绑定，更换底层模型或调整行为模式需要大量改造。而在 DeepSeek Harness 中，”换模型”只是一行配置的改动——配置指向 OpenAI 就用 OpenAI，指向本地部署的 Qwen 就用 Qwen，框架本身毫不知情。</p><h2 id="三、Cordis：支撑”一切皆插件”的元框架"><a href="#三、Cordis：支撑”一切皆插件”的元框架" class="headerlink" title="三、Cordis：支撑”一切皆插件”的元框架"></a>三、Cordis：支撑”一切皆插件”的元框架</h2><p>DeepSeek Harness 之所以能实现如此彻底的插件化，离不开其底层框架 <strong>Cordis</strong>。Cordis 是一个名为”<strong>时空组合性</strong>“（Spatiotemporal Composability）的元框架，最初源自 Koishi 聊天机器人框架的架构设计，后被 DeepSeek 抽取并形式化为独立项目。</p><p>在 Cordis 的理论体系中，程序的可组合性由两个正交维度构成：</p><ol><li><strong>可回滚效应（Revertible Effects）</strong>：控制操作的执行与撤销，使 Agent 的行为具备事务特性</li><li><strong>反应式协同效应（Reactive Coeffects）</strong>：管理环境对计算的反馈，让插件之间能够实时协作</li></ol><p>这两个维度的组合，使得 Cordis 能够将模型、工具、会话等能力组织成一棵可配置、可插拔的”插件树”。每个节点既能独立运行，又能通过 Cordis 的事件机制与其他节点协同工作。DeepSeek 为此发表了长达 88 页的论文《A Programming Paradigm for Spatiotemporal Composability》，系统阐述了这一编程范式。</p><h2 id="四、技术架构与核心特性"><a href="#四、技术架构与核心特性" class="headerlink" title="四、技术架构与核心特性"></a>四、技术架构与核心特性</h2><h3 id="1-配置驱动的插件树"><a href="#1-配置驱动的插件树" class="headerlink" title="1. 配置驱动的插件树"></a>1. 配置驱动的插件树</h3><p>开发者通过一个中心化的配置文件定义 Agent 的行为。配置中声明需要哪些插件、如何组合，运行时由 Cordis 负责组装成完整的执行链路。这种”声明式”的构建方式大幅降低了使用门槛——无需编写大量胶水代码，即可搭建出功能完备的 Agent。</p><h3 id="2-模型无关性"><a href="#2-模型无关性" class="headerlink" title="2. 模型无关性"></a>2. 模型无关性</h3><p>由于模型只是众多插件中的一种，DeepSeek Harness 对具体模型零依赖。无论是 DeepSeek 自家的模型、OpenAI 的 GPT 系列，还是本地部署的开源模型，都可以通过统一的 OpenAI 兼容接口接入。这对注重数据隐私或成本控制的团队尤为重要。</p><h3 id="3-可扩展的执行环境"><a href="#3-可扩展的执行环境" class="headerlink" title="3. 可扩展的执行环境"></a>3. 可扩展的执行环境</h3><p>框架内置了沙箱机制，确保 Agent 执行代码时的安全性。配合可插拔的存储与调度插件，开发者可以灵活构建从简单问答到复杂自动化任务的各类应用。</p><h2 id="五、行业意义与展望"><a href="#五、行业意义与展望" class="headerlink" title="五、行业意义与展望"></a>五、行业意义与展望</h2><p>DeepSeek Harness 的出现标志着开源 Agent 生态进入新阶段：</p><ul><li><strong>降低构建门槛</strong>：插件化 + 配置驱动让非资深开发者也能搭建专业级 Agent</li><li><strong>打破供应商锁定</strong>：模型无关设计使团队摆脱对单一厂商的依赖</li><li><strong>推动标准化</strong>：OpenAI 兼容接口成为事实标准，促进了工具生态的互联互通</li></ul><p>当然，作为一个新兴框架，DeepSeek Harness 在成熟度、社区支持、文档完善等方面仍有成长空间。但随着 20.9万 Star 背后的庞大社区力量，它有望成为继 LangChain、AutoGPT 之后又一款定义行业的开源项目。</p><p>对于 AI 开发者而言，DeepSeek Harness 提出的”一切皆插件”理念值得深入关注——它不仅是一种技术架构的选择，更代表了 Agent 开发范式的演进方向。</p><p><em>参考来源：<a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness GitHub</a>、<a href="https://deepseek.com/harness/en/">DeepSeek Harness 官网</a>、<a href="https://redreamality.com/blog/cordis-spatiotemporal-composability-deepseek-harness/">Cordis 框架说明</a></em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、一个”懒到极致”的-Agent-框架横空出世&quot;&gt;&lt;a href=&quot;#一、一个”懒到极致”的-Agent-框架横空出世&quot; class=&quot;headerlink&quot; title=&quot;一、一个”懒到极致”的 Agent 框架横空出世&quot;&gt;&lt;/a&gt;一、一个”懒到极致”的 Ag</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="DeepSeek" scheme="http://coderedeng.github.io/tags/DeepSeek/"/>
+    
+  </entry>
   
   <entry>
     <title>Intel发布Habana Gaudi4：押注开放生态的AI芯片&quot;第三极&quot;</title>
@@ -304,9 +332,9 @@
     <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
-    
     <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
     
     <category term="Agent Skills" scheme="http://coderedeng.github.io/tags/Agent-Skills/"/>
     
@@ -416,9 +444,9 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
-    
     <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
+    
+    <category term="GPT-5.6" scheme="http://coderedeng.github.io/tags/GPT-5-6/"/>
     
     <category term="AI定价" scheme="http://coderedeng.github.io/tags/AI%E5%AE%9A%E4%BB%B7/"/>
     
@@ -472,9 +500,9 @@
     <category term="GitHub开源" scheme="http://coderedeng.github.io/categories/GitHub%E5%BC%80%E6%BA%90/"/>
     
     
-    <category term="AI智能体" scheme="http://coderedeng.github.io/tags/AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="AI智能体" scheme="http://coderedeng.github.io/tags/AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
     
     <category term="OpenWorker" scheme="http://coderedeng.github.io/tags/OpenWorker/"/>
     
@@ -537,34 +565,6 @@
     <category term="网络安全" scheme="http://coderedeng.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     <category term="开源大模型" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DeepSeek 发布 Harness：一个“万物皆插件”的 AI 智能体框架，18k+ Star 引爆 GitHub</title>
-    <link href="http://coderedeng.github.io/2026/08/13/DeepSeek-Harness%E5%BC%80%E6%BA%90AI%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6/"/>
-    <id>http://coderedeng.github.io/2026/08/13/DeepSeek-Harness%E5%BC%80%E6%BA%90AI%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6/</id>
-    <published>2026-08-13T02:00:00.000Z</published>
-    <updated>2026-08-25T09:14:21.406Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景：AI-智能体生态的”基础设施之争”"><a href="#背景：AI-智能体生态的”基础设施之争”" class="headerlink" title="背景：AI 智能体生态的”基础设施之争”"></a>背景：AI 智能体生态的”基础设施之争”</h2><p>当各大模型厂商纷纷推出自己的 Agent SDK（如 OpenAI 的 Assistants API、Anthropic 的 MCP）时，一个更底层的问题浮出水面：<strong>如何让不同的 AI 工具、插件和记忆模块像乐高积木一样自由组合？</strong></p><p>8月12日，DeepSeek AI 开源了 <strong>DeepSeek Harness</strong>（简称 <code>dsh</code>），一个以”万物皆插件”为核心理念的 AI 智能体框架。上线不到一天即斩获 <strong>18,000+ Star</strong>，迅速登上 GitHub Trending 榜首，成为继 Claude、GPT-5.6 之后又一个引发广泛关注的 AI 项目。</p><h2 id="DeepSeek-Harness-是什么？"><a href="#DeepSeek-Harness-是什么？" class="headerlink" title="DeepSeek Harness 是什么？"></a>DeepSeek Harness 是什么？</h2><p>DeepSeek Harness 是一个基于 <a href="https://github.com/cordiverse/cordis">Cordis</a> 框架的开源智能体编排引擎。它的核心设计哲学可以用一句话概括：<strong>一切皆插件，一切皆可组合。</strong></p><p>与传统 Agent 框架（如 LangChain、AutoGen）不同，dsh 不预设任何固定的工具调用模式或记忆结构——它把<strong>每一个能力单元都抽象为插件</strong>：</p><ul><li>**工具插件 (Tool Plugins)**：搜索、代码执行、文件操作等</li><li>**记忆插件 (Memory Plugins)**：短期上下文、长期向量存储、知识图谱</li><li>**编排插件 (Orchestration Plugins)**：多智能体协作、任务分解、路由策略</li><li>**通信插件 (Communication Plugins)**：事件总线、消息队列、API 网关</li></ul><p>这种设计使得开发者可以像搭积木一样，从社区或自己编写的插件库中挑选需要的组件，快速构建出高度定制化的 AI 应用。</p><h2 id="架构亮点：Cordis-框架的时空组合范式"><a href="#架构亮点：Cordis-框架的时空组合范式" class="headerlink" title="架构亮点：Cordis 框架的时空组合范式"></a>架构亮点：Cordis 框架的时空组合范式</h2><p>dsh 的核心引擎是 Cordis——一个被 DeepSeek 称为 **”时空组合编程范式”**（Spatiotemporal Composability）的新框架。从项目文档来看，它试图解决传统 Agent 框架的两个根本痛点：</p><h3 id="1-空间维度：插件化隔离"><a href="#1-空间维度：插件化隔离" class="headerlink" title="1. 空间维度：插件化隔离"></a>1. 空间维度：插件化隔离</h3><p>每个能力模块独立开发、独立测试、独立部署。一个搜索插件的更新不会影响记忆模块或编排逻辑。这种”微内核 + 插件”架构类似于浏览器的扩展系统——浏览器本身只负责渲染，所有功能由扩展提供。</p><h3 id="2-时间维度：事件驱动的动态演化"><a href="#2-时间维度：事件驱动的动态演化" class="headerlink" title="2. 时间维度：事件驱动的动态演化"></a>2. 时间维度：事件驱动的动态演化</h3><p>Cordis 采用事件总线（Event Bus）作为核心通信机制。智能体在运行过程中可以<strong>动态加载、卸载、替换插件</strong>，无需重启整个应用。这意味着一个 AI 助手可以在对话中途”学会”一个新工具——比如突然接入一个新的数据库查询插件，而不会中断当前任务流。</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dsh 的插件注册示例（简化版）</span></span><br><span class="line"><span class="keyword">const</span> harness = <span class="keyword">new</span> <span class="title function_">DSH</span>();</span><br><span class="line">harness.<span class="title function_">registerPlugin</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;web-search&#x27;</span>,</span><br><span class="line">  <span class="attr">version</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="attr">capabilities</span>: [<span class="string">&#x27;search&#x27;</span>, <span class="string">&#x27;fetch&#x27;</span>],</span><br><span class="line">  <span class="attr">execute</span>: <span class="keyword">async</span> (query) =&gt; &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态切换编排策略</span></span><br><span class="line"><span class="keyword">await</span> harness.<span class="title function_">switchOrchestrator</span>(<span class="string">&#x27;multi-agent-collaboration&#x27;</span>);</span><br></pre></td></tr></table></figure><h2 id="快速上手：一行命令启动-Web-UI"><a href="#快速上手：一行命令启动-Web-UI" class="headerlink" title="快速上手：一行命令启动 Web UI"></a>快速上手：一行命令启动 Web UI</h2><p>dsh 的设计目标是让开发者<strong>零门槛体验</strong>。安装 Node.js 后，只需一条命令即可启动完整的 Web UI：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @deepseek-ai/dsh web</span><br></pre></td></tr></table></figure><p>浏览器打开 <code>http://127.0.0.1:3080</code>，即可看到一个功能完备的 AI 智能体控制台。从源码构建则更灵活：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/deepseek-ai/deepseek-harness.git</span><br><span class="line"><span class="built_in">cd</span> deepseek-harness</span><br><span class="line">pnpm install &amp;&amp; pnpm run build</span><br><span class="line">pnpm dsh web</span><br></pre></td></tr></table></figure><p>项目提供了完整的文档体系，包括架构说明、开发指南、用户手册和 API 参考——这在开源项目中并不常见。特别是 <code>capability-seams.md</code>（38KB）详细描述了能力边界的设计哲学，<code>tool-catalog.md</code>（80KB）列出了所有内置插件的接口规范。</p><h2 id="技术深度：从-AGENTS-md-看设计野心"><a href="#技术深度：从-AGENTS-md-看设计野心" class="headerlink" title="技术深度：从 AGENTS.md 看设计野心"></a>技术深度：从 AGENTS.md 看设计野心</h2><p>项目根目录下的 <code>AGENTS.md</code>（10,635 字节）是一份面向 AI Agent 开发者的完整指南，涵盖了：</p><ul><li><strong>Agent 生命周期管理</strong>：创建、调度、销毁的全流程控制</li><li><strong>API Gateway 集成</strong>：统一的外部服务接入层</li><li>**防御性模式 (Defensive Patterns)**：错误恢复、超时处理、降级策略</li><li><strong>事件生产者-消费者模型</strong>：异步任务编排的最佳实践</li></ul><p>这些文档的深度远超一般开源项目，反映出 DeepSeek AI 对 dsh 的定位——它不是一个玩具框架，而是一个面向生产环境的智能体基础设施。</p><h2 id="社区与生态：Discord-GitHub-Discussions-双轨驱动"><a href="#社区与生态：Discord-GitHub-Discussions-双轨驱动" class="headerlink" title="社区与生态：Discord + GitHub Discussions 双轨驱动"></a>社区与生态：Discord + GitHub Discussions 双轨驱动</h2><p>DeepSeek Harness 同时建立了 Discord 社区和 GitHub Discussions，鼓励开发者提交插件、分享使用案例。项目采用 MIT 许可证，允许商业使用，这为生态扩展提供了法律保障。</p><p>值得注意的是，项目明确标注了 <strong>“developer preview”</strong> 状态，并警告”兼容性破坏性变更将频繁发生”——这意味着当前版本更适合技术尝鲜者和早期贡献者，而非生产环境用户。但这种坦诚反而赢得了社区信任：18k+ Star 中包含了大量来自 AI Agent 开发者的关注。</p><h2 id="与同类项目的对比"><a href="#与同类项目的对比" class="headerlink" title="与同类项目的对比"></a>与同类项目的对比</h2><table><thead><tr><th>特性</th><th>DeepSeek Harness</th><th>LangChain</th><th>AutoGen</th></tr></thead><tbody><tr><td>核心范式</td><td>插件化 + 事件驱动</td><td>Chain&#x2F;Agent 模式</td><td>多智能体对话</td></tr><tr><td>记忆管理</td><td>独立 Memory 插件</td><td>内置 VectorStore</td><td>有限上下文窗口</td></tr><tr><td>动态扩展</td><td>运行时热插拔</td><td>需重新构建链</td><td>静态 Agent 定义</td></tr><tr><td>学习曲线</td><td>中等（需理解 Cordis）</td><td>低（Pythonic API）</td><td>高（多智能体协调）</td></tr></tbody></table><p>dsh 的独特之处在于它<strong>不绑定任何特定模型或工具</strong>。你可以用它编排 Claude、GPT-5.6、Gemini，也可以接入本地开源模型。这种”模型无关”的设计使其成为理想的 AI 基础设施层。</p><h2 id="个人见解：为什么值得关注？"><a href="#个人见解：为什么值得关注？" class="headerlink" title="个人见解：为什么值得关注？"></a>个人见解：为什么值得关注？</h2><ol><li><strong>填补了 Agent 框架的空白地带</strong>——LangChain 偏重应用开发，AutoGen 偏重多智能体研究，dsh 则聚焦于<strong>可组合的基础设施</strong>。它更像是一个”AI 时代的操作系统内核”。</li><li><strong>“万物皆插件”的理念极具前瞻性</strong>——随着 AI 工具链的快速迭代（新的 MCP 服务器、新的记忆方案），一个能动态适应变化的框架比任何固定架构都更有生命力。</li><li><strong>DeepSeek AI 的背书</strong>——作为 DeepSeek 的官方开源项目，dsh 很可能与 DeepSeek 自家的模型和服务深度集成，形成”模型 + 框架”的双轮驱动。</li></ol><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>DeepSeek Harness 的出现标志着 AI Agent 开发正在从”应用层创新”走向”基础设施层竞争”。18k+ Star 只是一个开始——如果 Cordis 的时空组合范式能真正解决 Agent 的可扩展性问题，它可能成为未来几年最重要的开源项目之一。</p><p>对于开发者而言，现在正是入场的最佳时机：文档齐全、社区活跃、API 尚未固化，你可以深度参与并塑造这个框架的未来形态。</p><hr><p><strong>来源：</strong> <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness GitHub</a> | <a href="https://github.com/cordiverse/paper">Cordis 论文</a><br><strong>Star 数：</strong> 18,000+ (截至 2026-08-13)<br><strong>许可证：</strong> MIT</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;背景：AI-智能体生态的”基础设施之争”&quot;&gt;&lt;a href=&quot;#背景：AI-智能体生态的”基础设施之争”&quot; class=&quot;headerlink&quot; title=&quot;背景：AI 智能体生态的”基础设施之争”&quot;&gt;&lt;/a&gt;背景：AI 智能体生态的”基础设施之争”&lt;/h2&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI智能体" scheme="http://coderedeng.github.io/tags/AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    
-    <category term="DeepSeek" scheme="http://coderedeng.github.io/tags/DeepSeek/"/>
-    
-    <category term="开源框架" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/"/>
     
   </entry>
   
