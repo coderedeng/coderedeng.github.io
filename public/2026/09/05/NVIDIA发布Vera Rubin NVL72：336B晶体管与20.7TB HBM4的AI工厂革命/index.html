@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命 | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命 一、从&quot;卖芯片&quot;到&quot;造工厂&quot;：NVIDIA的战略跃迁 当AMD MI400用432GB HBM4正面硬刚、Intel Gaudi4押注18A制程试图成为&quot;第三极&quot;时，NVIDIA没有选择在同一维度上缠斗。CES 2026上，黄仁勋发布了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命">
+<meta property="og:url" content="http://coderedeng.github.io/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命 一、从&quot;卖芯片&quot;到&quot;造工厂&quot;：NVIDIA的战略跃迁 当AMD MI400用432GB HBM4正面硬刚、Intel Gaudi4押注18A制程试图成为&quot;第三极&quot;时，NVIDIA没有选择在同一维度上缠斗。CES 2026上，黄仁勋发布了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-09-05T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-04T17:29:38.229Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="AI芯片">
+<meta property="article:tag" content="NVIDIA Vera Rubin">
+<meta property="article:tag" content="NVL72">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命",
+  "url": "http://coderedeng.github.io/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-09-05T02:00:00.000Z",
+  "dateModified": "2026-09-04T17:29:38.229Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">115</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-05T02:00:00.000Z" title="发表于 2026-09-05 10:00:00">2026-09-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-04T17:29:38.229Z" title="更新于 2026-09-05 01:29:38">2026-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tech%E5%89%8D%E6%B2%BF/">Tech前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="NVIDIA发布Vera-Rubin-NVL72：336B晶体管与20-7TB-HBM4的AI工厂革命">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</h1>
+<h2 id="一、从-卖芯片-到-造工厂-：NVIDIA的战略跃迁">一、从&quot;卖芯片&quot;到&quot;造工厂&quot;：NVIDIA的战略跃迁</h2>
+<p>当AMD MI400用432GB HBM4正面硬刚、Intel Gaudi4押注18A制程试图成为&quot;第三极&quot;时，NVIDIA没有选择在同一维度上缠斗。CES 2026上，黄仁勋发布了被称为&quot;AI超级计算机&quot;的Vera Rubin平台——它不是单颗GPU，而是由六颗协同设计的芯片组成的机架级系统。</p>
+<p>这一转变的核心逻辑在于：现代推理模型的成本瓶颈已从&quot;算力&quot;转移到&quot;数据搬运&quot;。万亿参数模型的预填充（prefill）和解码（decode）阶段需要跨越数百块GPU移动海量激活值，网络带宽和显存容量才是真正卡脖子的一环。Vera Rubin正是围绕&quot;内存墙&quot;问题重构的产物。</p>
+<h2 id="二、六芯协同：Vera-Rubin平台的完整架构">二、六芯协同：Vera Rubin平台的完整架构</h2>
+<p>Vera Rubin平台由六颗芯片组成，形成完整的计算-互联-存储闭环：</p>
+<table>
+<thead>
+<tr>
+<th>芯片</th>
+<th>角色</th>
+<th>关键规格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rubin GPU</td>
+<td>AI算力核心</td>
+<td>336B晶体管、TSMC N3P、288GB HBM4、50 PFLOPS NVFP4推理</td>
+</tr>
+<tr>
+<td>Vera CPU</td>
+<td>主机CPU/数据编排</td>
+<td>88颗Olympus Arm核心、176线程、227B晶体管</td>
+</tr>
+<tr>
+<td>NVLink 6 Switch</td>
+<td>机架内scale-up互联</td>
+<td>单芯片28 TB/s带宽</td>
+</tr>
+<tr>
+<td>Spectrum-6 Ethernet</td>
+<td>机架间scale-out网络</td>
+<td>共封装光学（CPO）</td>
+</tr>
+<tr>
+<td>Vera Memory Accelerator</td>
+<td>CPU扩展显存</td>
+<td>最高1.5TB SOCAMM LPDDR5X、1.2 TB/s带宽</td>
+</tr>
+<tr>
+<td>Rubin CPX</td>
+<td>推理预填充专用芯片</td>
+<td>NVL144 CPX机架达8 exaFLOPS</td>
+</tr>
+</tbody>
+</table>
+<p>其中Rubin GPU采用与Blackwell B200类似的双reticle die设计（两块巨型计算die + I/O die），通过TSMC CoWoS-L先进封装集成。这是全球首颗晶体管数量突破3360亿的商用芯片，单包即配备8层HBM4、288GB容量和22 TB/s带宽。</p>
+<h2 id="三、NVL72机架：重新定义-AI工厂-的技术细节">三、NVL72机架：重新定义&quot;AI工厂&quot;的技术细节</h2>
+<p>Vera Rubin NVL72将72块Rubin GPU与36块Vera CPU整合进一台液冷机柜，形成完整的算力单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────── Vera Rubin NVL72 ──────────────────────┐</span><br><span class="line">│                                                                │</span><br><span class="line">│   [NVLink 6 Switch ×9]  ←→  260 TB/s scale-up 带宽             │</span><br><span class="line">│         ↑                                                      │</span><br><span class="line">│   72× Rubin GPU (288GB HBM4 each)                              │</span><br><span class="line">│        = 20.7TB 总HBM4 · 1.6 PB/s 显存带宽                      │</span><br><span class="line">│                                                                │</span><br><span class="line">│   36× Vera CPU (Olympus Arm, 54TB LPDDR5X)                     │</span><br><span class="line">│        ↑                                                       │</span><br><span class="line">│   NVLink C2C: 1.8 TB/s (CPU↔GPU相干互联，翻倍自NVLink 5)       │</span><br><span class="line">│                                                                │</span><br><span class="line">│   scale-out: Spectrum-6 + 共封装光学 → DGX SuperPod（8机架）    │</span><br><span class="line">└────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p>关键性能指标全面碾压上一代Blackwell：</p>
+<ul>
+<li><strong>推理算力</strong>：3.6 exaFLOPS NVFP4，单GPU 50 PFLOPS，是GB200的5倍</li>
+<li><strong>训练算力</strong>：2.5 exaFLOPS NVFP4，为Blackwell的3.5倍</li>
+<li><strong>成本效率</strong>：每百万token推理成本最高降低10倍，所需GPU数量减少至1/4</li>
+<li><strong>部署速度</strong>：免线缆模块化托盘设计，单机架安装约5分钟（Blackwell时代需约2小时）</li>
+</ul>
+<h2 id="四、Rubin-CPX：破解-长上下文-推理的结构性创新">四、Rubin CPX：破解&quot;长上下文&quot;推理的结构性创新</h2>
+<p>Vera Rubin平台最具结构意义的创新是独立的Rubin CPX芯片。它专门处理推理的预填充阶段——即模型摄入超长prompt时的计算密集环节。这一阶段是FLOPS-bound（算力受限），而解码阶段则是内存带宽受限，两者需要不同的优化策略。</p>
+<p>将144块Rubin CPX与144块标准Rubin GPU、36块Vera CPU组合成NVL144 CPX机架后，系统可达8 exaFLOPS NVFP4算力、100TB高速内存和1.7 PB/s聚合带宽。NVIDIA称其AI性能是GB300 NVL72机架的7.5倍，代价是约370kW的功耗（标准NVL72约为120-130kW）。</p>
+<h2 id="五、影响与未来展望：AI芯片竞争进入-系统级-时代">五、影响与未来展望：AI芯片竞争进入&quot;系统级&quot;时代</h2>
+<p>Vera Rubin的发布标志着AI芯片竞争从&quot;单卡性能&quot;全面升级为&quot;机架级系统工程&quot;。当AMD和Intel仍在GPU单点技术上追赶时，NVIDIA已经用&quot;极端协同设计&quot;（extreme co-design）构建起一道由封装、内存、互联共同组成的护城河。</p>
+<p>对行业而言，三个趋势值得关注：</p>
+<ol>
+<li><strong>HBM4成为标配</strong>：SK海力士、三星、美光三家供应商在2026年6月获得NVIDIA认证，HBM4产能竞赛正式开启</li>
+<li><strong>&quot;AI工厂&quot;概念落地</strong>：免线缆模块化托盘和零宕机维护设计，让数据中心运维从&quot;小时级&quot;压缩到&quot;分钟级&quot;</li>
+<li><strong>推理成本重构</strong>：10倍token成本下降意味着大模型部署的经济门槛被大幅拉低，有望加速Agent和长上下文应用的普及</li>
+</ol>
+<p>随着Vera Rubin NVL72在2026年下半年进入量产，AI算力市场的三足鼎立格局（NVIDIA Rubin / AMD MI400 / Intel Gaudi4）已初步形成。而真正决定胜负的，或许不再是谁的晶体管更多，而是谁能把每一瓦电力、每一块钱成本都转化为可用的推理算力。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/">http://coderedeng.github.io/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E8%8A%AF%E7%89%87/">AI芯片</a><a class="post-meta__tags" href="/tags/NVIDIA-Vera-Rubin/">NVIDIA Vera Rubin</a><a class="post-meta__tags" href="/tags/NVL72/">NVL72</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/27/Gemini-3.7-Flash%E5%8F%91%E5%B8%83%EF%BC%9AGoogle%E6%8A%8A%E6%9C%80%E8%81%AA%E6%98%8E%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%A9%AC%E4%BB%B7%E6%A0%BC%E7%A0%8D%E5%8D%8A/" title="Gemini-3.7-Flash发布：Google把&quot;最聪明的工作马&quot;价格砍半"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Gemini-3.7-Flash发布：Google把"最聪明的工作马"价格砍半</div></div><div class="info-2"><div class="info-item-1">8月13日，Google 发布了 Gemini 3.7 Flash——距离上一代 3.6 Flash 仅过去三周。官方给它的定位很直白：“我们迄今最聪明的 workhorse（工作马）模型”，主攻编码与 Agent 场景。更关键的是价格： introductory 定价为每百万 token 输入 $0.75 / 输出 $3.75，正好是 3.6 Flash 原价的一半，优惠持续到年底（2027年1月1日起恢复 $1.50/$7.50）。 背景：Flash 系列的&quot;三周一代&quot;节奏 Gemini 3.6 Flash 发布于7月下旬，3.7 Flash 在不到三周后接棒。Google 明确表示这次迭代是&quot;开发者反馈 + 算法创新&quot;的直接产物——这种节奏在旗舰模型上很少见，通常只出现在走量的中端线上。Flash 系列承担的是 Google AI 生态里最大的调用量：Gemini app、Antigravity IDE、Android Studio、企业 Agent 平台，全部以它为底座。把&quot;最聪明的工作马&quot;做便宜一半，本质上是把...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">115</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NVIDIA%E5%8F%91%E5%B8%83Vera-Rubin-NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20-7TB-HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD"><span class="toc-number">1.</span> <span class="toc-text">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%8E-%E5%8D%96%E8%8A%AF%E7%89%87-%E5%88%B0-%E9%80%A0%E5%B7%A5%E5%8E%82-%EF%BC%9ANVIDIA%E7%9A%84%E6%88%98%E7%95%A5%E8%B7%83%E8%BF%81"><span class="toc-number">1.1.</span> <span class="toc-text">一、从&quot;卖芯片&quot;到&quot;造工厂&quot;：NVIDIA的战略跃迁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%85%AD%E8%8A%AF%E5%8D%8F%E5%90%8C%EF%BC%9AVera-Rubin%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">二、六芯协同：Vera Rubin平台的完整架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81NVL72%E6%9C%BA%E6%9E%B6%EF%BC%9A%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89-AI%E5%B7%A5%E5%8E%82-%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82"><span class="toc-number">1.3.</span> <span class="toc-text">三、NVL72机架：重新定义&quot;AI工厂&quot;的技术细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Rubin-CPX%EF%BC%9A%E7%A0%B4%E8%A7%A3-%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87-%E6%8E%A8%E7%90%86%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E5%88%9B%E6%96%B0"><span class="toc-number">1.4.</span> <span class="toc-text">四、Rubin CPX：破解&quot;长上下文&quot;推理的结构性创新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B%EF%BC%9AAI%E8%8A%AF%E7%89%87%E7%AB%9E%E4%BA%89%E8%BF%9B%E5%85%A5-%E7%B3%BB%E7%BB%9F%E7%BA%A7-%E6%97%B6%E4%BB%A3"><span class="toc-number">1.5.</span> <span class="toc-text">五、影响与未来展望：AI芯片竞争进入&quot;系统级&quot;时代</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/" title="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命"/></a><div class="content"><a class="title" href="/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/" title="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</a><time datetime="2026-09-05T02:00:00.000Z" title="发表于 2026-09-05 10:00:00">2026-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/27/Gemini-3.7-Flash%E5%8F%91%E5%B8%83%EF%BC%9AGoogle%E6%8A%8A%E6%9C%80%E8%81%AA%E6%98%8E%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%A9%AC%E4%BB%B7%E6%A0%BC%E7%A0%8D%E5%8D%8A/" title="Gemini-3.7-Flash发布：Google把&quot;最聪明的工作马&quot;价格砍半"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Gemini-3.7-Flash发布：Google把&quot;最聪明的工作马&quot;价格砍半"/></a><div class="content"><a class="title" href="/2026/08/27/Gemini-3.7-Flash%E5%8F%91%E5%B8%83%EF%BC%9AGoogle%E6%8A%8A%E6%9C%80%E8%81%AA%E6%98%8E%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%A9%AC%E4%BB%B7%E6%A0%BC%E7%A0%8D%E5%8D%8A/" title="Gemini-3.7-Flash发布：Google把&quot;最聪明的工作马&quot;价格砍半">Gemini-3.7-Flash发布：Google把&quot;最聪明的工作马&quot;价格砍半</a><time datetime="2026-08-27T15:50:00.000Z" title="发表于 2026-08-27 23:50:00">2026-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/26/Meta%E5%8F%91%E5%B8%83Muse-Code%E4%B8%8EMuse-Spark-1.2%EF%BC%9A%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%BB%A3%E7%90%86%E7%9A%84Plan-Grill-Goal%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="Meta发布Muse Code与Muse Spark 1.2：终端编码代理的Plan-Grill-Goal工作流"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Meta发布Muse Code与Muse Spark 1.2：终端编码代理的Plan-Grill-Goal工作流"/></a><div class="content"><a class="title" href="/2026/08/26/Meta%E5%8F%91%E5%B8%83Muse-Code%E4%B8%8EMuse-Spark-1.2%EF%BC%9A%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%BB%A3%E7%90%86%E7%9A%84Plan-Grill-Goal%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="Meta发布Muse Code与Muse Spark 1.2：终端编码代理的Plan-Grill-Goal工作流">Meta发布Muse Code与Muse Spark 1.2：终端编码代理的Plan-Grill-Goal工作流</a><time datetime="2026-08-26T08:40:00.000Z" title="发表于 2026-08-26 16:40:00">2026-08-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/26/CopilotKit%E5%BC%80%E6%BA%90OpenBot%EF%BC%9A%E6%AF%8F%E4%B8%AAAI%E5%90%8C%E4%BA%8B%E4%B8%80%E5%8F%B0%E7%8B%AC%E7%AB%8B%E7%94%B5%E8%84%91%EF%BC%8C%E5%8A%A8%E4%BD%9C%E5%85%88%E5%AE%A1%E6%89%B9%E5%90%8E%E6%89%A7%E8%A1%8C/" title="CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行"/></a><div class="content"><a class="title" href="/2026/08/26/CopilotKit%E5%BC%80%E6%BA%90OpenBot%EF%BC%9A%E6%AF%8F%E4%B8%AAAI%E5%90%8C%E4%BA%8B%E4%B8%80%E5%8F%B0%E7%8B%AC%E7%AB%8B%E7%94%B5%E8%84%91%EF%BC%8C%E5%8A%A8%E4%BD%9C%E5%85%88%E5%AE%A1%E6%89%B9%E5%90%8E%E6%89%A7%E8%A1%8C/" title="CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行">CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行</a><time datetime="2026-08-25T23:35:00.000Z" title="发表于 2026-08-26 07:35:00">2026-08-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/25/YC%E5%BC%80%E6%BA%90QM%EF%BC%9A%E6%8A%8A%E7%BC%96%E7%A0%81Agent%E5%8F%98%E6%88%90%E5%85%AC%E5%8F%B8%E5%90%8C%E4%BA%8B%E7%9A%84%E5%A4%9A%E7%8E%A9%E5%AE%B6%E5%8D%8F%E4%BD%9C%E6%A1%86%E6%9E%B6/" title="YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星"/></a><div class="content"><a class="title" href="/2026/08/25/YC%E5%BC%80%E6%BA%90QM%EF%BC%9A%E6%8A%8A%E7%BC%96%E7%A0%81Agent%E5%8F%98%E6%88%90%E5%85%AC%E5%8F%B8%E5%90%8C%E4%BA%8B%E7%9A%84%E5%A4%9A%E7%8E%A9%E5%AE%B6%E5%8D%8F%E4%BD%9C%E6%A1%86%E6%9E%B6/" title="YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星">YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星</a><time datetime="2026-08-25T07:30:00.000Z" title="发表于 2026-08-25 15:30:00">2026-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
