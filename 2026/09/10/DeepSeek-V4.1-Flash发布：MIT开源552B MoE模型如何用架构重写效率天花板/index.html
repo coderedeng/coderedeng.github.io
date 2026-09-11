@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板 | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="背景：一次”名不副实”的发布，撬动整个开源生态2026年9月10日，DeepSeek 正式发布了 DeepSeek-V4.1-Flash——一个以 MIT 协议开源、权重直接托管在 HuggingFace（deepseek-ai&#x2F;DeepSeek-V4.1-Flash）的多模态 MoE 模型。 这次发布最耐人寻味的地方在于它的命名：.1 后缀通常代表一次小版本迭代或微调升级，但 DeepSeek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板">
+<meta property="og:url" content="http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="背景：一次”名不副实”的发布，撬动整个开源生态2026年9月10日，DeepSeek 正式发布了 DeepSeek-V4.1-Flash——一个以 MIT 协议开源、权重直接托管在 HuggingFace（deepseek-ai&#x2F;DeepSeek-V4.1-Flash）的多模态 MoE 模型。 这次发布最耐人寻味的地方在于它的命名：.1 后缀通常代表一次小版本迭代或微调升级，但 DeepSeek">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-09-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-10T15:07:43.254Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="DeepSeek">
+<meta property="article:tag" content="MoE">
+<meta property="article:tag" content="LLM架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板",
+  "url": "http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-09-10T02:00:00.000Z",
+  "dateModified": "2026-09-10T15:07:43.254Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-10T02:00:00.000Z" title="发表于 2026-09-10 10:00:00">2026-09-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-10T15:07:43.254Z" title="更新于 2026-09-10 23:07:43">2026-09-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%89%8D%E6%B2%BF/">AI前沿</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="背景：一次”名不副实”的发布，撬动整个开源生态"><a href="#背景：一次”名不副实”的发布，撬动整个开源生态" class="headerlink" title="背景：一次”名不副实”的发布，撬动整个开源生态"></a>背景：一次”名不副实”的发布，撬动整个开源生态</h2><p>2026年9月10日，DeepSeek 正式发布了 <strong>DeepSeek-V4.1-Flash</strong>——一个以 MIT 协议开源、权重直接托管在 HuggingFace（<code>deepseek-ai/DeepSeek-V4.1-Flash</code>）的多模态 MoE 模型。</p>
+<p>这次发布最耐人寻味的地方在于它的命名：<code>.1</code> 后缀通常代表一次小版本迭代或微调升级，但 DeepSeek 却用它给出一款<strong>全新架构家族的全新基座模型</strong>。更关键的是，这是 DeepSeek 首次把 <code>.1</code> 用在一个完全重建的基座上——而它暗示的旗舰版本 V4.1-Pro 至今仍未登场。换句话说，DeepSeek 把”正餐之前的小菜”直接做成了足以替代上一代旗舰的主菜。</p>
+<p>与已发布过的 V4-Pro（1.6万亿参数 MoE）不同，V4.1-Flash 走的是一条截然不同的路线：<strong>用更少的激活参数、更激进的 KV Cache 压缩，换取超越上代旗舰的性价比</strong>。对于以长文档、长工具链调用为核心的 Agent 场景，这恰恰是最实在的进化。</p>
+<h2 id="核心特性：CED-架构-极致-KV-Cache-压缩"><a href="#核心特性：CED-架构-极致-KV-Cache-压缩" class="headerlink" title="核心特性：CED 架构 + 极致 KV Cache 压缩"></a>核心特性：CED 架构 + 极致 KV Cache 压缩</h2><p>V4.1-Flash 的核心是一组围绕”输入密集型负载”重新设计的架构创新：</p>
+<p><strong>Causal Encoder-Decoder（因果编解码器）</strong>。模型采用 40 层 Transformer，由 20 层因果编码器 + 20 层解码器组成。与传统 MoE 每个解码层各自维护 KV Cache 不同，CED 让解码器的全局 KV Cache 直接从编码器的最终隐状态投影而来。结果是：<strong>预填充阶段每 token 只激活 8B 参数，解码阶段激活 16B</strong>。文档越长、工具链调用越频繁，模型在”便宜的那一半”上省下的算力就越可观。</p>
+<p><strong>Compressed Sparse Attention 2（CSA2）</strong>。每个注意力层被分配到三种静态模式之一——Full、Reindex 或 Reuse——在主 KV 与 indexer K 之间共享状态，并在解码器中使用分层稀疏索引器，让深层索引成本独立于上下文长度。配合 <strong>FP4 主 KV 缓存</strong>（E2M1 格式，每 16 个通道一个 E4M3 缩放因子），全局 KV Cache 占用被压缩到 <strong>每 token 仅 890 字节</strong>——约为 DeepSeek-V4-Flash 的四分之一。</p>
+<p><strong>SWA Bounded Replay</strong>。滑动窗口注意力通常需要把 KV 状态持久化到 SSD 才能重建上下文，而这项技术只回放最近 <code>n_win</code> 个 token 即可重建缺失的 SWA KV 状态，将持久化 KV Cache 体积进一步压缩到 V4-Flash 的约 <strong>1&#x2F;8</strong>。</p>
+<p>其他配套组件同样亮眼：Single-Pass mHC 混合关键缓存、196B 参数的 Engram 条件记忆（基于 token 查找稀疏访问）、以及 DSpark 投机解码。MoE 层面采用 1 个共享专家 + 384 个路由专家，每 token 激活 6 个路由专家。</p>
+<h2 id="技术分析：开源权重-MIT-协议-x3D-生态级信号"><a href="#技术分析：开源权重-MIT-协议-x3D-生态级信号" class="headerlink" title="技术分析：开源权重 + MIT 协议 &#x3D; 生态级信号"></a>技术分析：开源权重 + MIT 协议 &#x3D; 生态级信号</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DeepSeek-V4.1-Flash 调用示例（OpenAI 兼容接口）</span></span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    base_url=<span class="string">&quot;https://api.deepseek.com/v1&quot;</span>,</span><br><span class="line">    api_key=<span class="string">&quot;&lt;YOUR_DEEPSEEK_KEY&gt;&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;deepseek-flash&quot;</span>,          <span class="comment"># 新模型 ID；旧名已退役并路由至此</span></span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;总结这份 5 万字的法律文档的核心条款&quot;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">    extra_body=&#123;</span><br><span class="line">        <span class="string">&quot;reasoning_effort&quot;</span>: <span class="number">100</span>,     <span class="comment"># 1-100 连续可调的思考强度</span></span><br><span class="line">        <span class="string">&quot;temperature&quot;</span>: <span class="number">1.0</span>,</span><br><span class="line">        <span class="string">&quot;top_p&quot;</span>: <span class="number">0.95</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>三个维度决定了这次开源的分量：</p>
+<ol>
+<li><p><strong>协议与权重</strong>。MIT 协议意味着任何商业场景均可自由使用、修改、再分发，无需付费。DeepSeek 在仓库中额外提供了 <code>inference</code> 文件夹和独立的编码模块，明确邀请社区构建推理支持——这是”零日部署将在数日内而非数周内落地”的标准信号。</p>
+</li>
+<li><p><strong>多模态原生</strong>。模型原生处理图像与文本输入，并自回归生成文本，无需额外的视觉适配器。</p>
+</li>
+<li><p><strong>可调控思考强度</strong>。<code>reasoning_effort</code> 支持 1–100 连续可调，在推理成本与准确率之间提供比离散档位更精细的权衡。</p>
+</li>
+</ol>
+<h2 id="性能与定价：超越上代旗舰的价格曲线"><a href="#性能与定价：超越上代旗舰的价格曲线" class="headerlink" title="性能与定价：超越上代旗舰的价格曲线"></a>性能与定价：超越上代旗舰的价格曲线</h2><p>DeepSeek 官方公布的基准测试中，V4.1-Flash（Base）表现亮眼：MMLU-Pro 74.1（超过 V4-Pro 的 73.5）、SuperGPQA 53.1、C-Eval 92.1。在推理侧，其 GPQA Diamond 达 90.9、Codeforces 评分 3471、Terminal-Bench 2.1 为 90.6、HLE with tools 63.9——多项指标逼近甚至超越上代旗舰 V4-Pro。</p>
+<p>定价方面同样激进：</p>
+<ul>
+<li><strong>Flash 档</strong>（<code>deepseek-flash</code>）：缓存命中输入 $0.003&#x2F;M（谷期）&#x2F; $0.006&#x2F;M（峰期），未命中输入 $0.15&#x2F;$0.30，输出 $0.60&#x2F;$1.20。</li>
+<li><strong>Pro 档被”悄悄”降级</strong>：自北京时间 9月14日 12:00 起，所有 <code>deepseek-v4-pro</code> 请求将路由到 V4.1-Flash，并按 Flash 费率计费——输出成本下降约 70%，而能力按 DeepSeek 的说法反而提升。</li>
+</ul>
+<p>这意味着如果你集成时硬编码了 Pro 模型名，代码无需任何改动，就能以约三分之一的价格获得一个更强的模型。真正的分水岭是 <strong>9月14日</strong>：建议按能力分层而非按模型名路由的集成方在这一天重新测试。</p>
+<h2 id="影响与未来展望"><a href="#影响与未来展望" class="headerlink" title="影响与未来展望"></a>影响与未来展望</h2><p>DeepSeek-V4.1-Flash 的意义远超一款新模型本身。它用 MIT 协议 + 全新 CED 架构 + 极致 KV Cache 压缩，把”长上下文 Agent 推理”的成本门槛又压低了一截。当激活参数低至每 token 8B、KV Cache 压到每 token 890 字节时，本地部署和边缘场景的可行性正在被重新定义。</p>
+<p>而它”名不副实”的命名也留下一个悬念：V4.1-Pro 何时登场？在旗舰缺席的情况下，DeepSeek 选择让 Flash 先一步接管 Pro 的流量——这既是对自身能力的自信，也可能是一次精心设计的市场预热。对开发者而言，现在正是迁移到这套新架构、重新评估 Agent 推理成本的最佳窗口。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/">http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DeepSeek/">DeepSeek</a><a class="post-meta__tags" href="/tags/MoE/">MoE</a><a class="post-meta__tags" href="/tags/LLM%E6%9E%B6%E6%9E%84/">LLM架构</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/07/AMD%E5%8F%91%E5%B8%83MI455X%E4%B8%8EHelios/" title="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin</div></div><div class="info-2"><div class="info-item-1">AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin一、从”单卡对标”到”机架级对抗”：AMD的第二次豪赌在 NVIDIA 于 CES 2026 抛出被称为”AI超级计算机”的 Vera Rubin NVL72 后，整个行业的目光都聚焦于这家绿色巨头如何用六颗协同芯片构建机架级护城河。彼时，AMD 和 Intel 仍被普遍认为停留在”单卡参数追赶”的阶段——直到 AMD 在 Advancing AI 2026 活动上正式推出 Instinct MI455X 与配套的 Helios 机架方案，才真正让竞争回到同一张牌桌。 MI455X 是 AMD MI400 系列的旗舰成员，基于全新的 CDNA 5 架构、采用 TSMC N2（N3P）先进制程制造。但真正让业界侧目的是它背后的 Helios：这不是一张孤立的加速卡，而是一套以机架为单位的完整 AI 计算系统。AMD 的战略意图很明确——既然在单颗 GPU 的绝对算力上难以瞬间超越 Rubin，那就用”内存容量 + 带宽 + 机架级互联”的组合拳，把竞争拉到自己熟悉的赛道。 二、核心规格：43...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/08/DeepSeek-V4-Pro%E5%8F%91%E5%B8%83%EF%BC%9A1.6%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0MoE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%99%BE%E4%B8%87Token%E6%97%B6%E4%BB%A3/" title="DeepSeek V4 Pro 发布：1.6 万亿参数的 MoE 模型如何开启百万 Token 时代？"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-08</div><div class="info-item-2">DeepSeek V4 Pro 发布：1.6 万亿参数的 MoE 模型如何开启百万 Token 时代？</div></div><div class="info-2"><div class="info-item-1">背景：大模型竞赛进入”参数军备竞赛”新阶段2026 年 4 月，DeepSeek 正式发布了 V4 系列模型——包括旗舰版 V4-Pro 和轻量版 V4-Flash。其中 V4-Pro 以 1.6 万亿（Trillion）参数的总规模、MIT 开源许可、以及号称”业界最低推理成本”的定价策略，迅速成为 AI 社区讨论的焦点。 从 2023 年初开始，MoE（Mixture of Experts）架构推动了模型智能近乎 70 倍的增长——截至 2025 年上半年，几乎所有前沿模型都采用了 MoE 设计。而 V4-Pro 则在这一路线上走得更远：它将总参数量推向了前所未有的量级，同时通过创新的混合注意力机制和稀疏激活策略，实现了百万 Token 级别的上下文窗口。 V4-Pro 的核心架构亮点1. 1.6T 参数与 49B 激活V4-Pro 采用 MoE 设计，总参数达到 1.6 万亿个，但在每个 token 生成时仅激活约 490 亿（49B）参数。这意味着模型拥有庞大的”知识库储备”——可以学习和记忆海量知识——同时推理时的计算开销与一个中等规模的稠密模型相当。 对比来看：  V...</div></div></div></a><a class="pagination-related" href="/2026/06/10/DeepSeek-R1-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/" title="DeepSeek R1 深度解析：开源推理模型的范式革命"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-10</div><div class="info-item-2">DeepSeek R1 深度解析：开源推理模型的范式革命</div></div><div class="info-2"><div class="info-item-1">背景：当开源打破”算力霸权”在大型语言模型的发展史上，DeepSeek R1 的发布堪称一次地震。2025年1月，深度求索（DeepSeek）发布了其新一代推理模型 R1，以不到前代十分之一的训练成本，实现了与 GPT-4o、Claude Opus 等顶级商业模型相媲美的推理能力。这一事件不仅重塑了开源模型的格局，更让全球 AI 社区开始重新审视”算力&#x3D;智能”的传统假设。 长期以来，AI 推理能力的提升被绑定在”更大参数 + 更多数据 + 更强硬件”的线性增长范式上。OpenAI 的 o1 系列通过万亿token训练和强化学习刷新了 benchmarks，但高昂的成本让多数研究者望而却步。DeepSeek R1 的出现打破了这一迷思——它证明了一条不同的技术路径：用更聪明的训练方法替代堆砌算力。 核心架构：强化学习与思维链的深度融合R1 的核心突破在于其独特的 RLVR（Reinforcement Learning via Verifiable Rewards） 训练框架。与传统 RLHF（人类反馈强化学习）不同，RLVR 利用可验证的奖励信号——即答案的正确性本身——...</div></div></div></a><a class="pagination-related" href="/2026/08/19/DeepSeek-Harness-%E7%99%BB%E9%A1%B6-GitHub/" title="DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-19</div><div class="info-item-2">DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！</div></div><div class="info-2"><div class="info-item-1">DeepSeek Harness 登顶 GitHub：一切皆插件的 Agent 框架来了！ 摘要：DeepSeek AI 开源了 DeepSeek Harness（dsh），一个以”一切皆插件”为核心理念的 Agent 开发框架，上线一周即斩获 16.5 万 Star，成为 GitHub 上增长最快的项目之一。本文将深入解读其架构设计、技术亮点与未来潜力。   一、背景：Agent 生态的爆发式增长2026 年夏天，AI Agent（智能体）开发框架迎来了井喷式发展。从 LangChain 到 AutoGen，再到 Anthropic 推出的 Claude Computer Use，开发者们正在探索如何让 AI 模型真正”动手做事”——浏览网页、操作终端、编写代码、调用 API。 然而，现有的 Agent 框架大多存在两个痛点：  耦合度高：Agent 逻辑与工具链深度绑定，难以灵活替换组件； 扩展困难：新增一个工具或技能往往需要修改核心代码，缺乏统一的插件化机制。  就在这样的背景下，DeepSeek AI 于 8 月 13 日开源了 DeepSeek Harness（简称 d...</div></div></div></a><a class="pagination-related" href="/2026/08/13/DeepSeek-Harness%E5%BC%80%E6%BA%90AI%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6/" title="DeepSeek 发布 Harness：一个“万物皆插件”的 AI 智能体框架，18k+ Star 引爆 GitHub"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-13</div><div class="info-item-2">DeepSeek 发布 Harness：一个“万物皆插件”的 AI 智能体框架，18k+ Star 引爆 GitHub</div></div><div class="info-2"><div class="info-item-1">背景：AI 智能体生态的”基础设施之争”当各大模型厂商纷纷推出自己的 Agent SDK（如 OpenAI 的 Assistants API、Anthropic 的 MCP）时，一个更底层的问题浮出水面：如何让不同的 AI 工具、插件和记忆模块像乐高积木一样自由组合？ 8月12日，DeepSeek AI 开源了 DeepSeek Harness（简称 dsh），一个以”万物皆插件”为核心理念的 AI 智能体框架。上线不到一天即斩获 18,000+ Star，迅速登上 GitHub Trending 榜首，成为继 Claude、GPT-5.6 之后又一个引发广泛关注的 AI 项目。 DeepSeek Harness 是什么？DeepSeek Harness 是一个基于 Cordis 框架的开源智能体编排引擎。它的核心设计哲学可以用一句话概括：一切皆插件，一切皆可组合。 与传统 Agent 框架（如 LangChain、AutoGen）不同，dsh 不预设任何固定的工具调用模式或记忆结构——它把每一个能力单元都抽象为插件：  **工具插件 (Tool Plugins)**：搜索、代码...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9A%E4%B8%80%E6%AC%A1%E2%80%9D%E5%90%8D%E4%B8%8D%E5%89%AF%E5%AE%9E%E2%80%9D%E7%9A%84%E5%8F%91%E5%B8%83%EF%BC%8C%E6%92%AC%E5%8A%A8%E6%95%B4%E4%B8%AA%E5%BC%80%E6%BA%90%E7%94%9F%E6%80%81"><span class="toc-number">1.</span> <span class="toc-text">背景：一次”名不副实”的发布，撬动整个开源生态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7%EF%BC%9ACED-%E6%9E%B6%E6%9E%84-%E6%9E%81%E8%87%B4-KV-Cache-%E5%8E%8B%E7%BC%A9"><span class="toc-number">2.</span> <span class="toc-text">核心特性：CED 架构 + 极致 KV Cache 压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%EF%BC%9A%E5%BC%80%E6%BA%90%E6%9D%83%E9%87%8D-MIT-%E5%8D%8F%E8%AE%AE-x3D-%E7%94%9F%E6%80%81%E7%BA%A7%E4%BF%A1%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">技术分析：开源权重 + MIT 协议 &#x3D; 生态级信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%B8%8E%E5%AE%9A%E4%BB%B7%EF%BC%9A%E8%B6%85%E8%B6%8A%E4%B8%8A%E4%BB%A3%E6%97%97%E8%88%B0%E7%9A%84%E4%BB%B7%E6%A0%BC%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.</span> <span class="toc-text">性能与定价：超越上代旗舰的价格曲线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">5.</span> <span class="toc-text">影响与未来展望</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/" title="DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板"/></a><div class="content"><a class="title" href="/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/" title="DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板">DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板</a><time datetime="2026-09-10T02:00:00.000Z" title="发表于 2026-09-10 10:00:00">2026-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/07/AMD%E5%8F%91%E5%B8%83MI455X%E4%B8%8EHelios/" title="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin"/></a><div class="content"><a class="title" href="/2026/09/07/AMD%E5%8F%91%E5%B8%83MI455X%E4%B8%8EHelios/" title="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin">AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin</a><time datetime="2026-09-07T02:00:00.000Z" title="发表于 2026-09-07 10:00:00">2026-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/06/Go%E8%AF%AD%E8%A8%80%E5%8D%81%E5%B9%B4%E6%BC%94%E8%BF%9B%E5%8F%B2%EF%BC%9A%E4%BB%8E%E8%AF%9E%E7%94%9F%E5%88%B0Go%201.24%E7%9A%84%E8%9C%95%E5%8F%98%E4%B9%8B%E8%B7%AF/" title="Go语言十年演进史：从诞生到Go 1.24的蜕变之路"><img src="/img/cover-go.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go语言十年演进史：从诞生到Go 1.24的蜕变之路"/></a><div class="content"><a class="title" href="/2026/09/06/Go%E8%AF%AD%E8%A8%80%E5%8D%81%E5%B9%B4%E6%BC%94%E8%BF%9B%E5%8F%B2%EF%BC%9A%E4%BB%8E%E8%AF%9E%E7%94%9F%E5%88%B0Go%201.24%E7%9A%84%E8%9C%95%E5%8F%98%E4%B9%8B%E8%B7%AF/" title="Go语言十年演进史：从诞生到Go 1.24的蜕变之路">Go语言十年演进史：从诞生到Go 1.24的蜕变之路</a><time datetime="2026-09-06T02:00:00.000Z" title="发表于 2026-09-06 10:00:00">2026-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/05/GPT-6-Astra%E5%8F%91%E5%B8%83/" title="GPT-6 Astra 正式发布：首个突破&quot;Critical&quot;网络安全阈值的代际模型"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GPT-6 Astra 正式发布：首个突破&quot;Critical&quot;网络安全阈值的代际模型"/></a><div class="content"><a class="title" href="/2026/09/05/GPT-6-Astra%E5%8F%91%E5%B8%83/" title="GPT-6 Astra 正式发布：首个突破&quot;Critical&quot;网络安全阈值的代际模型">GPT-6 Astra 正式发布：首个突破&quot;Critical&quot;网络安全阈值的代际模型</a><time datetime="2026-09-05T02:00:00.000Z" title="发表于 2026-09-05 10:00:00">2026-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/" title="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命"/></a><div class="content"><a class="title" href="/2026/09/05/NVIDIA%E5%8F%91%E5%B8%83Vera%20Rubin%20NVL72%EF%BC%9A336B%E6%99%B6%E4%BD%93%E7%AE%A1%E4%B8%8E20.7TB%20HBM4%E7%9A%84AI%E5%B7%A5%E5%8E%82%E9%9D%A9%E5%91%BD/" title="NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命">NVIDIA发布Vera Rubin NVL72：336B晶体管与20.7TB HBM4的AI工厂革命</a><time datetime="2026-09-05T02:00:00.000Z" title="发表于 2026-09-05 10:00:00">2026-09-05</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
