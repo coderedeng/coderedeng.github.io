@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-09-15T14:10:59.533Z</updated>
+  <updated>2026-09-17T14:24:46.231Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>上海AI Lab开源Atria-Dawn-Preview：把744B MoE训练成&quot;科研民工&quot;的长时程智能体</title>
+    <link href="http://coderedeng.github.io/2026/09/17/%E4%B8%8A%E6%B5%B7AI%20Lab%E5%BC%80%E6%BA%90Atria-Dawn-Preview/"/>
+    <id>http://coderedeng.github.io/2026/09/17/%E4%B8%8A%E6%B5%B7AI%20Lab%E5%BC%80%E6%BA%90Atria-Dawn-Preview/</id>
+    <published>2026-09-17T14:30:00.000Z</published>
+    <updated>2026-09-17T14:24:46.231Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、一个”闷声不响”的开源发布"><a href="#一、一个”闷声不响”的开源发布" class="headerlink" title="一、一个”闷声不响”的开源发布"></a>一、一个”闷声不响”的开源发布</h2><p>2026年9月11日，上海人工智能实验室（Shanghai AI Laboratory，InternLM团队）在 Hugging Face 上悄悄挂出了 <strong>Atria-Dawn-Preview</strong> 的权重与 OpenAI 兼容 API，MIT 协议，可商用、可自托管。没有发布会、没有通稿、没有定价页——三天后才补出 arXiv 技术报告，24 小时内就有第三方 LLM gateway 提交了集成 PR。</p><p>这种”先上权重后写故事”的发布方式本身就很当下：开源社区早已习惯顶级实验室用代码和 benchmark 说话，而不是靠营销。对读者而言，真正值得关注的不是它低调的登场，而是它的定位——<strong>一个为”长时程科研智能体”（long-horizon research agent）而生的模型</strong>。</p><h2 id="二、站在-GLM-5-2-的肩膀上"><a href="#二、站在-GLM-5-2-的肩膀上" class="headerlink" title="二、站在 GLM-5.2 的肩膀上"></a>二、站在 GLM-5.2 的肩膀上</h2><p>Atria-Dawn 并非从零训练。它的底座是智谱在 6 月发布的 <strong>GLM-5.2</strong>：一颗 744B 参数的 MoE（混合专家）模型，激活参数规模适中，原生支持 256K 上下文。上海 AI Lab 在这块基座上做了两件事：</p><ol><li><strong>后训练（post-training）聚焦 agent 化</strong>——把原本偏”通用问答 + 长上下文工作机”的 GLM-5.2，改造成能持续理解环境、反复调用工具、跨多步完成任务的研究型智能体。</li><li><strong>上下文窗口扩展到 1M token</strong>——这是长时程科研的关键。一篇论文从方法综述到复现代码再到结果验证，需要把大量文献、代码库和运行日志同时”记在脑子里”，256K 往往中途就”失忆”了。</li></ol><p>换句话说，Atria-Dawn 与 GLM-5.2 是”同一块面团，两种烤法”：前者要的是通用高效，后者要的是科研闭环里的持久专注。</p><h2 id="三、四个场景、16-个基准的考核"><a href="#三、四个场景、16-个基准的考核" class="headerlink" title="三、四个场景、16 个基准的考核"></a>三、四个场景、16 个基准的考核</h2><p>官方把评估分成四大研究环节，覆盖 16 个基准，并附上一条 <strong>769 对”人-AI”协作</strong>的对照研究——这是它相对其他开源 agent 模型的一个差异化亮点：<strong>它不仅看机器跑分，还看人和模型配合时的真实产出</strong>。</p><ul><li><strong>Discovery（发现）</strong>：从文献中定位尚未解决的问题、提出假设。</li><li><strong>Creation（创造）</strong>：设计实验方案、生成可运行的代码与数据流水线。</li><li><strong>Delivery（交付）</strong>：把文档、数据和设计要求转成报告、演示文稿等结构化成果。</li><li><strong>Cybersecurity（安全）</strong>：在授权环境中分析漏洞、验证漏洞、应用修复并重新验证——形成”攻击-防御”闭环。</li></ul><p>已披露的几个硬指标相当能打：</p><table><thead><tr><th>基准</th><th>成绩</th><th>说明</th></tr></thead><tbody><tr><td>DeepSearchQA（自研科研检索）</td><td><strong>96.0%</strong></td><td>长时程文献调研的准确率</td></tr><tr><td>SWE-bench 2026</td><td><strong>59.6%</strong></td><td>真实仓库级软件工程任务，开源 agent 第一梯队</td></tr></tbody></table><p>作为参照，SWE-bench 2026 这类”在真实代码库里修 bug、过 CI”的任务，开源模型能突破 50% 就已经属于顶尖水平。Atria-Dawn 用 MIT 协议把这个能力免费开放，对中小团队和学术实验室是实打实的利好。</p><h2 id="四、技术解读：为什么”长时程”这么难"><a href="#四、技术解读：为什么”长时程”这么难" class="headerlink" title="四、技术解读：为什么”长时程”这么难"></a>四、技术解读：为什么”长时程”这么难</h2><p>当前大多数 LLM 的短板不是”单次推理不够聪明”，而是<strong>在连续几十次甚至上百次工具调用中保持目标不漂移</strong>。Atria-Dawn 针对的正是这个痛点：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用 vLLM &gt;= 0.23 本地部署（OpenAI 兼容接口）</span></span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    base_url=<span class="string">&quot;http://localhost:8000/v1&quot;</span>,</span><br><span class="line">    api_key=<span class="string">&quot;not-needed&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;internlm/Atria-Dawn-Preview&quot;</span>,</span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: (</span><br><span class="line">            <span class="string">&quot;阅读附带的 3 篇论文，复现其中方法 A 的实验，&quot;</span></span><br><span class="line">            <span class="string">&quot;把结果整理成 Markdown 报告并附上可运行代码。&quot;</span></span><br><span class="line">        )&#125;</span><br><span class="line">    ],</span><br><span class="line">    extra_body=&#123;<span class="string">&quot;max_tokens&quot;</span>: <span class="number">8192</span>&#125;,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(response.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure><p>这段伪代码展示了它的典型工作流：<strong>接收一个模糊的科研目标 → 自主拆解 → 反复检索、读文献、写代码、验证 → 输出结构化成果</strong>。模型需要在整个过程中维持对”我到底要解决什么问题”的认知，这正是长时程智能体与一次性问答的本质区别。</p><h2 id="五、影响与未来展望"><a href="#五、影响与未来展望" class="headerlink" title="五、影响与未来展望"></a>五、影响与未来展望</h2><p>Atria-Dawn-Preview 的意义在于它把**开源 agent 模型的战场从”单点能力”推向了”全流程科研闭环”**：</p><ol><li><strong>对学术界</strong>——MIT 协议 + 本地可部署，意味着任何实验室都能拿它搭一套”AI 科研助理”，而不必担心 API 成本或数据外泄。</li><li><strong>对工业界</strong>——Discovery→Creation→Delivery→Security 的完整链路，恰好覆盖了研发部门最耗人力的环节。当 Claude Fable、GPT-6 Astra 还在拼单点推理时，Atria-Dawn 走的是”把一支科研小队编队成模型”的路线（与 Sakana Fugu 的编排思路异曲同工，但 Atria 是单体大模型而非多模型调度器）。</li><li><strong>对开源生态</strong>——它证明了 744B MoE 基座经过针对性后训练，就能在 SWE-bench 2026 这类硬基准上逼近闭源前沿。</li></ol><p>当然，preview 阶段仍有局限：官方明确它<strong>不支持视觉或音频输入</strong>，纯文本 + 代码定位；benchmark 多为自研指标，独立第三方复现尚缺。但即便如此，它已是当前开源长时程科研智能体中最值得上手试用的一个。</p><p>当”AI 能不能自己做完一项研究”从科幻走向工程问题，Atria-Dawn-Preview 用一份 MIT 权重给出了它的初步答案：<strong>可以，而且免费。</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、一个”闷声不响”的开源发布&quot;&gt;&lt;a href=&quot;#一、一个”闷声不响”的开源发布&quot; class=&quot;headerlink&quot; title=&quot;一、一个”闷声不响”的开源发布&quot;&gt;&lt;/a&gt;一、一个”闷声不响”的开源发布&lt;/h2&gt;&lt;p&gt;2026年9月11日，上海人工智能实</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="开源模型" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="上海AI Lab" scheme="http://coderedeng.github.io/tags/%E4%B8%8A%E6%B5%B7AI-Lab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Apple M5 Ultra发布：把数据中心级AI算力塞进桌面的统一内存革命</title>
+    <link href="http://coderedeng.github.io/2026/09/16/Apple-M5-Ultra%E5%8F%91%E5%B8%83/"/>
+    <id>http://coderedeng.github.io/2026/09/16/Apple-M5-Ultra%E5%8F%91%E5%B8%83/</id>
+    <published>2026-09-16T02:00:00.000Z</published>
+    <updated>2026-09-16T14:10:52.883Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、当”桌面”成为AI推理的新战场"><a href="#一、当”桌面”成为AI推理的新战场" class="headerlink" title="一、当”桌面”成为AI推理的新战场"></a>一、当”桌面”成为AI推理的新战场</h2><p>过去两年，AI算力的叙事完全由数据中心主导。NVIDIA Vera Rubin 用六颗协同芯片封装出”AI工厂”，AMD MI455X-Helios 以机架级带宽正面硬刚，Intel Gaudi 3 则押注低成本训练路线。然而就在行业把目光锁定在机柜与液冷之时，Apple 于 <strong>2026年8月25日</strong> 悄悄改写了桌面端的规则——它发布的 <strong>M5 Ultra</strong> 与首款 2nm 芯片 <strong>M6</strong>，首次让一台放在桌子上的设备拥有了”单机无妥协运行 70B 模型”的能力。</p><p>这不是一次常规的年度迭代。Apple 用 M5 Ultra 证明了：在边缘侧，统一内存架构（Unified Memory）正在成为对抗数据中心 GPU 护城河的一把利刃。当推理的瓶颈从”算力”转向”数据搬运”时，Apple 多年押注的内存带宽优势，恰好击中了大模型部署最痛的那根神经。</p><h2 id="二、M5-Ultra：四-die-堆叠出的桌面怪兽"><a href="#二、M5-Ultra：四-die-堆叠出的桌面怪兽" class="headerlink" title="二、M5 Ultra：四 die 堆叠出的桌面怪兽"></a>二、M5 Ultra：四 die 堆叠出的桌面怪兽</h2><p>M5 Ultra 是 Apple 首款<strong>四芯片（quad-die）</strong>设计的产品，集成在全新 Mac Studio 中。其关键规格足以让传统认知中的”桌面级”显得渺小：</p><table><thead><tr><th>规格</th><th>M5 Ultra</th><th>行业对照</th></tr></thead><tbody><tr><td>GPU 核心</td><td>最高 <strong>80 核</strong></td><td>消费级显卡普遍 40-60 核</td></tr><tr><td>统一内存</td><td>最高 <strong>512GB</strong></td><td>RTX 5090 仅 32GB GDDR7</td></tr><tr><td>Neural Engine</td><td><strong>32 核</strong>，120 TOPS</td><td>独立 NPU 普遍低于 50 TOPS</td></tr><tr><td>制程</td><td>TSMC N2（第二代 2nm）</td><td>与 M6 共用先进工艺</td></tr></tbody></table><p>最引人注目的始终是那 <strong>512GB 统一内存</strong>。在传统的 PC 架构中，CPU 内存与 GPU 显存是割裂的两套地址空间，模型权重与激活值需要在两者之间反复拷贝。而 Apple 的统一内存让 CPU、GPU、Neural Engine 共享同一块物理内存——这意味着一个 70B 参数的 FP16 模型（约 140GB）可以<strong>完整驻留在片上</strong>，无需任何跨总线搬运。</p><p>对开发者而言，这个差异是决定性的。运行 llama.cpp 或 MLX 时，你不再需要为”显存不够而被迫量化到 4-bit”而妥协——M5 Ultra 可以让模型以接近全精度的状态本地跑起来，同时保留整个上下文窗口。</p><h2 id="三、技术分析：Neural-Engine-与-MLX-的协同进化"><a href="#三、技术分析：Neural-Engine-与-MLX-的协同进化" class="headerlink" title="三、技术分析：Neural Engine 与 MLX 的协同进化"></a>三、技术分析：Neural Engine 与 MLX 的协同进化</h2><p>M5 Ultra 的真正突破不仅在于容量，更在于 <strong>Neural Engine（NE）语义的转变</strong>。前代 NE 主要加速图像分类和 Core ML 模型；而 M5 系列开始<strong>直接加速 LLM 推理中的注意力计算与嵌入查找（embedding lookup）</strong>——这正是自注意力机制中最耗时的环节。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 MLX 在 M5 Ultra 上加载并运行 70B 量化模型的典型流程</span></span><br><span class="line"><span class="keyword">import</span> mlx_lm</span><br><span class="line"></span><br><span class="line">model, tokenizer = mlx_lm.load(<span class="string">&quot;meta-llama/Llama-3.1-70B-Instruct&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;解释什么是统一内存架构&quot;</span></span><br><span class="line">tokens = tokenizer.encode(prompt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># MLX 自动将计算分发到 CPU / GPU / Neural Engine</span></span><br><span class="line">output = mlx_lm.generate(model, tokenizer, prompt, max_tokens=<span class="number">256</span>)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br></pre></td></tr></table></figure><p>这段代码背后是 Apple 精心设计的<strong>运行时调度</strong>。MLX 框架能够感知 M5 Ultra 的异构算力分布，把矩阵乘法（matmul）交给 GPU，把注意力中的特定子运算卸载到 Neural Engine，同时利用统一内存避免任何显式的数据拷贝。第三方评测显示，在 MLX 下的实际 Agent 工作负载中，M5 Ultra 运行 70B 模型”几乎感受不到与云端的差距”——这一评价在 2026 年的单机芯片中独一无二。</p><p>值得注意的是算力数字：M5 Max 的 16 核 NE 提供 60 TOPS，而 M5 Ultra 通过翻倍到 32 核达到 <strong>120 TOPS</strong>。虽然绝对峰值仍远低于数据中心的 exaFLOPS 级别，但边缘侧竞争从来不是比谁的分母更大，而是比<strong>每瓦特、每美元能交付多少可用推理</strong>。</p><h2 id="四、影响与未来展望：AI-的”去中心化”浪潮"><a href="#四、影响与未来展望：AI-的”去中心化”浪潮" class="headerlink" title="四、影响与未来展望：AI 的”去中心化”浪潮"></a>四、影响与未来展望：AI 的”去中心化”浪潮</h2><p>M5 Ultra 的意义远超一台 Mac Studio 的性能提升。它标志着三条趋势的交汇：</p><ol><li><p><strong>边缘 AI 从概念走向现实</strong>。当本地就能跑起 70B 模型，数据无需离开设备即可处理——这对隐私敏感场景（医疗、金融、个人助理）具有战略价值。Apple 一贯的”隐私即产品”策略，因 M5 Ultra 而获得了坚实的硬件底座。</p></li><li><p><strong>统一内存成为新护城河</strong>。NVIDIA 用 NVLink 和 HBM4 构建机架级互联，Apple 则用统一内存把整个竞争维度拉回”单芯片内的数据流动性”。当预填充（prefill）阶段本质是带宽受限而非算力受限时，512GB 的高带宽内存本身就是答案。</p></li><li><p><strong>数据中心与边缘的分工重构</strong>。未来的 AI 架构更可能是混合式的：训练与超大规模推理留在云端 GPU 集群，而低延迟、隐私优先的交互式推理下沉到 M5 Ultra 这样的终端设备。Groq 3 LPU 在 Rubin 中专责 decode，Apple 则在另一端完成了同样的逻辑——只是舞台从机柜缩小到了桌面。</p></li></ol><p>当然，边缘侧仍有短板：M5 Ultra 在训练与微调上仍慢于 NVIDIA GPU（缺乏分布式训练支持），且 MLX 生态尚无法完全覆盖 CUDA 十余年积累的工具链。但对于<strong>推理优先、部署优先</strong>的工作负载，Apple 已经给出了一个极具说服力的答案。</p><p>当行业还在为 exaFLOPS 的数字狂欢时，Apple 用一块桌子上的芯片提醒所有人：AI 的下一站，或许不在更大的数据中心，而在更贴近用户的边缘。M5 Ultra 不是终点，而是 AI”去中心化”浪潮的一个清晰路标。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、当”桌面”成为AI推理的新战场&quot;&gt;&lt;a href=&quot;#一、当”桌面”成为AI推理的新战场&quot; class=&quot;headerlink&quot; title=&quot;一、当”桌面”成为AI推理的新战场&quot;&gt;&lt;/a&gt;一、当”桌面”成为AI推理的新战场&lt;/h2&gt;&lt;p&gt;过去两年，AI算力的</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI芯片" scheme="http://coderedeng.github.io/tags/AI%E8%8A%AF%E7%89%87/"/>
+    
+    <category term="Apple M5 Ultra" scheme="http://coderedeng.github.io/tags/Apple-M5-Ultra/"/>
+    
+  </entry>
   
   <entry>
     <title>萨卡纳Fugu Max发布：把&quot;一支智能体军团&quot;封装成&quot;一个API&quot;</title>
@@ -288,9 +342,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
-    
     <category term="Google" scheme="http://coderedeng.github.io/tags/Google/"/>
+    
+    <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
     
   </entry>
   
@@ -394,9 +448,9 @@
     <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
     
     <category term="Agent Skills" scheme="http://coderedeng.github.io/tags/Agent-Skills/"/>
     
@@ -511,64 +565,6 @@
     <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
     
     <category term="AI定价" scheme="http://coderedeng.github.io/tags/AI%E5%AE%9A%E4%BB%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员</title>
-    <link href="http://coderedeng.github.io/2026/08/18/%E7%99%BE%E5%BA%A6%E5%8F%91%E5%B8%83ERNIE-Bot-4.5-Turbo%EF%BC%9A%E6%96%87%E5%BF%83%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%B6%E6%97%8F%E5%86%8D%E6%B7%BB%E6%96%B0%E6%88%90%E5%91%98/"/>
-    <id>http://coderedeng.github.io/2026/08/18/%E7%99%BE%E5%BA%A6%E5%8F%91%E5%B8%83ERNIE-Bot-4.5-Turbo%EF%BC%9A%E6%96%87%E5%BF%83%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%B6%E6%97%8F%E5%86%8D%E6%B7%BB%E6%96%B0%E6%88%90%E5%91%98/</id>
-    <published>2026-08-18T02:30:00.000Z</published>
-    <updated>2026-09-10T14:56:41.084Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="百度发布ERNIE-Bot-4-5-Turbo：文心大模型家族再添新成员"><a href="#百度发布ERNIE-Bot-4-5-Turbo：文心大模型家族再添新成员" class="headerlink" title="百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员"></a>百度发布ERNIE Bot 4.5 Turbo：文心大模型家族再添新成员</h1><p>2026年8月18日，百度在”百度世界大会2026”上正式发布了新一代大语言模型 <strong>ERNIE Bot 4.5 Turbo</strong>（简称 ERNIE 4.5T），标志着其文心大模型家族再次迎来重要升级。作为百度AI战略的核心产品，ERNIE 系列自2019年首次发布以来，已经走过了7年的技术演进之路。此次发布的4.5 Turbo版本在推理能力、多模态理解和代码生成方面均有显著提升，进一步巩固了百度在中国AI大模型领域的领先地位。</p><h2 id="背景：文心大模型的七年进化史"><a href="#背景：文心大模型的七年进化史" class="headerlink" title="背景：文心大模型的七年进化史"></a>背景：文心大模型的七年进化史</h2><p>ERNIE Bot 系列是百度自研的大语言模型家族，其前身 ERNIE（Enhanced Representation through Knowledge Integration）最早于2019年发布，开创了中文知识增强预训练的先河。从 ERNIE 3.0 到 ERNIE Bot 3.5，再到如今的 4.5 Turbo，百度在模型架构、训练数据和推理效率上持续投入。</p><p>ERNIE 4.5 Turbo 的推出正值全球大模型竞争白热化的阶段——OpenAI 发布了 GPT-5.6，Anthropic 推出了 Claude Sonnet 5，阿里发布了 Qwen3.8-Max，智谱也推出了 GLM-5.2。在这样的背景下，ERNIE 4.5 Turbo 的发布不仅是百度自身技术路线的延续，更是中国大模型阵营向国际前沿水平发起冲击的重要一步。</p><h2 id="ERNIE-4-5-Turbo-的核心亮点"><a href="#ERNIE-4-5-Turbo-的核心亮点" class="headerlink" title="ERNIE 4.5 Turbo 的核心亮点"></a>ERNIE 4.5 Turbo 的核心亮点</h2><h3 id="1-推理能力大幅提升"><a href="#1-推理能力大幅提升" class="headerlink" title="1. 推理能力大幅提升"></a>1. 推理能力大幅提升</h3><p>根据百度的官方数据，ERNIE 4.5 Turbo 在 MMLU（大规模多任务语言理解）基准测试中达到了 <strong>89.2%</strong> 的准确率，相比上一代 ERNIE Bot 3.5 提升了约 6 个百分点。在数学推理方面，模型在 GSM8K（小学级数学问题集）上的得分达到 **94.7%**，接近人类专家水平。</p><p>更值得关注的是，ERNIE 4.5 Turbo 引入了<strong>动态思维链（Dynamic Chain-of-Thought）</strong>技术，能够在复杂推理任务中自动选择最优的推理路径。例如在解决多步逻辑问题时，模型能够根据问题复杂度自适应地展开推理步骤，而不是采用固定的推理模式。这一技术在百度内部评测中使数学和科学问题的解答准确率提升了 12%。</p><h3 id="2-多模态理解能力增强"><a href="#2-多模态理解能力增强" class="headerlink" title="2. 多模态理解能力增强"></a>2. 多模态理解能力增强</h3><p>ERNIE 4.5 Turbo 原生支持文本、图像、音频和视频的多模态输入。在视觉问答（VQA）任务上，模型能够准确识别复杂场景中的物体关系和空间布局，在 VQAv2 基准测试中达到了 <strong>83.1%</strong> 的准确率。</p><p>特别值得一提的是，ERNIE 4.5 Turbo 对中文文档的理解能力得到了显著增强。它能够处理包含表格、图表和公式的混合文档，并从中提取关键信息。百度展示了该模型分析一份包含 50 页财务报表的能力——在不到 30 秒内准确提取了营收趋势、成本结构和利润变化等核心数据，准确率超过 96%。</p><h3 id="3-代码生成与理解"><a href="#3-代码生成与理解" class="headerlink" title="3. 代码生成与理解"></a>3. 代码生成与理解</h3><p>ERNIE 4.5 Turbo 支持 Python、Java、C++、JavaScript 等主流编程语言，在 HumanEval（Python 编程能力测试）基准上达到了 <strong>82.3%</strong> 的通过率，相比 ERNIE Bot 3.5 提升了 10 个百分点。</p><p>模型还引入了<strong>代码补全增强模式</strong>，能够根据上下文自动推断变量类型、函数签名和异常处理逻辑。在百度内部开发者工具中集成测试显示，该模式的代码补全采纳率达到了 **78%**，接近 GitHub Copilot 的水平。此外，ERNIE 4.5 Turbo 还能对现有代码进行重构建议和安全漏洞检测，为开发者提供了更全面的辅助能力。</p><h3 id="4-长文本处理能力"><a href="#4-长文本处理能力" class="headerlink" title="4. 长文本处理能力"></a>4. 长文本处理能力</h3><p>ERNIE 4.5 Turbo 支持高达 <strong>200,000 token</strong> 的上下文窗口，能够一次性处理数十万字的文档或长达数小时的视频转录文本。在长文档摘要任务中，模型能够在保持关键信息完整性的同时，将原文压缩至 10% 以内的篇幅。百度还展示了该模型分析一份 300 页技术白皮书的能力——在不到 2 分钟内生成了结构化的要点总结，并准确回答了基于文档内容的复杂问题。</p><h2 id="技术架构创新"><a href="#技术架构创新" class="headerlink" title="技术架构创新"></a>技术架构创新</h2><p>ERNIE 4.5 Turbo 采用了<strong>混合专家（Mixture of Experts, MoE）</strong>架构，模型总参数量约为 <strong>170B</strong>，但在推理时仅激活约 28B 的参数。这种设计使得模型在保持强大能力的同时，大幅降低了推理成本。相比全参数激活的密集模型，ERNIE 4.5 Turbo 的推理速度提升了约 3 倍，而单次请求的成本则下降了近 60%。</p><p>此外，百度为 ERNIE 4.5 Turbo 引入了<strong>知识蒸馏与强化学习对齐（RLAIF）</strong>技术。在训练过程中，模型首先通过大规模无监督预训练学习通用语言能力，然后利用人类反馈的偏好数据进行微调，最后通过强化学习进一步优化输出质量。这一训练流程使得 ERNIE 4.5 Turbo 在对话流畅度、事实准确性和安全性方面均达到了新的高度。</p><h2 id="生态整合与应用场景"><a href="#生态整合与应用场景" class="headerlink" title="生态整合与应用场景"></a>生态整合与应用场景</h2><p>ERNIE 4.5 Turbo 已经深度集成到百度的多个产品中：</p><ul><li><strong>文心一言 App</strong>：作为核心引擎，为用户提供更智能的对话和创作体验</li><li><strong>百度搜索引擎</strong>：增强搜索结果的理解和生成能力，提供更精准的摘要</li><li><strong>百度地图</strong>：支持自然语言查询路线规划和地点推荐</li><li><strong>小度智能音箱</strong>：提升语音交互的自然度和多轮对话能力</li></ul><p>此外，百度还开放了 ERNIE 4.5 Turbo 的 API 接口，开发者可以通过文心大模型平台（ERNIE Bot Platform）快速集成到自己的应用中。目前已有超过 10,000 家企业注册使用该平台，涵盖金融、医疗、教育等多个行业。</p><h2 id="竞争格局与未来展望"><a href="#竞争格局与未来展望" class="headerlink" title="竞争格局与未来展望"></a>竞争格局与未来展望</h2><p>在中国大模型市场，ERNIE 4.5 Turbo 的发布使百度在技术实力上进一步缩小了与阿里（Qwen3.8-Max）和智谱（GLM-5.2）之间的差距。从基准测试数据来看，ERNIE 4.5 Turbo 的综合能力已经跻身国内第一梯队，尤其在中文理解和长文本处理方面具有独特优势。</p><p>展望未来，百度表示 ERNIE 系列将继续向多模态、自主智能体和具身智能方向演进。据透露，ERNIE Bot 5.0 正在研发中，预计将在 2027 年初发布，届时将支持更复杂的任务规划和跨模态生成能力。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>ERNIE Bot 4.5 Turbo 的发布是百度在 AI 大模型领域的重要里程碑。它不仅展示了中国企业在基础模型技术上的持续进步，也为广大开发者和企业提供了更加强大的 AI 工具。随着文心大模型生态的不断壮大，我们有理由期待 ERNIE 系列在未来带来更多令人惊喜的创新和突破。</p><hr><p><em>本文基于百度官方发布的信息整理，更多技术细节请参考 <a href="https://wenxin.baidu.com/">百度文心大模型官网</a> 或 <a href="https://cloud.baidu.com/doc/WENXINWORKSHOP/s/6nse87wv5">ERNIE Bot API 文档</a> 。</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;百度发布ERNIE-Bot-4-5-Turbo：文心大模型家族再添新成员&quot;&gt;&lt;a href=&quot;#百度发布ERNIE-Bot-4-5-Turbo：文心大模型家族再添新成员&quot; class=&quot;headerlink&quot; title=&quot;百度发布ERNIE Bot 4.5 Tu</summary>
-      
-    
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="ERNIE Bot" scheme="http://coderedeng.github.io/tags/ERNIE-Bot/"/>
-    
-    <category term="百度" scheme="http://coderedeng.github.io/tags/%E7%99%BE%E5%BA%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>吴恩达开源OpenWorker：住进桌面的AI同事，交付成果而非对话</title>
-    <link href="http://coderedeng.github.io/2026/08/16/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BC%80%E6%BA%90OpenWorker%EF%BC%9A%E4%BD%8F%E8%BF%9B%E6%A1%8C%E9%9D%A2%E7%9A%84AI%E5%90%8C%E4%BA%8B%EF%BC%8C%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C%E8%80%8C%E9%9D%9E%E5%AF%B9%E8%AF%9D/"/>
-    <id>http://coderedeng.github.io/2026/08/16/%E5%90%B4%E6%81%A9%E8%BE%BE%E5%BC%80%E6%BA%90OpenWorker%EF%BC%9A%E4%BD%8F%E8%BF%9B%E6%A1%8C%E9%9D%A2%E7%9A%84AI%E5%90%8C%E4%BA%8B%EF%BC%8C%E4%BA%A4%E4%BB%98%E6%88%90%E6%9E%9C%E8%80%8C%E9%9D%9E%E5%AF%B9%E8%AF%9D/</id>
-    <published>2026-08-16T02:00:00.000Z</published>
-    <updated>2026-09-10T14:56:41.082Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="吴恩达开源-OpenWorker：住进桌面的-AI-同事，交付成果而非对话"><a href="#吴恩达开源-OpenWorker：住进桌面的-AI-同事，交付成果而非对话" class="headerlink" title="吴恩达开源 OpenWorker：住进桌面的 AI 同事，交付成果而非对话"></a>吴恩达开源 OpenWorker：住进桌面的 AI 同事，交付成果而非对话</h1><p><strong>7 月 20 日悄悄上线，不到一个月拿下 14,600+ star、2,000+ fork——吴恩达（Andrew Ng）团队开源的 OpenWorker，正在把”AI 同事”从营销话术变成一个可以每天打开的桌面应用。</strong> 它的口号很直白：交付<strong>完成的工作</strong>（finished work），而不是一段聊天记录。</p><p>先做一个容易混淆的澄清：这个 <code>andrewyng/openworker</code> 与此前火爆的 <code>different-ai/openwork</code>（基于 OpenCode 的团队编程协作平台）是两个完全不同的项目，前者是通用桌面 AI 同事，后者专注编程场景，不要搞混。</p><h2 id="背景：从”聊天框”到”数字员工”的范式转移"><a href="#背景：从”聊天框”到”数字员工”的范式转移" class="headerlink" title="背景：从”聊天框”到”数字员工”的范式转移"></a>背景：从”聊天框”到”数字员工”的范式转移</h2><p>过去两年，大模型产品大多停留在对话框形态：你问，它答，剩下的活儿还是你的。而 Agentic AI 的终极目标是反过来的——你说结果，它把中间步骤全部走完。</p><p>OpenWorker 对自己的定位正是如此：一个<strong>住在你桌面上的开源 AI 同事</strong>。官方 README 给出的例子很生活化：”准备一份客户简报”、”整理我的日历”、”查一下这个版本在 Jira 和 GitHub 上分别卡在哪”。它的产出不是建议清单，而是：</p><ul><li>一份排版好的文档、表格或网页，作为文件落在磁盘上</li><li>一条带好数据的 Slack 回复</li><li>一个已经更新完毕的日历</li><li>一个分诊完毕的收件箱</li></ul><p>工作流分四步：你描述想要的结果 → 它拆解任务、跨桌面&#x2F;文件&#x2F;应用执行 → 遇到”后果性操作”（发消息、改日历、执行命令）时<strong>暂停并请求人工批准</strong> → 最终交付成品。这套 human-in-the-loop 设计，是目前 Agent 产品从 Demo 走向可用的关键一环。</p><h2 id="技术架构：三层设计的本地优先-Agent"><a href="#技术架构：三层设计的本地优先-Agent" class="headerlink" title="技术架构：三层设计的本地优先 Agent"></a>技术架构：三层设计的本地优先 Agent</h2><p>OpenWorker 的架构图值得细看：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────┐</span><br><span class="line">│              OpenWorker desktop app            │  原生 Shell + GUI</span><br><span class="line">├────────────────────────────────────────────────┤</span><br><span class="line">│           local agent server (Python)          │  引擎 · 工具 · 连接器</span><br><span class="line">├───────────────┬────────────────┬───────────────┤</span><br><span class="line">│  你的文件      │   你的工具      │   你的模型     │  一切都用你自己的密钥、</span><br><span class="line">│  &amp; 终端        │  25+ 连接器     │  任意厂商      │  在你自己的机器上运行</span><br><span class="line">└───────────────┴────────────────┴───────────────┘</span><br></pre></td></tr></table></figure><p>几个值得关注的工程决策：</p><p><strong>1. 引擎构建在 aisuite 之上。</strong> aisuite 是吴恩达团队维护的轻量 Python 库，提供跨厂商的统一 chat-completions API 和带工具&#x2F;工具箱&#x2F;MCP 支持的 Agent 层。OpenWorker 最初就诞生于 aisuite 仓库内部，后来才独立成项目——官方原话是”这个仓库是 aisuite 能承载什么的一个活参考”。这也意味着模型完全可插拔：OpenAI、Anthropic、Google 原生 API，开放权重厂商，甚至用 Ollama 完全本地跑。</p><p><strong>2. 本地优先的隐私模型。</strong> Agent 循环、对话历史、连接器令牌、模型密钥，全部存在本地 secret store；唯一的云端组件是一个仅负责连接器 OAuth 握手的小服务，而且不注册、用手工创建的 API Key 也照样能用。对企业用户来说，这一点比多跑几个 benchmark 重要得多。</p><p><strong>3. 三语言技术栈各司其职。</strong> Python 后端（FastAPI + uvicorn 本地服务、Textual TUI、MCP 客户端、Playwright 浏览器自动化），React + Tauri 桌面壳（比 Electron 轻得多），再加一个 Rust 写的语音转文字 sidecar。从 <code>pyproject.toml</code> 能看到不少精细考量——比如 PDF 解析选了 <code>pypdfium2</code> 而不是 PyMuPDF，注释里写明原因是 AGPL 许可证不能进 DMG 安装包。</p><p><strong>4. 25+ 连接器覆盖办公全链路。</strong> GitHub、Slack、Jira、Gmail、Google Calendar、HubSpot、邮件、浏览器自动化等。比较有意思的是 Slack 集成的形态：在频道里 @OpenWorker，你桌面上的会话就会被唤起干活，结果作为话题回复返回——IM 变成了 Agent 的入口。</p><h2 id="从源码跑起来"><a href="#从源码跑起来" class="headerlink" title="从源码跑起来"></a>从源码跑起来</h2><p>项目要求 Python 3.10+、Node 20+，桌面壳还需要 Rust 工具链：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/andrewyng/openworker</span><br><span class="line"><span class="built_in">cd</span> openworker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次性引导，创建 .venv（Windows 上建议在 Git Bash 或 WSL 中运行）</span></span><br><span class="line">bash packaging/setup_dev_env.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地 agent server</span></span><br><span class="line">.venv/bin/openworker-server --cwd ~/some/project --port 8765</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个终端启动 UI</span></span><br><span class="line"><span class="built_in">cd</span> surfaces/gui &amp;&amp; npm install &amp;&amp; npm run dev</span><br></pre></td></tr></table></figure><p>普通用户直接下载安装包即可：macOS（Apple Silicon）版本已签名公证并支持自动更新，Windows 10&#x2F;11 x64 版尚未代码签名，SmartScreen 会告警。安全细节上，独立 server 每次启动生成一个仅当前用户可读的 token 文件，桌面版则只在内存里持有启动令牌、从不落盘。</p><p>后端模块的划分也能看出项目的野心：<code>automation/</code> 配合 croniter 做定时任务调度，<code>memory/</code> 提供跨会话记忆（8 月初刚合入），<code>personas/</code> 用 YAML 清单定义角色，还有 <code>risk.py</code>、<code>permissions.py</code>、<code>workspace_trust.py</code> 这几个专门的风险分级与信任模块——Agent 安全正在从口号变成代码。</p><p><strong>5. 依赖选型里的”默认值哲学”。</strong> 翻看依赖清单还能发现更多类似的取舍：网络搜索默认用 DuckDuckGo（<code>ddgs</code>），不强制用户去申请 Tavily 或 Brave 的 API Key；Windows 因为系统不带时区数据库，专门补了 <code>tzdata</code>，否则所有定时任务的命名时区会静默回退到本地时间；MCP 客户端锁死在 1.x 版本，因为 2.0 移除了 <code>streamablehttp_client</code> 会直接破坏现有连接。这些细节说明团队很清楚：一个要装到普通人电脑上的 Agent，”开箱即用”和”静默失败”之间只隔着几个依赖声明。</p><p>对比同赛道的玩家，OpenWorker 的差异点也很清晰：OpenClaw 走的是自托管服务端路线，强调”任何平台、任何系统”的全端覆盖；OpenWork 聚焦开发者团队的编程协作；而 OpenWorker 押注的是<strong>单机桌面场景</strong>——不需要服务器、不需要运维，下载安装、填个 Key 就能干活。三条路线背后其实是同一个判断：通用 Agent 的入口之争，才刚刚开始。</p><h2 id="节奏与隐忧"><a href="#节奏与隐忧" class="headerlink" title="节奏与隐忧"></a>节奏与隐忧</h2><p>项目目前处于公开 Beta，版本推进很快：7 月 22 日到 30 日连发 v0.1.4 到 v0.1.7 四个版本，贡献主要集中在 rohitprasad15 等少数核心成员手中，吴恩达本人以方向把控为主。隐忧也很明显：Windows 版未签名、功能仍在快速变动、官方明确表示会优先按内部路线图开发、不一定会合并方向外的 PR。</p><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>OpenWorker 代表的方向值得所有开发者关注：**Agentic AI 的竞争正在从”谁的模型更强”转向”谁能让 AI 真正交付成品”**。它不追求炫酷的自主性表演，而是把本地运行、模型自由、人工审批这三个”朴素”的原则做成默认值——这恰恰是 AI 同事能被放进真实工作流的前提。对想理解桌面 Agent 架构的工程师来说，这个仓库加上 aisuite，就是一份现成的参考实现。</p><h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul><li><a href="https://github.com/andrewyng/openworker">andrewyng&#x2F;openworker - GitHub</a></li><li><a href="https://openworker.com/">OpenWorker 官网</a></li><li><a href="https://github.com/andrewyng/aisuite">andrewyng&#x2F;aisuite - GitHub</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;吴恩达开源-OpenWorker：住进桌面的-AI-同事，交付成果而非对话&quot;&gt;&lt;a href=&quot;#吴恩达开源-OpenWorker：住进桌面的-AI-同事，交付成果而非对话&quot; class=&quot;headerlink&quot; title=&quot;吴恩达开源 OpenWorker：住</summary>
-      
-    
-    
-    
-    <category term="GitHub开源" scheme="http://coderedeng.github.io/categories/GitHub%E5%BC%80%E6%BA%90/"/>
-    
-    
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="AI智能体" scheme="http://coderedeng.github.io/tags/AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    
-    <category term="OpenWorker" scheme="http://coderedeng.github.io/tags/OpenWorker/"/>
-    
-    <category term="吴恩达" scheme="http://coderedeng.github.io/tags/%E5%90%B4%E6%81%A9%E8%BE%BE/"/>
     
   </entry>
   
