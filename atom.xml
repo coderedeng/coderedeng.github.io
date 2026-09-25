@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-09-23T14:12:16.963Z</updated>
+  <updated>2026-09-25T14:29:08.515Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MiniMax H3发布：开源多模态视频模型如何逼近闭源天花板</title>
+    <link href="http://coderedeng.github.io/2026/09/25/MiniMax-H3%E5%8F%91%E5%B8%83%EF%BC%9A%E5%BC%80%E6%BA%90%E5%A4%9A%E6%A8%A1%E6%80%81%E8%A7%86%E9%A2%91%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E9%80%BC%E8%BF%91%E9%97%AD%E6%BA%90%E5%A4%A9%E8%8A%B1%E6%9D%BF/"/>
+    <id>http://coderedeng.github.io/2026/09/25/MiniMax-H3%E5%8F%91%E5%B8%83%EF%BC%9A%E5%BC%80%E6%BA%90%E5%A4%9A%E6%A8%A1%E6%80%81%E8%A7%86%E9%A2%91%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E9%80%BC%E8%BF%91%E9%97%AD%E6%BA%90%E5%A4%A9%E8%8A%B1%E6%9D%BF/</id>
+    <published>2026-09-25T02:00:00.000Z</published>
+    <updated>2026-09-25T14:29:08.515Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MiniMax-H3发布：开源多模态视频模型如何逼近闭源天花板"><a href="#MiniMax-H3发布：开源多模态视频模型如何逼近闭源天花板" class="headerlink" title="MiniMax H3发布：开源多模态视频模型如何逼近闭源天花板"></a>MiniMax H3发布：开源多模态视频模型如何逼近闭源天花板</h1><h2 id="一、从”单模态玩具”到”全模态创作引擎”：视频生成赛道的分水岭"><a href="#一、从”单模态玩具”到”全模态创作引擎”：视频生成赛道的分水岭" class="headerlink" title="一、从”单模态玩具”到”全模态创作引擎”：视频生成赛道的分水岭"></a>一、从”单模态玩具”到”全模态创作引擎”：视频生成赛道的分水岭</h2><p>过去两年，AI 视频生成几乎成了闭源巨头的专属游乐场。Runway、Pika 等早期玩家受限于算力与数据，难以在画质上逼近商业级产品；而 OpenAI、Google 等大厂虽陆续推出 Sora、Veo 类产品，却始终以 API 形式封闭交付，普通开发者与中小团队只能望洋兴叹。</p><p>这一格局在 <strong>2026年7月31日</strong> 被打破。中国 AI 初创公司 MiniMax 正式开源了其新一代多模态生成模型 <strong>H3</strong>（内部代号 Hailuo 3.0），并同步放出基础版权重。与以往”文本、图像、音频各训一个模型”的做法不同，H3 采用<strong>统一架构</strong>同时处理文本、图像、视频、音频的跨模态生成——这是开源社区首次推出能在 2K 分辨率下原生输出立体声视频的通用模型。</p><p>据 Artificial Analysis 榜单，H3 在文生视频（无音频）榜中以 <strong>Elo 1,303</strong> 位居开源模型第一；在视频编辑任务上更是登顶榜首。更关键的是，它在多项指标上已能正面硬刚闭源竞品，标志着开源多模态模型正式进入”可用甚至好用”的阶段。</p><h2 id="二、核心特性：一个模型，五种生成模式"><a href="#二、核心特性：一个模型，五种生成模式" class="headerlink" title="二、核心特性：一个模型，五种生成模式"></a>二、核心特性：一个模型，五种生成模式</h2><p>H3 的真正突破在于其<strong>全模态统一生成能力</strong>。传统管线需要为文生视频、图生视频、视频编辑分别训练独立模型，而 H3 通过单一架构实现了以下五种核心模式：</p><ul><li><strong>文生视频（Text-to-Video-Audio）</strong>：输入提示词直接生成带原生立体声的视频</li><li><strong>图生视频（Image-to-Video）</strong>：基于单帧图像扩展为动态场景</li><li><strong>视频编辑（Ref2VA）</strong>：支持参考帧引导的局部修改与风格迁移</li><li><strong>跨模态转换</strong>：文本+图像→音频视频、纯音频→可视化等混合输入</li></ul><p>输出规格方面，H3 可生成 <strong>5 至 15 秒、24fps、2K 分辨率</strong>的视频内容。在 16:9 到 9:16 的宽高比范围内，短边达到 1440 像素；在更宽幅（如 2976×1248）格式下约 3.7 百万像素。这一画质已远超早期开源模型的低清标准。</p><h2 id="三、技术解析：FL2VA-与三阶段生成管线"><a href="#三、技术解析：FL2VA-与三阶段生成管线" class="headerlink" title="三、技术解析：FL2VA 与三阶段生成管线"></a>三、技术解析：FL2VA 与三阶段生成管线</h2><p>H3 的架构设计体现了对视频生成本质的深刻理解。整个系统由三个核心组件构成：</p><p><strong>1. H3-Base Omni Transformer（基础模型）</strong><br>这是一个约 <strong>330 亿参数</strong>的稠密（dense）Transformer，作为统一的多模态底座。与 MoE 稀疏激活不同，H3 选择全参数密集计算，以确保跨模态任务的稳定性与一致性——在视频生成这种需要精确时空对齐的任务中，稠密模型往往比稀疏模型更可靠。</p><p><strong>2. FL2VA（前向-反向视频）</strong><br>这是 H3 最具创新性的组件。传统视频生成只关注”向前”的时间轴推进，而 FL2VA 引入了<strong>双向时间建模</strong>：既预测未来帧，也约束历史帧的一致性。这种设计显著提升了长序列视频的连贯性，减少了传统模型常见的闪烁、跳变问题。</p><p><strong>3. H3-Context-IR（上下文参考）</strong><br>该组件负责处理参考引导任务，使模型能够根据用户提供的图像或视频片段进行精准编辑与风格迁移。</p><p>典型的本地部署流程如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> h3 <span class="keyword">import</span> FL2VA, Tokenizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载 tokenizer 与基础模型</span></span><br><span class="line">tokenizer = Tokenizer.from_pretrained(<span class="string">&quot;MiniMaxAI/MiniMax-H3&quot;</span>)</span><br><span class="line">model = FL2VA.from_pretrained(<span class="string">&quot;MiniMaxAI/MiniMax-H3&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文生视频：文本+可选参考帧</span></span><br><span class="line">video = model.generate(</span><br><span class="line">    prompt=<span class="string">&quot;一只机器人在霓虹城市中奔跑，电影级光影&quot;</span>,</span><br><span class="line">    reference_image=<span class="literal">None</span>,      <span class="comment"># 可传入参考图进行引导</span></span><br><span class="line">    duration=<span class="number">10</span>,               <span class="comment"># 生成时长（秒）</span></span><br><span class="line">    resolution=<span class="string">&quot;2K&quot;</span>,           <span class="comment"># 输出分辨率</span></span><br><span class="line">    fps=<span class="number">24</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存为带立体声的 MP4</span></span><br><span class="line">video.save(<span class="string">&quot;output.mp4&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;已生成 <span class="subst">&#123;video.duration&#125;</span>s 视频，分辨率 <span class="subst">&#123;video.resolution&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure><p><strong>2K 再生成流水线</strong>是 H3 的另一大亮点。由于全精度 2K 渲染对显存要求极高，MiniMax 设计了混合工作流：本地可完成低清基础渲染（完全离线），而最终 2K 高清化步骤则通过云端 API 完成。这种”本地+云”的分工既保护了隐私，又兼顾了画质上限——是开源模型在工程落地上的聪明取舍。</p><h2 id="四、影响与未来展望：开源多模态的临界点"><a href="#四、影响与未来展望：开源多模态的临界点" class="headerlink" title="四、影响与未来展望：开源多模态的临界点"></a>四、影响与未来展望：开源多模态的临界点</h2><p>H3 的意义远超一款产品本身，它标志着三个重要趋势的交汇：</p><p><strong>1. 开源权重 ≠ 完全开放，但已足够强大</strong><br>需注意，H3 采用自定义许可协议（minimax-h3-community-license-agreement），属于”开源权重”而非 OSI 认证的完全开源软件。本地可运行基础版渲染，但完整 2K 工作流仍需云端参与。这种折中方案在商业可持续性与开放共享之间找到了平衡点。</p><p><strong>2. 实时生成成为现实</strong><br>自 2026年9月1日起，开源基础权重可通过 vLLM-Omni 配合 FastVideo 的 FastH3 加速引擎实现实时生成：一个完整的 10.1 秒视频加音频 MP4 约 <strong>8.7 秒</strong>即可渲染完成——比播放速度还快。这意味着交互式、实时的视频创作场景成为可能。</p><p><strong>3. 打破闭源垄断，降低创作门槛</strong><br>当开源模型能在画质上逼近闭源竞品时，中小团队与独立开发者终于能以极低成本构建自己的视频生成应用。无需支付高昂 API 费用，也无需依赖单一供应商——这正是开源生态的核心价值。</p><p>当然，挑战依然存在：H3 在训练与微调上仍弱于顶级闭源模型，自定义许可也对商用场景有一定限制。但不可否认的是，H3 已经证明了<strong>开源多模态模型正在跨越那道曾经看似不可逾越的天花板</strong>。当大模型竞争从”参数规模”转向”实际可用性”时，像 H3 这样的开源项目，或许才是推动整个行业普惠化的真正力量。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;MiniMax-H3发布：开源多模态视频模型如何逼近闭源天花板&quot;&gt;&lt;a href=&quot;#MiniMax-H3发布：开源多模态视频模型如何逼近闭源天花板&quot; class=&quot;headerlink&quot; title=&quot;MiniMax H3发布：开源多模态视频模型如何逼近闭源天花</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="MiniMax H3" scheme="http://coderedeng.github.io/tags/MiniMax-H3/"/>
+    
+    <category term="开源多模态" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E5%A4%9A%E6%A8%A1%E6%80%81/"/>
+    
+  </entry>
   
   <entry>
     <title>Agent Substrate 登顶 GitHub Trending：把 AI 智能体变成&quot;可持久化的进程&quot;</title>
@@ -525,32 +553,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;背景：Agent-能干活了，但”敢不敢给它权限”成了新瓶颈&quot;&gt;&lt;a href=&quot;#背景：Agent-能干活了，但”敢不敢给它权限”成了新瓶颈&quot; class=&quot;headerlink&quot; title=&quot;背景：Agent 能干活了，但”敢不敢给它权限”成了新瓶颈&quot;&gt;&lt;/a</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星</title>
-    <link href="http://coderedeng.github.io/2026/08/25/YC%E5%BC%80%E6%BA%90QM%EF%BC%9A%E6%8A%8A%E7%BC%96%E7%A0%81Agent%E5%8F%98%E6%88%90%E5%85%AC%E5%8F%B8%E5%90%8C%E4%BA%8B%E7%9A%84%E5%A4%9A%E7%8E%A9%E5%AE%B6%E5%8D%8F%E4%BD%9C%E6%A1%86%E6%9E%B6/"/>
-    <id>http://coderedeng.github.io/2026/08/25/YC%E5%BC%80%E6%BA%90QM%EF%BC%9A%E6%8A%8A%E7%BC%96%E7%A0%81Agent%E5%8F%98%E6%88%90%E5%85%AC%E5%8F%B8%E5%90%8C%E4%BA%8B%E7%9A%84%E5%A4%9A%E7%8E%A9%E5%AE%B6%E5%8D%8F%E4%BD%9C%E6%A1%86%E6%9E%B6/</id>
-    <published>2026-08-25T07:30:00.000Z</published>
-    <updated>2026-09-10T14:56:41.080Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景：个人助理很好，但公司需要的是”同事”"><a href="#背景：个人助理很好，但公司需要的是”同事”" class="headerlink" title="背景：个人助理很好，但公司需要的是”同事”"></a>背景：个人助理很好，但公司需要的是”同事”</h2><p>Claude Code、Codex、OpenCode 这类编码 Agent 已经证明了一个事实：给足权限和上下文，模型可以独立跑完一个工程任务。但它们的形态几乎都是<strong>单人工具</strong>——你的终端、你的凭据、你的会话。当一家创业公司想让整个团队都用上 Agent 时，问题立刻涌现：</p><ul><li>每个人的 Agent 配置互相隔离，经验无法沉淀；</li><li>共享一个 Agent？权限和记忆全搅在一起，谁改坏了都不知道；</li><li>Slack 里 @一下就能干活的需求，本地 CLI 根本接不住。</li></ul><p>7月29日，YC（Y Combinator）开源了 <strong>QM</strong>——“multiplayer agent harness for work”。<strong>三周时间 14,000+ Star、MIT 协议</strong>，定位非常明确：不是给个人的助理，而是给公司的同事系统。</p><h2 id="核心设计：每个人一个隔离工作区，每个房间一套共享状态"><a href="#核心设计：每个人一个隔离工作区，每个房间一套共享状态" class="headerlink" title="核心设计：每个人一个隔离工作区，每个房间一套共享状态"></a>核心设计：每个人一个隔离工作区，每个房间一套共享状态</h2><p>QM 的基本单元是 <strong>scope（作用域）</strong>——每个人、每个 Slack 频道&#x2F;项目都有自己的 scope，各自拥有独立的：</p><ul><li>记忆（memory）与文件空间</li><li>keychain 视图与登录态服务</li><li>权限策略与 cron 任务</li><li>持久化沙箱（durable sandbox）——Agent 装的工具会一直装着，下次接着用</li></ul><p>个人 scope 让你把 Agent 调成”自己的”，共享 scope 让团队在频道和项目里协作。同一套身份和配置在 <strong>Slack 和 Web UI 之间无缝携带</strong>：早上在 Slack 频道里布置的任务，下午可以在网页端继续跟进。</p><p>架构上是一个无头核心（headless core）+ 可选插件的模型：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Postgres（会话 · 记忆 · 队列）</span><br><span class="line">        │</span><br><span class="line">Headless Core: API / 身份 / 策略 / 调度器</span><br><span class="line">        ├── Agent Loop（Pi、OpenCode、Codex、Claude Code 任选）</span><br><span class="line">        └── Per-scope Sandbox（文件 · 工具 · 登录态服务）</span><br><span class="line"></span><br><span class="line">Web UI / Admin Panel / Public Portal —— 核心 HTTP API 上的可选插件</span><br><span class="line">Slack —— 进程内插件，由 core 直接启动和监督</span><br></pre></td></tr></table></figure><p>核心用 TypeScript + Fastify 跑在 Node 上，Slack 侧用 Bolt。所有”公司特定”的东西——组织配置、自定义工具与技能、沙箱镜像、基础设施——都放在一个 <strong>deployment directory</strong> 里，由 <code>qm</code> CLI 校验和部署。每个底座（harness、会话存储、沙箱、记忆）都在接口后面，生产实现可以整体替换。</p><h2 id="Harness-无关：Pi、OpenCode、Codex、Claude-Code-驱动同一个核心"><a href="#Harness-无关：Pi、OpenCode、Codex、Claude-Code-驱动同一个核心" class="headerlink" title="Harness 无关：Pi、OpenCode、Codex、Claude Code 驱动同一个核心"></a>Harness 无关：Pi、OpenCode、Codex、Claude Code 驱动同一个核心</h2><p>QM 最反”厂商锁定”的设计是 <strong>harness 可插拔</strong>：Agent loop 层面对 Pi、OpenCode、Codex、Claude Code 一视同仁，管理员在组织层面决定哪些 harness 和模型可用。部署不绑定任何单一供应商——今天全公司用 Claude Code，下个月部分团队切 Codex，只是配置变更而不是迁移工程。</p><p>配套的能力面也很完整：</p><ul><li><strong>共享 Skills</strong>：技能按 scope 归属、可按授权分享，管理员可将其提升到全组织，还支持从 git 仓库导入 skill pack；</li><li><strong>后台工作</strong>：cron、watch、入站 webhook 让 Agent 在没人盯着的时候继续干活——定时整理收件箱（自动打标签 + 起草回复）、监控 CI、跟踪项目频道里的进展都是官方示例场景；</li><li><strong>内部 Web App</strong>：Agent 可以搭一个内部应用并发布给指定的人，数据保持更新。</li></ul><h2 id="安全模型：三档姿态-不可绕过的硬规则"><a href="#安全模型：三档姿态-不可绕过的硬规则" class="headerlink" title="安全模型：三档姿态 + 不可绕过的硬规则"></a>安全模型：三档姿态 + 不可绕过的硬规则</h2><p>多玩家意味着权限必须分层。QM 沿用了本地编码 Agent 的哲学——<strong>Agent 以所服务之人的身份和凭据行动，一切操作可审计</strong>——并在其上提供组织级安全姿态：</p><ul><li><strong>Strict</strong>：除两个白名单工具外，每次 harness 工具调用都暂停等待人工批准；</li><li><strong>Auto（默认）</strong>：分类器先对带来源标签的外部数据和工具结果做筛查，再交给模型，筛查器本身可替换成自研的；</li><li><strong>Dangerous</strong>：不筛查、不暂停——但预声明的命令策略（递归删除、破坏性 SQL 等硬拒绝规则）在每一档下都生效，包括 Dangerous。</li></ul><p>对要上生产的团队来说，”最危险档位也有不可绕过的底线”这个设计比单纯的开关更让人放心。</p><h2 id="影响与展望"><a href="#影响与展望" class="headerlink" title="影响与展望"></a>影响与展望</h2><p>QM 踩中的是 Agent 落地的下一个断层：**从”个人生产力工具”到”组织基础设施”**。过去半年大家争论的是单个 Agent 能不能干活，现在的问题是——当十个人、十个频道同时用 Agent，记忆怎么隔离、经验怎么共享、权限怎么审计、账单怎么算？QM 给出的答案是一套 scope 化的状态管理 + 可插拔的 harness 层 + Slack 原生入口。</p><p>由 YC 亲自下场开源也值得玩味：作为最懂创业公司工作流的机构，它选择把”多玩家 Agent 协作框架”做成 MIT 协议的基础设施，而不是内部工具——这等于向整个生态宣告了它的判断：<strong>Agent 的终局形态是组织成员，不是个人玩具</strong>。</p><p>接下来值得观察两点：一是 harness 可插拔层会不会成为事实标准（类似 LLM 界的 OpenAI-compatible API）；二是 scope 化的记忆&#x2F;权限模型能否经受住真实团队的规模考验。三周 14K 星说明这个方向的需求已经压不住了。</p><p><strong>参考链接：</strong></p><ul><li>GitHub: <a href="https://github.com/yc-software/qm">https://github.com/yc-software/qm</a></li><li>YC 官网: <a href="https://www.ycombinator.com/">https://www.ycombinator.com</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;背景：个人助理很好，但公司需要的是”同事”&quot;&gt;&lt;a href=&quot;#背景：个人助理很好，但公司需要的是”同事”&quot; class=&quot;headerlink&quot; title=&quot;背景：个人助理很好，但公司需要的是”同事”&quot;&gt;&lt;/a&gt;背景：个人助理很好，但公司需要的是”同事”&lt;/</summary>
       
     
     
