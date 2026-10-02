@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-01T20:47:46.396Z</updated>
+  <updated>2026-10-02T14:11:17.000Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gemini 4 Argon发布：1M输出上限与&quot;防御优先&quot;的AI芯片级较量</title>
+    <link href="http://coderedeng.github.io/2026/10/02/Gemini-4-Argon%E5%8F%91%E5%B8%83/"/>
+    <id>http://coderedeng.github.io/2026/10/02/Gemini-4-Argon%E5%8F%91%E5%B8%83/</id>
+    <published>2026-10-02T02:00:00.000Z</published>
+    <updated>2026-10-02T14:11:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Gemini-4-Argon发布：1M输出上限与”防御优先”的AI芯片级较量"><a href="#Gemini-4-Argon发布：1M输出上限与”防御优先”的AI芯片级较量" class="headerlink" title="Gemini 4 Argon发布：1M输出上限与”防御优先”的AI芯片级较量"></a>Gemini 4 Argon发布：1M输出上限与”防御优先”的AI芯片级较量</h1><p>2026年9月30日，Google DeepMind 正式推出 <strong>Gemini 4 Argon</strong>——这是 Gemini 4 系列的首款旗舰模型，也是 Google 迄今最先进的开源前沿模型。与过去几年各家实验室”闭源+限量开放”的节奏不同，Argon 选择以完全开源的姿态切入由 OpenAI GPT-6 Astra、Anthropic Claude Opus 5.5 把持的顶级战场。它的定位非常明确：<strong>真实世界的软件工程、企业级知识工作（法律&#x2F;金融），以及自主网络安全防御</strong>。</p><h2 id="一、为什么是-Argon：命名背后的战略信号"><a href="#一、为什么是-Argon：命名背后的战略信号" class="headerlink" title="一、为什么是 Argon：命名背后的战略信号"></a>一、为什么是 Argon：命名背后的战略信号</h2><p>Argon 这个名字取自惰性气体元素，暗示着 Google 想让它成为”稳定、可靠、不轻易反应”的基础设施级模型。在 GPT-6、Claude Opus 5.5 还在单点冲刺峰值能力的当下，Google 选择了一条差异化路线——<strong>不是比谁的分母更大，而是比谁能把长时程任务一次跑完</strong>。</p><p>这一判断源于一个工程现实：当 AI Agent 开始连续调用工具、检索知识库、跨多轮推理时，”一问一答”的短程交互模式已经不够用。模型需要在单次运行中输出数十万 token 而不被长度上限打断——这正是 Argon 的核心战场。</p><h2 id="二、核心特性：1M-输出上限与开源姿态"><a href="#二、核心特性：1M-输出上限与开源姿态" class="headerlink" title="二、核心特性：1M 输出上限与开源姿态"></a>二、核心特性：1M 输出上限与开源姿态</h2><p>Argon 最引人注目的规格是<strong>输出上限从上一代的 64K tokens 跃升到 1 million tokens</strong>，约 15 倍的增长。这意味着模型可以在一次推理轨迹中完成整个模块的重写、一份长篇技术报告的起草，或一个复杂问题的端到端求解，而无需将任务切分后拼接碎片结果。</p><p>对 Agent 工作负载而言，这一变化的意义在于：</p><ul><li><strong>减少 hand-off</strong>：代码库级重构不再需要把大任务拆成数十个小调用再手动合并；</li><li><strong>更完整的推理链</strong>：长上下文解码时 KV cache 可以留在片上，避免跨 GPU 数据搬运；</li><li><strong>“Long Decode Continuation”特性</strong>：允许在多次调用之间暂停和恢复推理，为超长时间任务提供了工程上的弹性。</li></ul><p>与此同时，Argon 以 Apache 2.0 风格的开源授权开放权重——这是 Google 继 Gemini 系列开源策略后的又一次押注，意在用生态规模对抗 CUDA 的软件惯性。</p><h2 id="三、技术分析：benchmark-上的得与失"><a href="#三、技术分析：benchmark-上的得与失" class="headerlink" title="三、技术分析：benchmark 上的得与失"></a>三、技术分析：benchmark 上的得与失</h2><p>Google DeepMind 公布的基准测试中，Argon 在多个维度表现亮眼：</p><table><thead><tr><th>Benchmark</th><th>Gemini 4 Argon</th><th>GPT-6 Astra</th><th>Claude Opus 5.5</th></tr></thead><tbody><tr><td>DeepSWE v1.1（agentic 编码）</td><td><strong>77.9%</strong></td><td>74.1%</td><td>74.2%</td></tr><tr><td>AutomationBench（工作流自动化）</td><td><strong>51.3%</strong></td><td>41.4%</td><td>31.4%</td></tr><tr><td>Vals Index（知识工作）</td><td><strong>68.9%</strong></td><td>63.1%</td><td>67.0%</td></tr><tr><td>Harvey Legal Agent（法律）</td><td><strong>19.6%</strong></td><td>5.4%</td><td>3.8%</td></tr><tr><td>CWE-bench v1（网络安全修复）</td><td><strong>68.0%</strong></td><td>68.0%</td><td>67.0%</td></tr><tr><td>Terminal-Bench 4.0（编码）</td><td>57.4%</td><td>58.2%</td><td><strong>66.4%</strong></td></tr><tr><td>FrontierSWE v2（agentic 编码）</td><td>55.0%</td><td><strong>65.5%</strong></td><td>62.3%</td></tr></tbody></table><p>数据揭示了一个清晰的战略图景：Argon 在<strong>企业知识工作、法律&#x2F;金融 Agent、以及网络安全修复</strong>维度全面领先，但在纯编码的 Terminal-Bench 和 FrontierSWE 上仍落后于 GPT-6 Astra 和 Claude Opus 5.5。这说明 Google 并没有追求”全能冠军”，而是把资源集中在它最有商业价值的细分赛道。</p><p>在安全领域，Argon 实现了<strong>自主发现、验证并修补软件漏洞</strong>的能力——这是它在 CWE-bench v1 上取得 68%（与 GPT-6 Astra 并列第一）背后的工程基础。Google 选择让 Argon <strong>优先向 Fairwind Program 中的安全防御者开放</strong>，而非面向所有开发者，这一”防御优先”的发布策略本身就传递了强烈的信号：前沿模型的安全治理正在从”事后补丁”转向”设计即安全”。</p><h2 id="四、定价与可及性：半价切入高端市场"><a href="#四、定价与可及性：半价切入高端市场" class="headerlink" title="四、定价与可及性：半价切入高端市场"></a>四、定价与可及性：半价切入高端市场</h2><p>Argon 的定价策略极具攻击性：</p><ul><li><strong>入门价</strong>：$2 &#x2F; 百万 input tokens，$10 &#x2F; 百万 output tokens；</li><li><strong>缓存输入</strong>：95% 折扣，即 $0.10 &#x2F; 百万；</li><li><strong>入门期后</strong>：涨至 $4 &#x2F; $20。</li></ul><p>作为对照，Claude Opus 5.5 为 $4&#x2F;$20，GPT-6 Astra 和 Claude Fable 5.1 则为 $10&#x2F;$50。这意味着 Argon 在入门价上仅为 Opus 5.5 的<strong>一半</strong>。一个具体的例子：一次读取 1M input、输出 200K tokens 的 Agent 任务，在 Argon 上约 $4，在 Opus 5.5 上 $8，在 GPT-6 Astra 上则高达 $20。</p><p>可及性方面，Argon <strong>没有免费档</strong>。首批开放对象是付费 API 用户和 Google AI Ultra 订阅者，同时通过 Fairwind Program 向经过审核的安全研究者开放。官方尚未就免费 Gemini App 是否纳入 Argon 作出说明。</p><h2 id="五、影响与未来展望"><a href="#五、影响与未来展望" class="headerlink" title="五、影响与未来展望"></a>五、影响与未来展望</h2><p>Gemini 4 Argon 的发布标志着三条趋势的交汇：</p><ol><li><p><strong>输出上限成为新竞争维度</strong>。当各家模型的输入上下文都已突破百万级，”能一次写多少”正在成为区分 Agent 实用性的关键指标。1M 输出上限让长时程任务从”技术上可行”迈向”工程上经济”。</p></li><li><p><strong>“防御优先”成为前沿模型的新范式</strong>。Argon 率先向安全防御者开放、并在 CWE-bench 上取得顶级表现，暗示着未来 frontier model 的安全能力将不再是附加功能，而是核心卖点。这对企业采购意味着：选择模型不再只是比性能，还要比它能否主动守护你的系统。</p></li><li><p><strong>开源对抗闭源的生态战争</strong>。Google 用开源授权 + 低价策略正面挑战 NVIDIA CUDA 的软件惯性和 OpenAI&#x2F;Anthropic 的闭源护城河。当推理成本曲线因竞争而持续下探，中小团队部署私有化 Agent 的门槛将进一步降低。</p></li></ol><p>当然，Argon 在纯编码基准上的落后也提醒我们：前沿模型的竞争尚未定型。Google 用”企业知识工作 + 安全防御”作为切入点，能否真正撼动 OpenAI 和 Anthropic 在开发者心智中的地位，仍需时间验证。但可以肯定的是，当一家巨头愿意把最先进的模型开源并半价出售时，整个行业的定价锚点和能力标准都将被重新定义。</p><p>Argon 不是终点——它是 AI 从”建议者”迈向”防御者与建设者”的一个清晰路标。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Gemini-4-Argon发布：1M输出上限与”防御优先”的AI芯片级较量&quot;&gt;&lt;a href=&quot;#Gemini-4-Argon发布：1M输出上限与”防御优先”的AI芯片级较量&quot; class=&quot;headerlink&quot; title=&quot;Gemini 4 Argon发布</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="Google Gemini" scheme="http://coderedeng.github.io/tags/Google-Gemini/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenAI砍半定价引爆前沿价格战：GPT-6 Sol/Luna与Claude Opus 5.5同日对决</title>
@@ -66,9 +92,9 @@
     <category term="热门开源项目" scheme="http://coderedeng.github.io/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
     <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     <category term="代码审查" scheme="http://coderedeng.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
@@ -537,34 +563,6 @@
     <category term="MoE" scheme="http://coderedeng.github.io/tags/MoE/"/>
     
     <category term="LLM架构" scheme="http://coderedeng.github.io/tags/LLM%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin</title>
-    <link href="http://coderedeng.github.io/2026/09/07/AMD%E5%8F%91%E5%B8%83MI455X%E4%B8%8EHelios/"/>
-    <id>http://coderedeng.github.io/2026/09/07/AMD%E5%8F%91%E5%B8%83MI455X%E4%B8%8EHelios/</id>
-    <published>2026-09-07T02:00:00.000Z</published>
-    <updated>2026-10-01T20:46:48.773Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA-Vera-Rubin"><a href="#AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA-Vera-Rubin" class="headerlink" title="AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin"></a>AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA Vera Rubin</h1><h2 id="一、从”单卡对标”到”机架级对抗”：AMD的第二次豪赌"><a href="#一、从”单卡对标”到”机架级对抗”：AMD的第二次豪赌" class="headerlink" title="一、从”单卡对标”到”机架级对抗”：AMD的第二次豪赌"></a>一、从”单卡对标”到”机架级对抗”：AMD的第二次豪赌</h2><p>在 NVIDIA 于 CES 2026 抛出被称为”AI超级计算机”的 Vera Rubin NVL72 后，整个行业的目光都聚焦于这家绿色巨头如何用六颗协同芯片构建机架级护城河。彼时，AMD 和 Intel 仍被普遍认为停留在”单卡参数追赶”的阶段——直到 AMD 在 Advancing AI 2026 活动上正式推出 <strong>Instinct MI455X</strong> 与配套的 <strong>Helios</strong> 机架方案，才真正让竞争回到同一张牌桌。</p><p>MI455X 是 AMD MI400 系列的旗舰成员，基于全新的 <strong>CDNA 5 架构</strong>、采用 TSMC N2（N3P）先进制程制造。但真正让业界侧目的是它背后的 Helios：这不是一张孤立的加速卡，而是一套以机架为单位的完整 AI 计算系统。AMD 的战略意图很明确——既然在单颗 GPU 的绝对算力上难以瞬间超越 Rubin，那就用”内存容量 + 带宽 + 机架级互联”的组合拳，把竞争拉到自己熟悉的赛道。</p><h2 id="二、核心规格：432GB-HBM4-与-1-7-PB-x2F-s-的带宽暴力美学"><a href="#二、核心规格：432GB-HBM4-与-1-7-PB-x2F-s-的带宽暴力美学" class="headerlink" title="二、核心规格：432GB HBM4 与 1.7 PB&#x2F;s 的带宽暴力美学"></a>二、核心规格：432GB HBM4 与 1.7 PB&#x2F;s 的带宽暴力美学</h2><p>MI455X 最引人注目的参数是显存。每块 GPU 配备 <strong>432GB HBM4</strong>，相比 NVIDIA GB200 所用的方案高出约 50%，内存带宽达到 <strong>23.3 TB&#x2F;s</strong>。作为对照，NVIDIA Vera Rubin 单卡为 288GB HBM4、22 TB&#x2F;s——AMD 在”显存容量”这一维度上明确领先。</p><p>算力方面，MI455X 支持 NVIDIA 力推的 Open Compute <strong>MXFP4 &#x2F; MXFP8</strong> 低精度格式（而非 CUDA 生态独占的 NVFP4），峰值性能可达 <strong>40.26 PFLOPS（MXFP4）</strong> 与 <strong>22.6 PFLOPS（FP32 密集）</strong>。</p><p>而 Helios 机架才是 AMD 的真正底牌。整套系统由 <strong>72 块 MI455X</strong> 组成，提供：</p><ul><li><strong>总显存 31TB HBM4</strong></li><li><strong>聚合内存带宽约 1.7 PB&#x2F;s</strong>（即 1,677,600 GB&#x2F;s）</li><li><strong>约 2.9 FP4 exaFLOPS 推理算力</strong>（OCP MXFP8 下约 1.4 exaFLOPS）</li></ul><p>这套数字直接对标 NVIDIA 的 NVL72 机架。在长上下文推理时代，模型预填充阶段本质是”带宽受限”而非”算力受限”——31TB 高速显存 + 1.7 PB&#x2F;s 带宽的组合，意味着 Helios 能够把整个大模型的激活值尽量留在片上，减少跨 GPU 的数据搬运。这正是 AMD 试图绕开 NVIDIA CUDA 算力优势、在”内存墙”问题上正面突破的思路。</p><h2 id="三、技术解析：机架即产品，CDNA-5-的协同设计"><a href="#三、技术解析：机架即产品，CDNA-5-的协同设计" class="headerlink" title="三、技术解析：机架即产品，CDNA 5 的协同设计"></a>三、技术解析：机架即产品，CDNA 5 的协同设计</h2><p>Helios 与 Rubin NVL72 最大的结构差异在于<strong>互联方式</strong>。NVIDIA 用 NVLink C2C 构建 CPU↔GPU 的缓存一致性互联；AMD 则采用 <strong>UALink 与 Ultra Ethernet（超以太网）</strong> 作为机架级 scale-out 的骨干，通过两块扩展板卡连接各计算节点。这种开放互联标准的意义在于：它降低了 AMD 对 proprietary 私有协议的依赖，也为多供应商生态留出了空间。</p><p>在软件层面，Helios 深度绑定 <strong>ROCm</strong> 平台与 AMD 自研的 <strong>MIVisionX &#x2F; MIOpen</strong> 库，并针对 MXFP4&#x2F;MXFP8 做了算子优化。AMD 反复强调其 ROCm 对开放精度格式的原生支持——这是它向 NVIDIA CUDA 生态发起挑战的核心软件抓手。</p><p>Helios 还引入了灵活的<strong>分区与多租户能力</strong>：一个 72-GPU 机架可被切分为从 4 块 GPU（共享同一计算托盘内的 CPU）到整柜不等的虚拟 pod，兼顾专用部署与资源共享。对云厂商而言，这意味着更高的机柜利用率和更精细的成本核算。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────── AMD Helios Rackscale ─────────────────────┐</span><br><span class="line">│  72 × Instinct MI455X (CDNA 5, 432GB HBM4 each)                   │</span><br><span class="line">│   ├─ 总显存：31TB HBM4                                            │</span><br><span class="line">│   ├─ 聚合带宽：~1.7 PB/s (UALink + Ultra Ethernet)                │</span><br><span class="line">│   └─ 推理算力：~2.9 FP4 exaFLOPS                                  │</span><br><span class="line">│                                                                   │</span><br><span class="line">│  Host: AMD EPYC Gen6 CPU（提供 PCIe/协处理支持）                   │</span><br><span class="line">└───────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure><h2 id="四、影响与未来展望：AI-芯片进入”三足鼎立”的机架时代"><a href="#四、影响与未来展望：AI-芯片进入”三足鼎立”的机架时代" class="headerlink" title="四、影响与未来展望：AI 芯片进入”三足鼎立”的机架时代"></a>四、影响与未来展望：AI 芯片进入”三足鼎立”的机架时代</h2><p>MI455X 与 Helios 的意义，不在于它是否立刻在跑分上击败 Rubin，而在于它<strong>验证了”机架级开放方案”的商业可行性</strong>。当 NVIDIA 用”极端协同设计”封装出由六颗芯片组成的系统时，AMD 选择了另一条路：用成熟制程（N3P）、开放互联标准（UALink&#x2F;Ultra Ethernet）和超大显存，把”内存墙”问题转化为自身的护城河。</p><p>至此，AI 算力市场的三足鼎立格局已清晰成形：<strong>NVIDIA Vera Rubin &#x2F; AMD MI455X-Helios &#x2F; Intel Gaudi4</strong>。NVIDIA 胜在 CUDA 生态与 NVFP4 的极致优化；Intel 押注 18A 制程试图成为”第三极”；而 AMD 则用 432GB HBM4 和机架级带宽，证明了自己不再是跟随者。</p><p>对开发者而言，真正的看点在于 ROCm 能否真正接住 MXFP4&#x2F;MXFP8 的开放生态——如果 AMD 的软件栈能在推理场景做到与 CUDA 相近的开发体验，那么”第二供应商”将不再是一句空话。黄仁勋用”AI工厂”重新定义了 GPU，而 AMD 正在证明：这座工厂，未必只能由一家公司建造。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA-Vera-Rubin&quot;&gt;&lt;a href=&quot;#AMD发布MI455X与Helios：用72卡机架正面硬刚NVIDIA-Vera-Rubin&quot; class=&quot;headerlink&quot; title=&quot;</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI芯片" scheme="http://coderedeng.github.io/tags/AI%E8%8A%AF%E7%89%87/"/>
-    
-    <category term="AMD MI455X" scheme="http://coderedeng.github.io/tags/AMD-MI455X/"/>
-    
-    <category term="Helios" scheme="http://coderedeng.github.io/tags/Helios/"/>
     
   </entry>
   
