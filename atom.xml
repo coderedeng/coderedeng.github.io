@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-02T14:11:17.000Z</updated>
+  <updated>2026-10-03T14:09:53.333Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VISTA发布：给多模态模型装上&quot;长时程视觉&quot;，ARC-AGI-3满分通关</title>
+    <link href="http://coderedeng.github.io/2026/10/03/VISTA%E8%A7%86%E8%A7%89%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6%E5%8F%91%E5%B8%83/"/>
+    <id>http://coderedeng.github.io/2026/10/03/VISTA%E8%A7%86%E8%A7%89%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6%E5%8F%91%E5%B8%83/</id>
+    <published>2026-10-03T02:00:00.000Z</published>
+    <updated>2026-10-03T14:09:53.333Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实"><a href="#一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实" class="headerlink" title="一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实"></a>一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实</h2><p>过去两年，多模态大模型的感知能力突飞猛进——它们能读懂图片、转写音频、甚至实时视频对话。但一旦进入<strong>交互式视觉环境</strong>（需要边看边决策、边行动边推理的场景），前沿模型的表现却屡屡令人失望。</p><p>MIT 在 ARC-AGI-3 基准上揭示了这一痛点。ARC-AGI-3 是一套交互视觉游戏集合：智能体必须在完全陌生的规则下，通过不断观察屏幕反馈来发现规律并达成目标。传统做法把这个问题当成”语言问题”处理——给 LLM 一份环境文本化、结构化的描述（比如网格坐标矩阵），让它用世界模型在脑内推理。结果呢？官方基线下，GPT-5.6 Sol 仅拿到 <strong>13.33</strong> 的 Relative Human Action Efficiency (RHAE) 分，Claude Opus 5.0 高努力模式也只有 <strong>40.68</strong>。</p><p>这个数字意味着：即便用最前沿的模型，让它在陌生视觉世界里”靠推理找规则”，表现还不如一个第一次上手的人类玩家。问题不在模型不够聪明，而在于<strong>它失去了对原始视觉证据的直接访问权</strong>——文本化过程把宝贵的空间线索、颜色、相对位置全部压扁成了符号。</p><h2 id="二、VISTA-的核心思想：把”看”还给模型"><a href="#二、VISTA-的核心思想：把”看”还给模型" class="headerlink" title="二、VISTA 的核心思想：把”看”还给模型"></a>二、VISTA 的核心思想：把”看”还给模型</h2><p>针对这一症结，MIT 团队（含 Kaiming He 组）提出了 <strong>VISTA</strong>——一个面向交互世界的视觉智能体框架（Visual Harness for Reasoning in an Interactive World）。它的理念朴素却深刻：<strong>不要让模型靠脑补推理，而是让它始终看着真实画面行动。</strong></p><p>VISTA 的关键设计有三点：</p><ol><li><strong>无损视觉记忆（Lossless Visual Memory）</strong>：环境帧被原样保存为视觉记忆，而非转写为文本摘要。模型在推理时可以随时回看最初的证据，保留每一个细节级别的信息。</li><li><strong>主动检索与重组</strong>：模型能够主动从记忆中调取历史观测，并根据当前任务重新组织视觉输入——不是被动接收，而是主动”翻旧账”。</li><li><strong>极简工具集</strong>：VISTA 只给模型两个核心能力——<code>inspect</code>（检查环境）和 <code>read_pixels</code>（读取像素）。它刻意不做文本化的世界模型，把理解环境的责任交还给多模态模型本身。</li></ol><p>这种”少即是多”的设计正是 VISTA 的聪明之处：它没有堆砌复杂的符号系统，而是用最小的干预解锁了现有模型的潜力。</p><h2 id="三、技术剖析：为什么极简框架能创造奇迹"><a href="#三、技术剖析：为什么极简框架能创造奇迹" class="headerlink" title="三、技术剖析：为什么极简框架能创造奇迹"></a>三、技术剖析：为什么极简框架能创造奇迹</h2><p>VISTA 在 ARC-AGI-3 上的成绩堪称震撼——<strong>无需任何程序合成（program synthesis）</strong>，仅靠视觉 harness 就让模型达到满分：</p><table><thead><tr><th>系统</th><th>是否编程</th><th>模型</th><th>努力程度</th><th>RHAE</th></tr></thead><tbody><tr><td>官方实现（最小 harness）</td><td>否</td><td>GPT-5.6 Sol</td><td>max</td><td>13.33</td></tr><tr><td>官方实现（最小 harness）</td><td>否</td><td>Opus 5.0</td><td>high</td><td>40.68</td></tr><tr><td>Schema（含编程）</td><td>是</td><td>Opus 4.8 → Fable 5</td><td>max</td><td>98.98</td></tr><tr><td>VISTA</td><td>否</td><td>GPT-5.6 Sol</td><td>max</td><td><strong>99.00</strong></td></tr><tr><td>VISTA</td><td>否</td><td>Opus 5.0</td><td>xhigh</td><td><strong>100.00</strong></td></tr></tbody></table><p>最引人注目的是：VISTA 让 Claude Opus 5.0 从 40.68 直接跃升到<strong>满分 100.00</strong>，完成全部 25 个公开关卡，且动作数量比首次上手的人类玩家少 **57.4%**（人类需 17,135 次动作，VISTA 仅用 7,302 次）。这是迄今首个无需程序合成即在 ARC-AGI-3 达到满分或接近满分的视觉系统。</p><p>更值得玩味的是<strong>效率维度</strong>。RHAE 衡量的不是”能不能通关”，而是”是否比人类更高效”。VISTA 用 57.4% 更少的动作完成同样的任务，说明它真正理解了环境规则，而非靠暴力试错。</p><h3 id="开源复现：GLM-5-3-Flash-也能打"><a href="#开源复现：GLM-5-3-Flash-也能打" class="headerlink" title="开源复现：GLM-5.3 Flash 也能打"></a>开源复现：GLM-5.3 Flash 也能打</h3><p>VISTA 的另一个亮点是<strong>模型无关性</strong>。团队用它接入了开源权重模型 <strong>GLM-5.3 Flash 320B</strong>，构建出完全可复现的开源系统。在 GLM-5.3 Flash 下，VISTA 仍能达到 <strong>66.93</strong> 的 RHAE，大幅超越其最小 harness 基线。这意味着视觉框架的价值不绑定任何闭源模型——开源社区同样能从中受益。</p><h3 id="代码视角：harness-如何运作"><a href="#代码视角：harness-如何运作" class="headerlink" title="代码视角：harness 如何运作"></a>代码视角：harness 如何运作</h3><p>虽然 VISTA 是研究框架而非开箱即用的库，但其核心逻辑可抽象为以下流程：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># VISTA 交互循环的伪代码示意</span></span><br><span class="line">obs = environment.render()              <span class="comment"># 原始视觉观测（非文本化）</span></span><br><span class="line">memory.append(obs)                      <span class="comment"># 无损存入视觉记忆</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> solved:</span><br><span class="line">    action = model.act(prompt, memory)  <span class="comment"># 模型基于完整历史决策</span></span><br><span class="line">    obs_next = environment.step(action) <span class="comment"># 执行动作，获取新反馈</span></span><br><span class="line">    memory.append(obs_next)             <span class="comment"># 继续累积，永不丢失细节</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关键：模型始终能 read_pixels 回看任意历史帧</span></span><br></pre></td></tr></table></figure><p>与 Schema、Retrodict 等需要程序合成的系统不同，VISTA 的简洁性使其能快速迁移到游戏世界之外的场景——团队已在 GameWorld（34 个浏览器游戏）、AI GameStore（10 个游戏）和 BabyVision（39 个视觉追踪问题）上验证了其泛化能力。</p><h2 id="四、影响与未来展望：智能体的竞争重心正在转移"><a href="#四、影响与未来展望：智能体的竞争重心正在转移" class="headerlink" title="四、影响与未来展望：智能体的竞争重心正在转移"></a>四、影响与未来展望：智能体的竞争重心正在转移</h2><p>VISTA 的意义远超一个基准成绩，它指向三个深层趋势：</p><p><strong>第一，”harness 即产品”成为新赛道。</strong> 当模型能力趋于同质化，真正拉开差距的不再是模型本身，而是如何调度、记忆和检索信息的环境框架。VISTA 与 Sakana 的 Fugu（把多智能体封装成一个模型）、Meta 的 Muse（运行时即产品）一脉相承——<strong>编排与上下文管理正在成为比算力更稀缺的资源</strong>。</p><p><strong>第二，视觉而非文本才是交互世界的原生语言。</strong> 当 ARC-AGI-3 这类任务本质是空间推理时，把环境压扁成文本矩阵是一种信息损失。VISTA 证明：让模型直接”看”原始像素，配合无损记忆，反而比精巧的符号世界模型更强大。这对具身智能（embodied AI）、机器人操作、自动驾驶等需要实时视觉反馈的领域具有启发意义。</p><p><strong>第三，开源生态获得可复现的前沿基线。</strong> GLM-5.3 Flash 的成功接入表明，视觉 harness 技术不依赖闭源黑箱。随着 Qwen3.8-Omni、Gemini 4 Argon 等原生多模态模型的涌现，VISTA 这类框架将成为连接”聪明模型”与”真实交互任务”的关键桥梁。</p><p>当然，VISTA 目前仍聚焦于游戏和谜题这类相对结构化的环境。如何将其扩展到更接近物理世界的具身任务（如机器人操作、家庭服务），仍是未解之谜。但它的核心洞察已经清晰：<strong>在智能体时代，让模型”看得见、记得住、翻得出”，或许比让它”想得更深”更为根本。</strong></p><p>当 GPT-5.6 和 Opus 5 还在单点冲刺峰值能力时，VISTA 告诉我们：真正的智能，可能藏在如何管理信息与记忆的架构设计里。这不仅是 MIT 的一份研究成果，更是多模态智能体从”能看”走向”会思考”的一块关键拼图。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实&quot;&gt;&lt;a href=&quot;#一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实&quot; class=&quot;headerlink&quot; title=&quot;一、当”看”成为智能体的短板：ARC-AGI-3的残酷现实&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="VISTA" scheme="http://coderedeng.github.io/tags/VISTA/"/>
+    
+    <category term="多模态智能体" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Gemini 4 Argon发布：1M输出上限与&quot;防御优先&quot;的AI芯片级较量</title>
@@ -535,34 +563,6 @@
     <category term="Intel Gaudi" scheme="http://coderedeng.github.io/tags/Intel-Gaudi/"/>
     
     <category term="Habana Labs" scheme="http://coderedeng.github.io/tags/Habana-Labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DeepSeek-V4.1-Flash发布：MIT开源552B MoE模型如何用架构重写效率天花板</title>
-    <link href="http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/"/>
-    <id>http://coderedeng.github.io/2026/09/10/DeepSeek-V4.1-Flash%E5%8F%91%E5%B8%83%EF%BC%9AMIT%E5%BC%80%E6%BA%90552B%20MoE%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E7%94%A8%E6%9E%B6%E6%9E%84%E9%87%8D%E5%86%99%E6%95%88%E7%8E%87%E5%A4%A9%E8%8A%B1%E6%9D%BF/</id>
-    <published>2026-09-10T02:00:00.000Z</published>
-    <updated>2026-10-01T20:46:48.789Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景：一次”名不副实”的发布，撬动整个开源生态"><a href="#背景：一次”名不副实”的发布，撬动整个开源生态" class="headerlink" title="背景：一次”名不副实”的发布，撬动整个开源生态"></a>背景：一次”名不副实”的发布，撬动整个开源生态</h2><p>2026年9月10日，DeepSeek 正式发布了 <strong>DeepSeek-V4.1-Flash</strong>——一个以 MIT 协议开源、权重直接托管在 HuggingFace（<code>deepseek-ai/DeepSeek-V4.1-Flash</code>）的多模态 MoE 模型。</p><p>这次发布最耐人寻味的地方在于它的命名：<code>.1</code> 后缀通常代表一次小版本迭代或微调升级，但 DeepSeek 却用它给出一款<strong>全新架构家族的全新基座模型</strong>。更关键的是，这是 DeepSeek 首次把 <code>.1</code> 用在一个完全重建的基座上——而它暗示的旗舰版本 V4.1-Pro 至今仍未登场。换句话说，DeepSeek 把”正餐之前的小菜”直接做成了足以替代上一代旗舰的主菜。</p><p>与已发布过的 V4-Pro（1.6万亿参数 MoE）不同，V4.1-Flash 走的是一条截然不同的路线：<strong>用更少的激活参数、更激进的 KV Cache 压缩，换取超越上代旗舰的性价比</strong>。对于以长文档、长工具链调用为核心的 Agent 场景，这恰恰是最实在的进化。</p><h2 id="核心特性：CED-架构-极致-KV-Cache-压缩"><a href="#核心特性：CED-架构-极致-KV-Cache-压缩" class="headerlink" title="核心特性：CED 架构 + 极致 KV Cache 压缩"></a>核心特性：CED 架构 + 极致 KV Cache 压缩</h2><p>V4.1-Flash 的核心是一组围绕”输入密集型负载”重新设计的架构创新：</p><p><strong>Causal Encoder-Decoder（因果编解码器）</strong>。模型采用 40 层 Transformer，由 20 层因果编码器 + 20 层解码器组成。与传统 MoE 每个解码层各自维护 KV Cache 不同，CED 让解码器的全局 KV Cache 直接从编码器的最终隐状态投影而来。结果是：<strong>预填充阶段每 token 只激活 8B 参数，解码阶段激活 16B</strong>。文档越长、工具链调用越频繁，模型在”便宜的那一半”上省下的算力就越可观。</p><p><strong>Compressed Sparse Attention 2（CSA2）</strong>。每个注意力层被分配到三种静态模式之一——Full、Reindex 或 Reuse——在主 KV 与 indexer K 之间共享状态，并在解码器中使用分层稀疏索引器，让深层索引成本独立于上下文长度。配合 <strong>FP4 主 KV 缓存</strong>（E2M1 格式，每 16 个通道一个 E4M3 缩放因子），全局 KV Cache 占用被压缩到 <strong>每 token 仅 890 字节</strong>——约为 DeepSeek-V4-Flash 的四分之一。</p><p><strong>SWA Bounded Replay</strong>。滑动窗口注意力通常需要把 KV 状态持久化到 SSD 才能重建上下文，而这项技术只回放最近 <code>n_win</code> 个 token 即可重建缺失的 SWA KV 状态，将持久化 KV Cache 体积进一步压缩到 V4-Flash 的约 <strong>1&#x2F;8</strong>。</p><p>其他配套组件同样亮眼：Single-Pass mHC 混合关键缓存、196B 参数的 Engram 条件记忆（基于 token 查找稀疏访问）、以及 DSpark 投机解码。MoE 层面采用 1 个共享专家 + 384 个路由专家，每 token 激活 6 个路由专家。</p><h2 id="技术分析：开源权重-MIT-协议-x3D-生态级信号"><a href="#技术分析：开源权重-MIT-协议-x3D-生态级信号" class="headerlink" title="技术分析：开源权重 + MIT 协议 &#x3D; 生态级信号"></a>技术分析：开源权重 + MIT 协议 &#x3D; 生态级信号</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DeepSeek-V4.1-Flash 调用示例（OpenAI 兼容接口）</span></span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    base_url=<span class="string">&quot;https://api.deepseek.com/v1&quot;</span>,</span><br><span class="line">    api_key=<span class="string">&quot;&lt;YOUR_DEEPSEEK_KEY&gt;&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;deepseek-flash&quot;</span>,          <span class="comment"># 新模型 ID；旧名已退役并路由至此</span></span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;总结这份 5 万字的法律文档的核心条款&quot;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">    extra_body=&#123;</span><br><span class="line">        <span class="string">&quot;reasoning_effort&quot;</span>: <span class="number">100</span>,     <span class="comment"># 1-100 连续可调的思考强度</span></span><br><span class="line">        <span class="string">&quot;temperature&quot;</span>: <span class="number">1.0</span>,</span><br><span class="line">        <span class="string">&quot;top_p&quot;</span>: <span class="number">0.95</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>三个维度决定了这次开源的分量：</p><ol><li><p><strong>协议与权重</strong>。MIT 协议意味着任何商业场景均可自由使用、修改、再分发，无需付费。DeepSeek 在仓库中额外提供了 <code>inference</code> 文件夹和独立的编码模块，明确邀请社区构建推理支持——这是”零日部署将在数日内而非数周内落地”的标准信号。</p></li><li><p><strong>多模态原生</strong>。模型原生处理图像与文本输入，并自回归生成文本，无需额外的视觉适配器。</p></li><li><p><strong>可调控思考强度</strong>。<code>reasoning_effort</code> 支持 1–100 连续可调，在推理成本与准确率之间提供比离散档位更精细的权衡。</p></li></ol><h2 id="性能与定价：超越上代旗舰的价格曲线"><a href="#性能与定价：超越上代旗舰的价格曲线" class="headerlink" title="性能与定价：超越上代旗舰的价格曲线"></a>性能与定价：超越上代旗舰的价格曲线</h2><p>DeepSeek 官方公布的基准测试中，V4.1-Flash（Base）表现亮眼：MMLU-Pro 74.1（超过 V4-Pro 的 73.5）、SuperGPQA 53.1、C-Eval 92.1。在推理侧，其 GPQA Diamond 达 90.9、Codeforces 评分 3471、Terminal-Bench 2.1 为 90.6、HLE with tools 63.9——多项指标逼近甚至超越上代旗舰 V4-Pro。</p><p>定价方面同样激进：</p><ul><li><strong>Flash 档</strong>（<code>deepseek-flash</code>）：缓存命中输入 $0.003&#x2F;M（谷期）&#x2F; $0.006&#x2F;M（峰期），未命中输入 $0.15&#x2F;$0.30，输出 $0.60&#x2F;$1.20。</li><li><strong>Pro 档被”悄悄”降级</strong>：自北京时间 9月14日 12:00 起，所有 <code>deepseek-v4-pro</code> 请求将路由到 V4.1-Flash，并按 Flash 费率计费——输出成本下降约 70%，而能力按 DeepSeek 的说法反而提升。</li></ul><p>这意味着如果你集成时硬编码了 Pro 模型名，代码无需任何改动，就能以约三分之一的价格获得一个更强的模型。真正的分水岭是 <strong>9月14日</strong>：建议按能力分层而非按模型名路由的集成方在这一天重新测试。</p><h2 id="影响与未来展望"><a href="#影响与未来展望" class="headerlink" title="影响与未来展望"></a>影响与未来展望</h2><p>DeepSeek-V4.1-Flash 的意义远超一款新模型本身。它用 MIT 协议 + 全新 CED 架构 + 极致 KV Cache 压缩，把”长上下文 Agent 推理”的成本门槛又压低了一截。当激活参数低至每 token 8B、KV Cache 压到每 token 890 字节时，本地部署和边缘场景的可行性正在被重新定义。</p><p>而它”名不副实”的命名也留下一个悬念：V4.1-Pro 何时登场？在旗舰缺席的情况下，DeepSeek 选择让 Flash 先一步接管 Pro 的流量——这既是对自身能力的自信，也可能是一次精心设计的市场预热。对开发者而言，现在正是迁移到这套新架构、重新评估 Agent 推理成本的最佳窗口。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;背景：一次”名不副实”的发布，撬动整个开源生态&quot;&gt;&lt;a href=&quot;#背景：一次”名不副实”的发布，撬动整个开源生态&quot; class=&quot;headerlink&quot; title=&quot;背景：一次”名不副实”的发布，撬动整个开源生态&quot;&gt;&lt;/a&gt;背景：一次”名不副实”的发布，撬动</summary>
-      
-    
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="DeepSeek" scheme="http://coderedeng.github.io/tags/DeepSeek/"/>
-    
-    <category term="MoE" scheme="http://coderedeng.github.io/tags/MoE/"/>
-    
-    <category term="LLM架构" scheme="http://coderedeng.github.io/tags/LLM%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
