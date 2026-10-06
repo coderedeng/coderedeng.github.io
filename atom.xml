@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-05T14:08:59.295Z</updated>
+  <updated>2026-10-06T14:10:02.841Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Browser-Use开源：GitHub 11万星浏览器智能体，如何接管你的整个网页</title>
+    <link href="http://coderedeng.github.io/2026/10/06/browser-use%E5%BC%80%E6%BA%90/"/>
+    <id>http://coderedeng.github.io/2026/10/06/browser-use%E5%BC%80%E6%BA%90/</id>
+    <published>2026-10-06T02:00:00.000Z</published>
+    <updated>2026-10-06T14:10:02.841Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、当”会用浏览器”成为智能体的第一技能"><a href="#一、当”会用浏览器”成为智能体的第一技能" class="headerlink" title="一、当”会用浏览器”成为智能体的第一技能"></a>一、当”会用浏览器”成为智能体的第一技能</h2><p>过去两年，AI 智能体（Agent）的能力边界一直在向上突破：从纯文本对话到代码生成，再到终端操作与多步骤推理。然而几乎所有旗舰模型都忽略了一个最基础、最高频的场景——<strong>网页本身</strong>。我们每天的工作流里，仍有海量任务发生在浏览器中：登录后台填表、跨站点抓取数据、走一遍完整的下单流程、自动化 QA 测试。这些动作对 LLM 而言曾是”黑盒”，因为它看不到 DOM、点不动按钮、也读不懂页面结构。</p><p><strong>Browser-Use</strong> 正是为此而生的开源项目。它的口号很直白：”Make websites accessible for AI agents”——让大语言模型像人一样使用浏览器：打开网页、点击按钮、输入文字、填写表单，你只需描述任务，它自己完成。截至 2026 年 10 月，该项目在 GitHub 上已突破 <strong>11.7 万 Star</strong>（MIT 协议），成为全站 Star 数最高的开源项目之一，并被 Claude Code、Codex、Cursor、OpenClaw 等多个智能体选为默认浏览器工具。</p><h2 id="二、它到底能做什么？"><a href="#二、它到底能做什么？" class="headerlink" title="二、它到底能做什么？"></a>二、它到底能做什么？</h2><p>Browser-Use 的核心是一个”感知—决策—执行”的闭环循环：</p><ol><li><strong>感知</strong>：通过 Chromium 的 CDP（Chrome DevTools Protocol）驱动真实浏览器，抓取页面 HTML 与可交互元素列表；</li><li><strong>决策</strong>：将页面状态交给 LLM，由模型判断下一步该点击哪个元素、输入什么内容；</li><li><strong>执行</strong>：调用浏览器动作工具完成操作，观察页面是否变化；</li><li><strong>循环</strong>：重复上述过程，直到任务完成或达到失败上限。</li></ol><p>这种设计的关键在于——它不依赖固定的 CSS 选择器（那会在网站改版后失效），而是让模型基于<strong>当前页面的实际内容</strong>做决策，因此对前端变动具有天然鲁棒性。</p><p>一个最小示例仅需几行：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> browser_use <span class="keyword">import</span> Agent, ChatBrowserUse</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    agent = Agent(</span><br><span class="line">        task=<span class="string">&quot;找到 GitHub 上 browser-use 仓库的 Star 数量&quot;</span>,</span><br><span class="line">        llm=ChatBrowserUse(model=<span class="string">&#x27;openai/gpt-5.5&#x27;</span>),</span><br><span class="line">    )</span><br><span class="line">    history = <span class="keyword">await</span> agent.run()</span><br><span class="line">    <span class="built_in">print</span>(history.final_result())</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure><h2 id="三、技术拆解：为什么它能登顶榜单？"><a href="#三、技术拆解：为什么它能登顶榜单？" class="headerlink" title="三、技术拆解：为什么它能登顶榜单？"></a>三、技术拆解：为什么它能登顶榜单？</h2><p>Browser-Use 提供两类接入方式。<strong>CLI</strong> 适合已拥有智能体的场景——安装一次 skill，即可让既有 Agent 替你完成浏览器任务；<strong>Python 库</strong>则面向需要在代码中规模化自动化的人群（定时抓取、并发监控、QA）。</p><p>其内置工具链覆盖了网页交互的完整语义：</p><ul><li><strong>导航与控制</strong>：<code>search</code>、<code>navigate</code>、<code>go_back</code>、<code>wait</code></li><li><strong>交互</strong>：<code>click</code>（按索引点击）、<code>input</code>、<code>upload_file</code>、<code>scroll</code>、<code>send_keys</code></li><li><strong>内容提取</strong>：<code>extract</code>（LLM 抽取页面信息）、<code>evaluate</code>（执行自定义 JS，处理 shadow DOM）</li><li><strong>文件操作</strong>：<code>write_file</code>、<code>read_file</code>、<code>replace_file</code></li><li><strong>收尾</strong>：<code>done</code></li></ul><p>在模型选择上，官方专门优化了 **ChatBrowserUse()**——针对浏览器任务微调，平均比其他模型快 3–5 倍且准确率领先。它通过 provider 前缀统一接入各家模型（<code>anthropic/claude-sonnet-4-6</code>、<code>google/gemini-3-pro</code>），一个 <code>BROWSER_USE_API_KEY</code> 即可打通所有后端。</p><p>真正让它脱颖而出的，是官方在 <strong>Odysseys 排行榜</strong>上的表现：在 200 个长程网页任务的评测中，Browser-Use 以 <strong>87.4% 的平均完成率登顶</strong>，领先于 OpenAI、Anthropic、Google 和微软的 computer-use 智能体。该榜单专门衡量”跨多个网站、需数十步操作”的真实场景，正是 Browser-Use 的主场。</p><p>2026 年推出的 <strong>Browser Use 0.13</strong> 引入了基于 Rust 核心的 beta agent，架构升级为 <code>Python API → Rust core → Browser harness → Web task done</code>：Rust 侧提供与编程智能体类似的真实浏览器动作空间、持久化工具和”恢复循环”（recovery loops），在速度与稳定性上进一步拉齐了与闭源方案的差距。</p><h2 id="四、影响与未来展望"><a href="#四、影响与未来展望" class="headerlink" title="四、影响与未来展望"></a>四、影响与未来展望</h2><p>Browser-Use 的意义在于它把”网页操作”从脆弱的脚本自动化，升级为<strong>可泛化、可推理的智能体能力</strong>。当网站改版、表单结构变化时，传统 Selenium 脚本会大面积崩溃，而 Browser-Use 让模型重新”看懂”页面后再行动——这正是 agentic 范式相对于传统自动化的本质跃迁。</p><p>对行业而言，三条趋势值得关注：</p><ol><li><strong>浏览器成为智能体的标准输入输出设备</strong>。正如终端曾是编码 Agent 的战场，浏览器正成为通用 Agent 的新交互界面。</li><li><strong>“开源模型 + 专用微调”路线跑通</strong>。bu-* 系列开源预览模型的推出，证明低成本本地模型也能在特定任务上逼近闭源精度。</li><li><strong>云化基础设施补全最后一公里</strong>。官方推出的 $0.02&#x2F;小时云端浏览器，内置隐身指纹、验证码求解与住宅代理轮换，解决了本地运行 Chrome 内存占用高、并发难管理的工程痛点。</li></ol><p>当然，挑战依然存在：长程任务的可靠性仍受模型推理稳定性制约，反爬与验证码对抗是一场持久战，而大规模并行的资源消耗也需要专门的云基础设施来承接。但对开发者而言，Browser-Use 已经给出了一个几乎零门槛的答案——<strong>你不再需要自己写选择器和等待逻辑，只需告诉 AI 你想做什么</strong>。</p><p>当智能体开始真正”使用”网页而非仅仅”阅读”文本，我们或许正站在 Agent 从实验室走向真实工作流的临界点上。而 Browser-Use，正是这道门最显眼的那把钥匙。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、当”会用浏览器”成为智能体的第一技能&quot;&gt;&lt;a href=&quot;#一、当”会用浏览器”成为智能体的第一技能&quot; class=&quot;headerlink&quot; title=&quot;一、当”会用浏览器”成为智能体的第一技能&quot;&gt;&lt;/a&gt;一、当”会用浏览器”成为智能体的第一技能&lt;/h2&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="Browser-Use" scheme="http://coderedeng.github.io/tags/Browser-Use/"/>
+    
+  </entry>
   
   <entry>
     <title>AMD 82亿美元收购World Labs：李飞飞的&quot;世界模型&quot;如何改写AI芯片的下一盘大棋</title>
@@ -543,34 +571,6 @@
     <category term="Anthropic" scheme="http://coderedeng.github.io/tags/Anthropic/"/>
     
     <category term="Claude Fable" scheme="http://coderedeng.github.io/tags/Claude-Fable/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NVIDIA Vera Rubin NVL72发布：60 Exaflops算力与&quot;AI工厂&quot;时代的到来</title>
-    <link href="http://coderedeng.github.io/2026/09/13/NVIDIA-Vera-Rubin-NVL72%E5%8F%91%E5%B8%83%EF%BC%9A60Exaflops%E4%B8%8EAI%E5%B7%A5%E5%8E%82%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%B8%B4/"/>
-    <id>http://coderedeng.github.io/2026/09/13/NVIDIA-Vera-Rubin-NVL72%E5%8F%91%E5%B8%83%EF%BC%9A60Exaflops%E4%B8%8EAI%E5%B7%A5%E5%8E%82%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%B8%B4/</id>
-    <published>2026-09-13T02:00:00.000Z</published>
-    <updated>2026-10-01T20:46:48.795Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="从”卖芯片”到”卖算力工厂”：Vera-Rubin-重新定义数据中心"><a href="#从”卖芯片”到”卖算力工厂”：Vera-Rubin-重新定义数据中心" class="headerlink" title="从”卖芯片”到”卖算力工厂”：Vera Rubin 重新定义数据中心"></a>从”卖芯片”到”卖算力工厂”：Vera Rubin 重新定义数据中心</h2><p>如果说 Blackwell 让 NVIDIA 迈进了 EFLOPS（百亿亿次浮点运算）时代，那么本周在 GTC 2026 上正式亮相的 <strong>Vera Rubin</strong> 平台，则把整个数据中心的形态从”一堆 GPU 堆叠”升级为一座<strong>高度集成的 AI 工厂</strong>。</p><p>NVIDIA 官方将 Vera Rubin 定义为一个”七芯片、五机架”的 AI 超级计算机架构——它不再只是一张显卡，而是一套覆盖计算、网络、存储乃至安全的完整协同设计系统。平台已于 Q1 2026 进入全面量产阶段，合作伙伴的产品将在 2026 年下半年陆续上市。</p><p>对正在评估算力采购的企业而言，这不仅是性能参数的跃升，更是<strong>采购与运维模式的根本转变</strong>。</p><h2 id="核心规格：单机架即是一座超级计算机"><a href="#核心规格：单机架即是一座超级计算机" class="headerlink" title="核心规格：单机架即是一座超级计算机"></a>核心规格：单机架即是一座超级计算机</h2><p>Vera Rubin NVL72 是整个平台的核心载体，其关键指标令人瞩目：</p><table><thead><tr><th>维度</th><th>Vera Rubin NVL72</th></tr></thead><tbody><tr><td>GPU</td><td>72 个 Rubin 芯片 + 36 个 Vera CPU</td></tr><tr><td>推理算力</td><td>3.6 EFLOPS（NVFP4）</td></tr><tr><td>训练算力</td><td>2.5 EFLOPS（NVFP4）</td></tr><tr><td>HBM4 容量</td><td>20.7 TB，带宽 1.6 PB&#x2F;s</td></tr><tr><td>系统内存</td><td>54 TB LPDDR5X</td></tr><tr><td>NVLink 6 扩容带宽</td><td>260 TB&#x2F;s</td></tr><tr><td>功耗</td><td>~190 kW（Max Q）&#x2F; ~230 kW（Max P）</td></tr></tbody></table><p>单颗 Rubin GPU 采用 TSMC 3nm 双芯片封装，集成 <strong>3360 亿晶体管</strong>，配备 288 GB HBM4、带宽 22 TB&#x2F;s，提供 50 PFLOPS 的 NVFP4 推理性能——相比上一代 Blackwell 提升约 5 倍。</p><p>NVIDIA 给出的最震撼数字是：一个完整的 Vera Rubin <strong>POD（可扩展单元）可扩至 40 个机架、1,152 颗 GPU、约 20,000 个芯片封装，总算力达 60 Exaflops</strong>。</p><h2 id="七芯片协同：为什么”协同设计”才是关键"><a href="#七芯片协同：为什么”协同设计”才是关键" class="headerlink" title="七芯片协同：为什么”协同设计”才是关键"></a>七芯片协同：为什么”协同设计”才是关键</h2><p>Vera Rubin 真正的革命性不在于单点性能，而在于<strong>七个芯片的协同设计</strong>，每个承担明确分工：</p><ul><li><strong>Rubin GPU</strong>：负责 prefill（处理输入上下文），50 PFLOPS 推理算力。</li><li><strong>Vera CPU</strong>：NVIDIA 首款独立数据中心 CPU，88 个自定义 Arm（Armv9.2）Olympus 核心，最高 1.5 TB LPDDR5X 内存，承担编排、任务调度与 KV cache 路由。</li><li><strong>Groq 3 LPU（LP30）</strong>：源自 NVIDIA 对 Groq 的收购，专责 decode（低延迟 token 生成）。Rubin 负责 prefill、Groq 3 负责 decode 的<strong>分离式推理架构</strong>，让每兆瓦吞吐提升高达 35 倍。</li><li><strong>NVLink 6 Switch</strong>：单机架 260 TB&#x2F;s 扩容带宽，支持网络内计算加速 MoE 路由的 all-to-all 通信。</li><li><strong>ConnectX-9 SuperNIC &#x2F; BlueField-4 DPU</strong>：负责跨机架 scale-out 与网络、存储、加密卸载。BlueField-4 还引入了全新的 <strong>CMX（Inference Context Memory Storage Platform）</strong>，将 GPU 内存延伸至 NVMe 存储来承载 KV cache。</li><li><strong>Spectrum-6 Ethernet Switch</strong>：NVIDIA 首款采用共封装光学（CPO）的交换机，能效提升 5 倍。</li></ul><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────── Vera Rubin NVL72 Rack ───────────────────────┐</span><br><span class="line">│                                                                      │</span><br><span class="line">│   [Rubin GPU ×72] ←→ [NVLink 6 Switch ×9 trays] ←→ [Vera CPU ×36]  │</span><br><span class="line">│        │                                                    │        │</span><br><span class="line">│        └──────── Groq 3 LPU: prefill(推理输入) → decode(生成输出) ┘    │</span><br><span class="line">│                                                                      │</span><br><span class="line">│   HBM4: 20.7 TB (1.6 PB/s)  |  LPDDR5X: 54 TB  |  ~190-230 kW        │</span><br><span class="line">└──────────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure><h2 id="技术解读：面向-Agentic-AI-的架构转向"><a href="#技术解读：面向-Agentic-AI-的架构转向" class="headerlink" title="技术解读：面向 Agentic AI 的架构转向"></a>技术解读：面向 Agentic AI 的架构转向</h2><p>Vera Rubin 的设计语言清晰地指向一个趋势——<strong>Agentic AI（智能体 AI）</strong>。</p><p>过去的大模型推理是”一问一答”的同步模式，而智能体需要长时间、多轮、带工具调用的交互。这对 <strong>KV cache 的管理</strong>提出了极高要求。NVIDIA 通过两条路径应对：</p><ol><li><strong>分离式 prefill&#x2F;decode</strong>：让 GPU 和 LPU 各司其职，decode 阶段的低延迟由 Groq 3 LPU 保证，吞吐密度大幅提升。</li><li><strong>CMX 存储扩展</strong>：将 KV cache 从昂贵的 HBM4 延伸到 NVMe，用成本换容量——这对百万 token 上下文的智能体场景至关重要。</li></ol><p>此外，NVIDIA 宣称 Vera Rubin 相比 Blackwell <strong>推理性能提升 5 倍、单 token 成本降低 10 倍</strong>，并采用 100% 液冷（45°C 进水温度），在多数气候下可实现免冷水机的免费冷却——直接回应了 AI 工厂最大的运营成本痛点：电力与散热。</p><h2 id="影响与未来展望"><a href="#影响与未来展望" class="headerlink" title="影响与未来展望"></a>影响与未来展望</h2><p>Vera Rubin 的意义远超硬件本身：</p><ul><li><strong>部署速度革命</strong>：整个机架组装时间从约 2 天缩短至约 2 小时，计算托盘更换仅需 5 分钟——这对”AI 工厂”的高可用性运维意义重大。</li><li><strong>生态全面铺开</strong>：AWS、Google Cloud、微软（Fairwater AI 超级工厂）、OCI、CoreWeave、Lambda 等已宣布支持；Cisco、Dell、HPE、联想、超微等 OEM 同步跟进；Anthropic、Meta、OpenAI、xAI 等实验室均在采用名单中。</li><li><strong>AMD 正面迎战</strong>：AMD 的 Helios 机架（MI400 系列）同样瞄准 2026 下半年，号称 2.9 EFLOPS FP4、31 TB HBM4——HBM4 容量比 Vera Rubin NVL72 还高 50%。数据中心芯片竞争进入白热化。</li><li><strong>更远展望</strong>：Rubin Ultra 搭配 Kyber 机架（144 GPU、600 kW、15 EFLOPS FP4）预计 2027 年下半年推出；NVIDIA 甚至发布了面向太空数据中心的 Space-1 Vera Rubin 模块，算力达 H100 的 25 倍。</li></ul><p><strong>结语</strong>：Vera Rubin 标志着 AI 基础设施正式从”堆芯片”迈向”建工厂”。当算力、网络、存储、散热被整合进一个可快速部署的单机架单元时，采购者购买的不再是硬件规格表，而是<strong>开箱即用的推理产能</strong>。对于所有构建智能体应用的企业，2026 下半年将是一个关键的窗口期——是继续用 Blackwell 余温追赶，还是拥抱 Vera Rubin 的”AI 工厂”范式，答案或许很快见分晓。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;从”卖芯片”到”卖算力工厂”：Vera-Rubin-重新定义数据中心&quot;&gt;&lt;a href=&quot;#从”卖芯片”到”卖算力工厂”：Vera-Rubin-重新定义数据中心&quot; class=&quot;headerlink&quot; title=&quot;从”卖芯片”到”卖算力工厂”：Vera Rubi</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI芯片" scheme="http://coderedeng.github.io/tags/AI%E8%8A%AF%E7%89%87/"/>
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="NVIDIA" scheme="http://coderedeng.github.io/tags/NVIDIA/"/>
     
   </entry>
   
