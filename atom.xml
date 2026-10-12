@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-11T14:21:46.761Z</updated>
+  <updated>2026-10-12T15:37:00.383Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>当AI Agent学会&quot;记事&quot;：持久化记忆如何成为2026年开源新赛道</title>
+    <link href="http://coderedeng.github.io/2026/10/12/AI-Agent%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91%E6%8C%81%E4%B9%85%E5%8C%96%E8%AE%B0%E5%BF%86%E5%BC%80%E6%BA%90%E6%96%B0%E8%B5%9B%E9%81%93/"/>
+    <id>http://coderedeng.github.io/2026/10/12/AI-Agent%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91%E6%8C%81%E4%B9%85%E5%8C%96%E8%AE%B0%E5%BF%86%E5%BC%80%E6%BA%90%E6%96%B0%E8%B5%9B%E9%81%93/</id>
+    <published>2026-10-12T06:30:00.000Z</published>
+    <updated>2026-10-12T15:37:00.383Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="当AI-Agent学会”记事”：持久化记忆如何成为2026年开源新赛道"><a href="#当AI-Agent学会”记事”：持久化记忆如何成为2026年开源新赛道" class="headerlink" title="当AI Agent学会”记事”：持久化记忆如何成为2026年开源新赛道"></a>当AI Agent学会”记事”：持久化记忆如何成为2026年开源新赛道</h1><h2 id="一、从”金鱼记忆”到”第二大脑”：一个被忽视的瓶颈"><a href="#一、从”金鱼记忆”到”第二大脑”：一个被忽视的瓶颈" class="headerlink" title="一、从”金鱼记忆”到”第二大脑”：一个被忽视的瓶颈"></a>一、从”金鱼记忆”到”第二大脑”：一个被忽视的瓶颈</h2><p>如果你用过任何AI智能体（Agent），一定会遇到那个尴尬的瞬间：刚跟它聊了半小时的项目架构、技术选型和你个人的偏好，换个对话窗口，它就一脸茫然地让你”重新介绍一下背景”。这不是模型变笨了，而是当前绝大多数Agent的根本缺陷——<strong>它们没有持久记忆</strong>。每一次会话都是一次”失忆”，模型被迫在预填充（prefill）阶段重复消费大量本应记住的上下文，既浪费token，又拖累响应速度。</p><p>2026年10月的GitHub趋势图清楚地显示，行业焦点正在从”如何让模型更聪明”转向”如何让智能体记得住”。一批专门做<strong>持久化记忆基础设施</strong>的开源项目集体爆发，标志着Agent架构正式进入”拥有第二大脑”的新阶段。</p><h2 id="二、正在升温的新赛道：四个代表性项目"><a href="#二、正在升温的新赛道：四个代表性项目" class="headerlink" title="二、正在升温的新赛道：四个代表性项目"></a>二、正在升温的新赛道：四个代表性项目</h2><p>过去一周，GitHub上以<code>agent-memory</code>、<code>persistent memory</code>为标签的项目星速增长显著。其中几个值得关注的代表：</p><ul><li><strong>doobidoo&#x2F;mcp-memory-service</strong>（约2k星，Apache-2.0）：一个自托管的记忆后端，提供REST API、MCP、OAuth、CLI和可视化面板四种接入方式，主打”一套服务，处处可用”。</li><li><strong>EverMind-AI&#x2F;EverOS</strong>（约1.3万星，Apache-2.0）：宣称提供”面向所有AI Agent的可移植记忆层”——本地优先、Markdown原生、用户自有，能在不同应用与工作流间自演进。</li><li><strong>MemTensor&#x2F;MemOS</strong>（约1.2万星）：定位为”为LLM与Agent打造的自我进化记忆操作系统”，主打混合检索与跨任务技能复用。</li><li><strong>NevaMind-AI&#x2F;memU</strong>（约1.5万星）：聚焦”跨智能体的个人记忆”共享。</li></ul><p>这些项目虽然切入点不同，但共同指向同一个判断：<strong>记忆，将成为Agent时代的下一个差异化战场</strong>。</p><h2 id="三、技术拆解：记忆层到底在解决什么问题"><a href="#三、技术拆解：记忆层到底在解决什么问题" class="headerlink" title="三、技术拆解：记忆层到底在解决什么问题"></a>三、技术拆解：记忆层到底在解决什么问题</h2><p>以<code>mcp-memory-service</code>为例，它的README里有一组对比极具说服力：没有记忆后端时，”每次Agent运行都从零开始、记忆局限于单次会话、你需要自己维护Redis+Pinecone+一堆胶水代码、事实之间没有任何关联”。而一套成熟的记忆层则应解决四件事——</p><p><strong>1. 知识图谱化的语义存储。</strong> 单纯的向量检索只能匹配相似文本，却理解不了事实之间的逻辑关系。该项目为记忆节点之间建立了带类型的有向边（<code>causes</code>&#x2F;<code>fixes</code>&#x2F;<code>contradicts</code>，即”导致”&#x2F;“修复”&#x2F;“矛盾”），让Agent能沿因果链推理，而非仅仅做关键词相似度匹配。</p><p><strong>2. 多智能体共享与身份隔离。</strong> 它通过<code>X-Agent-ID</code>请求头自动给记忆打上智能体标签，再用按标签检索（<code>POST /api/search/by-tag</code>）实现作用域隔离——同一个记忆库，不同Agent只能”看到”属于自己的那部分。这对多Agent协作系统是刚需。</p><p><strong>3. 自主整合（autonomous consolidation）。</strong> 这是最容易被忽视、却最关键的一环。记忆无限累积会撑爆上下文窗口，因此系统会在后台自动压缩、归纳旧记忆，把历史”沉淀”为精炼的知识，而非原样堆砌。</p><p><strong>4. 全本地嵌入。</strong> 向量嵌入通过ONNX在本地跑，记忆数据永不离开自有基础设施——对医疗、金融等隐私敏感场景至关重要。</p><p>接入成本也被降到了极低。以REST模式为例：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install mcp-memory-service</span><br><span class="line">MCP_ALLOW_ANONYMOUS_ACCESS=<span class="literal">true</span> memory server --http   <span class="comment"># REST 服务启动于 http://localhost:8000</span></span><br></pre></td></tr></table></figure><p>存储记忆用<code>POST /api/memories</code>，检索用<code>POST /api/search</code>。给存储请求带上<code>X-Agent-ID: dev-01</code>，服务器就会把这条记忆标记为<code>agent:dev-01</code>，后续按标签即可精确召回——官方称典型检索延迟在5ms级别。它同时提供MCP协议接入，可直接挂载到Claude Desktop、Claude Code或OpenCode；对LangGraph、CrewAI、AutoGen等管道则走REST，无需额外客户端库。</p><h2 id="四、影响与未来展望：记忆，Agent的”新内存墙”"><a href="#四、影响与未来展望：记忆，Agent的”新内存墙”" class="headerlink" title="四、影响与未来展望：记忆，Agent的”新内存墙”"></a>四、影响与未来展望：记忆，Agent的”新内存墙”</h2><p>MemOS官方给出的数据颇具象征意义：通过混合检索与技能复用，其方案可实现约<strong>35.24%的token节省</strong>。这个数字背后是一个朴素却重要的事实——<strong>记住的东西越多，每次推理需要重新喂进去的上下文就越少</strong>。在长时程Agent（连续调用工具、跨多轮任务）成为主流的今天，记忆效率几乎等同于算力效率。</p><p>从更宏观的架构视角看，这一波项目正在复制过去五年云原生走过的路：就像当年Kubernetes把”编排”从基础设施中剥离成独立层一样，今天的一批团队正把”记忆”从模型本身剥离成一个独立的、可插拔的基础设施层。它的成熟将带来三个后果：</p><ol><li><strong>Agent框架的竞争壁垒外移。</strong> 当记忆成为通用能力，框架厂商不能再只靠”编排调度”讲故事——谁能把记忆的召回质量、整合策略做得更优，谁才有真护城河。</li><li><strong>“数据主权”重新被重视。</strong> EverOS们强调的”本地优先、Markdown原生、用户自有”，是对当前记忆几乎全部托管在闭源模型厂商云端的直接反叛。用户希望own自己的记忆资产，而非把它锁死在某家API里。</li><li><strong>推理成本曲线进一步下探。</strong> 当每个Agent都能把历史知识压缩进几十ms就能召回的向量与图谱，长任务的token消耗将显著下降——这对把”单位智能成本”（cost per unit of intelligence）当作核心指标的业界而言，是实打实的利好。</li></ol><p>当然，这个赛道仍不成熟：记忆冲突如何裁决、跨Agent共享的隐私边界在哪、自主整合会不会丢失关键细节，都是待解的工程难题。但可以肯定的是，<strong>一个”记得住”的AI Agent，才真正迈出了从”聊天机器人”走向”可靠助手”的关键一步</strong>。2026年10月，这条新赛道的起跑铃，已经敲响。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;当AI-Agent学会”记事”：持久化记忆如何成为2026年开源新赛道&quot;&gt;&lt;a href=&quot;#当AI-Agent学会”记事”：持久化记忆如何成为2026年开源新赛道&quot; class=&quot;headerlink&quot; title=&quot;当AI Agent学会”记事”：持久化记忆如</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="Agent记忆" scheme="http://coderedeng.github.io/tags/Agent%E8%AE%B0%E5%BF%86/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>Reka Edge 2603发布：把一张图压到331个token，7B多模态模型如何杀向&quot;物理AI&quot;边缘</title>
@@ -120,9 +148,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
-    
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -348,9 +376,9 @@
     <category term="热门开源项目" scheme="http://coderedeng.github.io/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     
-    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
-    
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
     <category term="代码审查" scheme="http://coderedeng.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
@@ -545,34 +573,6 @@
     <category term="AI安全治理" scheme="http://coderedeng.github.io/tags/AI%E5%AE%89%E5%85%A8%E6%B2%BB%E7%90%86/"/>
     
     <category term="Google Fairwind" scheme="http://coderedeng.github.io/tags/Google-Fairwind/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GPT-6 Astra 发布：OpenAI 把模型重心从&quot;建议&quot;彻底转向&quot;操作&quot;</title>
-    <link href="http://coderedeng.github.io/2026/09/19/GPT-6-Astra%E5%8F%91%E5%B8%83%EF%BC%9A%E4%BB%8E%EF%80%A2%E5%BB%BA%E8%AE%AE%EF%80%A2%E5%88%B0%EF%80%A2%E6%93%8D%E4%BD%9C%EF%80%A2%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%94%A8%E6%A8%A1%E6%80%81%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    <id>http://coderedeng.github.io/2026/09/19/GPT-6-Astra%E5%8F%91%E5%B8%83%EF%BC%9A%E4%BB%8E%EF%80%A2%E5%BB%BA%E8%AE%AE%EF%80%A2%E5%88%B0%EF%80%A2%E6%93%8D%E4%BD%9C%EF%80%A2%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%94%A8%E6%A8%A1%E6%80%81%E6%99%BA%E8%83%BD%E4%BD%93/</id>
-    <published>2026-09-19T02:00:00.000Z</published>
-    <updated>2026-10-01T20:46:48.789Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="GPT-6-Astra-发布：OpenAI-把模型重心从”建议”彻底转向”操作”"><a href="#GPT-6-Astra-发布：OpenAI-把模型重心从”建议”彻底转向”操作”" class="headerlink" title="GPT-6 Astra 发布：OpenAI 把模型重心从”建议”彻底转向”操作”"></a>GPT-6 Astra 发布：OpenAI 把模型重心从”建议”彻底转向”操作”</h1><p>过去两年，大语言模型的叙事主线是”更聪明地回答”——更高的推理分数、更长的上下文、更像专家的写作。但就在 2026 年 9 月 3 日，OpenAI 发布的 <strong>GPT-6 Astra</strong> 给出了一个截然不同的答案：<strong>模型的价值不在于告诉你怎么做代码，而在于它自己动手把代码写完、把系统跑通、把任务交付。</strong></p><p>这不是年度迭代的常规升级，而是一次产品定位的根本转向。当 Anthropic 的 Claude Opus 5 还在打磨”思考的深度”、Google 的 Gemini 3.8 Flash 在卷价格时，OpenAI 选择了一条更硬核的路——把整个模型的优先级从”Agentic Computing（智能体计算）”的第一性原则出发，重新定义前沿模型该干什么。</p><h2 id="一、背景：为什么是”操作”而不是”建议”"><a href="#一、背景：为什么是”操作”而不是”建议”" class="headerlink" title="一、背景：为什么是”操作”而不是”建议”"></a>一、背景：为什么是”操作”而不是”建议”</h2><p>GPT-6 Astra 的诞生，直接回应了 2026 年 AI 行业最真实的痛点：<strong>用户不再满足于被喂答案，而是希望 AI 真正替他们完成工作。</strong></p><p>传统的编程助手模式是”一问一答”——你提问，模型给出代码片段或解释，然后由人类工程师负责拼接、调试、部署。这种模式下，AI 始终是”副驾”，真正的责任和执行仍在人身上。但随着智能体（Agent）应用的爆发，长时程、多步骤、带大量工具调用的任务成为常态，”建议式 AI”的瓶颈暴露无遗：模型可以写出完美的单段代码，却无法保证整个流程跑通；它可以解释架构，却不能在真实环境里反复试错直到成功。</p><p>OpenAI 内部将 GPT-6 Astra 的代号定为 **”Spud”**，在得克萨斯州阿比林的 Stargate 超算中心训练，动用了超过 <strong>10 万台 H100 GPU</strong>。有趣的是，为了这个项目，OpenAI 甚至一度暂停了视频生成项目 Sora，把计算资源集中转向这个”操作优先”的旗舰模型。</p><h2 id="二、核心特性：为”计算机用”而生的全能力模型"><a href="#二、核心特性：为”计算机用”而生的全能力模型" class="headerlink" title="二、核心特性：为”计算机用”而生的全能力模型"></a>二、核心特性：为”计算机用”而生的全能力模型</h2><p>根据 OpenAI 官方博客与 InfoQ 的报道，GPT-6 Astra 在多个维度达到了当前业界最高水平（state-of-the-art）：</p><table><thead><tr><th>能力领域</th><th>表现定位</th><th>典型场景</th></tr></thead><tbody><tr><td><strong>Computer Use（计算机用）</strong></td><td>SOTA</td><td>自主操作 GUI、跨软件工作流</td></tr><tr><td><strong>Software Engineering</strong></td><td>SOTA</td><td>多文件项目重构、端到端调试</td></tr><tr><td><strong>Cybersecurity</strong></td><td>SOTA</td><td>漏洞挖掘、安全审计、渗透测试</td></tr><tr><td><strong>Browsing（浏览）</strong></td><td>SOTA</td><td>信息检索、表单填写、在线任务</td></tr><tr><td><strong>Science &amp; Professional Work</strong></td><td>领先</td><td>科研辅助、文档处理、专业报告</td></tr></tbody></table><p>与 GPT-5.5（首个以 Agentic Computing 为第一优先级的模型）相比，Astra 的关键跃迁在于：<strong>它不再是一个”会写代码的聊天机器人”，而是一个能真正操作计算机完成复杂任务的智能体。</strong> OpenAI 官方原话是——Astra “built to operate software rather than advise about it（被设计用来操作软件，而非仅仅就软件给出建议）”。</p><p>这一转变在网络安全领域尤为明显。传统的 AI 安全工具只能扫描已知漏洞模式，而 Astra 能够像人类渗透测试员一样，在真实系统中自主探索、发现未知漏洞、并验证利用路径——这正是近期多起 AI Agent 被黑客攻击事件后，OpenAI 主动呼吁加强前沿模型监控的技术底气。</p><h2 id="三、技术分析：定价、上下文与部署"><a href="#三、技术分析：定价、上下文与部署" class="headerlink" title="三、技术分析：定价、上下文与部署"></a>三、技术分析：定价、上下文与部署</h2><p>GPT-6 Astra 的公开定价为 <strong>$10 &#x2F; 百万 input tokens + $50 &#x2F; 百万 output tokens</strong>，上下文窗口达到 <strong>1.05M tokens</strong>。在业界属于中高端水平——高于 Gemini 3.8 Flash 的极致低价路线，也高于 Claude Opus 5 的部分场景，但其”操作能力”带来的效率提升，可能大幅降低实际使用成本。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 OpenAI SDK 调用 GPT-6 Astra 执行端到端任务的典型流程</span></span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI()</span><br><span class="line"></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;gpt-6-astra&quot;</span>,</span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;你是一个自主软件工程智能体。&quot;</span></span><br><span class="line">         <span class="string">&quot;你的任务是修复这个仓库的 CI 失败问题，直到所有测试通过。&quot;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;运行测试、定位失败原因、修改代码、重新验证。&quot;</span>&#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment"># Astra 原生支持长时程 agent 任务与工具调用</span></span><br><span class="line">    tools=[<span class="string">&quot;shell&quot;</span>, <span class="string">&quot;code_interpreter&quot;</span>, <span class="string">&quot;file_editor&quot;</span>],</span><br><span class="line">    max_tokens=<span class="number">4096</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(response.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure><p>这段代码背后反映的是 Astra 的架构设计：它不是在回答一个问题，而是在<strong>接管一个持续运行的任务循环</strong>——运行 shell、解释代码、编辑文件、重新测试，直到目标达成。这种”长时程自主执行”能力，正是 GPT-6 Astra 与上一代模型最本质的区别。</p><p>从工程角度看，1.05M 的上下文窗口意味着模型可以在单次交互中记住整个项目的结构、历史修改和当前状态，避免因上下文丢失而”失忆”。对于需要跨数百个文件协作的大型项目，这一特性直接决定了 Agent 能否真正替代初级工程师的重复性工作。</p><h2 id="四、影响与未来展望：AI-从”工具”走向”同事”"><a href="#四、影响与未来展望：AI-从”工具”走向”同事”" class="headerlink" title="四、影响与未来展望：AI 从”工具”走向”同事”"></a>四、影响与未来展望：AI 从”工具”走向”同事”</h2><p>GPT-6 Astra 的意义远超一次模型升级，它标志着三个深层趋势的加速：</p><ol><li><p><strong>“操作优先”成为新范式</strong>。当 AI 能够自主完成从规划到交付的完整闭环，人机协作的模式将从”人指挥、AI 执行片段”转向”人设定目标、AI 独立完成”。这对软件工程、网络安全、数据分析等行业的人才结构将产生深远影响。</p></li><li><p><strong>成本曲线的重构</strong>。虽然 Astra 的单价高于低价模型，但其”一次到位”的操作能力可能大幅减少人工干预需求。对很多企业而言，实际使用成本反而可能低于”手动编写代码 + AI 辅助审查”的传统模式——这正是 Agentic Computing 的核心经济逻辑。</p></li><li><p><strong>安全与治理的新挑战</strong>。当 AI 拥有操作真实系统的能力，如何确保它在受控环境中运行、防止被恶意利用，成为紧迫议题。OpenAI 主动呼吁加州立法者完善《前沿透明度法案》，正是这一担忧的体现。</p></li></ol><p>当然，GPT-6 Astra 并非完美。它在绝对推理分数上未必超越专门优化的”思考型”模型，且在需要极致专业深度的任务上，人类专家仍不可替代。但对于<strong>操作优先、交付优先</strong>的工作负载，Astra 已经给出了当前最具说服力的答案。</p><p>当 Anthropic 正冲刺 IPO、Google 用 Gemini 3.8 Live 抢占实时语音场景时，OpenAI 用 Astra 划出了一条清晰的界线：<strong>未来的前沿竞争，不再只是”谁更聪明”，而是”谁能真正替你干活”。</strong> 2026 年下半年，这场从”建议”到”操作”的范式迁移，才刚刚开始。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;GPT-6-Astra-发布：OpenAI-把模型重心从”建议”彻底转向”操作”&quot;&gt;&lt;a href=&quot;#GPT-6-Astra-发布：OpenAI-把模型重心从”建议”彻底转向”操作”&quot; class=&quot;headerlink&quot; title=&quot;GPT-6 Astra </summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="OpenAI" scheme="http://coderedeng.github.io/tags/OpenAI/"/>
-    
-    <category term="GPT-6 Astra" scheme="http://coderedeng.github.io/tags/GPT-6-Astra/"/>
     
   </entry>
   
