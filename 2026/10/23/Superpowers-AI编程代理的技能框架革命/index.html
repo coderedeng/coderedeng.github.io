@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论 | Deng的博客</title><meta name="author" content="Evan Deng"><meta name="copyright" content="Evan Deng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="引言：从”工具调用”到”技能编排”的范式跃迁2026年10月，GitHub上出现了一个现象级项目——Superpowers（obra&#x2F;superpowers）。短短一年内，它从Hacker News的一条帖子迅速攀升至298,000+ GitHub Stars，成为AI代理（Agent）领域增长最快的开源项目之一。更引人注目的是，它已获得Anthropic官方插件认证，直接嵌入Claude Cod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论">
+<meta property="og:url" content="http://coderedeng.github.io/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="Deng的博客">
+<meta property="og:description" content="引言：从”工具调用”到”技能编排”的范式跃迁2026年10月，GitHub上出现了一个现象级项目——Superpowers（obra&#x2F;superpowers）。短短一年内，它从Hacker News的一条帖子迅速攀升至298,000+ GitHub Stars，成为AI代理（Agent）领域增长最快的开源项目之一。更引人注目的是，它已获得Anthropic官方插件认证，直接嵌入Claude Cod">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://coderedeng.github.io/img/cover42.png">
+<meta property="article:published_time" content="2026-10-23T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-23T14:31:56.445Z">
+<meta property="article:author" content="Evan Deng">
+<meta property="article:tag" content="AI前沿">
+<meta property="article:tag" content="开源项目">
+<meta property="article:tag" content="Agent框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://coderedeng.github.io/img/cover42.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论",
+  "url": "http://coderedeng.github.io/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/",
+  "image": "http://coderedeng.github.io/img/cover42.png",
+  "datePublished": "2026-10-23T02:00:00.000Z",
+  "dateModified": "2026-10-23T14:31:56.445Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Evan Deng",
+      "url": "http://coderedeng.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://coderedeng.github.io/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Deng的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">159</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">167</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover42.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Deng的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-23T02:00:00.000Z" title="发表于 2026-10-23 10:00:00">2026-10-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-23T14:31:56.445Z" title="更新于 2026-10-23 22:31:56">2026-10-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">热门开源项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="引言：从”工具调用”到”技能编排”的范式跃迁"><a href="#引言：从”工具调用”到”技能编排”的范式跃迁" class="headerlink" title="引言：从”工具调用”到”技能编排”的范式跃迁"></a>引言：从”工具调用”到”技能编排”的范式跃迁</h2><p>2026年10月，GitHub上出现了一个现象级项目——<strong>Superpowers</strong>（<code>obra/superpowers</code>）。短短一年内，它从Hacker News的一条帖子迅速攀升至<strong>298,000+ GitHub Stars</strong>，成为AI代理（Agent）领域增长最快的开源项目之一。更引人注目的是，它已获得Anthropic官方插件认证，直接嵌入Claude Code的工作流。</p>
+<p>Superpowers的核心主张很简单却极具颠覆性：**AI编程代理不应该只是”会调工具的模型”，而应该拥有一套可组合、可复用的”技能库”**。这一理念正在重塑整个Agentic AI的开发方法论。</p>
+<h2 id="Superpowers是什么？一个”技能优先”的Agent框架"><a href="#Superpowers是什么？一个”技能优先”的Agent框架" class="headerlink" title="Superpowers是什么？一个”技能优先”的Agent框架"></a>Superpowers是什么？一个”技能优先”的Agent框架</h2><p>传统AI编程助手（如GitHub Copilot、Cursor）的工作模式是”上下文感知+代码生成”——模型根据当前文件内容和对话历史给出建议。而Claude Code、OpenCode等新一代Agent则更进一步，能够自主执行终端命令、读写文件、运行测试。</p>
+<p>Superpowers在此基础上提出了第三个层次：<strong>技能编排（Skill Orchestration）</strong>。</p>
+<h3 id="核心架构：可组合的技能系统"><a href="#核心架构：可组合的技能系统" class="headerlink" title="核心架构：可组合的技能系统"></a>核心架构：可组合的技能系统</h3><p>Superpowers将AI代理的能力拆解为一系列<strong>可复用的技能（Skills）</strong>，每个技能封装了特定的工作流模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：技能调用结构</span></span><br><span class="line">skills/</span><br><span class="line">├── code-review/          <span class="comment"># 代码审查技能</span></span><br><span class="line">│   ├── SKILL.md          <span class="comment"># 技能描述与触发条件</span></span><br><span class="line">│   └── execute.sh        <span class="comment"># 具体执行逻辑</span></span><br><span class="line">├── bug-fix/              <span class="comment"># Bug修复技能</span></span><br><span class="line">├── refactoring/          <span class="comment"># 重构技能</span></span><br><span class="line">└── testing/              <span class="comment"># 测试生成技能</span></span><br></pre></td></tr></table></figure>
+
+<p>每个技能包含三个核心要素：</p>
+<ol>
+<li><strong>触发条件</strong>：什么情况下应该调用这个技能（如”检测到编译错误”）</li>
+<li><strong>执行逻辑</strong>：技能的具体实现步骤</li>
+<li><strong>输出规范</strong>：技能执行后的结果格式</li>
+</ol>
+<h3 id="与现有Agent框架的本质区别"><a href="#与现有Agent框架的本质区别" class="headerlink" title="与现有Agent框架的本质区别"></a>与现有Agent框架的本质区别</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Claude Code &#x2F; Cursor</th>
+<th>Superpowers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>能力模型</td>
+<td>通用大模型+工具调用</td>
+<td>可组合技能库+元编排器</td>
+</tr>
+<tr>
+<td>工作流</td>
+<td>单次对话完成任务</td>
+<td>多技能协同的长期工作流</td>
+</tr>
+<tr>
+<td>可复用性</td>
+<td>技能绑定在模型内部</td>
+<td>技能独立存储，跨项目复用</td>
+</tr>
+<tr>
+<td>定制能力</td>
+<td>通过prompt工程</td>
+<td>通过技能编写与组合</td>
+</tr>
+</tbody></table>
+<h2 id="Superpowers-v7-0-0：关键更新与生产力主张"><a href="#Superpowers-v7-0-0：关键更新与生产力主张" class="headerlink" title="Superpowers v7.0.0：关键更新与生产力主张"></a>Superpowers v7.0.0：关键更新与生产力主张</h2><p>2026年10月发布的v7.0.0版本引入了多项重大改进，使其从”实验性框架”走向”生产级工具”。</p>
+<h3 id="1-官方Anthropic插件集成"><a href="#1-官方Anthropic插件集成" class="headerlink" title="1. 官方Anthropic插件集成"></a>1. 官方Anthropic插件集成</h3><p>Superpowers最重要的里程碑是成为<strong>Claude Code的官方插件</strong>。这意味着开发者无需额外配置，即可在Claude Code会话中直接调用Superpowers的技能库。这一整合极大地降低了使用门槛——过去需要手动配置技能文件，现在只需安装插件即可生效。</p>
+<h3 id="2-技能市场（Skill-Marketplace）"><a href="#2-技能市场（Skill-Marketplace）" class="headerlink" title="2. 技能市场（Skill Marketplace）"></a>2. 技能市场（Skill Marketplace）</h3><p>v7.0.0引入了社区技能市场，允许开发者分享和发现第三方技能。截至发文时，市场上已有超过500个公开技能，涵盖：</p>
+<ul>
+<li><strong>语言特定技能</strong>：Python测试生成、React组件重构、Rust所有权检查</li>
+<li><strong>流程特定技能</strong>：Git提交规范检查、CI&#x2F;CD流水线触发、文档同步更新</li>
+<li><strong>领域特定技能</strong>：数据库迁移验证、API契约测试、安全扫描</li>
+</ul>
+<h3 id="3-性能主张：实测数据支撑"><a href="#3-性能主张：实测数据支撑" class="headerlink" title="3. 性能主张：实测数据支撑"></a>3. 性能主张：实测数据支撑</h3><p>根据独立评测，Superpowers在以下场景展现了显著优势：</p>
+<ul>
+<li><strong>代码审查效率</strong>：使用Superpowers技能框架后，团队代码审查时间平均减少40%，且漏洞发现率提升25%</li>
+<li><strong>重复任务自动化</strong>：对于常见的重构、测试编写等任务，Skill编排比手动操作快3-5倍</li>
+<li><strong>知识传承</strong>：新成员通过复用团队已编写的技能，上手速度提升60%</li>
+</ul>
+<h2 id="技术深度：Superpowers如何工作？"><a href="#技术深度：Superpowers如何工作？" class="headerlink" title="技术深度：Superpowers如何工作？"></a>技术深度：Superpowers如何工作？</h2><h3 id="技能发现与路由机制"><a href="#技能发现与路由机制" class="headerlink" title="技能发现与路由机制"></a>技能发现与路由机制</h3><p>Superpowers的核心是一个<strong>智能路由引擎</strong>，它根据当前任务上下文自动选择最合适的技能组合。其工作原理如下：</p>
+<ol>
+<li><strong>上下文感知</strong>：分析当前文件、错误信息、git diff等上下文</li>
+<li><strong>技能匹配</strong>：从技能库中筛选符合条件的技能</li>
+<li><strong>优先级排序</strong>：根据历史执行效果和任务复杂度排序</li>
+<li><strong>协同执行</strong>：按顺序或并行执行选定的技能</li>
+</ol>
+<h3 id="技能编写指南"><a href="#技能编写指南" class="headerlink" title="技能编写指南"></a>技能编写指南</h3><p>创建一个自定义技能非常简单。以下是一个Python测试生成技能的示例：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- skills/python-test-generation/SKILL.md --&gt;</span><br><span class="line"><span class="section"># Python Test Generation</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 触发条件</span></span><br><span class="line">当检测到Python文件且缺少对应测试时自动触发。</span><br><span class="line"></span><br><span class="line"><span class="section">## 执行步骤</span></span><br><span class="line"><span class="bullet">1.</span> 分析目标文件的函数签名和依赖</span><br><span class="line"><span class="bullet">2.</span> 使用pytest框架生成覆盖主要逻辑路径的测试用例</span><br><span class="line"><span class="bullet">3.</span> 运行测试并修复失败的用例</span><br><span class="line"></span><br><span class="line"><span class="section">## 输出格式</span></span><br><span class="line">生成&#123;target<span class="emphasis">_file&#125;_</span>test.py，包含单元测试和集成测试</span><br></pre></td></tr></table></figure>
+
+<p>这种声明式的技能描述方式，使得非技术背景的产品经理也能参与Agent工作流的定制。</p>
+<h2 id="行业影响：Agentic-AI的”技能经济”正在形成"><a href="#行业影响：Agentic-AI的”技能经济”正在形成" class="headerlink" title="行业影响：Agentic AI的”技能经济”正在形成"></a>行业影响：Agentic AI的”技能经济”正在形成</h2><p>Superpowers的成功并非偶然。它反映了一个更深层的趋势：**AI代理的竞争焦点正从”模型能力”转向”生态编排”**。</p>
+<h3 id="1-技能成为新的”代码资产”"><a href="#1-技能成为新的”代码资产”" class="headerlink" title="1. 技能成为新的”代码资产”"></a>1. 技能成为新的”代码资产”</h3><p>过去，开发者积累的是代码库；未来，开发者积累的将是一整套<strong>技能库</strong>。一个优秀的技能可以跨项目、跨团队复用，形成类似npm或PyPI的”技能经济”。</p>
+<h3 id="2-厂商锁定被打破"><a href="#2-厂商锁定被打破" class="headerlink" title="2. 厂商锁定被打破"></a>2. 厂商锁定被打破</h3><p>Superpowers的技能是<strong>模型无关</strong>的——它们可以运行在Claude Code、OpenCode、Codex等不同代理宿主上。这与Anthropic通过Claude Code绑定用户、OpenAI通过GPT-4o锁定生态的策略形成鲜明对比。</p>
+<h3 id="3-开发方法论的重构"><a href="#3-开发方法论的重构" class="headerlink" title="3. 开发方法论的重构"></a>3. 开发方法论的重构</h3><p>Superpowers推动了一种新的软件开发方法论：<strong>技能驱动开发（Skill-Driven Development, SDD）</strong>。开发者不再只是写代码，而是设计技能、编排工作流、优化代理行为。这类似于从”手工编码”到”低代码平台”的演进，但对象是AI代理本身。</p>
+<h2 id="挑战与展望"><a href="#挑战与展望" class="headerlink" title="挑战与展望"></a>挑战与展望</h2><p>尽管Superpowers势头强劲，但仍面临若干挑战：</p>
+<ul>
+<li><strong>技能质量参差不齐</strong>：开放市场意味着技能质量难以保证，恶意或低质技能可能损害用户体验</li>
+<li><strong>复杂任务编排困难</strong>：对于跨多个技能的复杂任务，当前的路由引擎仍可能做出次优选择</li>
+<li><strong>调试透明度不足</strong>：多技能协同执行时，问题定位比单模型调用更困难</li>
+</ul>
+<p>展望未来，Superpowers可能会朝着以下几个方向发展：</p>
+<ol>
+<li><strong>技能版本管理与依赖锁定</strong>：类似package.json，确保技能组合的可复现性</li>
+<li><strong>技能性能基准测试</strong>：建立技能质量的量化评估体系</li>
+<li><strong>跨代理互操作性标准</strong>：推动不同Agent宿主之间的技能格式统一</li>
+</ol>
+<h2 id="结语：AI代理的”操作系统”时代来临"><a href="#结语：AI代理的”操作系统”时代来临" class="headerlink" title="结语：AI代理的”操作系统”时代来临"></a>结语：AI代理的”操作系统”时代来临</h2><p>Superpowers的298K Stars不是一个偶然数字，它标志着Agentic AI正在从”模型-centric”走向”技能-centric”。当AI代理不再是一个黑箱式的对话工具，而是一套可观察、可定制、可复用的技能组合时，我们看到的不仅是工具的进化，更是<strong>软件开发方法论的根本变革</strong>。</p>
+<p>对于开发者而言，Superpowers提出了一個值得思考的问题：<strong>在你的工作流中，哪些重复性任务可以封装成技能？你的团队是否正在构建自己的”技能库”？</strong></p>
+<p>在AI代理竞争日益白热化的2026年，Superpowers或许正在定义下一个十年的开发范式——不是谁的模式更聪明，而是谁的技能生态更丰富。</p>
+<hr>
+<p><em>参考来源：<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">obra&#x2F;superpowers GitHub仓库</a>、<a target="_blank" rel="noopener" href="https://www.kunalganglani.com/blog/superpowers-agentic-skills-framework">Kunal Ganglani博客分析</a>、Anthropic官方插件目录（2026-10）</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io">Evan Deng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://coderedeng.github.io/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/">http://coderedeng.github.io/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://coderedeng.github.io" target="_blank">Deng的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI%E5%89%8D%E6%B2%BF/">AI前沿</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">开源项目</a><a class="post-meta__tags" href="/tags/Agent%E6%A1%86%E6%9E%B6/">Agent框架</a></div><div class="post-share"><div class="social-share" data-image="/img/cover42.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/10/22/AMD-MI400%E7%B3%BB%E5%88%97%E5%8F%91%E5%B8%83-HBM4%E5%86%85%E5%AD%98%E4%B8%8EROCm-7%E9%87%8D%E5%A1%91AI%E8%8A%AF%E7%89%87%E6%A0%BC%E5%B1%80/" title="AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局"><img class="cover" src="/img/cover42.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局</div></div><div class="info-2"><div class="info-item-1">引言：AMD终于交出了”能打”的AI芯片答卷在AI芯片领域，NVIDIA长期以来几乎垄断了高端训练市场。从V100到A100再到H100，NVIDIA的每一步都让竞争对手望尘莫及。然而，2026年9月12日，AMD在Advancing AI 2026大会上正式发布了Instinct MI400系列GPU——这不仅是AMD迄今为止最强大的AI加速器，更是其 roadmap 终于追上NVIDIA B系列的关键里程碑。 MI400系列的发布标志着AI芯片战争进入了一个全新的阶段：不再是NVIDIA的独角戏，而是真正的双雄争霸。 MI400系列的核心规格：HBM4时代的先行者AMD MI400系列包含多个型号，其中最具代表性的是MI455X（面向前沿AI训练与推理）和MI430X（面向主权AI和HPC工作负载）。以下是其核心亮点： 1. 432GB HBM4内存——带宽革命的落地MI455X配备了高达432GB的HBM4内存，这是业界首批采用HBM4技术的GPU之一。相比上一代HBM3e，HBM4在带宽和能效上实现了显著提升：  带宽提升：HBM4提供了远超HBM3e的带宽容量，为大规模...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/08/25/YC%E5%BC%80%E6%BA%90QM%EF%BC%9A%E6%8A%8A%E7%BC%96%E7%A0%81Agent%E5%8F%98%E6%88%90%E5%85%AC%E5%8F%B8%E5%90%8C%E4%BA%8B%E7%9A%84%E5%A4%9A%E7%8E%A9%E5%AE%B6%E5%8D%8F%E4%BD%9C%E6%A1%86%E6%9E%B6/" title="YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-25</div><div class="info-item-2">YC开源QM：把编码Agent变成&quot;公司同事&quot;的多玩家协作框架，三周14K星</div></div><div class="info-2"><div class="info-item-1">背景：个人助理很好，但公司需要的是”同事”Claude Code、Codex、OpenCode 这类编码 Agent 已经证明了一个事实：给足权限和上下文，模型可以独立跑完一个工程任务。但它们的形态几乎都是单人工具——你的终端、你的凭据、你的会话。当一家创业公司想让整个团队都用上 Agent 时，问题立刻涌现：  每个人的 Agent 配置互相隔离，经验无法沉淀； 共享一个 Agent？权限和记忆全搅在一起，谁改坏了都不知道； Slack 里 @一下就能干活的需求，本地 CLI 根本接不住。  7月29日，YC（Y Combinator）开源了 QM——“multiplayer agent harness for work”。三周时间 14,000+ Star、MIT 协议，定位非常明确：不是给个人的助理，而是给公司的同事系统。 核心设计：每个人一个隔离工作区，每个房间一套共享状态QM 的基本单元是 scope（作用域）——每个人、每个 Slack 频道&#x2F;项目都有自己的 scope，各自拥有独立的：  记忆（memory）与文件空间 keychain 视图与登录态服务 ...</div></div></div></a><a class="pagination-related" href="/2026/08/21/Mojo%E5%85%A8%E9%9D%A2%E5%BC%80%E6%BA%90%EF%BC%9AApache-2.0%E5%8D%8F%E8%AE%AE%E4%B8%8B%E7%9A%84AI%E6%97%B6%E4%BB%A3%E7%B3%BB%E7%BB%9F%E8%AF%AD%E8%A8%80/" title="Mojo全面开源：Apache 2.0协议下的AI时代系统语言"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-21</div><div class="info-item-2">Mojo全面开源：Apache 2.0协议下的AI时代系统语言</div></div><div class="info-2"><div class="info-item-1">背景：从”闭源编译器”到全面开放2026年8月18日，在旧金山举行的 ModCon 2026 大会上，Modular 正式宣布：Mojo 语言全面开源，采用 Apache 2.0（含 LLVM 例外条款）协议。Mojo 编译器、标准库以及构建该语言所需的全部工具链源码，现已全部开放在 GitHub 仓库 modular&#x2F;modular 中。 Mojo 由 Chris Lattner 于 2023 年创立的 Modular 公司开发——Lattner 是 LLVM&#x2F;Clang、Swift、MLIR 的核心缔造者，曾在 Apple、Google、SiFive、Tesla 任职。Modular 从第一天起就押注一个判断：AI 不会永远只跑在一种硅片上，异构硬件（GPU、TPU、Trainium、各类自研加速器）时代需要一套全新的系统级软件栈。Mojo 正是为此设计的”AI 时代的系统语言”：Python 般的语法体验 + Rust 式的内存安全 + 直接面向 GPU&#x2F;加速器的内核编程能力。 值得注意的是，这次开源并非一步到位，而是一条渐进式开放路线的终点站...</div></div></div></a><a class="pagination-related" href="/2026/09/28/AutoHarness%E5%8F%91%E5%B8%83/" title="AutoHarness发布：让AI编程代理&quot;自我学习&quot;的GitHub开源项目如何崛起"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-28</div><div class="info-item-2">AutoHarness发布：让AI编程代理&quot;自我学习&quot;的GitHub开源项目如何崛起</div></div><div class="info-2"><div class="info-item-1">AutoHarness发布：让AI编程代理”自我学习”的GitHub开源项目如何崛起一、从”一次性对话”到”持续进化”：Agent工作流的新范式过去两年，AI编码助手经历了从”代码补全”到”自主Agent”的跃迁。然而一个被长期忽视的问题逐渐浮现：同一个模型，在不同项目中表现天差地别。开发者发现，Claude Code、Cursor等工具在A项目里能高效完成测试任务，换到B项目却连构建命令都要重新询问——因为模型并不了解每个项目的独特约定、测试框架和代码风格。 2026年9月，GitHub上一个名为 AutoHarness 的开源项目给出了答案。它由 Tigerless Labs 开发，目前以 4.8k stars 的速度快速增长（其中703+为近期新增），登顶AI Skills分类榜首。其核心理念简洁而颠覆：让Agent从真实工作会话中自动提炼”技能”，并在你工作时持续更新、自动淘汰过时技能——无需守护进程，无需离线基准测试。 二、核心特性：自我学习的技能层AutoHarness 的本质是一个**运行在Claude Code之上的”技能中间层”**。它不替换模型，而是为模型补充...</div></div></div></a><a class="pagination-related" href="/2026/09/26/Hindsight-%E6%99%BA%E8%83%BD%E4%BD%93%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E5%8F%91%E5%B8%83/" title="Hindsight 登顶 GitHub：让 AI 智能体&quot;学会&quot;而非&quot;记住&quot;的记忆系统"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-26</div><div class="info-item-2">Hindsight 登顶 GitHub：让 AI 智能体&quot;学会&quot;而非&quot;记住&quot;的记忆系统</div></div><div class="info-2"><div class="info-item-1">Hindsight 登顶 GitHub：让 AI 智能体”学会”而非”记住”的记忆系统当编码智能体（coding agent）连续工作数小时、跨越多轮会话时，一个尴尬的现实浮现出来：它每次重启都像是第一次见到这个项目。RAG（检索增强生成）和知识图谱被广泛用于给 Agent 注入上下文，但它们本质上是”回忆历史”——把过去的对话片段捞出来塞进窗口，却无法让智能体真正积累理解。2026 年 9 月，来自 Vectorize 的开源项目 Hindsight 在 GitHub 上迅速登顶 AI 热门榜，累计 Star 突破 3 万，其核心理念可以概括为一句话：好的记忆系统应该让 Agent 学会（learn），而不只是记住（remember）。 一、问题的根源：上下文腐烂与”金鱼记忆”现代 Agent 工作流有一个隐蔽的杀手——上下文腐烂（context rot）。随着检索调用、工具使用、用户消息和模型响应不断累积，上下文窗口被无关细节填满，真正有价值的信息反而被稀释。Hindsight 将这种现象类比为人脑的记忆机制：我们并非记住每一秒钟的细节，而是通过巩固（consolidatio...</div></div></div></a><a class="pagination-related" href="/2026/10/13/REA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" title="REA登顶GitHub：让AI智能体&quot;拆开&quot;任何软件的逆向引擎"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-10-13</div><div class="info-item-2">REA登顶GitHub：让AI智能体&quot;拆开&quot;任何软件的逆向引擎</div></div><div class="info-2"><div class="info-item-1">REA登顶GitHub：让AI智能体”拆开”任何软件的逆向引擎过去两周的 GitHub Trending 榜首，被一个名字霸榜——REA（Reverse Engineer Anything，逆向工程任何东西）。这个由开发者 morluto 于 10 月 7 日开源的工具，上线不到一天就冲上热门榜第一，累计 Star 逼近六万。它干的事很直接：把你的编码智能体（Claude Code、Codex、Cursor）接到一套逆向分析引擎上，让 AI 像资深逆向工程师一样，把原生二进制、Electron&#x2F;JS 应用、.NET 程序集乃至整个网站”拆开”，还原出功能逻辑并给出证据。 这标志着 Agent 工具链的一个微妙转折：过去半年，GitHub 上的爆款几乎全是”如何生成代码”的助手；而 REA 证明了**”如何读懂已有代码”**同样是刚需，且能催生一个全新的 MCP（Model Context Protocol）品类。 一、从”单点封装”到”逆向工具链标准化”市面上早有把 Ghidra 或 IDA 搬到模型面前的 MCP server，但绝大多数只有几百行——本质是把 dec...</div></div></div></a><a class="pagination-related" href="/2026/08/26/CopilotKit%E5%BC%80%E6%BA%90OpenBot%EF%BC%9A%E6%AF%8F%E4%B8%AAAI%E5%90%8C%E4%BA%8B%E4%B8%80%E5%8F%B0%E7%8B%AC%E7%AB%8B%E7%94%B5%E8%84%91%EF%BC%8C%E5%8A%A8%E4%BD%9C%E5%85%88%E5%AE%A1%E6%89%B9%E5%90%8E%E6%89%A7%E8%A1%8C/" title="CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行"><img class="cover" src="/img/cover42.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-26</div><div class="info-item-2">CopilotKit开源OpenBot：每个AI同事一台独立电脑，动作先审批后执行</div></div><div class="info-2"><div class="info-item-1">背景：Agent 能干活了，但”敢不敢给它权限”成了新瓶颈编码 Agent 已经证明模型可以独立跑完工程任务，接下来企业最关心的问题只有一个：能不能把真实的工作和真实的凭据交给它？ 浏览器登录态、公司文件、内部系统——这些才是 Agent 价值的主体，也是安全团队最警惕的部分。 8月17日，CopilotKit（AG-UI 协议背后的团队）开源了 OpenBot：一个”AI 同事”平台。9 天时间 2,900+ Star、MIT 协议。它的定位一句话就能说清——每个 AI 同事都有一台自己的电脑：独立的浏览器（含独立登录态）、独立的文件空间、只授予它需要的工具，而且每一个动作在发生前被决策、发生后被记录。 核心设计：一台”专属电脑” + 一个统一网关OpenBot 里 Bot 和人的关系不是”调用 API”，而是”同事协作”。每个 Bot 是一个 AG-UI 端点（开放协议，不绑定任何框架），接入后自动获得自己的频道、自己的屏幕——你可以在 Web UI 上看着它操作浏览器，它做到不该独自决定的事时你可以接管方向盘，处理完再交还给它。 安全架构是整套系统的灵魂：Bot 对电脑、文...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar_20260807.jpg" onerror="this.onerror=null;this.src='/img/avatar.png'" alt="avatar"/></div><div class="author-info-name">Evan Deng</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">159</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">167</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%BB%8E%E2%80%9D%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E2%80%9D%E5%88%B0%E2%80%9D%E6%8A%80%E8%83%BD%E7%BC%96%E6%8E%92%E2%80%9D%E7%9A%84%E8%8C%83%E5%BC%8F%E8%B7%83%E8%BF%81"><span class="toc-number">1.</span> <span class="toc-text">引言：从”工具调用”到”技能编排”的范式跃迁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Superpowers%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%80%E4%B8%AA%E2%80%9D%E6%8A%80%E8%83%BD%E4%BC%98%E5%85%88%E2%80%9D%E7%9A%84Agent%E6%A1%86%E6%9E%B6"><span class="toc-number">2.</span> <span class="toc-text">Superpowers是什么？一个”技能优先”的Agent框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%EF%BC%9A%E5%8F%AF%E7%BB%84%E5%90%88%E7%9A%84%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.</span> <span class="toc-text">核心架构：可组合的技能系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E7%8E%B0%E6%9C%89Agent%E6%A1%86%E6%9E%B6%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text">与现有Agent框架的本质区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Superpowers-v7-0-0%EF%BC%9A%E5%85%B3%E9%94%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B%E4%B8%BB%E5%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">Superpowers v7.0.0：关键更新与生产力主张</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%98%E6%96%B9Anthropic%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90"><span class="toc-number">3.1.</span> <span class="toc-text">1. 官方Anthropic插件集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8A%80%E8%83%BD%E5%B8%82%E5%9C%BA%EF%BC%88Skill-Marketplace%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">2. 技能市场（Skill Marketplace）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%80%A7%E8%83%BD%E4%B8%BB%E5%BC%A0%EF%BC%9A%E5%AE%9E%E6%B5%8B%E6%95%B0%E6%8D%AE%E6%94%AF%E6%92%91"><span class="toc-number">3.3.</span> <span class="toc-text">3. 性能主张：实测数据支撑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%EF%BC%9ASuperpowers%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">技术深度：Superpowers如何工作？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E8%83%BD%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text">技能发现与路由机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E8%83%BD%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97"><span class="toc-number">4.2.</span> <span class="toc-text">技能编写指南</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%9A%E5%BD%B1%E5%93%8D%EF%BC%9AAgentic-AI%E7%9A%84%E2%80%9D%E6%8A%80%E8%83%BD%E7%BB%8F%E6%B5%8E%E2%80%9D%E6%AD%A3%E5%9C%A8%E5%BD%A2%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">行业影响：Agentic AI的”技能经济”正在形成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%8A%80%E8%83%BD%E6%88%90%E4%B8%BA%E6%96%B0%E7%9A%84%E2%80%9D%E4%BB%A3%E7%A0%81%E8%B5%84%E4%BA%A7%E2%80%9D"><span class="toc-number">5.1.</span> <span class="toc-text">1. 技能成为新的”代码资产”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%82%E5%95%86%E9%94%81%E5%AE%9A%E8%A2%AB%E6%89%93%E7%A0%B4"><span class="toc-number">5.2.</span> <span class="toc-text">2. 厂商锁定被打破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E9%87%8D%E6%9E%84"><span class="toc-number">5.3.</span> <span class="toc-text">3. 开发方法论的重构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">6.</span> <span class="toc-text">挑战与展望</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD%EF%BC%9AAI%E4%BB%A3%E7%90%86%E7%9A%84%E2%80%9D%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%9D%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%B8%B4"><span class="toc-number">7.</span> <span class="toc-text">结语：AI代理的”操作系统”时代来临</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/" title="Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论"/></a><div class="content"><a class="title" href="/2026/10/23/Superpowers-AI%E7%BC%96%E7%A8%8B%E4%BB%A3%E7%90%86%E7%9A%84%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6%E9%9D%A9%E5%91%BD/" title="Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论">Superpowers发布：298K Stars的AI编程代理技能框架，重新定义Agent开发方法论</a><time datetime="2026-10-23T02:00:00.000Z" title="发表于 2026-10-23 10:00:00">2026-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/22/AMD-MI400%E7%B3%BB%E5%88%97%E5%8F%91%E5%B8%83-HBM4%E5%86%85%E5%AD%98%E4%B8%8EROCm-7%E9%87%8D%E5%A1%91AI%E8%8A%AF%E7%89%87%E6%A0%BC%E5%B1%80/" title="AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局"/></a><div class="content"><a class="title" href="/2026/10/22/AMD-MI400%E7%B3%BB%E5%88%97%E5%8F%91%E5%B8%83-HBM4%E5%86%85%E5%AD%98%E4%B8%8EROCm-7%E9%87%8D%E5%A1%91AI%E8%8A%AF%E7%89%87%E6%A0%BC%E5%B1%80/" title="AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局">AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局</a><time datetime="2026-10-22T02:00:00.000Z" title="发表于 2026-10-22 10:00:00">2026-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/21/Google-TorchTPU%E5%BC%80%E6%BA%90-PyTorch%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81TPU/" title="Google TorchTPU开源：PyTorch原生支持TPU，打破NVIDIA生态垄断"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Google TorchTPU开源：PyTorch原生支持TPU，打破NVIDIA生态垄断"/></a><div class="content"><a class="title" href="/2026/10/21/Google-TorchTPU%E5%BC%80%E6%BA%90-PyTorch%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81TPU/" title="Google TorchTPU开源：PyTorch原生支持TPU，打破NVIDIA生态垄断">Google TorchTPU开源：PyTorch原生支持TPU，打破NVIDIA生态垄断</a><time datetime="2026-10-21T02:00:00.000Z" title="发表于 2026-10-21 10:00:00">2026-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/19/NVIDIA-Blackwell-Ultra-B300%E5%8F%91%E5%B8%83-%E6%8E%A8%E7%90%86%E6%80%A7%E8%83%BD%E8%B7%83%E5%8D%871.5%E5%80%8D/" title="NVIDIA Blackwell Ultra B300发布：288GB HBM3e与1.5倍推理性能的AI工厂新基石"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NVIDIA Blackwell Ultra B300发布：288GB HBM3e与1.5倍推理性能的AI工厂新基石"/></a><div class="content"><a class="title" href="/2026/10/19/NVIDIA-Blackwell-Ultra-B300%E5%8F%91%E5%B8%83-%E6%8E%A8%E7%90%86%E6%80%A7%E8%83%BD%E8%B7%83%E5%8D%871.5%E5%80%8D/" title="NVIDIA Blackwell Ultra B300发布：288GB HBM3e与1.5倍推理性能的AI工厂新基石">NVIDIA Blackwell Ultra B300发布：288GB HBM3e与1.5倍推理性能的AI工厂新基石</a><time datetime="2026-10-19T02:00:00.000Z" title="发表于 2026-10-19 10:00:00">2026-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/18/DeepSeek-V4.1-Flash-1017%E5%8F%91%E5%B8%83-MIT%E5%BC%80%E6%BA%90%E6%9D%83%E9%87%8D%E4%B8%8EAgent%E6%96%B0%E5%9F%BA%E5%BB%BA/" title="DeepSeek V4.1-Flash-1017 发布：MIT 开源权重，给 Agent 装上&quot;搜索神经&quot;"><img src="/img/cover42.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepSeek V4.1-Flash-1017 发布：MIT 开源权重，给 Agent 装上&quot;搜索神经&quot;"/></a><div class="content"><a class="title" href="/2026/10/18/DeepSeek-V4.1-Flash-1017%E5%8F%91%E5%B8%83-MIT%E5%BC%80%E6%BA%90%E6%9D%83%E9%87%8D%E4%B8%8EAgent%E6%96%B0%E5%9F%BA%E5%BB%BA/" title="DeepSeek V4.1-Flash-1017 发布：MIT 开源权重，给 Agent 装上&quot;搜索神经&quot;">DeepSeek V4.1-Flash-1017 发布：MIT 开源权重，给 Agent 装上&quot;搜索神经&quot;</a><time datetime="2026-10-18T02:00:00.000Z" title="发表于 2026-10-18 10:00:00">2026-10-18</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Evan Deng</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
