@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-24T14:17:48.868Z</updated>
+  <updated>2026-10-26T14:13:52.001Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mistral Large 4发布：1万亿参数MoE模型的开放权重革命</title>
+    <link href="http://coderedeng.github.io/2026/10/26/Mistral-Large-4%E5%8F%91%E5%B8%83%EF%BC%9A1%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0MoE%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D%E9%9D%A9%E5%91%BD/"/>
+    <id>http://coderedeng.github.io/2026/10/26/Mistral-Large-4%E5%8F%91%E5%B8%83%EF%BC%9A1%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0MoE%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D%E9%9D%A9%E5%91%BD/</id>
+    <published>2026-10-26T02:00:00.000Z</published>
+    <updated>2026-10-26T14:13:52.001Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引言：当-Le-Chonk-成为AI界的-buzzword">引言：当&quot;Le Chonk&quot;成为AI界的 buzzword</h2><p>2026年10月6日，Mistral AI在巴黎总部举行了一场低调却震撼的发布会——没有红毯，没有明星嘉宾，只有一行简洁的公告：<strong>Mistral Large 4（内部代号&quot;Le Chonk&quot;）正式进入公共API预览</strong>。</p><p>这个名字本身就带着法式幽默——“Le Chonk&quot;在法语俚语中意为&quot;大块头”。而这款模型确实配得上这个称呼：它拥有<strong>1.05万亿总参数</strong>，采用 granular Mixture-of-Experts（细粒度混合专家）架构，每次推理仅激活约<strong>490亿参数</strong>。更令人瞩目的是，它是一个<strong>原生多模态模型</strong>，支持图像输入，上下文窗口长达<strong>100万token</strong>。</p><p>在OpenAI、Anthropic、Google各自封闭其旗舰模型的当下，Mistral Large 4选择了一条不同的道路——<strong>开放权重</strong>。Mistral宣布将在本月底开源完整权重，这意味着全球开发者可以在本地部署这个级别的大模型。</p><h2 id="Mistral-Large-4的核心突破">Mistral Large 4的核心突破</h2><h3 id="1-1-05万亿参数的-巨无霸-架构">1. 1.05万亿参数的&quot;巨无霸&quot;架构</h3><p>Mistral Large 4采用了业界罕见的<strong>细粒度MoE设计</strong>。与传统的MoE模型（如Mixtral 8x7B只有8个专家）不同，Mistral Large 4拥有数千个微型专家网络，每个token只路由到其中约490亿参数的专家子集。</p><p>这种设计的精妙之处在于：它既保留了万亿参数级别的知识容量，又将推理成本控制在可接受范围内。对比来看：</p><table><thead><tr><th>模型</th><th>总参数</th><th>激活参数</th><th>架构</th></tr></thead><tbody><tr><td>Mistral Large 4</td><td>1.05T</td><td>~49B</td><td>Granular MoE</td></tr><tr><td>GPT-5.6</td><td>未公开</td><td>未公开</td><td>稠密/MoE混合</td></tr><tr><td>Claude Opus 5.5</td><td>未公开</td><td>未公开</td><td>稠密</td></tr><tr><td>Qwen3.8-Max</td><td>~2.4T</td><td>未知</td><td>MoE</td></tr></tbody></table><p>Mistral Large 4的激活参数规模与Llama 4 Maverick（~17B激活）相当，但总参数量是其60倍以上——这意味着它在知识容量上具有显著优势。</p><h3 id="2-原生多模态：从-附加能力-到-天生如此">2. 原生多模态：从&quot;附加能力&quot;到&quot;天生如此&quot;</h3><p>过去两年，多模态能力大多是通过&quot;视觉编码器+语言模型&quot;的外挂方式实现的。而Mistral Large 4从训练之初就将图像和视频纳入统一的学习目标——<strong>1.6B参数的视觉编码器与语言模型共享底层表示</strong>。</p><p>这种原生多模态设计带来了几个实际优势：</p><ul><li><strong>图文理解更自然</strong>：模型不需要在文本和图像之间做&quot;翻译&quot;，而是直接在统一空间中进行推理</li><li><strong>效率更高</strong>：减少了跨模块的数据搬运和格式转换开销</li><li><strong>上下文统一</strong>：100万token的上下文窗口同时覆盖文本和视觉信息</li></ul><h3 id="3-100万token上下文窗口的实战意义">3. 100万token上下文窗口的实战意义</h3><p>100万token是什么概念？相当于一本500页的书籍加上整个项目的代码库，可以一次性装入模型的&quot;记忆&quot;中。这对于以下场景具有革命性意义：</p><ul><li><strong>长文档分析</strong>：法律合同、学术论文、技术手册的全文理解</li><li><strong>代码仓库级推理</strong>：整个微服务架构的上下文感知，跨文件依赖分析</li><li><strong>长时间对话</strong>：多轮对话的历史记录无需截断，保持完整的上下文连贯性</li></ul><h2 id="训练基础设施：Mistral的-欧洲工厂">训练基础设施：Mistral的&quot;欧洲工厂&quot;</h2><p>Mistral Large 4的训练过程本身就值得单独成文。根据Mistral官方披露的信息，该模型在<strong>3,800块NVIDIA Grace Blackwell GPU</strong>上训练而成，全部部署在Mistral自建的<strong>欧盟数据中心</strong>内。</p><p>这一选址策略具有深层战略意义：</p><ol><li><strong>数据主权</strong>：在欧洲境内完成训练，符合GDPR等严格的数据合规要求</li><li><strong>能源效率</strong>：北欧数据中心利用自然冷却，降低PUE（电源使用效率）</li><li><strong>供应链独立</strong>：减少对亚洲供应链的依赖，增强地缘政治韧性</li></ol><p>值得注意的是，Mistral选择Grace Blackwell而非H100作为训练基础设施——这暗示了NVIDIA新一代架构在大规模分布式训练中的能效优势。</p><h2 id="开放权重带来的生态影响">开放权重带来的生态影响</h2><p>Mistral Large 4将在本月底以<strong>Apache 2.0协议</strong>开源完整权重。这一决策将对AI生态产生深远影响：</p><h3 id="1-私有化部署的民主化">1. 私有化部署的民主化</h3><p>过去，万亿参数级模型只能由拥有数千块GPU的大型科技公司运行。开源后，企业可以在本地部署Mistral Large 4，实现：</p><ul><li><strong>数据不出域</strong>：敏感信息无需上传云端</li><li><strong>成本可控</strong>：一次性硬件投入 vs. 持续API费用</li><li><strong>定制灵活</strong>：可根据特定领域数据继续微调</li></ul><h3 id="2-研究社区的加速器">2. 研究社区的加速器</h3><p>开源权重意味着全球研究者可以：</p><ul><li>分析模型的内部机制和决策过程</li><li>开发新的量化、压缩、加速技术</li><li>基于Mistral Large 4构建垂直领域应用</li></ul><h3 id="3-对闭源模型的竞争压力">3. 对闭源模型的竞争压力</h3><p>当OpenAI、Anthropic、Google的旗舰模型保持封闭时，Mistral的开放策略正在吸引大量开发者转向开源生态。这种&quot;开放vs.封闭&quot;的博弈，最终惠及的是整个AI行业——竞争促使所有厂商提升性能、降低价格。</p><h2 id="性能表现：-benchmarks中的亮点">性能表现： benchmarks中的亮点</h2><p>虽然Mistral尚未公布完整的基准测试数据，但根据早期评测和模型特性，可以预期以下表现：</p><ul><li><strong>推理能力</strong>：MoE架构使其在复杂推理任务上接近闭源旗舰水平</li><li><strong>编码能力</strong>：100万token上下文使其在处理大型代码库时具有独特优势</li><li><strong>多模态理解</strong>：原生多模态设计在图文联合任务上表现优异</li></ul><p>Mistral官方表示，Mistral Large 4在多个基准测试中超越了Gemma 3、Gemini 2.0 Flash-Lite等竞品，尤其在长上下文保持能力方面表现出色。</p><h2 id="结语：开放权重的未来已来">结语：开放权重的未来已来</h2><p>Mistral Large 4的发布标志着AI模型发展进入了一个新阶段：<strong>参数规模不再是闭源公司的专属特权</strong>。当1万亿参数的模型可以开源部署时，AI的创新将不再局限于拥有超算中心的巨头，而是扩散到每一个有创意、有需求的开发者手中。</p><p>&quot;Le Chonk&quot;这个看似幽默的代号，或许正暗示着Mistral的一个雄心——让大模型不再是云端遥不可及的黑箱，而是每个人都可以拥有、理解和定制的智能工具。</p><p>在NVIDIA Vera Rubin构建&quot;AI工厂&quot;、AMD MI400挑战内存墙的时代，Mistral Large 4告诉我们：<strong>真正的革命不仅发生在硬件层面，也发生在软件开源的每一次释放中。</strong></p><hr><p><em>参考来源：Mistral AI官方博客《Introducing Mistral Large 4》、Mistral文档中心、MarkTechPost Mistral Large 4深度分析、LLM Reference模型规格页（2026-10-06）</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引言：当-Le-Chonk-成为AI界的-buzzword&quot;&gt;引言：当&amp;quot;Le Chonk&amp;quot;成为AI界的 buzzword&lt;/h2&gt;
+&lt;p&gt;2026年10月6日，Mistral AI在巴黎总部举行了一场低调却震撼的发布会——没有红毯，没有明星嘉宾</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="MoE架构" scheme="http://coderedeng.github.io/tags/MoE%E6%9E%B6%E6%9E%84/"/>
+    
+    <category term="Mistral" scheme="http://coderedeng.github.io/tags/Mistral/"/>
+    
+  </entry>
   
   <entry>
     <title>NVIDIA RTX Spark N1X发布：英伟达首款Windows ARM SoC，本地AI PC迎来革命</title>
@@ -130,9 +159,9 @@
     <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
     <category term="AI芯片" scheme="http://coderedeng.github.io/tags/AI%E8%8A%AF%E7%89%87/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     <category term="Google TPU" scheme="http://coderedeng.github.io/tags/Google-TPU/"/>
     
@@ -217,11 +246,11 @@
     <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
     
     
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
     <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
     
     <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
   </entry>
   
@@ -480,9 +509,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
-    
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="AI编程" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -574,36 +603,6 @@
     <category term="世界模型" scheme="http://coderedeng.github.io/tags/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B/"/>
     
     <category term="空间智能" scheme="http://coderedeng.github.io/tags/%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Liquid AI的LFM2.5：把&quot;AI工厂&quot;搬上桌面，让智能体在本地无限量运行</title>
-    <link href="http://coderedeng.github.io/2026/10/04/Liquid-AI-LFM2.5%E7%AB%AF%E4%BE%A7%E6%99%BA%E8%83%BD%E4%BD%93%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://coderedeng.github.io/2026/10/04/Liquid-AI-LFM2.5%E7%AB%AF%E4%BE%A7%E6%99%BA%E8%83%BD%E4%BD%93%E6%A8%A1%E5%9E%8B/</id>
-    <published>2026-10-04T02:00:00.000Z</published>
-    <updated>2026-10-04T14:10:45.795Z</updated>
-    
-    <content type="html"><![CDATA[<p>当整个行业还在为数据中心里动辄数万张 GPU 的&quot;AI工厂&quot;狂欢时，一家名为 <strong>Liquid AI</strong> 的公司正悄悄走一条截然不同的路——它相信，下一代智能体的真正战场不在云端，而在你口袋里的手机、桌上的笔记本、车机乃至可穿戴设备。2026年8月，Liquid AI 开源了 <strong>LFM2.5-2.6B</strong>，一个能在纯 CPU 上流畅运行、同时具备完整 Agent 能力的端侧模型；9月底又推出面向多模态的 <strong>DSpark 推测解码器</strong>。这两步棋，正在重新定义&quot;边缘AI&quot;的技术范式。</p><h2 id="一、为什么是-端侧智能体-？">一、为什么是&quot;端侧智能体&quot;？</h2><p>过去两年，大模型的叙事几乎完全由数据中心主导。从 NVIDIA Vera Rubin 的六芯协同，到 AMD MI455X-Helios 的机架级带宽，竞争焦点始终是&quot;如何把算力堆到极致&quot;。然而对绝大多数真实场景而言，<strong>云端推理存在三个无法回避的痛点</strong>：</p><ol><li><strong>延迟敏感</strong>——语音助手、AR眼镜、自动驾驶等场景要求毫秒级响应，跨网络往返无法满足；</li><li><strong>隐私红线</strong>——医疗、金融、个人助理等数据一旦离开设备，合规风险陡增；</li><li><strong>成本天花板</strong>——按 token 计费的模式下，一个持续运行的 Agent 若每天消耗数百万 token，月成本可能高达数千美元。</li></ol><p>Liquid AI 的创始人 Daniel Levy（前 DeepMind 研究员）正是看穿了第三点。他在 LFM2.5-2.6B 的发布博客中写道：&quot;<strong>当 token 花费不再是约束，Agent 就能在本地硬件上被大规模并行化</strong>——那些烧掉数百万 token 的后台任务，边际成本为零。&quot;这句话看似平淡，实则点破了端侧智能体的核心价值：<strong>免费推理带来的规模化可能</strong>。</p><h2 id="二、LFM2-5-2-6B：小身材，大能力">二、LFM2.5-2.6B：小身材，大能力</h2><p>LFM2.5-2.6B 是 Liquid AI 第二代架构（LFM2）的代表作。它仅有 <strong>26亿参数</strong>，却能在不依赖云端 API 的情况下完成规划、工具调用和多步任务等完整 Agent 工作流。关键规格如下：</p><table><thead><tr><th>维度</th><th>LFM2.5-2.6B</th><th>行业对照</th></tr></thead><tbody><tr><td>内存占用</td><td><strong>低于 2.5GB</strong></td><td>主流闭源模型需数十 GB</td></tr><tr><td>M5 Max 解码速度</td><td><strong>220 tokens/s</strong></td><td>同尺寸模型普遍 30-60 tok/s</td></tr><tr><td>Ryzen AI Max+ 395</td><td>113 tokens/s</td><td>—</td></tr><tr><td>手机端</td><td>仍可达 30 tokens/s</td><td>基本不可用</td></tr><tr><td>开源协议</td><td><strong>完全开放权重</strong></td><td>多数端侧模型闭源或受限</td></tr></tbody></table><p>最引人注目的是它的<strong>推理效率</strong>。Liquid AI 自研的 LFM2 架构通过稀疏注意力机制和高效的内存访问模式，在保持低显存占用的同时实现了惊人的解码速度。官方测试显示，在高并发下它几乎能达到 <strong>1.5万 output tokens/秒</strong>（单张 H100），或约每天 13亿 token——这个吞吐对本地部署意味着什么？一个团队可以并行运行成百上千个 Agent，而无需采购任何云算力。</p><h3 id="代码示例：本地部署一个端侧-Agent">代码示例：本地部署一个端侧 Agent</h3><p>Liquid AI 提供了极简的两步接入方式。首先将模型暴露为 OpenAI 兼容端点：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 用 llama.cpp 或 vLLM 服务 LFM2.5-2.6B</span></span><br><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoTokenizer, AutoModelForCausalLM</span><br><span class="line"></span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(<span class="string">&quot;liquid/lfm2.5-2.6b&quot;</span>)</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(<span class="string">&quot;liquid/lfm2.5-2.6b&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 指向任意 Agent harness（Hermes Agent、OpenClaw、Pi 等）</span></span><br><span class="line"><span class="comment">#    模型即作为一个本地 OpenAI 兼容端点工作，无需修改 Agent 代码</span></span><br></pre></td></tr></table></figure><p>它提供<strong>天一级生态支持</strong>：llama.cpp（GGUF）、MLX（Apple Silicon 优化）、vLLM/SGLang（GPU serving）、ONNX（跨平台）。这意味着开发者可以沿用熟悉的工具链，无需为硬件重新学习一套栈。</p><h2 id="三、DSpark：给多模态端侧模型装上-推测解码-引擎">三、DSpark：给多模态端侧模型装上&quot;推测解码&quot;引擎</h2><p>如果说 LFM2.5-2.6B 解决了&quot;能不能在本地跑 Agent&quot;的问题，那么 9月24日发布的 <strong>LFM2.5-VL-3B-DSpark</strong> 则回答了&quot;如何跑得更快&quot;。</p><p>这是一个约 <strong>2.8亿参数</strong>的推测解码（speculative decoding）draft model，与主模型 LFM2.5-VL-3B 配合使用。其核心思想是：用一个轻量级&quot;草稿模型&quot;快速提出候选 token，再由主模型在一次前向传播中并行验证多个 token，从而把原本受内存带宽限制的 decode 阶段大幅压缩。</p><p>实测数据显示显著加速：</p><table><thead><tr><th>硬件平台</th><th>解码吞吐提升</th><th>端到端吞吐提升</th></tr></thead><tbody><tr><td>Apple M5 Max (MLX-VLM)</td><td><strong>2.30×–3.13×</strong></td><td>1.56×–2.62×</td></tr><tr><td>NVIDIA H100 (SGLang)</td><td>2.04×–2.66×</td><td>1.64×–2.27×</td></tr><tr><td>Apple M3 Ultra (llama.cpp)</td><td>1.57×–2.14×</td><td>1.30×–1.77×</td></tr></tbody></table><p>值得注意的是，DSpark 的草稿模型仅使总参数量增加 <strong>8.9%</strong>，却换来了数倍的解码加速。Liquid AI 在技术博客中坦诚指出：由于视觉编码和 prompt prefill 阶段无法被推测解码加速，端到端提升受**阿姆达尔定律（Amdahl’s law）**约束——这体现了研究团队罕见的工程诚实。</p><h2 id="四、影响与未来展望">四、影响与未来展望</h2><p>Liquid AI 的路线对整个行业释放了三个信号：</p><ol><li><p><strong>边缘 AI 从概念走向现实</strong>。当本地就能跑起具备 Agent 能力的多模态模型，数据无需离开设备即可处理——这对隐私敏感场景具有战略价值。Apple M5 Ultra 用统一内存给出的答案，Liquid AI 用算法效率给出了另一种解法。</p></li><li><p><strong>&quot;免费推理&quot;将重塑 Agent 经济</strong>。按 token 计费的云端模式可能被本地并行化大幅冲击。当边际推理成本趋近于零，开发者构建 Agent 的方式将从&quot;精打细算&quot;转向&quot;大规模并发&quot;。</p></li><li><p><strong>算法与硬件的协同创新仍未触顶</strong>。在摩尔定律放缓的背景下，LFM2 这类专为效率设计的架构证明：<strong>更好的模型设计可以比单纯堆芯片带来更大的收益</strong>。</p></li></ol><p>当然，端侧方案仍有短板：2.6B 参数在复杂推理、长链条任务上仍落后于 GPT-6、Claude Opus 5 等云端旗舰；手机端 30 tok/s 的吞吐也仅够基础交互。但对<strong>延迟敏感、隐私优先、高并发</strong>的工作负载，Liquid AI 已经给出了极具说服力的答案。</p><p>当 NVIDIA 用&quot;AI工厂&quot;重新定义数据中心时，Liquid AI 正在证明：<strong>智能体的下一站，或许不在更大的机柜，而在更贴近用户的设备里</strong>。这场关于效率与边界的革命，才刚刚开始。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;当整个行业还在为数据中心里动辄数万张 GPU 的&amp;quot;AI工厂&amp;quot;狂欢时，一家名为 &lt;strong&gt;Liquid AI&lt;/strong&gt; 的公司正悄悄走一条截然不同的路——它相信，下一代智能体的真正战场不在云端，而在你口袋里的手机、桌上的笔记本、车机乃至可穿戴</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="Liquid AI" scheme="http://coderedeng.github.io/tags/Liquid-AI/"/>
-    
-    <category term="端侧AI" scheme="http://coderedeng.github.io/tags/%E7%AB%AF%E4%BE%A7AI/"/>
-    
-    <category term="智能体" scheme="http://coderedeng.github.io/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"/>
     
   </entry>
   
