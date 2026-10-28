@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-10-27T14:14:17.362Z</updated>
+  <updated>2026-10-28T14:15:51.707Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cindy开源AI代理：统一Claude Code与Codex的开箱即用智能体</title>
+    <link href="http://coderedeng.github.io/2026/10/28/Cindy%E5%BC%80%E6%BA%90AI%E4%BB%A3%E7%90%86%E7%BB%9F%E4%B8%80ClaudeCode%E4%B8%8ECodex%E7%9A%84%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    <id>http://coderedeng.github.io/2026/10/28/Cindy%E5%BC%80%E6%BA%90AI%E4%BB%A3%E7%90%86%E7%BB%9F%E4%B8%80ClaudeCode%E4%B8%8ECodex%E7%9A%84%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E6%99%BA%E8%83%BD%E4%BD%93/</id>
+    <published>2026-10-28T02:00:00.000Z</published>
+    <updated>2026-10-28T14:15:51.707Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Cindy开源AI代理：统一Claude-Code与Codex的开箱即用智能体"><a href="#Cindy开源AI代理：统一Claude-Code与Codex的开箱即用智能体" class="headerlink" title="Cindy开源AI代理：统一Claude Code与Codex的开箱即用智能体"></a>Cindy开源AI代理：统一Claude Code与Codex的开箱即用智能体</h1><p>2026年10月，GitHub上出现了一个现象级项目——<strong>Cindy</strong>（<code>makecindy/cindy</code>）。上线不到一周便冲上GitHub Trending榜首，累计Star数突破7,690+，成为AI代理（Agent）领域增长最快的开源项目之一。</p><h2 id="一、Cindy是什么？"><a href="#一、Cindy是什么？" class="headerlink" title="一、Cindy是什么？"></a>一、Cindy是什么？</h2><p>Cindy是一个<strong>开源、开箱即用的AI Agent客户端</strong>。它的核心理念很直接：把你已有的AI工具——Claude Code、Codex、以及自研的Pi代理——统一到一个界面里，让它们在同一个任务中协同工作，而无需在不同工具间切换丢失上下文。</p><p>简单来说，Cindy不是一个新的模型，而是一个<strong>编排层（orchestration layer）</strong>。它像是一个”智能体枢纽”，让你可以在Claude Code和Codex之间自由切换，同时保持工作区、记忆、技能和工具的连续性。</p><h2 id="二、核心特性：为什么Cindy值得关注？"><a href="#二、核心特性：为什么Cindy值得关注？" class="headerlink" title="二、核心特性：为什么Cindy值得关注？"></a>二、核心特性：为什么Cindy值得关注？</h2><h3 id="1-多Harness统一接入"><a href="#1-多Harness统一接入" class="headerlink" title="1. 多Harness统一接入"></a>1. 多Harness统一接入</h3><p>Cindy首批支持三大Harness（执行引擎）：</p><table><thead><tr><th>Harness</th><th>来源</th><th>特点</th></tr></thead><tbody><tr><td><strong>Claude Code</strong></td><td>Anthropic</td><td>强大的agent工作流，深度IDE集成</td></tr><tr><td><strong>Codex</strong></td><td>OpenAI</td><td>成熟的编码代理能力</td></tr><tr><td><strong>Pi</strong></td><td>Cindy自研</td><td>轻量级、开源、支持多模型提供商</td></tr></tbody></table><p>这意味着你不需要在Claude Code和Codex之间来回切换。可以在同一个任务中，用Claude Code做架构规划，切换到Codex做代码实现，再用Pi做文档生成——所有上下文由Cindy统一维护。</p><h3 id="2-跨设备无缝延续"><a href="#2-跨设备无缝延续" class="headerlink" title="2. 跨设备无缝延续"></a>2. 跨设备无缝延续</h3><p>Cindy支持<strong>macOS、Windows、Linux、iOS、Android</strong>全平台。你可以在工作电脑上开始一个任务，然后在手机上继续——会话、文件、模型配置全部同步。更巧妙的是，它利用你自己的电脑作为”服务器”，无需租用后端服务。</p><h3 id="3-多智能体协作编排"><a href="#3-多智能体协作编排" class="headerlink" title="3. 多智能体协作编排"></a>3. 多智能体协作编排</h3><p>Cindy支持将一个复杂任务拆分为多个子任务，由不同的Harness×模型组合并行执行。官方示例展示了一个典型工作流：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">01 / PLAN（规划）</span><br><span class="line">    Claude Code × Fable 5.1</span><br><span class="line">    → 架构设计、任务分解、验收标准</span><br><span class="line"></span><br><span class="line">02 / EXECUTE（并行执行）</span><br><span class="line">    WORKER_01: Codex × Grok 4.7 → 实现代码</span><br><span class="line">    WORKER_02: Claude Code × Kimi K3.1 Pro → 回归测试</span><br><span class="line">    WORKER_03: Pi × GLM-5.3-Flash → 文档与迁移</span><br><span class="line"></span><br><span class="line">03 / REVIEW（质量门禁）</span><br><span class="line">    Codex × GPT-6.1 Sol</span><br><span class="line">    → Diff审查、边界情况、通过/返工</span><br></pre></td></tr></table></figure><p>整个过程中，Cindy持有任务上下文、记忆和验收标准，确保各智能体协同一致。</p><h3 id="4-成本友好：复用已有订阅"><a href="#4-成本友好：复用已有订阅" class="headerlink" title="4. 成本友好：复用已有订阅"></a>4. 成本友好：复用已有订阅</h3><p>Cindy客户端<strong>免费开源</strong>（Apache-2.0许可证）。你可以授权已有的Claude Code或Codex Coding Plan，无需重复付费。也可以接入自己的API Key或使用本地模型。这种”客户端免费+模型按需付费”的模式，对开发者极具吸引力。</p><h2 id="三、技术架构深度解析"><a href="#三、技术架构深度解析" class="headerlink" title="三、技术架构深度解析"></a>三、技术架构深度解析</h2><h3 id="Cindy的底层设计"><a href="#Cindy的底层设计" class="headerlink" title="Cindy的底层设计"></a>Cindy的底层设计</h3><p>Cindy的桌面端基于<strong>Electron</strong>构建，移动端使用<strong>Expo&#x2F;React Native</strong>。安装时，它会按需下载真实的<code>claude-code</code>和<code>codex</code>命令行工具——这意味着Cindy运行的是官方工具，而非复制品。</p><p>核心编排逻辑由名为<strong>Orca</strong>的多智能体编排子系统驱动。这个子系统负责：</p><ul><li>Harness与模型的自由组合与动态切换</li><li>任务上下文、记忆和技能的跨Harness持久化</li><li>多智能体并行执行的任务调度</li></ul><h3 id="开源范围与限制"><a href="#开源范围与限制" class="headerlink" title="开源范围与限制"></a>开源范围与限制</h3><p>需要明确的是，Cindy开源的是<strong>客户端</strong>（desktop + mobile + shared packages），而<strong>后端服务</strong>仍在闭源仓库中。这意味着：</p><ul><li>✅ 客户端源码完全开放，可本地修改和部署</li><li>⚠️ 云同步、跨设备会话等后端功能需使用Cindy官方服务</li><li>⚠️ “Skip Sign-In”模式仅支持本地agent，无法使用服务器-backed能力</li></ul><p>此外，官方构建版嵌入了TapDB analytics，会收集设备、OS和应用版本元数据（与账户ID关联）。对于注重隐私的用户，这可能是一个需要考虑的 trade-off。</p><h2 id="四、Cindy-vs-现有AI编程工具"><a href="#四、Cindy-vs-现有AI编程工具" class="headerlink" title="四、Cindy vs 现有AI编程工具"></a>四、Cindy vs 现有AI编程工具</h2><table><thead><tr><th>维度</th><th>Claude Code &#x2F; Cursor</th><th>Cindy</th></tr></thead><tbody><tr><td><strong>模型锁定</strong></td><td>绑定Anthropic生态</td><td>多Harness，模型无关</td></tr><tr><td><strong>跨设备</strong></td><td>有限支持</td><td>原生全平台同步</td></tr><tr><td><strong>多智能体编排</strong></td><td>单agent工作流</td><td>支持规划→执行→审查的多agent流程</td></tr><tr><td><strong>成本</strong></td><td>按订阅付费</td><td>客户端免费，复用已有订阅</td></tr></tbody></table><p>Cindy的独特价值在于它不试图”取代”Claude Code或Codex，而是将它们<strong>整合</strong>到一个统一的体验中。这类似于浏览器生态——Chrome、Firefox、Safari各自有不同的引擎，但都遵循Web标准，用户可以在它们之间自由切换。</p><h2 id="五、行业信号：编排即产品（Orchestration-as-a-Product）"><a href="#五、行业信号：编排即产品（Orchestration-as-a-Product）" class="headerlink" title="五、行业信号：编排即产品（Orchestration-as-a-Product）"></a>五、行业信号：编排即产品（Orchestration-as-a-Product）</h2><p>Cindy的迅速走红反映了一个更深层的趋势：**AI时代的竞争焦点正从”模型能力”转向”编排能力”**。</p><p>过去两年，AI编程工具经历了从”代码补全”到”自主代理”的演进。但无论哪一代工具，都有一个隐含前提——你只能使用工具默认的行为。Cindy打破了这个契约：它让开发者可以像安装浏览器扩展一样，自定义agent的工作流、工具和界面。</p><p>这与Ruflo（开源元框架）、Superpowers（技能框架）等项目的逻辑一脉相承——<strong>模型是引擎，编排才是产品</strong>。当GPT-6、Claude Opus 5还在单点冲刺峰值能力时，Cindy们已经在思考如何让多个智能体协同工作。</p><h2 id="六、展望与思考"><a href="#六、展望与思考" class="headerlink" title="六、展望与思考"></a>六、展望与思考</h2><p>Cindy目前仍处于快速迭代阶段（v0.1.115-beta），未来值得关注的方向包括：</p><ol><li><strong>更多Harness接入</strong>：团队已表示正在开发原生Harness，预计将支持更多AI代理工具</li><li><strong>本地化部署</strong>：如果后端服务能开源，Cindy有望成为真正的自托管agent平台</li><li><strong>企业级能力</strong>：多智能体编排、权限管理、审计日志等特性可能吸引企业用户</li></ol><p>对于开发者而言，Cindy提供了一个有趣的实验场：如果你已经在用Claude Code或Codex，不妨试试Cindy——它可能让你发现，同一个任务用不同的Harness组合，能产生意想不到的效率提升。</p><hr><p><strong>参考来源</strong>：</p><ul><li><a href="https://github.com/makecindy/cindy">makecindy&#x2F;cindy GitHub Repository</a></li><li><a href="https://cindy.app/">Cindy官方官网</a></li><li><a href="https://hysenlabs.com/projects/makecindy-cindy">Hysen Labs: Cindy AI Agent Client Review</a></li><li><a href="https://eraofminds.com/blog/cindy-ai-agent/">Era of Minds: Cindy AI agent checked</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Cindy开源AI代理：统一Claude-Code与Codex的开箱即用智能体&quot;&gt;&lt;a href=&quot;#Cindy开源AI代理：统一Claude-Code与Codex的开箱即用智能体&quot; class=&quot;headerlink&quot; title=&quot;Cindy开源AI代理：统一</summary>
+      
+    
+    
+    
+    <category term="热门开源项目" scheme="http://coderedeng.github.io/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="AI Agent" scheme="http://coderedeng.github.io/tags/AI-Agent/"/>
+    
+    <category term="Codex" scheme="http://coderedeng.github.io/tags/Codex/"/>
+    
+  </entry>
   
   <entry>
     <title>GPT-6.1 Terra发布：OpenAI半价旗舰模型引爆AI服务价格战</title>
@@ -66,9 +96,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="MoE架构" scheme="http://coderedeng.github.io/tags/MoE%E6%9E%B6%E6%9E%84/"/>
-    
     <category term="Mistral" scheme="http://coderedeng.github.io/tags/Mistral/"/>
+    
+    <category term="MoE架构" scheme="http://coderedeng.github.io/tags/MoE%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -551,34 +581,6 @@
     <category term="NVIDIA OpenShell" scheme="http://coderedeng.github.io/tags/NVIDIA-OpenShell/"/>
     
     <category term="Agent安全" scheme="http://coderedeng.github.io/tags/Agent%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Browser-Use开源：GitHub 11万星浏览器智能体，如何接管你的整个网页</title>
-    <link href="http://coderedeng.github.io/2026/10/06/browser-use%E5%BC%80%E6%BA%90/"/>
-    <id>http://coderedeng.github.io/2026/10/06/browser-use%E5%BC%80%E6%BA%90/</id>
-    <published>2026-10-06T02:00:00.000Z</published>
-    <updated>2026-10-06T14:10:02.841Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、当”会用浏览器”成为智能体的第一技能"><a href="#一、当”会用浏览器”成为智能体的第一技能" class="headerlink" title="一、当”会用浏览器”成为智能体的第一技能"></a>一、当”会用浏览器”成为智能体的第一技能</h2><p>过去两年，AI 智能体（Agent）的能力边界一直在向上突破：从纯文本对话到代码生成，再到终端操作与多步骤推理。然而几乎所有旗舰模型都忽略了一个最基础、最高频的场景——<strong>网页本身</strong>。我们每天的工作流里，仍有海量任务发生在浏览器中：登录后台填表、跨站点抓取数据、走一遍完整的下单流程、自动化 QA 测试。这些动作对 LLM 而言曾是”黑盒”，因为它看不到 DOM、点不动按钮、也读不懂页面结构。</p><p><strong>Browser-Use</strong> 正是为此而生的开源项目。它的口号很直白：”Make websites accessible for AI agents”——让大语言模型像人一样使用浏览器：打开网页、点击按钮、输入文字、填写表单，你只需描述任务，它自己完成。截至 2026 年 10 月，该项目在 GitHub 上已突破 <strong>11.7 万 Star</strong>（MIT 协议），成为全站 Star 数最高的开源项目之一，并被 Claude Code、Codex、Cursor、OpenClaw 等多个智能体选为默认浏览器工具。</p><h2 id="二、它到底能做什么？"><a href="#二、它到底能做什么？" class="headerlink" title="二、它到底能做什么？"></a>二、它到底能做什么？</h2><p>Browser-Use 的核心是一个”感知—决策—执行”的闭环循环：</p><ol><li><strong>感知</strong>：通过 Chromium 的 CDP（Chrome DevTools Protocol）驱动真实浏览器，抓取页面 HTML 与可交互元素列表；</li><li><strong>决策</strong>：将页面状态交给 LLM，由模型判断下一步该点击哪个元素、输入什么内容；</li><li><strong>执行</strong>：调用浏览器动作工具完成操作，观察页面是否变化；</li><li><strong>循环</strong>：重复上述过程，直到任务完成或达到失败上限。</li></ol><p>这种设计的关键在于——它不依赖固定的 CSS 选择器（那会在网站改版后失效），而是让模型基于<strong>当前页面的实际内容</strong>做决策，因此对前端变动具有天然鲁棒性。</p><p>一个最小示例仅需几行：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> browser_use <span class="keyword">import</span> Agent, ChatBrowserUse</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    agent = Agent(</span><br><span class="line">        task=<span class="string">&quot;找到 GitHub 上 browser-use 仓库的 Star 数量&quot;</span>,</span><br><span class="line">        llm=ChatBrowserUse(model=<span class="string">&#x27;openai/gpt-5.5&#x27;</span>),</span><br><span class="line">    )</span><br><span class="line">    history = <span class="keyword">await</span> agent.run()</span><br><span class="line">    <span class="built_in">print</span>(history.final_result())</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure><h2 id="三、技术拆解：为什么它能登顶榜单？"><a href="#三、技术拆解：为什么它能登顶榜单？" class="headerlink" title="三、技术拆解：为什么它能登顶榜单？"></a>三、技术拆解：为什么它能登顶榜单？</h2><p>Browser-Use 提供两类接入方式。<strong>CLI</strong> 适合已拥有智能体的场景——安装一次 skill，即可让既有 Agent 替你完成浏览器任务；<strong>Python 库</strong>则面向需要在代码中规模化自动化的人群（定时抓取、并发监控、QA）。</p><p>其内置工具链覆盖了网页交互的完整语义：</p><ul><li><strong>导航与控制</strong>：<code>search</code>、<code>navigate</code>、<code>go_back</code>、<code>wait</code></li><li><strong>交互</strong>：<code>click</code>（按索引点击）、<code>input</code>、<code>upload_file</code>、<code>scroll</code>、<code>send_keys</code></li><li><strong>内容提取</strong>：<code>extract</code>（LLM 抽取页面信息）、<code>evaluate</code>（执行自定义 JS，处理 shadow DOM）</li><li><strong>文件操作</strong>：<code>write_file</code>、<code>read_file</code>、<code>replace_file</code></li><li><strong>收尾</strong>：<code>done</code></li></ul><p>在模型选择上，官方专门优化了 **ChatBrowserUse()**——针对浏览器任务微调，平均比其他模型快 3–5 倍且准确率领先。它通过 provider 前缀统一接入各家模型（<code>anthropic/claude-sonnet-4-6</code>、<code>google/gemini-3-pro</code>），一个 <code>BROWSER_USE_API_KEY</code> 即可打通所有后端。</p><p>真正让它脱颖而出的，是官方在 <strong>Odysseys 排行榜</strong>上的表现：在 200 个长程网页任务的评测中，Browser-Use 以 <strong>87.4% 的平均完成率登顶</strong>，领先于 OpenAI、Anthropic、Google 和微软的 computer-use 智能体。该榜单专门衡量”跨多个网站、需数十步操作”的真实场景，正是 Browser-Use 的主场。</p><p>2026 年推出的 <strong>Browser Use 0.13</strong> 引入了基于 Rust 核心的 beta agent，架构升级为 <code>Python API → Rust core → Browser harness → Web task done</code>：Rust 侧提供与编程智能体类似的真实浏览器动作空间、持久化工具和”恢复循环”（recovery loops），在速度与稳定性上进一步拉齐了与闭源方案的差距。</p><h2 id="四、影响与未来展望"><a href="#四、影响与未来展望" class="headerlink" title="四、影响与未来展望"></a>四、影响与未来展望</h2><p>Browser-Use 的意义在于它把”网页操作”从脆弱的脚本自动化，升级为<strong>可泛化、可推理的智能体能力</strong>。当网站改版、表单结构变化时，传统 Selenium 脚本会大面积崩溃，而 Browser-Use 让模型重新”看懂”页面后再行动——这正是 agentic 范式相对于传统自动化的本质跃迁。</p><p>对行业而言，三条趋势值得关注：</p><ol><li><strong>浏览器成为智能体的标准输入输出设备</strong>。正如终端曾是编码 Agent 的战场，浏览器正成为通用 Agent 的新交互界面。</li><li><strong>“开源模型 + 专用微调”路线跑通</strong>。bu-* 系列开源预览模型的推出，证明低成本本地模型也能在特定任务上逼近闭源精度。</li><li><strong>云化基础设施补全最后一公里</strong>。官方推出的 $0.02&#x2F;小时云端浏览器，内置隐身指纹、验证码求解与住宅代理轮换，解决了本地运行 Chrome 内存占用高、并发难管理的工程痛点。</li></ol><p>当然，挑战依然存在：长程任务的可靠性仍受模型推理稳定性制约，反爬与验证码对抗是一场持久战，而大规模并行的资源消耗也需要专门的云基础设施来承接。但对开发者而言，Browser-Use 已经给出了一个几乎零门槛的答案——<strong>你不再需要自己写选择器和等待逻辑，只需告诉 AI 你想做什么</strong>。</p><p>当智能体开始真正”使用”网页而非仅仅”阅读”文本，我们或许正站在 Agent 从实验室走向真实工作流的临界点上。而 Browser-Use，正是这道门最显眼的那把钥匙。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;一、当”会用浏览器”成为智能体的第一技能&quot;&gt;&lt;a href=&quot;#一、当”会用浏览器”成为智能体的第一技能&quot; class=&quot;headerlink&quot; title=&quot;一、当”会用浏览器”成为智能体的第一技能&quot;&gt;&lt;/a&gt;一、当”会用浏览器”成为智能体的第一技能&lt;/h2&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="Browser-Use" scheme="http://coderedeng.github.io/tags/Browser-Use/"/>
     
   </entry>
   
