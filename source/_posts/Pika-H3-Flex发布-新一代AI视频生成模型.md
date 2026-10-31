@@ -1,6 +1,6 @@
 ---
 title: Pika H3 Flex发布：新一代AI视频生成模型的突破与展望
-cover: /img/cover43.png
+cover: /img/cover41.png
 date: 2026-10-29 10:00:00
 last_modified_at: 2026-10-29 10:00:00
 sticky: false
