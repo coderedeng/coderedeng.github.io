@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-11-03T14:08:49.413Z</updated>
+  <updated>2026-11-04T14:16:27.248Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DeepTutor 香港大学开源 AI 学习伴侣：百万 Star 增长的 Agent-Native 新范式</title>
+    <link href="http://coderedeng.github.io/2026/11/04/DeepTutor-%E9%A6%99%E6%B8%AF%E5%A4%A7%E5%AD%A6%E5%BC%80%E6%BA%90AI%E5%AD%A6%E4%B9%A0%E4%BC%B4%E4%BE%A3-%E7%99%BE%E4%B8%87%E6%98%9F%E5%A2%9E%E9%95%BFagent-native%E6%96%B0%E8%8C%83%E5%BC%8F/"/>
+    <id>http://coderedeng.github.io/2026/11/04/DeepTutor-%E9%A6%99%E6%B8%AF%E5%A4%A7%E5%AD%A6%E5%BC%80%E6%BA%90AI%E5%AD%A6%E4%B9%A0%E4%BC%B4%E4%BE%A3-%E7%99%BE%E4%B8%87%E6%98%9F%E5%A2%9E%E9%95%BFagent-native%E6%96%B0%E8%8C%83%E5%BC%8F/</id>
+    <published>2026-11-04T02:30:00.000Z</published>
+    <updated>2026-11-04T14:16:27.248Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引言：当-AI-不再只是-问答机器">引言：当 AI 不再只是&quot;问答机器&quot;</h2><p>2026 年 11 月初，GitHub 上一个名为 <strong>DeepTutor</strong> 的项目悄然崛起——短短一周内 Star 数突破 10,000+，迅速跻身 GitHub Trending 前列。这个项目由香港大学数据智能实验室（HKUDS）开发，自称&quot;你的 AI 终身个性化导师&quot;。</p><p>但 DeepTutor 之所以引人注目，并非仅仅因为它的增长速度。更关键的是，它代表了一种全新的 AI 应用范式：<strong>Agent-Native（智能体原生）</strong>——不是把大模型塞进一个聊天框里，而是构建一个以智能体为核心、能够自主规划、执行和反思的完整学习生态系统。</p><h2 id="DeepTutor-是什么？">DeepTutor 是什么？</h2><p>DeepTutor 的核心定位是一个<strong>多模态智能学习平台</strong>。它的功能可以概括为以下几个维度：</p><h3 id="1-海量文档问答（Massive-Document-Q-A）">1. 海量文档问答（Massive Document Q&amp;A）</h3><p>用户上传教科书、论文、技术手册等文档，DeepTutor 将其转化为 AI 驱动的知识库。支持 PDF、LaTeX、图像等多种格式，并集成了 RAG（检索增强生成）和知识图谱技术，确保回答的准确性和可追溯性。</p><h3 id="2-智能解题（Smart-Problem-Solving）">2. 智能解题（Smart Problem Solving）</h3><p>采用&quot;双环推理架构&quot;（dual-loop reasoning architecture），结合多智能体协作，提供分步骤的解决方案和精确引用。这意味着它不只是给出答案，而是像一位耐心的老师一样，带你理解解题过程。</p><h3 id="3-练习生成（Practice-Generator）">3. 练习生成（Practice Generator）</h3><p>基于你的知识库自动生成定制化的测验题目，甚至可以模拟真实考试风格进行实战演练。</p><h3 id="4-深度研究（Deep-Research）">4. 深度研究（Deep Research）</h3><p>支持系统性主题探索，整合网络搜索、论文检索和文献综述，适合需要深入调研的学习场景。</p><h2 id="Agent-Native-架构：DeepTutor-的核心创新">Agent-Native 架构：DeepTutor 的核心创新</h2><p>DeepTutor 最引人注目的设计是其<strong>两层插件模型</strong>（two-layer plugin model）的 Agent-Native 架构：</p><h3 id="Level-1：Tools（单-shot-工具）">Level 1：Tools（单 shot 工具）</h3><p>这是 LLM 按需调用的单一功能工具。DeepTutor 提供了 8 个用户可开关的工具：</p><ul><li><code>brainstorm</code>：广度优先的想法探索</li><li><code>web_search</code>：带引用的网络搜索</li><li><code>paper_search</code>：arXiv 预印本搜索</li><li><code>zotero_search</code>：Zotero 图书馆搜索</li><li><code>reason</code>：深度推理 LLM 调用</li><li><code>geogebra_analysis</code>：数学图像分析</li><li><code>imagegen</code> / <code>videogen</code>：图像/视频生成</li></ul><h3 id="Level-2：Capabilities（多阶段能力）">Level 2：Capabilities（多阶段能力）</h3><p>这是接管&quot;回合&quot;的多阶段能力，通过 CLI、WebSocket API 和 Python SDK 三个入口暴露给开发者。</p><p>这种架构的核心思想是：<strong>TurnApplicationService</strong> 拥有持久的回合状态和回放能力，通过 <strong>TurnEngine → ChatOrchestrator</strong> 将统一上下文路由到选定的能力模块。每个执行使用 per-turn StreamBus；编排器发出事件，回合运行时持久化它们，适配器将它们 replay 给消费者。</p><h2 id="“My-Agents”：连接外部智能体的桥梁">“My Agents”：连接外部智能体的桥梁</h2><p>DeepTutor 的 <strong>My Agents</strong> 功能是其最具创新性的设计之一。它做了两件事：</p><ol><li><strong>连接实时智能体</strong>：你可以将 Claude Code、Codex、Grok CLI、Antigravity、Kimi、opencode、MiMo Code、Hermes Agent、OpenClaw、DeepSeek Harness 等外部智能体连接到 DeepTutor，在聊天回合中&quot;咨询&quot;它们。</li><li><strong>导入历史对话</strong>：你可以导入 Claude Code、Codex 或 ChatGPT 的历史对话，作为&quot;named, searchable, resumable agents&quot;使用。</li></ol><p>这意味着 DeepTutor 不是一个封闭的系统，而是一个<strong>智能体编排平台</strong>——它让你现有的 AI 工具链产生协同效应。</p><h2 id="技术栈与生态整合">技术栈与生态整合</h2><p>DeepTutor 在检索引擎方面提供了多种选择：</p><ul><li><strong>LlamaIndex</strong>（默认）：混合向量 + BM25 检索，可选交叉编码器重排序和 HNSW FAISS 索引</li><li><strong>PageIndex</strong>：推理型页面索引</li><li>其他自定义检索引擎</li></ul><p>此外，DeepTutor 支持<strong>多模态输入</strong>——文本、图像、代码执行等统一处理。它还集成了 LightRAG 知识图谱技术，帮助模型理解文档之间的语义关联。</p><h2 id="为什么-DeepTutor-值得关注？">为什么 DeepTutor 值得关注？</h2><h3 id="1-从-工具-到-平台-的演进">1. 从&quot;工具&quot;到&quot;平台&quot;的演进</h3><p>过去的 AI 教育工具大多是&quot;问答型&quot;——你问问题，模型给答案。DeepTutor 则试图构建一个<strong>完整的学习生态系统</strong>：从文档管理、问题解决、练习生成到深度研究，覆盖了学习的全流程。</p><h3 id="2-Agent-Native-范式的实践">2. Agent-Native 范式的实践</h3><p>DeepTutor 不是简单地把 LLM 包装成一个聊天界面，而是真正以智能体为核心设计架构。这种&quot;智能体原生&quot;的设计思路，可能代表了未来 AI 应用的一个重要方向——<strong>不是模型越强越好，而是智能体之间的协作和编排越高效越好</strong>。</p><h3 id="3-开源社区的潜力">3. 开源社区的潜力</h3><p>DeepTutor 采用 AGPL-3.0 许可证开源，这意味着社区可以基于它构建自己的学习工具。考虑到其快速的增长势头（7 天 +10,235 Star），DeepTutor 有可能成为 AI 教育领域的一个重要基础设施项目。</p><h2 id="结语：AI-教育的下一个里程碑？">结语：AI 教育的下一个里程碑？</h2><p>在 GPT-6、Claude Opus 5.5 等旗舰模型不断刷新性能边界的当下，DeepTutor 提醒我们：<strong>AI 的价值不仅在于模型的&quot;聪明程度&quot;，更在于如何将这些能力组织起来，解决真实世界的问题</strong>。</p><p>作为一个学习工具，DeepTutor 或许无法取代人类教师的温度；但作为一个辅助学习的智能体平台，它确实展示了 AI 在教育领域的可能性边界。未来，我们可能会看到更多类似的项目——不是追求更大的模型，而是追求更聪明的编排。</p><hr><p><strong>参考来源：</strong></p><ul><li><a href="https://github.com/HKUDS/DeepTutor">DeepTutor GitHub Repository</a></li><li><a href="https://hkuds.github.io/DeepTutor/">DeepTutor 官方文档</a></li><li><a href="https://github.com/trending">GitHub Trending November 2026</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引言：当-AI-不再只是-问答机器&quot;&gt;引言：当 AI 不再只是&amp;quot;问答机器&amp;quot;&lt;/h2&gt;
+&lt;p&gt;2026 年 11 月初，GitHub 上一个名为 &lt;strong&gt;DeepTutor&lt;/strong&gt; 的项目悄然崛起——短短一周内 Star 数突破</summary>
+      
+    
+    
+    
+    <category term="热门开源项目" scheme="http://coderedeng.github.io/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+    <category term="AI教育" scheme="http://coderedeng.github.io/tags/AI%E6%95%99%E8%82%B2/"/>
+    
+    <category term="多智能体" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    
+    <category term="GitHub trending" scheme="http://coderedeng.github.io/tags/GitHub-trending/"/>
+    
+  </entry>
   
   <entry>
     <title>NVIDIA Vera Rubin规格调整与Groq整合：AI芯片格局迎来新变数</title>
@@ -494,9 +523,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -583,37 +612,6 @@
     <category term="Ruflo" scheme="http://coderedeng.github.io/tags/Ruflo/"/>
     
     <category term="多智能体编排" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E6%8E%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>REA登顶GitHub：让AI智能体&quot;拆开&quot;任何软件的逆向引擎</title>
-    <link href="http://coderedeng.github.io/2026/10/13/REA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    <id>http://coderedeng.github.io/2026/10/13/REA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</id>
-    <published>2026-10-13T02:00:00.000Z</published>
-    <updated>2026-11-01T14:22:10.456Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="REA登顶GitHub：让AI智能体-拆开-任何软件的逆向引擎">REA登顶GitHub：让AI智能体&quot;拆开&quot;任何软件的逆向引擎</h1><p>过去两周的 GitHub Trending 榜首，被一个名字霸榜——<strong>REA（Reverse Engineer Anything，逆向工程任何东西）</strong>。这个由开发者 <code>morluto</code> 于 10 月 7 日开源的工具，上线不到一天就冲上热门榜第一，累计 Star 逼近六万。它干的事很直接：把你的编码智能体（Claude Code、Codex、Cursor）接到一套逆向分析引擎上，让 AI 像资深逆向工程师一样，把原生二进制、Electron/JS 应用、.NET 程序集乃至整个网站&quot;拆开&quot;，还原出功能逻辑并给出证据。</p><p>这标志着 Agent 工具链的一个微妙转折：过去半年，GitHub 上的爆款几乎全是&quot;如何生成代码&quot;的助手；而 REA 证明了**“如何读懂已有代码”**同样是刚需，且能催生一个全新的 MCP（Model Context Protocol）品类。</p><h2 id="一、从-单点封装-到-逆向工具链标准化">一、从&quot;单点封装&quot;到&quot;逆向工具链标准化&quot;</h2><p>市面上早有把 Ghidra 或 IDA 搬到模型面前的 MCP server，但绝大多数只有几百行——本质是把 <code>decompile_function</code> 这类调用转发给引擎，再把结果贴进对话框。REA 完全不是这个量级。</p><p>据第三方拆解，REA 的发布包注册了 <strong>139 个 MCP 工具</strong>；其源码树在测试之外约有 <strong>16.7 万行 TypeScript</strong>，另有约 11.9 万行测试代码——这不是一个脚本，而是一套工程。它内部维护着三条桥接：</p><ul><li>一段跑在 Hopper 解释器内的 Python 桥（约 1,020 行），通过 Unix 域套接字对外服务；</li><li>一段跑在 Ghidra 无头模式内的 Java 桥（3,321 行），用 <code>DecompInterface</code> 反编译、遍历 <code>ClangCaseToken</code> 还原 switch 分支；</li><li>一个约 1,100 行 C++ 的 Node-API 扩展，用于 Windows 上的原生分析。</li></ul><p>更关键的是它的<strong>供应商中立设计</strong>。无论底层是 Hopper、Ghidra 还是 IDA，MCP 侧始终使用同一套操作命名（<code>procedure_pseudo_code</code>、<code>xrefs</code>、<code>read_bytes</code>、<code>analyze_function</code>）。这让上层的 Agent 无需关心具体引擎，也便于在分析失败时静默切换工具——而不会悄悄改变结论。</p><h2 id="二、覆盖全靶标的分析能力">二、覆盖全靶标的分析能力</h2><p>REA 的覆盖面远超&quot;反编译二进制&quot;这一单一场景：</p><table><thead><tr><th>靶标类型</th><th>REA 返回内容</th><th>依赖环境</th></tr></thead><tbody><tr><td>原生二进制（Mach-O/ELF/PE）</td><td>伪代码、汇编、字符串、符号、调用与引用</td><td>Hopper / Ghidra / IDA</td></tr><tr><td>JavaScript / Electron</td><td>模块、import、source map、路由、IPC 关系</td><td>Node.js + npm</td></tr><tr><td>.NET 程序集</td><td>元数据、成员、CIL 中间语言</td><td>内置 TS 解析器</td></tr><tr><td>Android APK</td><td>包/类/方法查询</td><td>JADX（调用方提供）</td></tr><tr><td>固件</td><td>Binwalk/Unblob 分区与提取</td><td>Binwalk + Unblob</td></tr><tr><td>EVM 字节码</td><td>选择器与可变性分析</td><td>EVMole</td></tr><tr><td>网站</td><td>CDP 页面检查、Playwright 场景、源码图</td><td>Chrome / Playwright</td></tr></tbody></table><p>安装方式对开发者极其友好：<code>npx rea-agents@latest setup</code> 会自动探测本机安装的智能体（Claude Code、Codex、Cursor、Gemini CLI 等十余种），打印出它打算做的配置改动，备份原文件，经你批准后再注册 MCP server 并写入工作流 skill。</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;rea&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;-y&quot;</span><span class="punctuation">,</span> <span class="string">&quot;rea-agents@6.4.0&quot;</span><span class="punctuation">,</span> <span class="string">&quot;mcp&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><h2 id="三、技术亮点：可追溯的-证据链">三、技术亮点：可追溯的&quot;证据链&quot;</h2><p>REA 最耐人寻味的设计，是它为每一个分析结果都附带一份<strong>内容寻址的证据记录（Evidence id）</strong>。每条结论除了返回结果本身，还携带一段 SHA-256 规范化 JSON 计算出的 <code>ev_</code> 开头 ID——来源、位置、分析引擎与版本全部被锁定。</p><p>这意味着：如果 Agent 给出的解释听起来&quot;过于自信&quot;，你可以把 Evidence id 反查回去，核对其底层依据是否真实存在。<strong>你无法在保留 ID 的同时悄悄篡改结果</strong>。这一机制直击当前 MCP 生态的软肋——模型常常在缺乏证据的情况下编造调用链，而 REA 用密码学手段把&quot;结论&quot;和&quot;出处&quot;焊死在一起。</p><p>一个直观的例子：有人让 REA 分析 Windows 计算器为什么 <code>200 + 10% = 220</code>。REA 反编译出 <code>%</code> 处理器的分支逻辑，Agent 据此还原规则——在 <code>+</code> 后取第一个数的百分比（<code>10% of 200 = 20</code>），而在 <code>×</code> 后则转为小数。它还交叉核对了微软公开源码中的常量定义，让结论可被验证而非凭空推断。</p><h2 id="四、影响与未来展望">四、影响与未来展望</h2><p>REA 的爆火释放了几个信号：</p><ol><li><strong>Agent 工具链正从&quot;生成&quot;扩展到&quot;理解&quot;</strong>。当 AI 能可靠地读懂任意存量软件，代码审计、CTF 竞赛、漏洞挖掘、反爬逆向、闭源库行为分析等场景将被大幅重塑。</li><li><strong>&quot;可解释性&quot;正在被工程化。</strong> Evidence id 这种把结论与出处绑定的思路，有望成为下一代 MCP 工具的标准契约——不只是返回数据，还返回数据的&quot;发票&quot;。</li><li><strong>生态位开始分化。</strong> REA 本身是 MIT 许可，但它驱动的工具各有版权：Ghidra 免费（Apache-2.0），Hopper 与 IDA 为商业软件。在 Linux 上，REA 的无人值守路径甚至围绕 Hopper 演示版构建——这给 CI/CD 场景留下了授权层面的问号。</li></ol><p>对开发者而言，REA 的价值不在于它能否替代资深逆向工程师，而在于它把&quot;拆开一个黑盒并讲清楚原理&quot;这件事，从需要数天的人工分析，压缩成一句自然语言提问 + 一份可追溯的证据。当 Agent 开始具备&quot;读懂世界&quot;的能力，代码侧的生成只是上半场，理解侧的竞争才刚刚开局。</p><blockquote><p>⚠️ 使用提醒：REA 应只指向你有权拆解的软件；原生深度分析依赖 Hopper/Ghidra/IDA，其中部分为商业授权；运行时捕获会以你的用户权限执行目标程序，请审慎评估副作用。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;REA登顶GitHub：让AI智能体-拆开-任何软件的逆向引擎&quot;&gt;REA登顶GitHub：让AI智能体&amp;quot;拆开&amp;quot;任何软件的逆向引擎&lt;/h1&gt;
-&lt;p&gt;过去两周的 GitHub Trending 榜首，被一个名字霸榜——&lt;strong&gt;REA（Rev</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="MCP" scheme="http://coderedeng.github.io/tags/MCP/"/>
-    
-    <category term="逆向工程" scheme="http://coderedeng.github.io/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
