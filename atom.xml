@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-11-10T16:34:01.129Z</updated>
+  <updated>2026-11-12T14:16:40.737Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qwen4-Max Preview发布：Alibaba下一代旗舰多模态模型，1M上下文窗口震撼登场</title>
+    <link href="http://coderedeng.github.io/2026/11/12/Qwen4-Max-Preview%E5%8F%91%E5%B8%83-Alibaba%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%97%97%E8%88%B0%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://coderedeng.github.io/2026/11/12/Qwen4-Max-Preview%E5%8F%91%E5%B8%83-Alibaba%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%97%97%E8%88%B0%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/</id>
+    <published>2026-11-12T02:00:00.000Z</published>
+    <updated>2026-11-12T14:16:40.737Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引言">引言</h2><p>2026年11月11日，阿里巴巴通义千问（Qwen）团队正式发布了<strong>Qwen4-Max Preview</strong>——这是Qwen4系列的首款旗舰多模态模型，标志着通义千问家族迈入第四代纪元。该模型以预览形式限量开放，将于11月25日退役，为后续正式版铺路。</p><h2 id="Qwen4-Max-Preview-核心亮点">Qwen4-Max Preview 核心亮点</h2><h3 id="1-1M-Token-超长上下文窗口">1. 1M Token 超长上下文窗口</h3><p>Qwen4-Max Preview 支持高达 <strong>1,000,000 token</strong> 的上下文窗口，这意味着模型可以同时处理数十万字的文档、长篇代码库或完整的视频内容。相比上一代 Qwen3.8-Max 的上下文能力，这是一个数量级的飞跃。</p><h3 id="2-多模态理解能力全面升级">2. 多模态理解能力全面升级</h3><p>该模型原生支持<strong>文本、图像和视频</strong>三种输入模式，能够进行截图分析、文档理解和视频内容解析。这种多模态能力使其在复杂任务场景中表现出色，例如：</p><ul><li>分析网页截图并生成前端代码</li><li>理解长篇技术文档并回答相关问题</li><li>提取视频中的关键信息和动作描述</li></ul><h3 id="3-深度推理与-Agentic-能力">3. 深度推理与 Agentic 能力</h3><p>Qwen4-Max Preview 默认开启<strong>思考模式（Thinking）</strong>，用户可通过 <code>reasoning_effort</code> 参数调节推理强度。模型在编码、复杂数学问题、多步骤任务执行等方面展现出更强的能力，特别适合构建智能体（Agent）应用。</p><h3 id="4-API-兼容性设计">4. API 兼容性设计</h3><p>模型兼容 <strong>OpenAI Chat Completions、Responses</strong> 以及 <strong>Anthropic Messages API</strong> 格式，开发者可以无缝迁移现有应用，无需大幅修改代码。</p><h2 id="技术规格详解">技术规格详解</h2><table><thead><tr><th>特性</th><th>Qwen4-Max Preview</th></tr></thead><tbody><tr><td>模型 ID</td><td><code>qwen4-max-preview</code>（别名 <code>qwen4.0-max-preview</code>）</td></tr><tr><td>上下文窗口</td><td>1,000,000 tokens</td></tr><tr><td>最大输出</td><td>393,216 tokens（与思考模式共享预算）</td></tr><tr><td>输入模态</td><td>文本、图像、视频</td></tr><tr><td>输出模态</td><td>文本</td></tr><tr><td>思考模式</td><td>默认开启，支持 low/medium/xhigh 三级调节</td></tr><tr><td>工具调用</td><td>Function Calling、网页搜索、内置工具</td></tr><tr><td>结构化输出</td><td>JSON Object、JSON Schema</td></tr></tbody></table><h2 id="访问方式与定价策略">访问方式与定价策略</h2><p>Qwen4-Max Preview <strong>仅通过 Token Plan 订阅制开放</strong>，不支持按量付费。预览期从 2026年11月11日 10:00 至 11月25日 24:00（UTC+8），期间模型不会更新，到期后退役。</p><h3 id="Token-Plan-个人版-tiers">Token Plan 个人版 tiers</h3><table><thead><tr><th>计划</th><th>原价</th><th>新用户价</th><th>每月额度</th></tr></thead><tbody><tr><td>Lite</td><td>$6/月</td><td>$3/月</td><td>20,000 Credits</td></tr><tr><td>Essential</td><td>$10/月</td><td>$5/月</td><td>45,000 Credits</td></tr><tr><td>Standard</td><td>$18/月</td><td>-</td><td>80,000 Credits</td></tr><tr><td>Pro</td><td>$43/月</td><td>-</td><td>200,000 Credits</td></tr></tbody></table><p><strong>预览期优惠：</strong> 正常使用价格的 20%，北京夜间时段（22:00-08:00 UTC+8）仅需 8%。</p><h2 id="行业影响与展望">行业影响与展望</h2><p>Qwen4-Max Preview 的发布对开源和大模型社区具有深远意义：</p><ol><li><p><strong>上下文窗口竞赛升级</strong>：1M token 的上下文能力将推动长文档处理、代码库分析等应用场景的发展，为 RAG（检索增强生成）系统提供更强大的后端支持。</p></li><li><p><strong>多模态 Agent 新范式</strong>：结合图像、视频理解和深度推理能力，Qwen4-Max Preview 为构建自主智能体提供了新的基础模型选择。</p></li><li><p><strong>API 兼容性降低迁移成本</strong>：兼容 OpenAI 和 Anthropic API 格式，使得开发者可以快速评估和集成该模型，加速生态建设。</p></li><li><p><strong>预览制策略值得借鉴</strong>：Alibaba 采用限时预览的方式收集反馈，既保持了模型的稀缺性，又为正式版优化积累了真实用户数据。</p></li></ol><h2 id="结语">结语</h2><p>Qwen4-Max Preview 虽然只是过渡性的预览版本，但它展示了 Qwen4 系列的核心能力方向——超长上下文、多模态理解和强推理能力。对于开发者而言，这是一个值得尝试的新模型，尤其是在构建需要处理大量信息或复杂任务的 AI 应用时。</p><p>需要注意的是，该模型将于 11月25日 退役，建议有需求的开发者尽快在预览期内进行评估和集成。正式版 Qwen4-Max 何时发布、是否开源，仍有待 Alibaba 官方进一步披露。</p><hr><p><strong>参考来源：</strong></p><ul><li><a href="https://help.aliyun.com/en/model-studio/qwen4-max-preview">Alibaba Cloud Model Studio - Qwen4-Max-Preview</a></li><li><a href="https://quantslant.com/qwen4-max-preview">Quantslant - Qwen4-Max Preview 详解</a></li><li><a href="https://aireleasetracker.com/model/qwen/qwen4-max-preview">AI Release Tracker - Qwen4-Max Preview</a></li><li><a href="https://eesel.ai/blog/qwen-4-max">eesel.ai - Qwen 4 Max 预览指南</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
+&lt;p&gt;2026年11月11日，阿里巴巴通义千问（Qwen）团队正式发布了&lt;strong&gt;Qwen4-Max Preview&lt;/strong&gt;——这是Qwen4系列的首款旗舰多模态模型，标志着通义千问家族迈入第四代纪元。该模型以预览形式限量开</summary>
+      
+    
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/categories/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="Qwen" scheme="http://coderedeng.github.io/tags/Qwen/"/>
+    
+    <category term="大模型" scheme="http://coderedeng.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="多模态" scheme="http://coderedeng.github.io/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/"/>
+    
+  </entry>
   
   <entry>
     <title>Google发布TPU-8tx与TPU-8i-Max：第八代张量处理器家族四子齐发</title>
@@ -584,35 +613,6 @@
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
     <category term="DeepSeek" scheme="http://coderedeng.github.io/tags/DeepSeek/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Anthropic发布Claude Code Mods：用TypeScript给AI编程助手&quot;打补丁&quot;</title>
-    <link href="http://coderedeng.github.io/2026/10/17/Anthropic%E5%8F%91%E5%B8%83Claude-Code-Mods%E6%89%93%E8%A1%A5%E4%B8%81/"/>
-    <id>http://coderedeng.github.io/2026/10/17/Anthropic%E5%8F%91%E5%B8%83Claude-Code-Mods%E6%89%93%E8%A1%A5%E4%B8%81/</id>
-    <published>2026-10-17T02:00:00.000Z</published>
-    <updated>2026-11-01T14:22:10.434Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、从-用模型-到-改模型-：AI编程工具的第三次跃迁">一、从&quot;用模型&quot;到&quot;改模型&quot;：AI编程工具的第三次跃迁</h2><p>过去两年，开发者与 AI 编程助手的交互方式经历了两次范式转移。第一次是 Copilot 时代的&quot;补全&quot;——模型在你敲代码时给出下一行；第二次是 Claude Code、Cursor 这类 Agent 时代的&quot;自主执行&quot;——模型直接读文件、跑命令、修 bug。但无论哪一代，有一个隐含前提始终没变：<strong>你只能使用助手默认的行为</strong>。它怎么读上下文、按什么顺序调工具、在哪些地方卡住权限、界面长什么样——全由厂商写好，用户无权插手。</p><p>2026 年 10 月 1 日，Anthropic 正式推出了 <strong>Mods（修改器）</strong>，试图打破这个隐性契约。它让开发者能用几行 TypeScript，直接改写 Claude Code 在会话运行时的默认行为、自定义界面、甚至替换内置功能。如果说前两次跃迁是&quot;让模型更聪明&quot;，那么 Mods 的意义在于<strong>把编程助手从一个黑盒工具，变成一个可编程的平台</strong>。</p><h2 id="二、Mods-到底是什么：跑在你本地的函数钩子">二、Mods 到底是什么：跑在你本地的函数钩子</h2><p>先厘清一个容易混淆的概念。Mods 不是新模型，也不是云端 API 的升级——它是 <strong>Claude Code 2.1.287 版本起默认开启的一类插件（plugin）</strong>，本质是一小段运行在你的 Claude Code 进程内部的 TypeScript/JavaScript 函数。官方文档把它称为&quot;hooks module（钩子模块）&quot;：一个入口文件，里面定义了一系列函数，当会话中特定事件发生时，Claude Code 会调用它们。</p><p>关键设计在于它的<strong>作用域</strong>。Mods 不是事后审计日志，而是能实时介入决策的中间层。它能做的事情大致分三类：</p><ol><li><strong>改写提示与上下文</strong>——在模型生成前重写 system prompt、注入团队规范或项目约定。</li><li><strong>拦截并操纵工具调用</strong>——在 <code>beforeToolUse</code> 阶段改写参数、重试失败命令，或在 <code>onToolCall</code> 阶段批准/拒绝权限、对工具输出脱敏（redact secrets）。</li><li><strong>自定义界面与交互</strong>——新增侧边栏面板（panes）、自定义命令（commands），甚至替换内置功能的 UI。</li></ol><p>更巧妙的是工程体验：<strong>你不需要安装 Node.js、打包器或任何构建步骤</strong>。Claude Code 直接解释执行这些脚本，你可以在一个会话里用自然语言描述想要的行为，让 Claude 自己把 mod 写出来。</p><p>下面是一个最小示例的骨架——定义一个在工具调用前拦截的钩子：</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hooks.ts —— Mods 的入口文件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">beforeToolUse</span>(<span class="params">args</span>) &#123;</span><br><span class="line">  <span class="comment">// 拦截所有 shell 命令，强制加上 git status 前置检查</span></span><br><span class="line">  <span class="keyword">if</span> (args.<span class="property">name</span> === <span class="string">&quot;Bash&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">rewrite</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">prompt</span>: <span class="string">`<span class="subst">$&#123;args.prompt&#125;</span>\n\n（Mod 注入：执行前先运行 `</span>git status --short<span class="string">`）`</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 拒绝任何写入仓库根目录之外的写操作</span></span><br><span class="line">  <span class="keyword">if</span> (args.<span class="property">name</span> === <span class="string">&quot;Write&quot;</span> &amp;&amp; args.<span class="property">file_path</span>.<span class="title function_">startsWith</span>(<span class="string">&quot;/etc&quot;</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">allow</span>: <span class="literal">false</span>, <span class="attr">reason</span>: <span class="string">&quot;安全策略：禁止写入系统目录&quot;</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;; <span class="comment">// 不干预则返回空对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>一个 mod 就是一个包含入口文件的插件目录，通过 <code>/plugin</code> 命令在 CLI 或桌面端安装，并可通过官方目录共享。这意味着<strong>一套团队规范可以被封装成一个 mod，全公司一键复用</strong>。</p><h2 id="三、技术解读：为什么-可编程界面-这一步很关键">三、技术解读：为什么&quot;可编程界面&quot;这一步很关键</h2><p>Mods 的真正价值不在某个具体功能，而在它重新定义了&quot;工具定制&quot;的门槛与形态。</p><p><strong>其一，把配置从 YAML 降级为图灵完备的代码。</strong> 传统开发工具的配置（VS Code settings、linter 规则）是声明式的、静态的，表达能力有限。而 Mods 直接运行 TypeScript——你可以写条件判断、调用异步 API、解析 AST。安全团队可以据此实现&quot;任何含硬编码密钥的工具输出自动脱敏后才会回传给模型&quot;这种复杂逻辑，这是配置文件做不到的。</p><p><strong>其二，实现了&quot;人在环内&quot;的精确定性。</strong> Agent 最大的信任痛点是它可能执行危险操作或泄露敏感信息。Mods 提供的是确定性的、可审计的拦截点（批准/拒绝权限、改写参数），而非依赖模型&quot;自觉&quot;。这与近期 NVIDIA 开源 OpenShell 的思路异曲同工——<strong>与其信任 agent，不如在它外面包一层可强制执行的护栏</strong>。</p><p><strong>其三，催生了新的工程方法论。</strong> 社区已经随之提出&quot;Loop Engineering（循环工程）&quot;等概念，专门研究如何设计人机协作的闭环——让开发者在需要时介入，而在稳定阶段把控制权交给自动化。Mods 为这类范式提供了落地的技术底座。</p><h2 id="四、影响与未来展望：AI-编程生态进入-插件化-时代">四、影响与未来展望：AI 编程生态进入&quot;插件化&quot;时代</h2><p>从更宏观的视角看，Mods 是 AI 编程工具走向成熟的一个路标。</p><ol><li><strong>护城河从&quot;模型能力&quot;转向&quot;生态黏性&quot;。</strong> 当 Claude Code 可以像浏览器装扩展一样装 mod，团队的工作流、规范、安全策略都沉淀在这个生态里，迁移成本急剧上升——这与 Chrome 靠扩展生态赢得浏览器战争的逻辑如出一辙。</li><li><strong>企业部署的信任门槛被降低。</strong> 金融、医疗等强监管行业最担心的正是&quot;AI 不可控&quot;。Mods 提供的确定性护栏和脱敏能力，让企业在享受 Agent 效率的同时，把风险控制在可审计范围内。</li><li><strong>“一人一模型&quot;走向&quot;一人一套工作流”。</strong> 未来每个人都可以拥有量身定制的编程助手：它懂你的代码风格、守你的安全红线、长你喜欢的界面。AI 编程助手的终局或许不是&quot;更聪明的通用模型&quot;，而是&quot;更贴合个体的可编程平台&quot;。</li></ol><p>当然，开放也意味着风险。当 mod 可以重写提示、拦截工具调用甚至替换内置功能时，<strong>恶意或出错的 mod 就可能成为新的攻击面</strong>——一个声称&quot;优化性能&quot;的 mod 完全可以在后台悄悄改写你的命令。如何在灵活性与安全性之间取得平衡，将是 Claude Code 生态必须回答的问题。</p><p>无论如何，Anthropic 这一步把 AI 编程助手的竞争维度，从&quot;谁的模型更强&quot;推向了&quot;谁的平台更开放&quot;。当补全和 Agent 都趋于同质化时，<strong>可编程性</strong>或许才是下一个真正的分水岭。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;一、从-用模型-到-改模型-：AI编程工具的第三次跃迁&quot;&gt;一、从&amp;quot;用模型&amp;quot;到&amp;quot;改模型&amp;quot;：AI编程工具的第三次跃迁&lt;/h2&gt;
-&lt;p&gt;过去两年，开发者与 AI 编程助手的交互方式经历了两次范式转移。第一次是 Copilot 时代</summary>
-      
-    
-    
-    
-    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
-    
-    
-    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
-    
-    <category term="AI编程工具" scheme="http://coderedeng.github.io/tags/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/"/>
-    
-    <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
     
   </entry>
   
