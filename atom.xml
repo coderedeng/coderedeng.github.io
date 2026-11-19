@@ -6,7 +6,7 @@
   <link href="http://coderedeng.github.io/atom.xml" rel="self"/>
   
   <link href="http://coderedeng.github.io/"/>
-  <updated>2026-11-18T14:51:05.142Z</updated>
+  <updated>2026-11-19T14:52:56.468Z</updated>
   <id>http://coderedeng.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>谷歌 Gemini 4 Neon 发布：百万统一上下文，智能体编程的&quot;性价比中坚&quot;</title>
+    <link href="http://coderedeng.github.io/2026/11/19/%E8%B0%B7%E6%AD%8CGemini-4-Neon%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E7%BB%9F%E4%B8%80%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94%E4%B8%AD%E5%9D%9A/"/>
+    <id>http://coderedeng.github.io/2026/11/19/%E8%B0%B7%E6%AD%8CGemini-4-Neon%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E7%BB%9F%E4%B8%80%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94%E4%B8%AD%E5%9D%9A/</id>
+    <published>2026-11-19T14:00:00.000Z</published>
+    <updated>2026-11-19T14:52:56.468Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引言：Gemini-4-家族的-中间档-补齐了">引言：Gemini 4 家族的&quot;中间档&quot;补齐了</h2><p>11 月 18 日，Google DeepMind 正式发布了 <strong>Gemini 4 Neon</strong>——这是 Gemini 4 家族中定位介于 Carbon 与 Hydrogen 之间的全新成员。如果说 Hydrogen 走的是低价高速路线、Carbon 主打均衡通用，那么 Neon 的野心很明确：<strong>用接近前沿（frontier）的智能水平，去啃最吃算力的复杂软件工程、知识工作和科研推理任务</strong>，同时把单任务成本压下来。</p><p>官方给它的标签是&quot;前沿级智能 + 快速端到端任务完成&quot;。在 Artificial Analysis Intelligence Index 上，Neon 在 xhigh 档位拿到 <strong>61 分</strong>，超过了 Claude Opus 5.5（59）和 GPT-6.2 Sol（57），并在 Coding Agent Index 上登顶（58.6）。</p><p>从竞争格局看，这次发布卡在一个微妙的时间点。OpenAI 刚在 11 月 17 日推出 GPT-6.2 Sol 与 GPT-6.2<br>，Anthropic 的 Claude Opus 5.5 仍是企业级 Agent 任务的主力。Google 没有选择去抢&quot;最强旗舰&quot;的位置，而是精准切入了一个被忽视的空档——那些需要接近前沿智能、却又不想为旗舰模型持续买单的智能体编程与知识工作负载。用 Neon 这种&quot;中间档&quot;去承接海量的高频推理请求，再用 Hydrogen 兜底成本敏感的场景，Google 实际上是在用产品矩阵而非单一爆款来打这场仗。</p><h2 id="核心特性：一个窗口装下输入、思考与输出">核心特性：一个窗口装下输入、思考与输出</h2><p>Neon 最结构性的变化是<strong>统一的百万级上下文窗口</strong>。输入、思考（thinking）、输出三类 token 共享同一个 <strong>1,048,576 token</strong> 的预算池。这与 Gemini 3.8 Flash&quot;1M 输入 + 64K 输出&quot;的分离式预算截然不同——对长文档、超大代码库、多轮工具调用的智能体场景，这种统一窗口意味着模型可以边读边想边写，而不必在两个独立的额度之间反复横跳。</p><p>默认单次同步响应上限为 <strong>65,536 token</strong>；通过 <code>background: true</code> 或客户端续传（continuation），输出可一路延伸到接近 1M token 的&quot;长解码&quot;（long decode）。</p><p>它还继承了 Gemini 4 家族的<strong>四档思考深度</strong>：<code>low</code>、<code>medium</code>、<code>high</code>（默认）、<code>xhigh</code>。值得注意的是，Neon 与 Hydrogen 一样默认落在 <code>high</code>，而 Carbon/Argon 默认是 <code>medium</code>——这意味着从 Carbon 迁移过来的用户如果不显式设置 <code>thinking_level</code>，会不知不觉跑在更重的推理档位上，延迟和账单都会随之变化。</p><h2 id="技术分析：为智能体编程量身打磨">技术分析：为智能体编程量身打磨</h2><p>Google 把 Neon 明确定位为&quot;仓库级调试 + 多文件重构&quot;的利器。官方描述中反复强调几个工程细节：在大量工具调用的长会话里，Neon 会<strong>减少冗余的文件读取、可靠地做上下文压缩（context compaction）、并压低幻觉和任务偷工减料的概率</strong>。这正是当前 Agentic Coding 最痛的点——模型跑久了容易&quot;迷路&quot;、重复读文件、或者为了省 token 而跳过该做的步骤。</p><p>在长上下文能力上，Neon 在 GraphWalks（256K–1M 区间）拿到 **95.2%****，对比 GPT-6.2 Sol 的 80.1% 优势明显；但在 FrontierCode 2.0 这类高难度编码基准上只有 46.2%，略低于 Claude Opus 5.5 的 47.3%。换句话说：Neon 强在&quot;长上下文 + 稳定执行&quot;，而非绝对的最难推理题。</p><p>安全是另一条暗线。Google 称 Neon 写出的代码<strong>安全漏洞更少、根因修复更准、且减少了智能体的&quot;越权&quot;（overreach）行为</strong>；其双用途的进攻性网络防御能力则通过 Fairwind 计划定向开放给防御方。</p><h3 id="一次典型的调用">一次典型的调用</h3><p>下面是一个用 Google GenAI SDK 调用 Neon 做长解码的例子：把 <code>max_output_tokens</code> 抬过 65,536、并打开 <code>background</code>，服务器就会以 64K token 为一跳继续生成，直到接近统一窗口上限。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai <span class="keyword">import</span> types</span><br><span class="line"></span><br><span class="line">client = genai.Client()</span><br><span class="line"></span><br><span class="line">resp = client.models.generate_content(</span><br><span class="line">    model=<span class="string">&quot;gemini-4-neon&quot;</span>,</span><br><span class="line">    contents=[</span><br><span class="line">        <span class="string">&quot;分析这个仓库的鉴权模块，找出越权风险并给出重构方案。&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    config=types.GenerateContentConfig(</span><br><span class="line">        thinking_level=<span class="string">&quot;high&quot;</span>,          <span class="comment"># low / medium / high / xhigh</span></span><br><span class="line">        max_output_tokens=<span class="number">200_000</span>,      <span class="comment"># 超过 65,536 触发长解码</span></span><br><span class="line">        background=<span class="literal">True</span>,                <span class="comment"># 服务端按 64K token 一跳续写</span></span><br><span class="line">    ),</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.text)</span><br></pre></td></tr></table></figure><h2 id="定价与生态位：没有免费档，但有-任务成本-叙事">定价与生态位：没有免费档，但有&quot;任务成本&quot;叙事</h2><p>Neon <strong>只有付费档、无免费层</strong>。标准价 $3/1M 输入、$15/1M 输出（思考 token 计入输出），隐式缓存命中后输入降到 $0.15（95% 折扣）；Batch/Flex 模式 $1.50/$7.50，Priority $5.40/$27。</p><p>这里有个微妙的时间差：在 11 月 30 日之前，Neon 的单 token 价格其实<strong>高于</strong> Carbon 的入门价（$2/$10）；但从 12 月 1 日起 Carbon 涨到 $4/$20，Neon 就稳稳卡在 Hydrogen 与 Carbon 之间。Google 的核心卖点不是&quot;更便宜&quot;，而是<strong>单任务成本更低</strong>——在 <code>high</code> 档位下比 Carbon 低约 32%，官方称相对竞品在 Vals Index / Agent Arena 上可省 50%–80%。这也意味着：真正决定 Neon 值不值的，是它每次任务花掉的 token 数，而这部分 Google 尚未给出公开数据。</p><p>还有一个容易被忽略的成本拐点：Google 明确指出，当 prompt <strong>超过 20 万 token</strong> 时，Neon 反而比 Gemini 3.1 Pro Preview 更划算——输入便宜约 25%、输出便宜约 17%、缓存输入便宜 62.5%；但当 prompt 在 20 万 token 以内时，Neon 的单价要高出 50%（输入）到 25%（输出）。换句话说，Neon 是为&quot;重上下文&quot;负载而生的：如果你的工作流是动辄几十万 token 的仓库级分析或长文档综合，它才真正显出价值；反之，短 prompt 的高频任务用 Hydrogen 或 Carbon 会更经济。</p><h2 id="影响与未来展望">影响与未来展望</h2><p>Neon 的发布把 Gemini 4 家族的中段彻底补齐了。对开发者而言，最直接的信号是：<strong>长上下文 + 智能体编程正在成为模型竞争的主战场</strong>。当输入、思考、输出共用一个百万窗口，&quot;能装下整个仓库再动手&quot;就从营销话术变成了可落地的工程能力。</p><p>在 Antigravity 里，Neon 甚至可以充当编排者（orchestrator），把子任务分派给并行的 Hydrogen 子智能体——这种&quot;大模型调度小模型&quot;的分工模式，或许正是下一代 Agent 系统的雏形。而闭源、仅 Google 托管的定位也提醒我们：前沿能力与本地化部署之间，仍横着一道明确的边界。</p><p>对正在做模型选型的团队，一个务实的建议是：把 Neon 当作&quot;长会话、多工具、大仓库&quot;场景的默认选项，而把 Carbon 留给需要额外校验的关键环节。Neon 与 Carbon、Hydrogen 共享同一套请求 schema、窗口与工具接口，可以通过 <code>previous_interaction_id</code> 在同一次交互里无缝切换档位——这种&quot;一个对话内自由升降档&quot;的能力，让成本优化从静态配置变成了动态调度。可以预见，随着 Gemini 4 家族逐步补齐，围绕&quot;统一百万上下文 + 可调思考深度 + 长解码&quot;的这套范式，很可能会成为下一代 Agent 模型的事实标准。</p><blockquote><p>参考来源：Google DeepMind《Introducing Gemini 4 Neon》官方博客、Google AI Studio / ai.google.dev 的 Gemini 4 Neon 发布说明、Vertex AI 定价文档，以及 Artificial Analysis、MarkTechPost、LLM-Stats 等第三方评测与报道（2026-11-18）。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引言：Gemini-4-家族的-中间档-补齐了&quot;&gt;引言：Gemini 4 家族的&amp;quot;中间档&amp;quot;补齐了&lt;/h2&gt;
+&lt;p&gt;11 月 18 日，Google DeepMind 正式发布了 &lt;strong&gt;Gemini 4 Neon&lt;/strong&gt;——这</summary>
+      
+    
+    
+    
+    <category term="Tech前沿" scheme="http://coderedeng.github.io/categories/Tech%E5%89%8D%E6%B2%BF/"/>
+    
+    
+    <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
+    
+    <category term="大模型" scheme="http://coderedeng.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="Gemini" scheme="http://coderedeng.github.io/tags/Gemini/"/>
+    
+    <category term="智能体编程" scheme="http://coderedeng.github.io/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>HeyGen开源HyperFrames：HTML成为AI视频的新编程语言</title>
@@ -213,9 +244,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="开源模型" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/"/>
-    
     <category term="Meta" scheme="http://coderedeng.github.io/tags/Meta/"/>
+    
+    <category term="开源模型" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
@@ -455,9 +486,9 @@
     <category term="热门开源项目" scheme="http://coderedeng.github.io/categories/%E7%83%AD%E9%97%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     
-    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
     <category term="Claude Code" scheme="http://coderedeng.github.io/tags/Claude-Code/"/>
+    
+    <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     <category term="AI Agent" scheme="http://coderedeng.github.io/tags/AI-Agent/"/>
     
@@ -517,9 +548,9 @@
     
     <category term="AI前沿" scheme="http://coderedeng.github.io/tags/AI%E5%89%8D%E6%B2%BF/"/>
     
-    <category term="Mistral" scheme="http://coderedeng.github.io/tags/Mistral/"/>
-    
     <category term="MoE架构" scheme="http://coderedeng.github.io/tags/MoE%E6%9E%B6%E6%9E%84/"/>
+    
+    <category term="Mistral" scheme="http://coderedeng.github.io/tags/Mistral/"/>
     
   </entry>
   
@@ -582,37 +613,6 @@
     <category term="开源项目" scheme="http://coderedeng.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     <category term="Agent框架" scheme="http://coderedeng.github.io/tags/Agent%E6%A1%86%E6%9E%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AMD MI400系列发布：HBM4内存与ROCm 7如何重塑AI芯片格局</title>
-    <link href="http://coderedeng.github.io/2026/10/22/AMD-MI400%E7%B3%BB%E5%88%97%E5%8F%91%E5%B8%83-HBM4%E5%86%85%E5%AD%98%E4%B8%8EROCm-7%E9%87%8D%E5%A1%91AI%E8%8A%AF%E7%89%87%E6%A0%BC%E5%B1%80/"/>
-    <id>http://coderedeng.github.io/2026/10/22/AMD-MI400%E7%B3%BB%E5%88%97%E5%8F%91%E5%B8%83-HBM4%E5%86%85%E5%AD%98%E4%B8%8EROCm-7%E9%87%8D%E5%A1%91AI%E8%8A%AF%E7%89%87%E6%A0%BC%E5%B1%80/</id>
-    <published>2026-10-22T02:00:00.000Z</published>
-    <updated>2026-11-17T00:46:42.695Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="引言：AMD终于交出了-能打-的AI芯片答卷">引言：AMD终于交出了&quot;能打&quot;的AI芯片答卷</h2><p>在AI芯片领域，NVIDIA长期以来几乎垄断了高端训练市场。从V100到A100再到H100，NVIDIA的每一步都让竞争对手望尘莫及。然而，2026年9月12日，AMD在Advancing AI 2026大会上正式发布了<strong>Instinct MI400系列GPU</strong>——这不仅是AMD迄今为止最强大的AI加速器，更是其 roadmap 终于追上NVIDIA B系列的关键里程碑。</p><p>MI400系列的发布标志着AI芯片战争进入了一个全新的阶段：不再是NVIDIA的独角戏，而是真正的双雄争霸。</p><h2 id="MI400系列的核心规格：HBM4时代的先行者">MI400系列的核心规格：HBM4时代的先行者</h2><p>AMD MI400系列包含多个型号，其中最具代表性的是<strong>MI455X</strong>（面向前沿AI训练与推理）和<strong>MI430X</strong>（面向主权AI和HPC工作负载）。以下是其核心亮点：</p><h3 id="1-432GB-HBM4内存——带宽革命的落地">1. 432GB HBM4内存——带宽革命的落地</h3><p>MI455X配备了高达<strong>432GB的HBM4内存</strong>，这是业界首批采用HBM4技术的GPU之一。相比上一代HBM3e，HBM4在带宽和能效上实现了显著提升：</p><ul><li><strong>带宽提升</strong>：HBM4提供了远超HBM3e的带宽容量，为大规模模型训练提供了充足的&quot;数据吞吐管道&quot;</li><li><strong>能效优化</strong>：更低的电压需求和更高的集成度使得HBM4在同等性能下功耗更低</li></ul><p>对于像Llama 3.3、GPT-5.6这样参数量动辄万亿级别的模型来说，内存带宽往往是瓶颈所在。MI455X的432GB HBM4意味着它能够在不频繁访问外部存储的情况下，处理更庞大的模型权重和激活值。</p><h3 id="2-3200亿晶体管与Helios架构">2. 3200亿晶体管与Helios架构</h3><p>MI400系列基于AMD全新的<strong>Helios架构</strong>构建，集成了超过<strong>3200亿个晶体管</strong>。这一规模使其在计算密度上足以与NVIDIA Blackwell Ultra B300正面抗衡。</p><p>Helios架构的核心创新在于其<strong>模块化设计</strong>——通过SOIC（System-on-Integrated-Circuit）先进封装技术，AMD将多个计算芯片与HBM4内存堆栈整合在一起，形成了类似NVIDIA CoWoS的高密度封装方案。这种设计不仅提升了性能，还增强了可扩展性。</p><h3 id="3-ROCm-7软件栈——终于-可用-了">3. ROCm 7软件栈——终于&quot;可用&quot;了</h3><p>过去几年，AMD最大的短板一直在于软件生态。ROCm（Radeon Open Compute）平台长期被诟病为&quot;文档缺失、兼容性差、部署困难&quot;。但<strong>ROCm 7</strong>带来了根本性的改变：</p><ul><li><strong>成熟的工具链</strong>：完整的编译器的调试工具、性能分析器一应俱全</li><li><strong>框架兼容</strong>：对PyTorch、TensorFlow等主流框架的原生支持更加完善</li><li><strong>容器化部署</strong>：通过Docker和Kubernetes的集成，企业用户可以像使用NVIDIA CUDA一样轻松部署ROCm应用</li></ul><p>AMD官方表示，ROCm 7在MI455X上的性能表现已经接近NVIDIA CUDA在同级别GPU上的水平——这对于一个曾经被边缘化的软件平台来说，是质的飞跃。</p><h2 id="MI400系列的市场意义：三大超大规模云厂商的背书">MI400系列的市场意义：三大超大规模云厂商的背书</h2><p>MI400系列发布后，AMD宣布<strong>三家超大规模云计算厂商</strong>已承诺进行大规模部署。虽然AMD未公开具体名称，但业界普遍认为包括Microsoft Azure、Google Cloud和Oracle Cloud在内的巨头都在其中。</p><p>这一背书具有深远意义：</p><ol><li><strong>生态验证</strong>：云厂商的采购意味着MI400系列通过了严格的生产环境测试</li><li><strong>成本优势</strong>：与NVIDIA相比，AMD通常提供更具竞争力的定价，这有助于降低AI训练的总拥有成本（TCO）</li><li><strong>开源友好</strong>：ROCm的开放特性吸引了那些希望避免Vendor Lock-in的企业</li></ol><h2 id="MI400-vs-NVIDIA-Rubin-B300：一场正在上演的对决">MI400 vs NVIDIA Rubin/B300：一场正在上演的对决</h2><p>MI400系列的发布恰逢NVIDIA Rubin架构的推出时期，两者形成了直接竞争关系。以下是关键对比维度：</p><table><thead><tr><th>维度</th><th>AMD MI455X</th><th>NVIDIA B300/Rubin</th></tr></thead><tbody><tr><td>内存类型</td><td>HBM4 (432GB)</td><td>HBM3e/HBM4</td></tr><tr><td>软件生态</td><td>ROCm 7（新兴成熟）</td><td>CUDA（绝对主导）</td></tr><tr><td>封装技术</td><td>SOIC + CoWoS-L</td><td>CoWoS</td></tr><tr><td>定价策略</td><td>更具竞争力</td><td>溢价明显</td></tr></tbody></table><p>需要注意的是，NVIDIA CUDA生态经过十余年积累，拥有庞大的开发者基础和优化的库函数（如cuBLAS、cuDNN）。AMD ROCm虽然在快速进步，但在某些特定算子的优化上仍需时间追赶。然而，随着MI400系列的发布和ROCm 7的成熟，这一差距正在缩小。</p><h2 id="对开源社区和企业的影响">对开源社区和企业的影响</h2><h3 id="1-开源AI训练成本有望降低">1. 开源AI训练成本有望降低</h3><p>MI400系列的竞争压力可能迫使NVIDIA调整定价策略，这对于依赖GPU训练的开源项目和初创公司来说是利好消息。更便宜的算力意味着更多人能够参与大模型训练和创新。</p><h3 id="2-ROCm生态的崛起将丰富工具选择">2. ROCm生态的崛起将丰富工具选择</h3><p>随着ROCm 7的成熟，开发者不再被迫&quot;绑定&quot;NVIDIA生态。这意味着框架作者可以为多个后端优化性能，用户也可以根据成本和性能需求灵活选择硬件平台。</p><h3 id="3-HPC与AI的融合加速">3. HPC与AI的融合加速</h3><p>MI403X型号专门针对主权AI和HPC工作负载设计，这表明AMD正在推动AI与高性能计算的深度融合。对于科学计算、气候模拟、药物研发等领域，这种融合将带来新的可能性。</p><h2 id="展望：AI芯片战争的下一阶段">展望：AI芯片战争的下一阶段</h2><p>MI400系列的发布只是AMD AI战略的开端。展望未来，我们可以期待：</p><ul><li><strong>MI500系列</strong>：可能在2027年推出，进一步巩固AMD在AI芯片市场的地位</li><li><strong>chiplet架构的深化</strong>：AMD在chiplet技术上的积累将使其在可扩展性上保持优势</li><li><strong>与开源模型的深度绑定</strong>：随着Qwen、GLM、DeepSeek等开源模型的发展，ROCm生态有望获得更强的社区驱动</li></ul><h2 id="结语">结语</h2><p>AMD Instinct MI400系列的发布，标志着AI芯片市场从&quot;NVIDIA独大&quot;向&quot;多极竞争&quot;迈出了关键一步。HBM4内存的引入、ROCm 7软件栈的成熟、以及三大云厂商的背书，共同构成了MI400系列的核心竞争力。</p><p>对于开发者而言，这意味着更多的选择、更低的成本、以及更丰富的生态。对于整个AI行业而言，竞争带来的创新红利将惠及每一个人。</p><hr><p><em>参考来源：AMD官方新闻稿《AMD Launches Instinct MI400 Series GPUs》、Hot Chips 2026会议资料、Tech Insider AMD MI400系列深度分析、ServeTheHome MI400 GPU专题报道</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;引言：AMD终于交出了-能打-的AI芯片答卷&quot;&gt;引言：AMD终于交出了&amp;quot;能打&amp;quot;的AI芯片答卷&lt;/h2&gt;
-&lt;p&gt;在AI芯片领域，NVIDIA长期以来几乎垄断了高端训练市场。从V100到A100再到H100，NVIDIA的每一步都让竞争对手望尘莫及</summary>
-      
-    
-    
-    
-    <category term="AI芯片" scheme="http://coderedeng.github.io/categories/AI%E8%8A%AF%E7%89%87/"/>
-    
-    
-    <category term="AMD" scheme="http://coderedeng.github.io/tags/AMD/"/>
-    
-    <category term="MI400" scheme="http://coderedeng.github.io/tags/MI400/"/>
-    
-    <category term="HBM4" scheme="http://coderedeng.github.io/tags/HBM4/"/>
-    
-    <category term="ROCm" scheme="http://coderedeng.github.io/tags/ROCm/"/>
     
   </entry>
   
