@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://coderedeng.github.io/2026/11/21/NVIDIA-Rubin-HPC%E5%8F%91%E5%B8%83-%E8%B6%85%E8%BF%875%E4%B8%87CUDA%E6%A0%B8%E7%9A%84Agentic%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%96%B0%E8%8A%AF%E7%89%87/</loc>
+    <lastmod>2026-11-21</lastmod>
+  </url>
+  <url>
     <loc>http://coderedeng.github.io/2026/11/19/%E8%B0%B7%E6%AD%8CGemini-4-Neon%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E7%BB%9F%E4%B8%80%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A8%8B%E7%9A%84%E6%80%A7%E4%BB%B7%E6%AF%94%E4%B8%AD%E5%9D%9A/</loc>
     <lastmod>2026-11-19</lastmod>
   </url>
