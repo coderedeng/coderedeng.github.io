@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
   pages: write
   id-token: write
 
@@ -29,24 +30,54 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Clean up stale artifacts from earlier attempts of this run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # deploy-pages@v4 fails when a run has more than one artifact with the
+          # same name. Reruns of this job accumulate artifacts, so delete any
+          # leftovers from earlier failed attempts before uploading a fresh one.
+          # (Safe: only reads/deletes artifacts of the current run via trusted
+          #  github.repository / github.run_id context values.)
+          ids=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?per_page=100" --jq '.artifacts[] | select(.name=="github-pages") | .id' 2>/dev/null || true)
+          if [ -n "$ids" ]; then
+            for id in $ids; do
+              echo "deleting stale artifact $id"
+              gh api -X DELETE "repos/${{ github.repository }}/actions/artifacts/$id" || true
+            done
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Wait for artifact metadata
+      - name: Wait for artifact metadata to stabilize
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for i in $(seq 1 12); do
-            count=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?per_page=5" --jq '[.artifacts[] | select(.name=="github-pages")] | length' 2>/dev/null || echo 0)
-            if [ "$count" -ge 1 ]; then
-              echo "artifact metadata visible after $((i-1))*15s"
-              exit 0
+          # deploy-pages@v4 intermittently reports "Found 0 artifact(s)" right
+          # after upload (API read-replica lag). Require 3 consecutive reads of
+          # exactly one 'github-pages' artifact, spaced 10s apart, before
+          # deploying. Abort (fail the job) if it never stabilizes — a rerun is
+          # now safe because the cleanup step removes duplicates first.
+          stable=0
+          for i in $(seq 1 20); do
+            count=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?per_page=10" --jq '[.artifacts[] | select(.name=="github-pages")] | length' 2>/dev/null || echo 0)
+            echo "poll #$i: count=$count stable_streak=$stable"
+            if [ "$count" = "1" ]; then
+              stable=$((stable+1))
+              if [ "$stable" -ge 3 ]; then
+                echo "artifact metadata stable after $((i-1))*10s"
+                exit 0
+              fi
+            else
+              stable=0
             fi
-            sleep 15
+            sleep 10
           done
-          echo "::warning::artifact metadata still not visible; attempting deploy anyway"
+          echo "::error::artifact metadata never stabilized; aborting so the job can be rerun cleanly"
+          exit 1
 
       - name: Deploy to GitHub Pages
         id: deployment
